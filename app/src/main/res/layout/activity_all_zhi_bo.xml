@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".music.zhibo.ui.AllZhiBoActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/all_zhibo_activity_toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/back_icon_red"
+        android:background="@color/white"
+        app:titleTextColor="@color/_333333"
+        app:title="@string/zhiBo_live"
+        android:elevation="2dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/all_zhibo_activity_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"/>
+
+</LinearLayout>

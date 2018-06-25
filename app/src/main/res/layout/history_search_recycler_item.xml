@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/history_search_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/history_search_recycler_item_delete_layout">
+
+        <RadioButton
+            android:id="@+id/history_search_itemView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:button="@null"/>
+
+        <ImageView
+            android:id="@+id/history_search_recycler_item_recent_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/recent_icon" />
+
+        <com.jushi.muisc.chat.view.JSTextView
+            android:id="@+id/history_search_recycler_item_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/history_search_recycler_item_recent_icon"
+            android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/_999999"
+            android:textSize="@dimen/_14sp" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/history_search_recycler_item_delete_layout"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="5dp"
+        android:layout_centerVertical="true"
+        android:clickable="true">
+
+        <RadioButton
+            android:id="@+id/history_search_recycler_item_delete_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:button="@null"/>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/delete_icon"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+</RelativeLayout>

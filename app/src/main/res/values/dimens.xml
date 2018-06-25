@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">200dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="_18sp">18sp</dimen>
+    <dimen name="_16sp">16sp</dimen>
+    <dimen name="_15sp">15sp</dimen>
+    <dimen name="_14sp">14sp</dimen>
+    <dimen name="_13sp">13sp</dimen>
+    <dimen name="_12sp">12sp</dimen>
+    <dimen name="_10sp">10sp</dimen>
+    <dimen name="_20sp">20sp</dimen>
+    <dimen name="_22sp">22sp</dimen>
+    <dimen name="design_navigation_separator_vertical_padding" tools:override="true">5dp</dimen>
+    <dimen name="design_navigation_icon_size" tools:override="true">40dp</dimen>
+    <!--<dimen name="design_navigation_icon_padding" tools:override="true">40dp</dimen>-->
+    <dimen name="play_controller_btn_size">40dp</dimen>
+    <dimen name="play_controller_height_size">50dp</dimen>
+</resources>

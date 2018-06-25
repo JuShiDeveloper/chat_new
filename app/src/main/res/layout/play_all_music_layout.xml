@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/play_all_music_layout"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize">
+
+    <ImageView
+        android:id="@+id/play_all_RadioButton"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/all_play_icon"
+        android:tint="@color/_333333" />
+
+    <com.jushi.muisc.chat.view.JSTextView
+        android:id="@+id/play_all_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/play_all_RadioButton"
+        android:gravity="center_vertical"
+        android:text="@string/play_all"
+        android:textColor="@color/_333333"
+        android:textSize="@dimen/_16sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/play_all_text"
+        android:orientation="horizontal">
+
+        <com.jushi.muisc.chat.view.JSTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_"
+            android:textColor="@color/_bbbbbb"
+            android:textSize="@dimen/_16sp" />
+
+        <com.jushi.muisc.chat.view.JSTextView
+            android:id="@+id/play_all_music_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/_bbbbbb"
+            android:textSize="@dimen/_16sp"
+            android:text="0"/>
+
+        <com.jushi.muisc.chat.view.JSTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shou_"
+            android:textColor="@color/_bbbbbb"
+            android:textSize="@dimen/_16sp" />
+    </LinearLayout>
+
+</RelativeLayout>

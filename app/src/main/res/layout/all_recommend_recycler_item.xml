@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:id="@+id/number_layout"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <ImageView
+            android:id="@+id/iv_volume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/volume_icon"
+            android:tint="@color/ff3a9b"
+            android:visibility="gone" />
+
+        <com.jushi.muisc.chat.view.JSTextView
+            android:id="@+id/tv_all_recommend_number_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/_999999"
+            android:textSize="@dimen/_15sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_toLeftOf="@+id/all_recommend_item_moreBtn"
+        android:layout_toRightOf="@+id/number_layout"
+        android:orientation="vertical"
+        android:layout_centerVertical="true">
+
+        <com.jushi.muisc.chat.view.JSTextView
+            android:id="@+id/all_recommend_item_songName_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textColor="@color/_333333"
+            android:textSize="@dimen/_16sp" />
+
+        <com.jushi.muisc.chat.view.JSTextView
+            android:id="@+id/all_recommend_singer_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textColor="@color/_999999"
+            android:textSize="@dimen/_13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/all_recommend_item_moreBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/more_three_point_icon"
+            android:buttonTint="@color/color_status"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/color_status"
+        android:layout_toRightOf="@+id/number_layout"
+        android:layout_below="@+id/all_recommend_item_moreBtn"
+        android:alpha="0.9"/>
+</RelativeLayout>

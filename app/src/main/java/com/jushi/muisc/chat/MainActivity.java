@@ -1,0 +1,173 @@
+package com.jushi.muisc.chat;
+
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.widget.RelativeLayout;
+
+import com.jushi.muisc.chat.music.localmusic.ui.LocalMusicActivity;
+import com.jushi.muisc.chat.music.play_navgation.PlayController;
+import com.jushi.muisc.chat.manager.ActivityManager;
+import com.jushi.muisc.chat.utils.DisplayUtils;
+import com.jushi.muisc.chat.utils.LocalMusicUtils;
+import com.jushi.muisc.chat.view.FriendsLayout;
+import com.jushi.muisc.chat.view.MainTitleLayout;
+import com.jushi.muisc.chat.view.MusicLayout;
+
+
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DrawerLayout drawer;
+    private Toolbar toolbar;
+    private RelativeLayout contentContainer;
+    private MainTitleLayout titleLayout;
+    private MusicLayout musicLayout;
+    private FriendsLayout friendsLayout;
+    private NavigationView nav;
+    private PlayController playController;
+    //判断是否添加过本地歌曲数据
+    private boolean isSetList = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+        setContentView(R.layout.activity_main);
+        initialize();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        requestPermission();
+        setTitleLatoutListener();
+        initPlayController();
+    }
+
+    //SD卡读写权限请求
+    private void requestPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    1);
+        } else {
+
+        }
+    }
+
+
+    private void initialize() {
+        initToolbar();
+        findWidget();
+    }
+
+    //初始化播放控制栏
+    private void initPlayController() {
+        playController = PlayController.getInstance(this);
+        playController.showPlayControllerInfo();
+        if (!isSetList){
+            playController.setPlayList(LocalMusicUtils.getSongs(this));
+            isSetList = true;
+        }
+    }
+
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("");
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        toolbar.setNavigationIcon(R.drawable.menu_icon);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void findWidget() {
+        titleLayout = findViewById(R.id.MainTitleLayout);
+        contentContainer = findViewById(R.id.content_main_activity);
+        musicLayout = new MusicLayout(this);
+        friendsLayout = new FriendsLayout(this);
+        contentContainer.addView(musicLayout);
+
+        nav = findViewById(R.id.nav_view);
+        nav.setItemIconTintList(null);
+
+    }
+
+    //点击音乐或好友时相应的切换显示的内容
+    private void setTitleLatoutListener() {
+        titleLayout.setOnStateChangedListener(new MainTitleLayout.OnStateChangedListener() {
+            @Override
+            public void onStateChanged(int state) {
+                switch (state) {
+                    case 1:
+                        contentContainer.removeAllViews();
+                        contentContainer.addView(musicLayout);
+                        break;
+                    case 2:
+                        contentContainer.removeAllViews();
+                        contentContainer.addView(friendsLayout);
+                        break;
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            moveTaskToBack(true);
+        }
+        return true;
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+        if (id == R.id.local_music) { //本地音乐
+            ActivityManager.startActivity(this, LocalMusicActivity.class);
+        } else if (id == R.id.near_play) {  //最近播放
+
+        } else if (id == R.id.my_favorites) {  //我的收藏
+
+        } else if (id == R.id.download_manager) {   //下载管理
+
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        playController.destory();
+    }
+}

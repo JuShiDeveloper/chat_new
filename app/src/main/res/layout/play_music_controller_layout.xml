@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/play_controller_height_size"
+    android:background="@drawable/bg_play_controller">
+
+        <ImageView
+            android:id="@+id/play_music_controller_layout_author_imageView"
+            android:layout_width="@dimen/play_controller_btn_size"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="5dp"
+            android:src="@drawable/default_author_image" />
+
+        <RadioButton
+            android:id="@+id/play_music_controller_layout_playListMenu_btn"
+            android:layout_width="@dimen/play_controller_btn_size"
+            android:layout_height="@dimen/play_controller_btn_size"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="15dp"
+            android:button="@drawable/menu_controller_icon"
+            android:buttonTint="@color/ff3a9b" />
+
+        <RadioButton
+            android:id="@+id/play_music_controller_layout_play_btn"
+            android:layout_width="@dimen/play_controller_btn_size"
+            android:layout_height="@dimen/play_controller_btn_size"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/play_music_controller_layout_playListMenu_btn"
+            android:button="@drawable/pause_controller_icon"
+            android:buttonTint="@color/ff3a9b" />
+
+        <LinearLayout
+            android:id="@+id/play_music_controller_layout_song_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/play_music_controller_layout_play_btn"
+            android:layout_toRightOf="@+id/play_music_controller_layout_author_imageView"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <com.jushi.muisc.chat.view.JSTextView
+                android:id="@+id/play_music_controller_layout_songName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:textColor="@color/_666666"
+                android:textSize="@dimen/_16sp" />
+
+            <com.jushi.muisc.chat.view.JSTextView
+                android:id="@+id/play_music_controller_layout_songAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:textColor="@color/_999999"
+                android:textSize="@dimen/_13sp" />
+
+        </LinearLayout>
+
+</RelativeLayout>

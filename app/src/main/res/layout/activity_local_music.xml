@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".music.localmusic.ui.LocalMusicActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/local_music_activity_toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/back_icon_red">
+
+        <RelativeLayout
+            android:id="@+id/local_music_activity_title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.jushi.muisc.chat.view.JSTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/local_music"
+                android:textColor="@color/_333333"
+                android:textSize="@dimen/_18sp" />
+
+            <RadioButton
+                android:id="@+id/local_music_activity_search_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:button="@drawable/search" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/local_music_activity_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/search_edit_text_bg_icon"
+            android:gravity="center"
+            android:hint="@string/search_local_music"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/_15sp"
+            android:visibility="gone" />
+    </android.support.v7.widget.Toolbar>
+
+    <include layout="@layout/play_all_music_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/local_music_activity_RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/PlayMusicView"/>
+
+        <include layout="@layout/buttom_play_controller_layout"/>
+    </RelativeLayout>
+
+</LinearLayout>

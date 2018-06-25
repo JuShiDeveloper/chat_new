@@ -1,0 +1,24 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jushi.muisc.chat.music.fragment.ChartFragment"
+    android:background="@color/white">
+
+    <com.jushi.muisc.chat.view.JSTextView
+        android:id="@+id/chart_fragment_loading_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="200dp"
+        android:textColor="@color/_999999"
+        android:textSize="@dimen/_15sp"
+        android:text="loading..."/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/chart_fragment_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+</FrameLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_play_music_activity_1"
+    android:fitsSystemWindows="true"
+    tools:context=".music.play_music.PlayMusicActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/play_music_activity_toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/back_icon_red">
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/play_music_activity_songInfo_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/play_music_activity_toolBar"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <com.jushi.muisc.chat.view.JSTextView
+            android:id="@+id/play_music_activity_songName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_22sp" />
+
+        <com.jushi.muisc.chat.view.JSTextView
+            android:id="@+id/play_music_activity_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/_666666"
+            android:textSize="@dimen/_16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/time_progress_container"
+        android:layout_below="@+id/play_music_activity_songInfo_container"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/round_image_play_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/play_music_activity_round_image"
+            android:layout_centerHorizontal="true"/>
+        <com.jushi.muisc.chat.view.lrcview.impl.LrcView
+            android:id="@+id/play_music_activity_lrcView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/time_progress_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/play_music_activity_bottom"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <com.jushi.muisc.chat.view.JSTextView
+            android:id="@+id/play_activity_music_progress_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="0:00"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sp" />
+
+        <SeekBar
+            android:id="@+id/play_music_activity_seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/play_activity_music_total_time"
+            android:layout_toRightOf="@+id/play_activity_music_progress_time"
+            android:progressBackgroundTint="@color/_4842a2"
+            android:progressTint="@color/ff3a9b"
+            android:thumb="@drawable/seekbar_point_icon" />
+
+        <com.jushi.muisc.chat.view.JSTextView
+            android:id="@+id/play_activity_music_total_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="0:00"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sp" />
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/play_music_activity_bottom"
+        layout="@layout/play_music_activity_bottom_controller" />
+
+</RelativeLayout>

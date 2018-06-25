@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="head">HeadView</string>
+    <string name="pull_to_refresh">Pull down to refresh</string>
+    <string name="release_to_refresh">Release immediately refreshed</string>
+    <string name="refreshing">Refreshing...</string>
+    <string name="refresh_succeed">Refresh successfully</string>
+    <string name="refresh_fail">Refresh failed</string>
+    <string name="pullup_to_load">Load up more</string>
+    <string name="release_to_load">Release immediately load</string>
+    <string name="loading">loading...</string>
+    <string name="load_succeed">Load successfully</string>
+    <string name="load_fail">Failed to load</string>
+
+</resources>

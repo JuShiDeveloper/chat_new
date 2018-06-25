@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">MusicChat</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="music">音乐</string>
+    <string name="friends">好友</string>
+    <string name="homepage">首页</string>
+    <string name="video_live">视频/直播</string>
+    <string name="chart">榜单</string>
+    <string name="today_recommend">今日推荐</string>
+    <string name="hot_artist">热门歌手</string>
+    <string name="all_artist">全部歌手</string>
+    <string name="hot_">热门</string>
+    <string name="China_artist">华语</string>
+    <string name="ou_mei_artist">欧美</string>
+    <string name="han_guo_artist">韩国</string>
+    <string name="japan_artist">日本</string>
+    <string name="other_artist">其他</string>
+
+    <string name="latest_MV">最新MV</string>
+    <string name="zhiBo_live">直播</string>
+    <string name="search_hint">请输入歌曲、歌手</string>
+    <string name="nothing_more">我是有底线的</string>
+    <string name="play_all">播放全部</string>
+    <string name="total_">(共</string>
+    <string name="shou_">首)</string>
+    <string name="new_music_hot_words">热门搜索</string>
+    <string name="history_search">历史搜索</string>
+    <string name="load_success">加载成功</string>
+    <string name="load_failed">加载失败</string>
+    <string name="click_login">点击登录</string>
+    <string name="local_music">本地音乐</string>
+    <string name="near_play">最近播放</string>
+    <string name="my_favorites">我的收藏</string>
+    <string name="download_manager">下载管理</string>
+    <string name="send">发送</string>
+    <string name="search_local_music">搜索本地歌曲</string>
+
+
+</resources>

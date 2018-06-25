@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/g1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/local_music"
+            android:icon="@drawable/local_music_icon"
+            android:title="@string/local_music" />
+
+    </group>
+    <group
+        android:id="@+id/g2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/near_play"
+            android:icon="@drawable/near_play_icon"
+            android:title="@string/near_play" />
+
+    </group>
+    <group
+        android:id="@+id/g3"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/my_favorites"
+            android:icon="@drawable/my_favorites_icon"
+            android:title="@string/my_favorites" />
+
+    </group>
+    <group
+        android:id="@+id/g4"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/download_manager"
+            android:icon="@drawable/download_manager_icon"
+            android:title="@string/download_manager" />
+    </group>
+
+
+</menu>
