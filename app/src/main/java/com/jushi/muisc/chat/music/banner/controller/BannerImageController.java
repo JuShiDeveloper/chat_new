@@ -80,6 +80,13 @@ public class BannerImageController {
     private void showBannerData() {
         views.clear();
         dotsList.clear();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (dotsContainer.getChildCount() > 0)
+                    dotsContainer.removeAllViews();
+            }
+        });
         for (int i = 0; i < sliders.size(); i++) {
             final ImageView imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);

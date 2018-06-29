@@ -81,12 +81,13 @@ public class HomePageFragment extends Fragment {
         refreshLayout.setOnPullListener(new PullToRefreshLayout.OnPullListener() {
             @Override
             public void onRefresh(final PullToRefreshLayout pullToRefreshLayout) {
+                toRefresh();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
                     }
-                }, 1000);
+                }, 500);
             }
 
             @Override
@@ -94,6 +95,12 @@ public class HomePageFragment extends Fragment {
 
             }
         });
+    }
+
+    private void toRefresh() {
+        bannerController.refreshData();
+        recommendController.refreshData();
+        hotArtistController.refreshData();
     }
 
 }
