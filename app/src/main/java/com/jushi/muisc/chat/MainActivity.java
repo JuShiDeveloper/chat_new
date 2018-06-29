@@ -13,11 +13,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.jushi.muisc.chat.music.localmusic.ui.LocalMusicActivity;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.manager.ActivityManager;
+import com.jushi.muisc.chat.sliding_menu.SlidingMenuController;
 import com.jushi.muisc.chat.utils.DisplayUtils;
 import com.jushi.muisc.chat.utils.LocalMusicUtils;
 import com.jushi.muisc.chat.view.FriendsLayout;
@@ -35,7 +39,12 @@ public class MainActivity extends AppCompatActivity
     private MusicLayout musicLayout;
     private FriendsLayout friendsLayout;
     private NavigationView nav;
+    private ImageView headerImage;
+    private TextView landingTv;
+    //播放控制栏
     private PlayController playController;
+    //侧滑菜单控制类
+    private SlidingMenuController menuController;
     //判断是否添加过本地歌曲数据
     private boolean isSetList = false;
 
@@ -52,8 +61,6 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         requestPermission();
-        setTitleLatoutListener();
-        initPlayController();
     }
 
     //SD卡读写权限请求
@@ -71,16 +78,9 @@ public class MainActivity extends AppCompatActivity
     private void initialize() {
         initToolbar();
         findWidget();
-    }
-
-    //初始化播放控制栏
-    private void initPlayController() {
-        playController = PlayController.getInstance(this);
-        playController.showPlayControllerInfo();
-        if (!isSetList){
-            playController.setPlayList(LocalMusicUtils.getSongs(this));
-            isSetList = true;
-        }
+        setTitleLatoutListener();
+        initPlayController();
+        initSlidingMenuController();
     }
 
     private void initToolbar() {
@@ -108,6 +108,25 @@ public class MainActivity extends AppCompatActivity
         nav = findViewById(R.id.nav_view);
         nav.setItemIconTintList(null);
 
+        View headerView = nav.getHeaderView(0);
+        headerImage = headerView.findViewById(R.id.header_imageView);
+        landingTv = headerView.findViewById(R.id.landing_tv);
+
+    }
+
+    //初始化播放控制栏
+    private void initPlayController() {
+        playController = PlayController.getInstance(this);
+        playController.showPlayControllerInfo();
+        if (!isSetList) {
+            playController.setPlayList(LocalMusicUtils.getSongs(this));
+            isSetList = true;
+        }
+    }
+
+    private void initSlidingMenuController() {
+        menuController = new SlidingMenuController(this);
+        menuController.headerView(headerImage, landingTv);
     }
 
     //点击音乐或好友时相应的切换显示的内容
@@ -152,13 +171,13 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.local_music) { //本地音乐
-            ActivityManager.startActivity(this, LocalMusicActivity.class);
+            menuController.localMusic();
         } else if (id == R.id.near_play) {  //最近播放
-
+            menuController.nearPlay();
         } else if (id == R.id.my_favorites) {  //我的收藏
-
+            menuController.myFavorites();
         } else if (id == R.id.download_manager) {   //下载管理
-
+            menuController.downloadManager();
         }
 
         drawer.closeDrawer(GravityCompat.START);
