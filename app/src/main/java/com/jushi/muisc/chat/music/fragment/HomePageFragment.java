@@ -97,10 +97,18 @@ public class HomePageFragment extends Fragment {
         });
     }
 
+    //刷新数据
     private void toRefresh() {
+        //刷新首页中banner数据
         bannerController.refreshData();
+        //刷新首页今日推荐数据
         recommendController.refreshData();
+        //刷新首页歌手数据
         hotArtistController.refreshData();
+        //刷新MV和直播数据
+        VideoAndLiveFragment.refreshData();
+        //刷新榜单数据
+        ChartFragment.refreshData();
     }
 
 }

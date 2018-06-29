@@ -68,8 +68,9 @@ public class TodayRecommendController implements View.OnClickListener {
     }
 
     public void refreshData() {
-        if (recommendBeans == null)
-            return;
+        if (recommendBeans == null) {
+            recommendBeans = new ArrayList<>();
+        }
         recommendBeans.clear();
         loadRecommendData();
     }

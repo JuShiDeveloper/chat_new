@@ -18,9 +18,9 @@ public class VideoAndLiveFragment extends Fragment {
 
     private View rootView;
     //最新MV
-    private LatestMVController mvController;
+    private static LatestMVController mvController;
     //直播
-    private LiveController liveController;
+    private static LiveController liveController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +39,11 @@ public class VideoAndLiveFragment extends Fragment {
         //初始化直播数据
         liveController = new LiveController(getContext());
         liveController.initView(rootView);
+    }
+
+    public static void refreshData(){
+        mvController.refreshData();
+        liveController.refreshData();
     }
 
 }

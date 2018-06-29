@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.sliding_menu;
+package com.jushi.muisc.chat.sliding_menu.controller;
 
 import android.content.Context;
 import android.net.Uri;

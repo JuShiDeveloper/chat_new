@@ -19,6 +19,7 @@ import com.jushi.muisc.chat.utils.Constant;
 import com.jushi.muisc.chat.utils.DataUrlUtils;
 import com.jushi.muisc.chat.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -98,5 +99,13 @@ public class LiveController implements View.OnClickListener {
                 ActivityManager.startPlayVideoActivity(mContext,playUrl,dataBean.getNickname(), Constant.TYPE_LIVE);
             }
         });
+    }
+
+    public void refreshData(){
+        if (liveBeans == null){
+            liveBeans = new ArrayList<>();
+        }
+        liveBeans.clear();
+        loadLiveData();
     }
 }

@@ -18,6 +18,7 @@ import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.utils.DataUrlUtils;
 import com.jushi.muisc.chat.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,8 +63,9 @@ public class HotArtistController implements View.OnClickListener {
     }
 
     public void refreshData(){
-        if (artists == null)
-            return;
+        if (artists == null) {
+            artists = new ArrayList<>();
+        }
         artists.clear();
         loadHotArtistData();
     }

@@ -27,12 +27,12 @@ import java.util.List;
  */
 public class ChartFragment extends Fragment {
     private View rootView;
-    private RecyclerView recyclerView;
-    private JSTextView tvLoad;
-    private ChartDataAdapter chartAdapter;
-    private NetWorkService workService;
-    private Handler handler;
-    private List<ChartDataModel.ContentBeanX> contentBeanXs = new ArrayList<>();
+    private static RecyclerView recyclerView;
+    private static JSTextView tvLoad;
+    private static ChartDataAdapter chartAdapter;
+    private static NetWorkService workService;
+    private static Handler handler;
+    private static List<ChartDataModel.ContentBeanX> contentBeanXs = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,11 +65,11 @@ public class ChartFragment extends Fragment {
         });
     }
 
-    private void getChartData() {
+    private static void getChartData() {
         new ChartDataTask().run();
     }
 
-    class ChartDataTask extends Thread{
+    static class ChartDataTask extends Thread{
         @Override
         public void run() {
             contentBeanXs.clear();
@@ -84,7 +84,7 @@ public class ChartFragment extends Fragment {
         }
     }
 
-    private void showChartData() {
+    private static void showChartData() {
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -97,4 +97,8 @@ public class ChartFragment extends Fragment {
         });
     }
 
+    public static void refreshData(){
+        contentBeanXs.clear();
+        getChartData();
+    }
 }

@@ -18,6 +18,7 @@ import com.jushi.muisc.chat.music.service.MvItemInfoTaskService;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -96,5 +97,13 @@ public class LatestMVController implements View.OnClickListener {
                 new MvItemInfoTaskService(mContext,mvId,workService).run();
             }
         });
+    }
+
+    public void refreshData(){
+        if (mvListBeans == null){
+            mvListBeans = new ArrayList<>();
+        }
+        mvListBeans.clear();
+        getMvData();
     }
 }
