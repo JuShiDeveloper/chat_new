@@ -92,6 +92,7 @@ public class PlayMusicView extends RelativeLayout implements View.OnClickListene
         } else {
             playBtn.setButtonDrawable(R.drawable.pause_controller_icon);
         }
+        this.isPlaying = isPlaying;
     }
 
     //显示歌曲信息

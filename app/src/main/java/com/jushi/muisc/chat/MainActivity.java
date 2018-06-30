@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         requestPermission();
+        initPlayController();
     }
 
     //SD卡读写权限请求
@@ -77,7 +78,6 @@ public class MainActivity extends AppCompatActivity
         initToolbar();
         findWidget();
         setTitleLatoutListener();
-        initPlayController();
         initSlidingMenuController();
     }
 
