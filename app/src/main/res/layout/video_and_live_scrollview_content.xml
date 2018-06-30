@@ -17,14 +17,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/picture" />
+            android:background="@drawable/picture"
+            android:backgroundTint="@color/e80b0b"/>
 
         <com.jushi.muisc.chat.view.JSTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/latest_MV"
-            android:textColor="@color/ff3a9b"
+            android:textColor="@color/e80b0b"
             android:textSize="@dimen/_15sp" />
 
         <RadioButton
@@ -33,7 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:button="@drawable/more_icon" />
+            android:button="@drawable/more_icon"
+            android:buttonTint="@color/e80b0b"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -61,14 +63,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/picture" />
+            android:background="@drawable/picture"
+            android:backgroundTint="@color/e80b0b"/>
 
         <com.jushi.muisc.chat.view.JSTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/zhiBo_live"
-            android:textColor="@color/ff3a9b"
+            android:textColor="@color/e80b0b"
             android:textSize="@dimen/_15sp" />
 
         <RadioButton
@@ -77,7 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:button="@drawable/more_icon" />
+            android:button="@drawable/more_icon"
+            android:buttonTint="@color/e80b0b"/>
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

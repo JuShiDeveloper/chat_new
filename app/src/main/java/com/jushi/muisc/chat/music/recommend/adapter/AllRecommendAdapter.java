@@ -60,6 +60,16 @@ public class AllRecommendAdapter extends RecyclerView.Adapter<AllRecommendAdapte
                 }
             });
         }
+        setMoreBtnClickListener(holder);
+    }
+
+    private void setMoreBtnClickListener(ViewHolder holder) {
+        holder.moreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override

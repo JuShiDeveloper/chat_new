@@ -16,7 +16,7 @@
             android:layout_alignParentTop="true"
             app:tabIndicatorColor="@null"
             app:tabTextColor="@color/_999999"
-            app:tabSelectedTextColor="@color/ff3a9b"
+            app:tabSelectedTextColor="@color/e80b0b"
             app:tabTextAppearance="@style/MyTabLayoutTextAppearance"/>
     </FrameLayout>
 

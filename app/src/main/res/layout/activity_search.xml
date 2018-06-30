@@ -38,6 +38,8 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/search_activity_search_button"
                 android:background="@drawable/search_edit_text_bg_icon"
+                android:backgroundTint="@color/e80b0b"
+                android:alpha="0.5"
                 android:gravity="center"
                 android:hint="@string/search_hint"
                 android:maxLines="1"

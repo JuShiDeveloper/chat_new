@@ -3,9 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
     </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -19,9 +18,31 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!--欢迎页面快速启动-->
+    <style name="Wellcome_Style" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/wellcom_drawable</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="MenuTextStyle">
         <item name="android:textColor">@color/_333333</item>
         <item name="android:textSize">@dimen/_18sp</item>
+    </style>
+
+    <!--点击更多按钮弹出的菜单中单个选项布局的style-->
+    <style name="menu_layout_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="Menu_Dialog_Style">
+        <item name="android:windowEnterAnimation">@anim/menu_in_anim</item>
+        <item name="android:windowExitAnimation">@anim/menu_out_anim</item>
     </style>
 
 </resources>

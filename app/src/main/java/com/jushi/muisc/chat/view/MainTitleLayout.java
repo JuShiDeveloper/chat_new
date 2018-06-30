@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
@@ -19,7 +20,7 @@ public class MainTitleLayout extends RelativeLayout implements View.OnClickListe
 
     private Context mContext;
     private MainTitleItem musicButton, friendsButton;
-    private RadioButton searchButton;
+    private ImageView searchButton;
     public static final int MUSIC_STATE = 1;
     public static final int FRIENDS_STATE = MUSIC_STATE + 1;
     private int state;

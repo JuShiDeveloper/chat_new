@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/hot_"
-            android:textColor="@color/ff3a9b"
+            android:textColor="@color/e80b0b"
             android:textSize="16sp" />
     </LinearLayout>
 

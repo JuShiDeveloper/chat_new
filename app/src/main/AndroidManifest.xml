@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".LoadingActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Wellcome_Style">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

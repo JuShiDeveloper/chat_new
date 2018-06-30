@@ -20,7 +20,7 @@
             android:layout_centerInParent="true"
             android:layout_marginRight="15dp"
             android:button="@drawable/menu_controller_icon"
-            android:buttonTint="@color/ff3a9b" />
+            android:buttonTint="@color/e80b0b" />
 
         <RadioButton
             android:id="@+id/play_music_controller_layout_play_btn"
@@ -30,7 +30,7 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/play_music_controller_layout_playListMenu_btn"
             android:button="@drawable/pause_controller_icon"
-            android:buttonTint="@color/ff3a9b" />
+            android:buttonTint="@color/e80b0b" />
 
         <LinearLayout
             android:id="@+id/play_music_controller_layout_song_info_container"

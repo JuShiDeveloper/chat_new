@@ -172,7 +172,7 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
     private void setTextColorChanged(ArtistItem itemClick) {
         switch (itemClick){
             case HOT:
-                tvHot.setTextColor(getResources().getColor(R.color.ff3a9b));
+                tvHot.setTextColor(getResources().getColor(R.color.e80b0b));
                 tvChina.setTextColor(getResources().getColor(R.color._333333));
                 tvOuMei.setTextColor(getResources().getColor(R.color._333333));
                 tvHanGuo.setTextColor(getResources().getColor(R.color._333333));
@@ -181,7 +181,7 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
                 break;
             case CHINA:
                 tvHot.setTextColor(getResources().getColor(R.color._333333));
-                tvChina.setTextColor(getResources().getColor(R.color.ff3a9b));
+                tvChina.setTextColor(getResources().getColor(R.color.e80b0b));
                 tvOuMei.setTextColor(getResources().getColor(R.color._333333));
                 tvHanGuo.setTextColor(getResources().getColor(R.color._333333));
                 tvJapan.setTextColor(getResources().getColor(R.color._333333));
@@ -190,7 +190,7 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
             case OUMEI:
                 tvHot.setTextColor(getResources().getColor(R.color._333333));
                 tvChina.setTextColor(getResources().getColor(R.color._333333));
-                tvOuMei.setTextColor(getResources().getColor(R.color.ff3a9b));
+                tvOuMei.setTextColor(getResources().getColor(R.color.e80b0b));
                 tvHanGuo.setTextColor(getResources().getColor(R.color._333333));
                 tvJapan.setTextColor(getResources().getColor(R.color._333333));
                 tvOther.setTextColor(getResources().getColor(R.color._333333));
@@ -199,7 +199,7 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
                 tvHot.setTextColor(getResources().getColor(R.color._333333));
                 tvChina.setTextColor(getResources().getColor(R.color._333333));
                 tvOuMei.setTextColor(getResources().getColor(R.color._333333));
-                tvHanGuo.setTextColor(getResources().getColor(R.color.ff3a9b));
+                tvHanGuo.setTextColor(getResources().getColor(R.color.e80b0b));
                 tvJapan.setTextColor(getResources().getColor(R.color._333333));
                 tvOther.setTextColor(getResources().getColor(R.color._333333));
                 break;
@@ -208,7 +208,7 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
                 tvChina.setTextColor(getResources().getColor(R.color._333333));
                 tvOuMei.setTextColor(getResources().getColor(R.color._333333));
                 tvHanGuo.setTextColor(getResources().getColor(R.color._333333));
-                tvJapan.setTextColor(getResources().getColor(R.color.ff3a9b));
+                tvJapan.setTextColor(getResources().getColor(R.color.e80b0b));
                 tvOther.setTextColor(getResources().getColor(R.color._333333));
                 break;
             case OTHER:
@@ -217,7 +217,7 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
                 tvOuMei.setTextColor(getResources().getColor(R.color._333333));
                 tvHanGuo.setTextColor(getResources().getColor(R.color._333333));
                 tvJapan.setTextColor(getResources().getColor(R.color._333333));
-                tvOther.setTextColor(getResources().getColor(R.color.ff3a9b));
+                tvOther.setTextColor(getResources().getColor(R.color.e80b0b));
                 break;
         }
     }
