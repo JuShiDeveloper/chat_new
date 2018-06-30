@@ -165,6 +165,16 @@ public class LocalMusicActivity extends AppCompatActivity implements View.OnClic
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        if (editText.getVisibility() == View.GONE) {
+            finish();
+        } else {
+            setTitleBarStateChange();
+        }
+    }
+
     //显示和隐藏标题栏以及搜索框（搜索本地歌曲）
     private void setTitleBarStateChange() {
         if (editText.getVisibility() == View.GONE) {

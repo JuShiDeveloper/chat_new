@@ -2,6 +2,7 @@ package com.jushi.muisc.chat.music.recommend.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.music.dialog.MoreMenuDialog;
+import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.music.recommend.model.TodayRecommendModel;
 import com.jushi.muisc.chat.view.JSTextView;
 
@@ -23,10 +26,12 @@ public class AllRecommendAdapter extends RecyclerView.Adapter<AllRecommendAdapte
     private Context context;
     private List<TodayRecommendModel.ResultBean.ListBean> listBeans;
     private int currentPosition = -1;
+    private MoreMenuDialog menuDialog;
 
     public AllRecommendAdapter(Context context, List<TodayRecommendModel.ResultBean.ListBean> listBeans) {
         this.context = context;
         this.listBeans = listBeans;
+        menuDialog = MoreMenuDialog.getInstance(context);
     }
 
     @Override
@@ -50,24 +55,29 @@ public class AllRecommendAdapter extends RecyclerView.Adapter<AllRecommendAdapte
             holder.volume.setVisibility(View.GONE);
             holder.tvNumber.setVisibility(View.VISIBLE);
         }
-        if (listener != null){
+        if (listener != null) {
             final TodayRecommendModel.ResultBean.ListBean bean = listBean;
             final int pos = position;
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(bean,pos);
+                    listener.onItemClick(bean, pos);
                 }
             });
         }
-        setMoreBtnClickListener(holder);
+        setMoreBtnClickListener(holder, position);
     }
 
-    private void setMoreBtnClickListener(ViewHolder holder) {
+    private void setMoreBtnClickListener(ViewHolder holder, final int position) {
         holder.moreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Song song = new Song();
+                song.setSongId(listBeans.get(position).getSong_id());
+                song.setSongName(listBeans.get(position).getTitle());
+                song.setSongAuthor(listBeans.get(position).getAuthor());
+                menuDialog.onSong(song);
+                menuDialog.show();
             }
         });
     }

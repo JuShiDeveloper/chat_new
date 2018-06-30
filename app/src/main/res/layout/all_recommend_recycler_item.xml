@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:src="@drawable/volume_icon"
-            android:tint="@color/ff3a9b"
+            android:tint="@color/e80b0b"
             android:visibility="gone" />
 
         <com.jushi.muisc.chat.view.JSTextView
@@ -65,12 +65,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:orientation="vertical"
+        android:clickable="true"
         android:padding="10dp">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@drawable/more_three_point_icon"
+            android:clickable="false"
             android:buttonTint="@color/color_status"/>
     </LinearLayout>
 

@@ -41,16 +41,17 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
         holder.tvNumber.setText(String.valueOf(position + 1));
         holder.tvSongName.setText(song.getSongName());
         holder.tvSinger.setText(song.getSongAuthor());
-        if (listener != null){
+        if (listener != null) {
             final Song song1 = song;
             final int pos = position;
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(song1,pos);
+                    listener.onItemClick(song1, pos);
                 }
             });
         }
+        holder.moreBtn.setVisibility(View.GONE);
     }
 
     private void setStateChange(ViewHolder holder, int position) {
@@ -70,17 +71,17 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
         return songs.size();
     }
 
-    public void setStateChange(int position){
+    public void setStateChange(int position) {
         currentPosition = position;
         notifyDataSetChanged();
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    public interface OnItemClickListener{
-        void onItemClick(Song song,int position);
+    public interface OnItemClickListener {
+        void onItemClick(Song song, int position);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

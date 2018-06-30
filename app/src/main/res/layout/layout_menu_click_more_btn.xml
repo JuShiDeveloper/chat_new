@@ -2,52 +2,82 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:background="@color/c_ffffff"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <com.jushi.muisc.chat.view.JSTextView
+        android:id="@+id/menu_show_songName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:textColor="@color/_1a171b"
+        android:textSize="@dimen/_18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@color/_999999" />
 
     <LinearLayout
-        style="@style/menu_layout_style">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/favorites_image"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@color/_4842a2" />
+        <LinearLayout
+            android:id="@+id/menu_favorite_btn"
+            style="@style/menu_layout_style">
 
-        <com.jushi.muisc.chat.view.JSTextView
-            android:id="@+id/favorites_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="收藏" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/favorites_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/my_favorites_icon" />
 
-    <LinearLayout style="@style/menu_layout_style">
+            <com.jushi.muisc.chat.view.JSTextView
+                android:id="@+id/favorites_tv"
+                style="@style/menu_text_style"
+                android:text="@string/menu_favorites_text" />
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/download_image"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@color/_4842a2" />
+        <LinearLayout
+            android:id="@+id/menu_download_btn"
+            style="@style/menu_layout_style">
 
-        <com.jushi.muisc.chat.view.JSTextView
-            android:id="@+id/download_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="下载" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/download_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/download_manager_icon" />
 
-    <LinearLayout style="@style/menu_layout_style">
+            <com.jushi.muisc.chat.view.JSTextView
+                android:id="@+id/download_tv"
+                style="@style/menu_text_style"
+                android:text="@string/menu_download_text" />
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/share_image"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@color/_4842a2" />
+        <LinearLayout
+            android:id="@+id/menu_share_btn"
+            style="@style/menu_layout_style">
 
-        <com.jushi.muisc.chat.view.JSTextView
-            android:id="@+id/share_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="分享" />
+            <ImageView
+                android:id="@+id/share_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/share_icon" />
+
+            <com.jushi.muisc.chat.view.JSTextView
+                android:id="@+id/share_tv"
+                style="@style/menu_text_style"
+                android:text="@string/menu_share_text" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

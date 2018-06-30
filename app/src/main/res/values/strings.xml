@@ -36,6 +36,9 @@
     <string name="download_manager">下载管理</string>
     <string name="send">发送</string>
     <string name="search_local_music">搜索本地歌曲</string>
+    <string name="menu_favorites_text">收藏</string>
+    <string name="menu_download_text">下载</string>
+    <string name="menu_share_text">分享</string>
 
 
 </resources>
