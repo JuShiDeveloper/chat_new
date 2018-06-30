@@ -115,11 +115,11 @@ public class MainActivity extends AppCompatActivity
     //初始化播放控制栏
     private void initPlayController() {
         playController = PlayController.getInstance(this);
-        playController.showPlayControllerInfo();
         if (!isSetList) {
             playController.setPlayList(LocalMusicUtils.getSongs(this));
             isSetList = true;
         }
+        playController.showPlayControllerInfo();
     }
 
     private void initSlidingMenuController() {

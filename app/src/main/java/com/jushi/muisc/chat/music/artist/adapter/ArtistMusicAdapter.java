@@ -10,6 +10,9 @@ import android.widget.LinearLayout;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.artist.model.ArtistMusic;
+import com.jushi.muisc.chat.music.dialog.MoreMenuDialog;
+import com.jushi.muisc.chat.music.dialog.tools.ShowMoreMenuDialog;
+import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.view.JSTextView;
 
 import java.util.List;
@@ -42,16 +45,30 @@ public class ArtistMusicAdapter extends RecyclerView.Adapter<ArtistMusicAdapter.
         holder.tvSongName.setText(songBean.getTitle());
         holder.tvSinger.setText(songBean.getAuthor());
 
-        if (listener != null){
+        if (listener != null) {
             final ArtistMusic.SonglistBean bean = songBean;
             final int pos = position;
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(bean,pos);
+                    listener.onItemClick(bean, pos);
                 }
             });
         }
+        setMoreBtnClickListener(holder, position);
+    }
+
+    private void setMoreBtnClickListener(ViewHolder holder, final int position) {
+        holder.moreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Song song = new Song();
+                song.setSongName(songBeans.get(position).getTitle());
+                song.setSongId(songBeans.get(position).getSong_id());
+                song.setSongAuthor(songBeans.get(position).getAuthor());
+                ShowMoreMenuDialog.showMenuDialog(context, song);
+            }
+        });
     }
 
     private void changeState(ViewHolder holder, int position) {
@@ -71,19 +88,19 @@ public class ArtistMusicAdapter extends RecyclerView.Adapter<ArtistMusicAdapter.
         return songBeans.size();
     }
 
-    public void setSelectChanged(int position){
+    public void setSelectChanged(int position) {
         currentPosition = position;
         notifyDataSetChanged();
     }
 
     private OnItemClickListener listener;
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    public interface OnItemClickListener{
-        void onItemClick(ArtistMusic.SonglistBean songBean,int position);
+    public interface OnItemClickListener {
+        void onItemClick(ArtistMusic.SonglistBean songBean, int position);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.music.dialog.tools.ShowMoreMenuDialog;
+import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.music.search.model.SearchDataModel;
 import com.jushi.muisc.chat.view.JSTextView;
 
@@ -31,7 +33,7 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.all_recommend_recycler_item,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.all_recommend_recycler_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -48,20 +50,34 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.Vi
             holder.tvNumber.setVisibility(View.VISIBLE);
         }
         holder.tvNumber.setText(String.valueOf(position + 1));
-        String title = songBean.getTitle().replace("<em>","").replace("</em>","");
-        String author = songBean.getAuthor().replace("<em>","").replace("</em>","");
+        String title = songBean.getTitle().replace("<em>", "").replace("</em>", "");
+        String author = songBean.getAuthor().replace("<em>", "").replace("</em>", "");
         holder.tvSongName.setText(title);
         holder.tvSinger.setText(author);
-        if (listener != null){
+        if (listener != null) {
             final SearchDataModel.SongListBean bean = songBean;
             final int pos = position;
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(bean,pos);
+                    listener.onItemClick(bean, pos);
                 }
             });
         }
+        setMoreBtnClick(holder, position);
+    }
+
+    private void setMoreBtnClick(ViewHolder holder, final int position) {
+        holder.moreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Song song = new Song();
+                song.setSongId(songListBeans.get(position).getSong_id());
+                song.setSongName(songListBeans.get(position).getTitle().replace("<em>", "").replace("</em>", ""));
+                song.setSongAuthor(songListBeans.get(position).getAuthor().replace("<em>", "").replace("</em>", ""));
+                ShowMoreMenuDialog.showMenuDialog(mContext, song);
+            }
+        });
     }
 
     @Override
@@ -76,12 +92,12 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.Vi
 
     private OnItemClickListener listener;
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    public interface OnItemClickListener{
-        void onItemClick(SearchDataModel.SongListBean songBean,int position);
+    public interface OnItemClickListener {
+        void onItemClick(SearchDataModel.SongListBean songBean, int position);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

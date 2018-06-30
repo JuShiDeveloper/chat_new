@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.chart.model.ChartDataModel;
+import com.jushi.muisc.chat.music.dialog.tools.ShowMoreMenuDialog;
+import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.utils.Constant;
 import com.jushi.muisc.chat.view.JSTextView;
 
@@ -57,6 +59,20 @@ public class OtherChartDetailAdapter extends RecyclerView.Adapter<OtherChartDeta
                 }
             });
         }
+        setMoreBtnClick(holder, position);
+    }
+
+    private void setMoreBtnClick(ViewHolder holder, final int position) {
+        holder.moreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Song song = new Song();
+                song.setSongId(contentBeanX.getContent().get(position).getSong_id());
+                song.setSongName(contentBeanX.getContent().get(position).getTitle());
+                song.setSongAuthor(contentBeanX.getContent().get(position).getAuthor());
+                ShowMoreMenuDialog.showMenuDialog(context, song);
+            }
+        });
     }
 
     @Override

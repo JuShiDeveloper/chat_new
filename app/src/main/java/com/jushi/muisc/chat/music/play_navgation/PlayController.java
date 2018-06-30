@@ -1,6 +1,7 @@
 package com.jushi.muisc.chat.music.play_navgation;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
@@ -17,15 +18,19 @@ public class PlayController implements PlayMusicService.OnMusicPlayListener, Pla
     private static Activity activity;
     private PlayMusicView controllerView;
     private SaveUtils saveUtils;
-    private String songName,songAuthor,authorImage;
+    private String songName, songAuthor, authorImage;
     private int index;
+    private List<Song> songs;
 
 
     private static PlayController playController;
-    private PlayController() {}
-    public static PlayController getInstance(Activity mActivity){
+
+    private PlayController() {
+    }
+
+    public static PlayController getInstance(Activity mActivity) {
         activity = mActivity;
-        if (playController == null){
+        if (playController == null) {
             playController = new PlayController();
         }
         PlayMusicService.checkStartService(mActivity);
@@ -33,7 +38,7 @@ public class PlayController implements PlayMusicService.OnMusicPlayListener, Pla
     }
 
     //显示播放控制栏信息
-    public void showPlayControllerInfo(){
+    public void showPlayControllerInfo() {
         controllerView = activity.findViewById(R.id.PlayMusicView);
         //播放按钮状态监听
         controllerView.setOnPlayBtnIsPlayingListener(this);
@@ -47,53 +52,59 @@ public class PlayController implements PlayMusicService.OnMusicPlayListener, Pla
 
     //获取保存的歌曲信息
     private void getSaveUtils() {
-        if (saveUtils == null){
+        if (saveUtils == null) {
             saveUtils = SaveUtils.getInstance(activity);
         }
         songName = saveUtils.getSavedSongName();
         songAuthor = saveUtils.getSaveAuthor();
         authorImage = saveUtils.getSaveAuthorImage(); //图片地址
+        if (songName == null) {
+            songName = songs.get(0).getSongName();
+            songAuthor = songs.get(0).getSongAuthor();
+            authorImage = songs.get(0).getSongImagePath();
+        }
         showSongInfo();
     }
 
     //显示歌曲信息
     private void showSongInfo() {
-        controllerView.showSongInfo(songName,songAuthor);
+        controllerView.showSongInfo(songName, songAuthor);
         controllerView.showAuthorImage(authorImage);
     }
 
     //传递播放列表
-    public void setPlayList(List<Song> songs){
+    public void setPlayList(List<Song> songs) {
+        this.songs = songs;
         PlayMusicService.setPlayList(songs);
     }
 
     //播放全部
-    public void playAllMusic(){
+    public void playAllMusic() {
         PlayMusicService.playAllMusic();
     }
 
     //点击某一首歌曲时播放
-    public void playOneMusic(Song song,int position){
-        PlayMusicService.playOneMusic(song,position);
+    public void playOneMusic(Song song, int position) {
+        PlayMusicService.playOneMusic(song, position);
     }
 
     //是否在播放
-    public boolean isPlaying(){
+    public boolean isPlaying() {
         return PlayMusicService.isPlaying();
     }
 
-    public void destory(){
+    public void destory() {
         activity = null;
         System.gc();
     }
 
-    public int getIndex(){
+    public int getIndex() {
         return index;
     }
 
     //播放回调，传递当前播放的歌曲信息过来
     @Override
-    public void onMusicPlay(String songName, String author, String imagePath,String lrcPath,int index) {
+    public void onMusicPlay(String songName, String author, String imagePath, String lrcPath, int index) {
         this.songName = songName;
         this.songAuthor = author;
         this.authorImage = imagePath;
@@ -105,9 +116,9 @@ public class PlayController implements PlayMusicService.OnMusicPlayListener, Pla
     //播放按钮状态监听
     @Override
     public void onPlayBtnClickPlay(boolean isPlayState) {
-        if (isPlayState){
+        if (isPlayState) {
             PlayMusicService.startPlay();
-        }else {
+        } else {
             PlayMusicService.pause();
         }
     }

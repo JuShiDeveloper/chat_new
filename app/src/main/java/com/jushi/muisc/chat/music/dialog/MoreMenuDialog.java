@@ -18,21 +18,13 @@ import com.jushi.muisc.chat.view.JSTextView;
 
 public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickListener {
     private Context context;
-    private static MoreMenuDialog menuDialog;
     private Dialog dialog;
     private View rootView;
     private Song song;
     private JSTextView tvSongName;
     private LinearLayout favoritesBtn, downloadBtn, shareBtn;
 
-    public static MoreMenuDialog getInstance(Context context) {
-        if (menuDialog == null) {
-            menuDialog = new MoreMenuDialog(context);
-        }
-        return menuDialog;
-    }
-
-    private MoreMenuDialog(Context context) {
+    public MoreMenuDialog(Context context) {
         this.context = context;
         dialog = new Dialog(context, R.style.BottomDialog);
         initialize();

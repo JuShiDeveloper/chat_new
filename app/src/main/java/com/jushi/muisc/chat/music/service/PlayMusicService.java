@@ -23,7 +23,7 @@ public class PlayMusicService extends Service {
     private static int index;
     //音乐播放回调
     private static OnMusicPlayListener listener;
-    private static String songName,author,imagePath,lrcPath;
+    private static String songName, author, imagePath, lrcPath;
     private static SaveUtils saveUtils;
     //判断是不是暂停
     private static boolean isPaused = false;
@@ -53,17 +53,17 @@ public class PlayMusicService extends Service {
     public static void playAllMusic() {
         index = 0;
         songInfo = songs.get(index);
-        setMusicData(songInfo.getSongPath(),index);
+        setMusicData(songInfo.getSongPath(), index);
     }
 
     //播放一首歌曲，点击单个item时调用
-    public static void playOneMusic(Song song,int position){
+    public static void playOneMusic(Song song, int position) {
         songInfo = song;
-        setMusicData(song.getSongPath(),position);
+        setMusicData(song.getSongPath(), position);
     }
 
     //设置歌曲路径
-    private static void setMusicData(String songPath,int position) {
+    private static void setMusicData(String songPath, int position) {
         index = position;
         playMusic.setData(songPath);
         startPlay();
@@ -76,8 +76,8 @@ public class PlayMusicService extends Service {
     }
 
     //开始播放
-    public static void startPlay(){
-        if (songInfo == null){  //如果songInfo为空，获取上一次播放时保持的信息
+    public static void startPlay() {
+        if (songInfo == null) {  //如果songInfo为空，获取上一次播放时保持的信息
             songInfo = new Song();
             songInfo.setSongName(saveUtils.getSavedSongName()); //名称
             songInfo.setSongPath(saveUtils.getSavedSongPath());  //歌曲路径
@@ -85,8 +85,15 @@ public class PlayMusicService extends Service {
             songInfo.setSongImagePath(saveUtils.getSaveAuthorImage()); //图片路径
             songInfo.setLrcPath(saveUtils.getSaveLrcPath()); //歌词路径
             index = saveUtils.getSaveIndex(); //在列表中的位置下标
-            setMusicData(songInfo.getSongPath(),0);
-        }else {
+            if (songInfo.getSongPath() == null) { //如果保存的歌曲信息为空
+                songInfo.setSongName(songs.get(0).getSongName()); //名称
+                songInfo.setSongPath(songs.get(0).getSongPath());  //歌曲路径
+                songInfo.setSongAuthor(songs.get(0).getSongAuthor()); //歌手
+                songInfo.setSongImagePath(songs.get(0).getSongImagePath()); //图片路径
+                songInfo.setLrcPath(songs.get(0).getLrcPath()); //歌词路径
+            }
+            setMusicData(songInfo.getSongPath(), 0);
+        } else {
             play();
         }
 //        if (isPaused){
@@ -99,14 +106,14 @@ public class PlayMusicService extends Service {
     }
 
     //获取当前播放的歌曲信息，用于保存和显示
-    private static void getSongInfo(){
+    private static void getSongInfo() {
         songName = songInfo.getSongName();
         author = songInfo.getSongAuthor();
         imagePath = songInfo.getSongImagePath();
         lrcPath = songInfo.getLrcPath();
         saveSongInfo();
-        if (listener != null){ //回调方法，将当前播放的歌曲信息传递出去，显示在播放控制栏和播放页面
-            listener.onMusicPlay(songName,author,imagePath,lrcPath,index);
+        if (listener != null) { //回调方法，将当前播放的歌曲信息传递出去，显示在播放控制栏和播放页面
+            listener.onMusicPlay(songName, author, imagePath, lrcPath, index);
         }
     }
 
@@ -127,9 +134,9 @@ public class PlayMusicService extends Service {
 
     //是否在播放
     public static boolean isPlaying() {
-        if (playMusic == null){
+        if (playMusic == null) {
             return false;
-        }else {
+        } else {
             return playMusic.isPlaying();
         }
     }
@@ -142,7 +149,7 @@ public class PlayMusicService extends Service {
             index = songs.size() - 1;
         }
         songInfo = songs.get(index);
-        setMusicData(songInfo.getSongPath(),index);
+        setMusicData(songInfo.getSongPath(), index);
     }
 
     //播放下一首歌曲
@@ -153,21 +160,21 @@ public class PlayMusicService extends Service {
             index = 0;
         }
         songInfo = songs.get(index);
-        setMusicData(songInfo.getSongPath(),index);
+        setMusicData(songInfo.getSongPath(), index);
     }
 
     //获得歌曲总时间
-    public static int getDuration(){
+    public static int getDuration() {
         return playMusic.getDuration();
     }
 
     //获得歌曲当前播放的时间
-    public static int getCurrentDuration(){
+    public static int getCurrentDuration() {
         return playMusic.getCurrentPosition();
     }
 
     //更新播放进度，拖动播放页面的进度条和歌词时调用
-    public static void seekTo(int msec){
+    public static void seekTo(int msec) {
         playMusic.seekTo(msec);
     }
 
@@ -186,11 +193,11 @@ public class PlayMusicService extends Service {
     }
 
     //歌曲播放的事件监听
-    public static void setOnMusicPlayListener(OnMusicPlayListener listener1){
+    public static void setOnMusicPlayListener(OnMusicPlayListener listener1) {
         listener = listener1;
     }
 
-    public interface OnMusicPlayListener{
-        void onMusicPlay(String songName,String author,String imagePath,String lrcPath,int index);
+    public interface OnMusicPlayListener {
+        void onMusicPlay(String songName, String author, String imagePath, String lrcPath, int index);
     }
 }
