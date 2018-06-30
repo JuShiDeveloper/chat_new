@@ -1,6 +1,5 @@
 package com.jushi.muisc.chat.music.dialog;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.Gravity;
@@ -8,12 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.dialog.minterface.MenuDialogChangedListener;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
-import com.jushi.muisc.chat.utils.DisplayUtils;
 import com.jushi.muisc.chat.view.JSTextView;
 
 public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickListener {

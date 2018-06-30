@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.SeekBar;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.service.PlayMusicService;
 import com.jushi.muisc.chat.tools.PeriodicTask;
+import com.jushi.muisc.chat.tools.music.OkHttpTool;
 import com.jushi.muisc.chat.tools.music.RotateAnimatorTool;
 import com.jushi.muisc.chat.utils.DateUtils;
 import com.jushi.muisc.chat.utils.DisplayUtils;
@@ -23,6 +25,7 @@ import com.jushi.muisc.chat.view.lrcview.ILrcViewListener;
 import com.jushi.muisc.chat.view.lrcview.impl.DefaultLrcBuilder;
 import com.jushi.muisc.chat.view.lrcview.impl.LrcRow;
 import com.jushi.muisc.chat.view.lrcview.impl.LrcView;
+import com.squareup.okhttp.Response;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -125,7 +128,7 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     }
 
     //显示旋转的圆形图片
-    private void showRoundImage(){
+    private void showRoundImage() {
         if (roundImage.getVisibility() == View.GONE) {
             roundImage.setVisibility(View.VISIBLE);
         }
@@ -260,21 +263,20 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
      * @return
      */
     public String getContentFromLrcFile(String fileName) {
+        String result = "";
         try {
             InputStreamReader inputReader = new InputStreamReader(new FileInputStream(fileName));
             BufferedReader bufReader = new BufferedReader(inputReader);
             String line = "";
-            String result = "";
             while ((line = bufReader.readLine()) != null) {
                 if (line.trim().equals(""))
                     continue;
                 result += line + "\r\n";
             }
-            return result;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "";
+        return result;
     }
 
     //开始滚动歌词

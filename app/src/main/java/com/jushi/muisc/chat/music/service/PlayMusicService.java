@@ -86,11 +86,11 @@ public class PlayMusicService extends Service {
             songInfo.setLrcPath(saveUtils.getSaveLrcPath()); //歌词路径
             index = saveUtils.getSaveIndex(); //在列表中的位置下标
             if (songInfo.getSongPath() == null) { //如果保存的歌曲信息为空
-                songInfo.setSongName(songs.get(0).getSongName()); //名称
-                songInfo.setSongPath(songs.get(0).getSongPath());  //歌曲路径
-                songInfo.setSongAuthor(songs.get(0).getSongAuthor()); //歌手
-                songInfo.setSongImagePath(songs.get(0).getSongImagePath()); //图片路径
-                songInfo.setLrcPath(songs.get(0).getLrcPath()); //歌词路径
+                songInfo.setSongName(songs.get(index).getSongName()); //名称
+                songInfo.setSongPath(songs.get(index).getSongPath());  //歌曲路径
+                songInfo.setSongAuthor(songs.get(index).getSongAuthor()); //歌手
+                songInfo.setSongImagePath(songs.get(index).getSongImagePath()); //图片路径
+                songInfo.setLrcPath(songs.get(index).getLrcPath()); //歌词路径
             }
             setMusicData(songInfo.getSongPath(), 0);
         } else {
