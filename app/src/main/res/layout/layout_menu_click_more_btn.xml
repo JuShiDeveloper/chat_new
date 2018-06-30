@@ -4,14 +4,17 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <LinearLayout style="@style/menu_layout_style">
+    <LinearLayout
+        style="@style/menu_layout_style">
 
         <ImageView
+            android:id="@+id/favorites_image"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/_4842a2" />
 
         <com.jushi.muisc.chat.view.JSTextView
+            android:id="@+id/favorites_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="收藏" />
@@ -20,11 +23,13 @@
     <LinearLayout style="@style/menu_layout_style">
 
         <ImageView
+            android:id="@+id/download_image"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/_4842a2" />
 
         <com.jushi.muisc.chat.view.JSTextView
+            android:id="@+id/download_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="下载" />
@@ -33,11 +38,13 @@
     <LinearLayout style="@style/menu_layout_style">
 
         <ImageView
+            android:id="@+id/share_image"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/_4842a2" />
 
         <com.jushi.muisc.chat.view.JSTextView
+            android:id="@+id/share_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="分享" />
