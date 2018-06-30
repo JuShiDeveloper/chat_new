@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
@@ -29,6 +30,7 @@ import com.squareup.okhttp.Response;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Timer;
@@ -57,8 +59,8 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_play_music);
-        DisplayUtils.setStatusBarColor(this, R.color.color_status);
         PlayMusicService.checkStartService(this);
         saveUtils = SaveUtils.getInstance(this);
         songName = saveUtils.getSavedSongName();
@@ -239,30 +241,43 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
             lrcView.setLoadingTipText("暂无歌词内容");
             return;
         }
-        //解析歌词构造器
-        ILrcBuilder builder = new DefaultLrcBuilder();
-        String lrc = getContentFromLrcFile(lrcPath);
-        //解析歌词返回LrcRow集合
-        List<LrcRow> rows = builder.getLrcRows(lrc);
-        //将得到的歌词集合传给mLrcView用来展示
-        lrcView.setLrc(rows);
-        beginLrcPlay();
-        //拖动歌词
-        lrcView.setListener(new ILrcViewListener() {
+        if (lrcPath.toLowerCase().startsWith("http")) { //判断歌词地址是否是网络地址
+            getContentFromLrcHttp(lrcPath);
+        } else {
+            getContentFromLrcFile(lrcPath);
+        }
+
+    }
+
+    private void displayLrc(final String lrc) {
+        runOnUiThread(new Runnable() {
             @Override
-            public void onLrcSeeked(int newPosition, LrcRow row) {
-                seekTo((int) row.time);
+            public void run() {
+                //解析歌词构造器
+                ILrcBuilder builder = new DefaultLrcBuilder();
+                //解析歌词返回LrcRow集合
+                List<LrcRow> rows = builder.getLrcRows(lrc);
+                //将得到的歌词集合传给mLrcView用来展示
+                lrcView.setLrc(rows);
+                beginLrcPlay();
+                //拖动歌词
+                lrcView.setListener(new ILrcViewListener() {
+                    @Override
+                    public void onLrcSeeked(int newPosition, LrcRow row) {
+                        seekTo((int) row.time);
+                    }
+                });
             }
         });
     }
 
     /**
-     * 读取lrc文件流
+     * 读取本地lrc文件流
      *
      * @param fileName
      * @return
      */
-    public String getContentFromLrcFile(String fileName) {
+    public void getContentFromLrcFile(String fileName) {
         String result = "";
         try {
             InputStreamReader inputReader = new InputStreamReader(new FileInputStream(fileName));
@@ -276,7 +291,28 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result;
+        displayLrc(result);
+    }
+
+    /**
+     * 读取网络歌词文件
+     */
+    private void getContentFromLrcHttp(String lrcPath) {
+        OkHttpTool.httpClient(lrcPath, new OkHttpTool.OnClientListener() {
+            @Override
+            public void onError() {
+
+            }
+            @Override
+            public void onResponse(Response response) {
+                try {
+                    String result = response.body().string();
+                    displayLrc(result);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     //开始滚动歌词

@@ -73,7 +73,6 @@ public class LocalMusicUtils {
                             song.setSongImagePath(getSongImagePath(context, songAlbumId));
                             song.setLrcPath(getLrcPath(songName, songPath));
                             songList.add(song);
-                            LogUtils.v(song.toString());
                         }
                     }
                 }

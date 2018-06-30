@@ -52,8 +52,10 @@ public class PlayMusicService extends Service {
     //播放全部歌曲
     public static void playAllMusic() {
         index = 0;
-        songInfo = songs.get(index);
-        setMusicData(songInfo.getSongPath(), index);
+        if (songs.size() > 0) {
+            songInfo = songs.get(index);
+            setMusicData(songInfo.getSongPath(), index);
+        }
     }
 
     //播放一首歌曲，点击单个item时调用
