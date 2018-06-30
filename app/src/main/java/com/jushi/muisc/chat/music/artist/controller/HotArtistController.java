@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import com.jushi.muisc.chat.R;
@@ -16,7 +15,7 @@ import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.manager.JSGridLayoutManager;
 import com.jushi.muisc.chat.music.artist.model.ArtistsModel;
 import com.jushi.muisc.chat.music.service.NetWorkService;
-import com.jushi.muisc.chat.utils.DataUrlUtils;
+import com.jushi.muisc.chat.music.utils.DataUrlUtils;
 import com.jushi.muisc.chat.utils.Utils;
 
 import java.util.ArrayList;

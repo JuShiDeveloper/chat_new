@@ -16,7 +16,7 @@ import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.music.chart.model.ChartDataModel;
 import com.jushi.muisc.chat.music.service.NetWorkService;
-import com.jushi.muisc.chat.utils.Constant;
+import com.jushi.muisc.chat.music.utils.Constant;
 import com.jushi.muisc.chat.view.JSTextView;
 
 import java.util.ArrayList;

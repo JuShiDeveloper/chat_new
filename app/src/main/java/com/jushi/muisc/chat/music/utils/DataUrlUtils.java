@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.utils;
+package com.jushi.muisc.chat.music.utils;
 
 /**
  * Created by cpx on 2018/1/27.

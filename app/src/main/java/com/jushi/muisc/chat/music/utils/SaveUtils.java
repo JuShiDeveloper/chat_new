@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.utils;
+package com.jushi.muisc.chat.music.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -91,8 +91,12 @@ public class SaveUtils {
     }
 
     private void getSP() {
-        if (sp == null){
-            sp = mContext.getSharedPreferences(Constant.SAVE_SONG_INFO,Context.MODE_PRIVATE);
+        try{
+            if (sp == null){
+                sp = mContext.getSharedPreferences(Constant.SAVE_SONG_INFO,Context.MODE_PRIVATE);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

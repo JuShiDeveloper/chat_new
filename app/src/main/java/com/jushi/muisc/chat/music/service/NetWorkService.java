@@ -1,7 +1,6 @@
 package com.jushi.muisc.chat.music.service;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
@@ -20,7 +19,7 @@ import com.jushi.muisc.chat.music.recommend.model.TodayRecommendModel;
 import com.jushi.muisc.chat.music.public_model.SongDetail;
 import com.jushi.muisc.chat.music.zhibo.model.ZhiBoModel;
 import com.jushi.muisc.chat.tools.music.OkHttpTool;
-import com.jushi.muisc.chat.utils.DataUrlUtils;
+import com.jushi.muisc.chat.music.utils.DataUrlUtils;
 import com.squareup.okhttp.Response;
 
 import java.util.ArrayList;

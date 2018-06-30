@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.sliding_menu.controller.SlidingMenuController;
 import com.jushi.muisc.chat.utils.DisplayUtils;
-import com.jushi.muisc.chat.utils.LocalMusicUtils;
+import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
 import com.jushi.muisc.chat.view.FriendsLayout;
 import com.jushi.muisc.chat.view.MainTitleLayout;
 import com.jushi.muisc.chat.view.MusicLayout;

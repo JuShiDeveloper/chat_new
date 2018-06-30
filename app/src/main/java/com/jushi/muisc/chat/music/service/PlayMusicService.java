@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.tools.music.PlayMusic;
-import com.jushi.muisc.chat.utils.SaveUtils;
+import com.jushi.muisc.chat.music.utils.SaveUtils;
 
 import java.util.List;
 

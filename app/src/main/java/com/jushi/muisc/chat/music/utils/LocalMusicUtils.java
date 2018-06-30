@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.utils;
+package com.jushi.muisc.chat.music.utils;
 
 import android.content.Context;
 import android.database.Cursor;

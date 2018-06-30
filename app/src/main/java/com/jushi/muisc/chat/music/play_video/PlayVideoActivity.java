@@ -12,10 +12,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.RelativeLayout;
 
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.utils.Constant;
 import com.jushi.muisc.chat.utils.DisplayUtils;
 import com.jushi.muisc.chat.view.JSTextView;
 

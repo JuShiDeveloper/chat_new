@@ -23,7 +23,7 @@ import com.jushi.muisc.chat.music.recommend.model.TodayRecommendModel;
 import com.jushi.muisc.chat.music.public_model.SongDetail;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.utils.DisplayUtils;
-import com.jushi.muisc.chat.utils.LocalMusicUtils;
+import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
 import com.jushi.muisc.chat.utils.ShadowUtils;
 import com.jushi.muisc.chat.utils.ToastUtils;
 import com.jushi.muisc.chat.view.JSTextView;

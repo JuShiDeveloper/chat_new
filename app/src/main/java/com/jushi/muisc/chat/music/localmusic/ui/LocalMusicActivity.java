@@ -25,7 +25,7 @@ import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.utils.DisplayUtils;
-import com.jushi.muisc.chat.utils.LocalMusicUtils;
+import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
 import com.jushi.muisc.chat.utils.ShadowUtils;
 import com.jushi.muisc.chat.utils.ToastUtils;
 import com.jushi.muisc.chat.view.JSTextView;

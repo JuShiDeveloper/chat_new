@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import com.jushi.muisc.chat.R;
@@ -19,7 +18,7 @@ import com.jushi.muisc.chat.music.recommend.model.TodayRecommendModel;
 import com.jushi.muisc.chat.music.public_model.SongDetail;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.service.PlayMusicService;
-import com.jushi.muisc.chat.utils.LocalMusicUtils;
+import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
 import com.jushi.muisc.chat.utils.ToastUtils;
 import com.jushi.muisc.chat.utils.Utils;
 

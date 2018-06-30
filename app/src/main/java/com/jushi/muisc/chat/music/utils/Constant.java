@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.utils;
+package com.jushi.muisc.chat.music.utils;
 
 import com.jushi.muisc.chat.music.chart.model.ChartDataModel;
 

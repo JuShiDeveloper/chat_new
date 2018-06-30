@@ -1,8 +1,7 @@
-package com.jushi.muisc.chat.utils;
+package com.jushi.muisc.chat.music.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 
 import com.alibaba.fastjson.JSONObject;

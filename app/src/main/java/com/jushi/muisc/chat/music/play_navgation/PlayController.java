@@ -1,12 +1,11 @@
 package com.jushi.muisc.chat.music.play_navgation;
 
 import android.app.Activity;
-import android.util.Log;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.music.service.PlayMusicService;
-import com.jushi.muisc.chat.utils.SaveUtils;
+import com.jushi.muisc.chat.music.utils.SaveUtils;
 import com.jushi.muisc.chat.view.PlayMusicView;
 
 import java.util.List;

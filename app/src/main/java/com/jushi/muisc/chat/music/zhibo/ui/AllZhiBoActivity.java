@@ -14,8 +14,8 @@ import com.jushi.muisc.chat.music.jsinterface.LiveAndMvDataAdapter;
 import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.music.zhibo.model.ZhiBoModel;
 import com.jushi.muisc.chat.music.service.NetWorkService;
-import com.jushi.muisc.chat.utils.Constant;
-import com.jushi.muisc.chat.utils.DataUrlUtils;
+import com.jushi.muisc.chat.music.utils.Constant;
+import com.jushi.muisc.chat.music.utils.DataUrlUtils;
 import com.jushi.muisc.chat.utils.DisplayUtils;
 
 import java.util.List;
