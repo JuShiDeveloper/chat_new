@@ -29,7 +29,7 @@ public final class RotateAnimatorTool {
         this.context = context;
 
         rotateAnim = ObjectAnimator.ofFloat(0, 360);
-        rotateAnim.setDuration(45 * 1000);
+        rotateAnim.setDuration(55 * 1000);
         rotateAnim.setRepeatMode(ValueAnimator.RESTART);
         rotateAnim.setRepeatCount(ValueAnimator.INFINITE);
         rotateAnim.setInterpolator(new LinearInterpolator());

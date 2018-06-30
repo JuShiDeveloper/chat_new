@@ -53,8 +53,8 @@
         android:gravity="center">
         <ImageView
             android:id="@+id/round_image_play_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:src="@drawable/play_music_activity_round_image"
             android:layout_centerHorizontal="true"/>
         <com.jushi.muisc.chat.view.lrcview.impl.LrcView

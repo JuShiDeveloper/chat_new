@@ -12,11 +12,13 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 
+import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.service.PlayMusicService;
 import com.jushi.muisc.chat.tools.PeriodicTask;
 import com.jushi.muisc.chat.tools.music.OkHttpTool;
 import com.jushi.muisc.chat.tools.music.RotateAnimatorTool;
+import com.jushi.muisc.chat.transform.CircleTransform;
 import com.jushi.muisc.chat.utils.DateUtils;
 import com.jushi.muisc.chat.utils.DisplayUtils;
 import com.jushi.muisc.chat.utils.SaveUtils;
@@ -48,7 +50,7 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     private int currentDuration;
     private PeriodicTask periodicTask;
     private SaveUtils saveUtils;
-    private String songName, author, lrcPath;
+    private String songName, author, lrcPath, imagePath;
     private int progressTime;
     //更新歌词的定时器
     private Timer mTimer;
@@ -66,6 +68,7 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         songName = saveUtils.getSavedSongName();
         author = saveUtils.getSaveAuthor();
         lrcPath = saveUtils.getSaveLrcPath();
+        imagePath = saveUtils.getSaveAuthorImage();
         initView();
     }
 
@@ -233,6 +236,14 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     private void showSongInfo() {
         tvSongName.setText(songName);
         tvAuthor.setText(author);
+        if (imagePath != null) {
+            Glide.with(this)
+                    .load(imagePath)
+                    .transform(new CircleTransform(this))
+                    .into(roundImage);
+        } else {
+            roundImage.setImageResource(R.drawable.play_music_activity_round_image);
+        }
     }
 
     //显示当前播放歌曲的歌词
@@ -303,6 +314,7 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
             public void onError() {
 
             }
+
             @Override
             public void onResponse(Response response) {
                 try {
@@ -357,6 +369,7 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         this.songName = songName;
         this.author = author;
         this.lrcPath = lrcPath;
+        this.imagePath = imagePath;
         showSongInfo();
         showLrc();
     }

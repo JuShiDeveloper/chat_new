@@ -42,6 +42,7 @@ public class PlayMusicService extends Service {
         isRunning = true;
         playMusic = new PlayMusic();
         saveUtils = SaveUtils.getInstance(mContext);
+        index = saveUtils.getSaveIndex(); //在列表中的位置下标
     }
 
     //将播放列表传递进来
@@ -86,7 +87,6 @@ public class PlayMusicService extends Service {
             songInfo.setSongAuthor(saveUtils.getSaveAuthor()); //歌手
             songInfo.setSongImagePath(saveUtils.getSaveAuthorImage()); //图片路径
             songInfo.setLrcPath(saveUtils.getSaveLrcPath()); //歌词路径
-            index = saveUtils.getSaveIndex(); //在列表中的位置下标
             if (songInfo.getSongPath() == null) { //如果保存的歌曲信息为空
                 songInfo.setSongName(songs.get(index).getSongName()); //名称
                 songInfo.setSongPath(songs.get(index).getSongPath());  //歌曲路径
@@ -94,7 +94,7 @@ public class PlayMusicService extends Service {
                 songInfo.setSongImagePath(songs.get(index).getSongImagePath()); //图片路径
                 songInfo.setLrcPath(songs.get(index).getLrcPath()); //歌词路径
             }
-            setMusicData(songInfo.getSongPath(), 0);
+            setMusicData(songInfo.getSongPath(), index);
         } else {
             play();
         }
@@ -126,6 +126,7 @@ public class PlayMusicService extends Service {
         saveUtils.saveSongName(songName);  //歌名
         saveUtils.saveSongPath(songInfo.getSongPath());  //歌曲路径
         saveUtils.saveLrcPath(lrcPath);  //歌词路径
+        saveUtils.saveIndex(index);
     }
 
     //暂停
