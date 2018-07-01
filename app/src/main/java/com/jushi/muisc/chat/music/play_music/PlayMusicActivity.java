@@ -28,9 +28,7 @@ import com.jushi.muisc.chat.view.lrcview.impl.DefaultLrcBuilder;
 import com.jushi.muisc.chat.view.lrcview.impl.LrcRow;
 import com.jushi.muisc.chat.view.lrcview.impl.LrcView;
 import com.jushi.muisc.chat.view.ripplesoundplayer.RippleVisualizerView;
-import com.jushi.muisc.chat.view.ripplesoundplayer.renderer.BarRenderer;
 import com.jushi.muisc.chat.view.ripplesoundplayer.renderer.ColorfulBarRenderer;
-import com.jushi.muisc.chat.view.ripplesoundplayer.renderer.LineRenderer;
 import com.jushi.muisc.chat.view.ripplesoundplayer.util.PaintUtil;
 import com.squareup.okhttp.Response;
 
@@ -120,8 +118,8 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
      */
     private void initRippleView() {
         rippleVisualizerView.setMediaPlayer(PlayMusicService.getMediaPlayer());
-        //rippleVisualizerView.setCurrentRenderer(new BarRenderer(16, PaintUtil.getBarGraphPaint(Color.WHITE)));
-        //renderDemoView.setCurrentRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.YELLOW)));
+//        rippleVisualizerView.setCurrentRenderer(new BarRenderer(16, PaintUtil.getBarGraphPaint(Color.WHITE)));
+//        renderDemoView.setCurrentRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.YELLOW)));
         rippleVisualizerView.setCurrentRenderer(new ColorfulBarRenderer(15, PaintUtil.getBarGraphPaint(Color.WHITE)
                 , getResources().getColor(R.color.e80b0b)
                 , getResources().getColor(R.color._397b04)));
