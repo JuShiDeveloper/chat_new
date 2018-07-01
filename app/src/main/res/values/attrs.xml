@@ -16,4 +16,5 @@
         <attr name="leftBottomRadius" format="dimension" />
         <attr name="onlyDrawBorder" format="boolean" />
     </declare-styleable>
+
 </resources>

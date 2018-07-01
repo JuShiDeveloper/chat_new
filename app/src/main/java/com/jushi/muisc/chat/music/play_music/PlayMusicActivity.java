@@ -1,6 +1,7 @@
 package com.jushi.muisc.chat.music.play_music;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -26,6 +27,11 @@ import com.jushi.muisc.chat.view.lrcview.ILrcViewListener;
 import com.jushi.muisc.chat.view.lrcview.impl.DefaultLrcBuilder;
 import com.jushi.muisc.chat.view.lrcview.impl.LrcRow;
 import com.jushi.muisc.chat.view.lrcview.impl.LrcView;
+import com.jushi.muisc.chat.view.ripplesoundplayer.RippleVisualizerView;
+import com.jushi.muisc.chat.view.ripplesoundplayer.renderer.BarRenderer;
+import com.jushi.muisc.chat.view.ripplesoundplayer.renderer.ColorfulBarRenderer;
+import com.jushi.muisc.chat.view.ripplesoundplayer.renderer.LineRenderer;
+import com.jushi.muisc.chat.view.ripplesoundplayer.util.PaintUtil;
 import com.squareup.okhttp.Response;
 
 import java.io.BufferedReader;
@@ -55,6 +61,8 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     //更新歌词的定时任务
     private TimerTask mTask;
     private RotateAnimatorTool animatorTool;
+    //音频动画
+    private RippleVisualizerView rippleVisualizerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,15 +100,32 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         nextBtn = findViewById(R.id.next_button_play_activity);
         roundImage = findViewById(R.id.round_image_play_activity);
 
+        rippleVisualizerView = findViewById(R.id.line_renderer_demo);
+
         preBtn.setOnClickListener(this);
         playBtn.setOnClickListener(this);
         nextBtn.setOnClickListener(this);
         PlayMusicService.setOnMusicPlayListener(this);
         animatorTool = new RotateAnimatorTool(this, roundImage);
 
+        initRippleView();
+
         changePlayBtnState();
         setViewClickListener();
         showLrc();
+    }
+
+    /**
+     * 初始化音频动画view
+     */
+    private void initRippleView() {
+        rippleVisualizerView.setMediaPlayer(PlayMusicService.getMediaPlayer());
+        //rippleVisualizerView.setCurrentRenderer(new BarRenderer(16, PaintUtil.getBarGraphPaint(Color.WHITE)));
+        //renderDemoView.setCurrentRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.YELLOW)));
+        rippleVisualizerView.setCurrentRenderer(new ColorfulBarRenderer(15, PaintUtil.getBarGraphPaint(Color.WHITE)
+                , getResources().getColor(R.color.e80b0b)
+                , getResources().getColor(R.color._397b04)));
+        rippleVisualizerView.setAmplitudePercentage(3); //柱状的高度
     }
 
     private void setViewClickListener() {
@@ -144,11 +169,21 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
             startAnimation();
             startPeriodicTask();
             playBtn.setButtonDrawable(getDrawable(R.drawable.play_controller_icon));
+            startRippleView();
         } else {
             stopAnimation();
             stopPeriodiceTask();
             playBtn.setButtonDrawable(getDrawable(R.drawable.pause_controller_icon));
+            stopRippleView();
         }
+    }
+
+    private void stopRippleView() {
+        rippleVisualizerView.stop(); //停止音频动画
+    }
+
+    private void startRippleView(){
+        rippleVisualizerView.play(); //播放音频动画
     }
 
     private void initToolBar() {

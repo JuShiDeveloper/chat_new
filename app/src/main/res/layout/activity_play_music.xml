@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:navigationIcon="@drawable/back_icon_red"
-        app:titleTextColor="@color/white"
-        app:subtitleTextColor="@color/_666666">
+        app:subtitleTextColor="@color/_666666"
+        app:titleTextColor="@color/white">
 
     </android.support.v7.widget.Toolbar>
 
@@ -24,7 +24,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/play_music_activity_toolBar"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+
+        <com.jushi.muisc.chat.view.ripplesoundplayer.RippleVisualizerView
+            android:id="@+id/line_renderer_demo"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:elevation="4dp" />
 
         <com.jushi.muisc.chat.view.JSTextView
             android:id="@+id/play_music_activity_songName"
@@ -32,7 +39,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="@dimen/_22sp" />
+            android:textSize="@dimen/_22sp"
+            android:visibility="gone" />
 
         <com.jushi.muisc.chat.view.JSTextView
             android:id="@+id/play_music_activity_author"
@@ -40,7 +48,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/_666666"
-            android:textSize="@dimen/_16sp" />
+            android:textSize="@dimen/_16sp"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout

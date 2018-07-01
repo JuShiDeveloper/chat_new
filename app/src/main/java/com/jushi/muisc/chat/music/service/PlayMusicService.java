@@ -3,6 +3,7 @@ package com.jushi.muisc.chat.music.service;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
@@ -41,7 +42,7 @@ public class PlayMusicService extends Service {
         super.onCreate();
         isRunning = true;
         playMusic = new PlayMusic();
-        saveUtils = SaveUtils.getInstance(mContext);
+        saveUtils = SaveUtils.getInstance(getApplicationContext());
         index = saveUtils.getSaveIndex(); //在列表中的位置下标
     }
 
@@ -69,7 +70,7 @@ public class PlayMusicService extends Service {
     private static void setMusicData(String songPath, int position) {
         index = position;
         playMusic.setData(songPath);
-        startPlay();
+        play();
     }
 
     //调用播放类的方法真正的播放
@@ -179,6 +180,10 @@ public class PlayMusicService extends Service {
     //更新播放进度，拖动播放页面的进度条和歌词时调用
     public static void seekTo(int msec) {
         playMusic.seekTo(msec);
+    }
+
+    public static MediaPlayer getMediaPlayer() {
+        return playMusic.getMediaPlayer();
     }
 
     @Nullable

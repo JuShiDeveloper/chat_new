@@ -101,6 +101,10 @@ public class PlayMusic implements MediaPlayer.OnCompletionListener,
     public void seekTo(int msec){
         mediaPlayer.seekTo(msec);
     }
+
+    public MediaPlayer getMediaPlayer(){
+        return mediaPlayer;
+    }
     /**
      * 监听一首歌是否播放完
      *
