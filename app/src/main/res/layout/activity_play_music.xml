@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:navigationIcon="@drawable/back_icon_red"
-        app:titleTextColor="@color/e80b0b">
+        app:titleTextColor="@color/white"
+        app:subtitleTextColor="@color/_666666">
 
     </android.support.v7.widget.Toolbar>
 
@@ -49,18 +50,21 @@
         android:layout_below="@+id/play_music_activity_songInfo_container"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!--旋转的图片-->
         <ImageView
             android:id="@+id/round_image_play_activity"
             android:layout_width="250dp"
             android:layout_height="250dp"
-            android:src="@drawable/play_music_activity_round_image"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY" />
+
         <com.jushi.muisc.chat.view.lrcview.impl.LrcView
             android:id="@+id/play_music_activity_lrcView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
@@ -88,9 +92,10 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/play_activity_music_total_time"
             android:layout_toRightOf="@+id/play_activity_music_progress_time"
-            android:progressBackgroundTint="@color/_4842a2"
-            android:progressTint="@color/e80b0b"
-            android:thumb="@drawable/seekbar_point_icon" />
+            android:progressBackgroundTint="@color/_d8d0f7"
+            android:progressTint="@color/_473370"
+            android:thumb="@drawable/seekbar_point_icon"
+            android:thumbTint="@color/c_ffffff" />
 
         <com.jushi.muisc.chat.view.JSTextView
             android:id="@+id/play_activity_music_total_time"

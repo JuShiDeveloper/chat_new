@@ -152,6 +152,7 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     }
 
     private void initToolBar() {
+        toolbar.setTitle(songName);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -232,15 +233,20 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
 
     //显示当前播放歌曲的信息
     private void showSongInfo() {
-        tvSongName.setText(songName);
-        tvAuthor.setText(author);
+//        tvSongName.setText(songName);
+//        tvAuthor.setText(author);
+        toolbar.setTitle(songName);
+        toolbar.setSubtitle(author);
         if (imagePath != null) {
             Glide.with(this)
                     .load(imagePath)
                     .transform(new CircleTransform(this))
                     .into(roundImage);
         } else {
-            roundImage.setImageResource(R.drawable.play_music_activity_round_image);
+            Glide.with(this)
+                    .load(R.mipmap.music_logo)
+                    .transform(new CircleTransform(this))
+                    .into(roundImage);
         }
     }
 
@@ -411,5 +417,4 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         }
     }
 
-    ;
 }
