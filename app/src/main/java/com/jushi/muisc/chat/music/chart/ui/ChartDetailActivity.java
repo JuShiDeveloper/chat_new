@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
@@ -43,7 +44,8 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
     private String chartTitle, link, chartUrl;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private Toolbar toolbar;
-    private JSTextView tvLoading, tvMusicNum;
+    private JSTextView tvMusicNum;
+    private ProgressBar progressBar;
     private ImageView imageView;
     private RecyclerView recyclerView;
     private NetWorkService workService;
@@ -91,7 +93,7 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
         playAllLayout = findViewById(R.id.play_all_music_layout);
         ShadowUtils.setShadowDown_2(this, playAllLayout);
         playAllLayout.setOnClickListener(this);
-        tvLoading = findViewById(R.id.all_recommend_tv_loading);
+        progressBar = findViewById(R.id.all_recommend_tv_loading);
         tvMusicNum = findViewById(R.id.play_all_music_number);
 
         recyclerSetAdapter();
@@ -217,7 +219,7 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
     private void showRecyclerView() {
         if (recyclerView.getVisibility() == View.INVISIBLE) {
             recyclerView.setVisibility(View.VISIBLE);
-            tvLoading.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
         }
     }
 

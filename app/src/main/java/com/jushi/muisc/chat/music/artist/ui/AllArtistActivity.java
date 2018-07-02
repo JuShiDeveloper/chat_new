@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.artist.adapter.AllArtistAdapter;
@@ -31,6 +32,7 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
 
     private LinearLayout itemLayout;
     private Toolbar toolbar;
+    private ProgressBar progressBar;
     private RecyclerView recyclerView;
     //顶部的选择按钮(热门、华语、韩国、日本、其他)
     private JSTextView tvHot, tvChina, tvOuMei, tvHanGuo, tvJapan, tvOther;
@@ -78,10 +80,12 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
         tvHanGuo = findViewById(R.id.hanGuo_singer);
         tvJapan = findViewById(R.id.riBen_singer);
         tvOther = findViewById(R.id.other_singer);
+
+        progressBar = findViewById(R.id.all_artist_activity_load_image);
     }
 
 
-    private void setClickListener(){
+    private void setClickListener() {
         tvHot.setOnClickListener(this);
         tvChina.setOnClickListener(this);
         tvOuMei.setOnClickListener(this);
@@ -90,8 +94,8 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
         tvOther.setOnClickListener(this);
     }
 
-    private void recyclerViewSetAdapter(){
-        allArtistAdapter = new AllArtistAdapter(this,artistBeans);
+    private void recyclerViewSetAdapter() {
+        allArtistAdapter = new AllArtistAdapter(this, artistBeans);
         recyclerView.setAdapter(allArtistAdapter);
         setItemClickListener();
     }
@@ -101,14 +105,14 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onItemClick(ArtistsModel.ArtistBean artistBean, int position) {
                 ActivityManager.startArtistMusicActivity(AllArtistActivity.this,
-                        artistBean.getTing_uid(),artistBean.getName());
+                        artistBean.getTing_uid(), artistBean.getName());
             }
         });
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.hot_singer:
                 itemClick = ArtistItem.HOT;
                 artistUrl = DataUrlUtils.getHotArtistsUrl(60);
@@ -138,13 +142,55 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
         loadArtistData();
     }
 
-    private void loadArtistData(){
+    private void loadArtistData() {
         artistBeans.clear();
         notifyDataChanged();
+        switch (itemClick) {
+            case HOT:
+                if (DataCache.hotList.size() > 0){
+                    artistBeans.addAll(DataCache.hotList);
+                    return;
+                }
+                break;
+            case CHINA:
+                if (DataCache.huayuList.size() > 0){
+                    artistBeans.addAll(DataCache.huayuList);
+                    return;
+                }
+                break;
+            case OUMEI:
+                if (DataCache.oumeiList.size() > 0){
+                    artistBeans.addAll(DataCache.oumeiList);
+                    return;
+                }
+                break;
+            case HANGUO:
+                if (DataCache.hanguoList.size() > 0){
+                    artistBeans.addAll(DataCache.hanguoList);
+                    return;
+                }
+                break;
+            case JAPAN:
+                if (DataCache.japanList.size() > 0){
+                    artistBeans.addAll(DataCache.japanList);
+                    return;
+                }
+                break;
+            case OTHER:
+                if (DataCache.otherList.size() > 0){
+                    artistBeans.addAll(DataCache.otherList);
+                    return;
+                }
+                break;
+        }
+        if (progressBar.getVisibility() == View.INVISIBLE) {
+            progressBar.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.INVISIBLE);
+        }
         new ArtistDataTask().run();
     }
 
-    class ArtistDataTask extends Thread{
+    class ArtistDataTask extends Thread {
         @Override
         public void run() {
             workService.getArtistData(artistUrl, new MusicDataAdapter() {
@@ -152,8 +198,32 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
                 public void onArtistData(List<ArtistsModel.ArtistBean> beans) {
                     artistBeans.addAll(beans);
                     notifyDataChanged();
+                    cacheData();
                 }
             });
+        }
+    }
+
+    private void cacheData() {
+        switch (itemClick) {
+            case HOT:
+                DataCache.hotList.addAll(artistBeans);
+                break;
+            case CHINA:
+                DataCache.huayuList.addAll(artistBeans);
+                break;
+            case OUMEI:
+                DataCache.oumeiList.addAll(artistBeans);
+                break;
+            case HANGUO:
+                DataCache.hanguoList.addAll(artistBeans);
+                break;
+            case JAPAN:
+                DataCache.japanList.addAll(artistBeans);
+                break;
+            case OTHER:
+                DataCache.otherList.addAll(artistBeans);
+                break;
         }
     }
 
@@ -162,15 +232,16 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void run() {
                 allArtistAdapter.notifyDataSetChanged();
-                if (recyclerView.getVisibility() == View.INVISIBLE){
+                if (recyclerView.getVisibility() == View.INVISIBLE) {
                     recyclerView.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });
     }
 
     private void setTextColorChanged(ArtistItem itemClick) {
-        switch (itemClick){
+        switch (itemClick) {
             case HOT:
                 tvHot.setTextColor(getResources().getColor(R.color.e80b0b));
                 tvChina.setTextColor(getResources().getColor(R.color._333333));
@@ -230,5 +301,14 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    static class DataCache {
+        static List<ArtistsModel.ArtistBean> hotList = new ArrayList<>();
+        static List<ArtistsModel.ArtistBean> huayuList = new ArrayList<>();
+        static List<ArtistsModel.ArtistBean> oumeiList = new ArrayList<>();
+        static List<ArtistsModel.ArtistBean> hanguoList = new ArrayList<>();
+        static List<ArtistsModel.ArtistBean> japanList = new ArrayList<>();
+        static List<ArtistsModel.ArtistBean> otherList = new ArrayList<>();
     }
 }

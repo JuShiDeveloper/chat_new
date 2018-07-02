@@ -57,14 +57,13 @@
             android:layout_below="@+id/play_all_music_layout"
             android:layout_above="@+id/PlayMusicView">
 
-            <com.jushi.muisc.chat.view.JSTextView
+            <ProgressBar
                 android:id="@+id/all_recommend_tv_loading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:text="loading..."
-                android:textColor="@color/_999999" />
+                android:indeterminateDrawable="@drawable/bg_progressbar"
+                android:layout_marginTop="30dp"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/all_recommend_recyclerView"

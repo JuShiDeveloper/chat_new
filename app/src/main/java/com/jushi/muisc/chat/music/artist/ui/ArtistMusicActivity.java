@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
@@ -40,7 +41,8 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
     private String artistId, artistName;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private Toolbar toolbar;
-    private JSTextView tvLoading, tvAllMusicNum;
+    private JSTextView tvAllMusicNum;
+    private ProgressBar progressBar;
     private ImageView imageView;
     private RecyclerView recyclerView;
     private NetWorkService workService;
@@ -78,7 +80,7 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
         playAllLayout = findViewById(R.id.play_all_music_layout);
         ShadowUtils.setShadowDown_2(this, playAllLayout);
         playAllLayout.setOnClickListener(this);
-        tvLoading = findViewById(R.id.all_recommend_tv_loading);
+        progressBar = findViewById(R.id.all_recommend_tv_loading);
         tvAllMusicNum = findViewById(R.id.play_all_music_number);
     }
 
@@ -133,7 +135,7 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
                 recyclerView.setAdapter(musicAdapter);
                 if (recyclerView.getVisibility() == View.INVISIBLE) {
                     recyclerView.setVisibility(View.VISIBLE);
-                    tvLoading.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
                 tvAllMusicNum.setText(String.valueOf(songBeans.size()));
                 setItemClickListener();
