@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -81,10 +82,14 @@ public class MusicLayout extends RelativeLayout {
         pages.add(liveFragment);
         pages.add(chartFragment);
         viewPager.setOffscreenPageLimit(2);
-        viewPager.setAdapter(new MusicAdapter(((FragmentActivity)mContext).getSupportFragmentManager()));
+//        viewPager.setAdapter(new MusicAdapter(((FragmentActivity)mContext).getSupportFragmentManager()));
+        viewPager.setAdapter(new MusicPagerAdapter(((FragmentActivity)mContext).getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
     }
 
+    /**
+     * FragmentPagerAdapter 滑动到后面的fragment时 第一个（或者前面的fragment不会销毁），依然存在内存中
+     */
     class MusicAdapter extends FragmentPagerAdapter{
 
         public MusicAdapter(FragmentManager fm) {
@@ -99,6 +104,44 @@ public class MusicLayout extends RelativeLayout {
         @Override
         public int getCount() {
             return pages.size();
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabTitles.get(position);
+        }
+    }
+
+    /**
+     * FragmentStatePagerAdapter 当滑动到后面的fragment时，第一个（或者前面的fragment会销毁，从而释放内存）
+     */
+    class MusicPagerAdapter extends FragmentStatePagerAdapter{
+        private Fragment baseFragment = null;
+        public MusicPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+//            switch (position){
+//                case 0:
+//                    baseFragment = new HomePageFragment();
+//                    break;
+//                case 1:
+//                    baseFragment = new VideoAndLiveFragment();
+//                    break;
+//                case 2:
+//                    baseFragment = new ChartFragment();
+//                    break;
+//            }
+
+            return pages.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
         }
 
         @Nullable
