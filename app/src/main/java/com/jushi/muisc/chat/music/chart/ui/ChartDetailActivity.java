@@ -152,6 +152,7 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
             tvMusicNum.setText(String.valueOf(Constant.contentBeanX.getContent().size()));
         }
     }
+
     //榜单数据Url不为空时获取新的数据
     private void getChartDetailData() {
         new ChartDetailTask().run();
@@ -159,11 +160,11 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.play_all_music_layout:
-                if (songs.size() < listBeans.size()){
-                    ToastUtils.show(this,"正在努力加载中");
-                }else {
+                if (songs.size() < listBeans.size()) {
+                    ToastUtils.show(this, "正在努力加载中");
+                } else {
                     playController.setPlayList(songs);
                     playController.playAllMusic();
                     detailAdapter.setPositionChanged(0);
@@ -191,7 +192,7 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
                         public void run() {
                             try {
                                 Glide.with(ChartDetailActivity.this).load(billboardBean.getPic_s192()).crossFade().into(imageView);
-                            }catch (Exception e){
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
@@ -251,6 +252,9 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
                             song.setSongDuration(detail.getBitrate().getFile_duration());
                             song.setLrcPath(detail.getSonginfo().getLrclink());
                             songs.add(song);
+                            if (songs.size() == listBeans.size()){
+                                setAllLayoutVisible();
+                            }
                         }
                     });
                 }
@@ -271,10 +275,22 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
                             song.setSongDuration(detail.getBitrate().getFile_duration());
                             song.setLrcPath(detail.getSonginfo().getLrclink());
                             songs.add(song);
+                            if (songs.size() == Constant.contentBeanX.getContent().size()){
+                                setAllLayoutVisible();
+                            }
                         }
                     });
                 }
             }
         }
+    }
+
+    private void setAllLayoutVisible() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                playAllLayout.setVisibility(View.VISIBLE);
+            }
+        });
     }
 }

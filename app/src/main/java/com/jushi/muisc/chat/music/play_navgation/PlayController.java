@@ -57,7 +57,7 @@ public class PlayController implements PlayMusicService.OnMusicPlayListener, Pla
         songName = saveUtils.getSavedSongName();
         songAuthor = saveUtils.getSaveAuthor();
         authorImage = saveUtils.getSaveAuthorImage(); //图片地址
-        if (songName == null) {
+        if (songName == null && songs.size() > 0) {
             songName = songs.get(0).getSongName();
             songAuthor = songs.get(0).getSongAuthor();
             authorImage = songs.get(0).getSongImagePath();

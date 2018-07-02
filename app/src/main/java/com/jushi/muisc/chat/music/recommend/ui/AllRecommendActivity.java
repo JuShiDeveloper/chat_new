@@ -183,6 +183,7 @@ public class AllRecommendActivity extends AppCompatActivity implements View.OnCl
         }
         return super.onOptionsItemSelected(item);
     }
+
     //数据转换
     class SongInfoTask extends Thread {
         @Override
@@ -204,9 +205,21 @@ public class AllRecommendActivity extends AppCompatActivity implements View.OnCl
                         song.setSongDuration(detail.getBitrate().getFile_duration());
                         song.setLrcPath(detail.getSonginfo().getLrclink());
                         songs.add(song);
+                        if (songs.size() == listBeans.size()) {
+                            setAllLayoutVisible();
+                        }
                     }
                 });
             }
         }
+    }
+
+    private void setAllLayoutVisible() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                playAllLayout.setVisibility(View.VISIBLE);
+            }
+        });
     }
 }

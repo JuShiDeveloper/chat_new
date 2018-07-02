@@ -44,5 +44,6 @@ dependencies {
     api 'com.jushi:pictures_lib:1.0.2'
     //圆形图片控件
 //    api 'de.hdodenhof:circleimageview:2.2.0'
+//    api 'io.reactivex:rxjava:latest.integration'
 
 }

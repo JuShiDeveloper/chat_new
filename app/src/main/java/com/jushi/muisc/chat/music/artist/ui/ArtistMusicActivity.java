@@ -36,7 +36,7 @@ import java.util.List;
  */
 public class ArtistMusicActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private String artistId,artistName;
+    private String artistId, artistName;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private Toolbar toolbar;
     private JSTextView tvLoading, tvAllMusicNum;
@@ -54,7 +54,7 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_recommend);
-        DisplayUtils.setStatusBarColor(this,R.color.color_status);
+        DisplayUtils.setStatusBarColor(this, R.color.color_status);
         artistId = getIntent().getStringExtra("artistId");
         artistName = getIntent().getStringExtra("artistName");
         workService = NetWorkService.getInstance(this);
@@ -105,7 +105,7 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
         new ArtistMusicTask().run();
     }
 
-    class ArtistMusicTask extends Thread{
+    class ArtistMusicTask extends Thread {
         @Override
         public void run() {
             workService.getArtistMusics(artistId, new MusicDataAdapter() {
@@ -128,7 +128,7 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                musicAdapter = new ArtistMusicAdapter(ArtistMusicActivity.this,songBeans);
+                musicAdapter = new ArtistMusicAdapter(ArtistMusicActivity.this, songBeans);
                 recyclerView.setAdapter(musicAdapter);
                 if (recyclerView.getVisibility() == View.INVISIBLE) {
                     recyclerView.setVisibility(View.VISIBLE);
@@ -145,10 +145,10 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onItemClick(ArtistMusic.SonglistBean songBean, int position) {
                 musicAdapter.setSelectChanged(position);
-                if (position < songs.size()){
-                    playController.playOneMusic(songs.get(position),position);
-                }else {
-                    ToastUtils.show(ArtistMusicActivity.this,"正在努力加载中");
+                if (position < songs.size()) {
+                    playController.playOneMusic(songs.get(position), position);
+                } else {
+                    ToastUtils.show(ArtistMusicActivity.this, "正在努力加载中");
                 }
             }
         });
@@ -156,11 +156,11 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.play_all_music_layout:
-                if (songs.size() < songBeans.size()){
-                    ToastUtils.show(this,"正在努力加载中");
-                }else {
+                if (songs.size() < songBeans.size()) {
+                    ToastUtils.show(this, "正在努力加载中");
+                } else {
                     playController.setPlayList(songs);
                     playController.playAllMusic();
                     musicAdapter.setSelectChanged(0);
@@ -181,11 +181,11 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
     }
 
     //准备数据，将歌曲信息转为Song类，好统一播放
-    class SongInfoTask extends Thread{
+    class SongInfoTask extends Thread {
         @Override
         public void run() {
             songs.clear();
-            for (ArtistMusic.SonglistBean listBean : songBeans){
+            for (ArtistMusic.SonglistBean listBean : songBeans) {
                 String songId = listBean.getSong_id();
                 final Song song = new Song();
                 workService.getSongInfo(songId, new MusicDataAdapter() {
@@ -201,10 +201,22 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
                         song.setSongDuration(detail.getBitrate().getFile_duration());
                         song.setLrcPath(detail.getSonginfo().getLrclink());
                         songs.add(song);
+                        if (songs.size() == songBeans.size()){
+                            setAllLayoutVisible();
+                        }
                     }
                 });
             }
         }
+    }
+
+    private void setAllLayoutVisible() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                playAllLayout.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
 }

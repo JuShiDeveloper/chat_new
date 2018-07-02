@@ -1,16 +1,19 @@
 package com.jushi.muisc.chat.music.play_music;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
+import android.widget.TabHost;
 
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
@@ -31,6 +34,8 @@ import com.jushi.muisc.chat.view.ripplesoundplayer.RippleVisualizerView;
 import com.jushi.muisc.chat.view.ripplesoundplayer.renderer.ColorfulBarRenderer;
 import com.jushi.muisc.chat.view.ripplesoundplayer.util.PaintUtil;
 import com.squareup.okhttp.Response;
+import com.wyf.pictures.camera.helper.PermissionHelper;
+import com.wyf.pictures.rxPermissions.RxPermissions;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -39,6 +44,8 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import rx.functions.Action1;
 
 public class PlayMusicActivity extends AppCompatActivity implements PlayMusicService.OnMusicPlayListener, View.OnClickListener {
 
@@ -76,6 +83,24 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         initView();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkRecordAudioPermission();
+        changePlayBtnState();
+    }
+
+    private void checkRecordAudioPermission() {
+        RxPermissions.getInstance(this).request(Manifest.permission.RECORD_AUDIO).subscribe(new Action1<Boolean>() {
+            @Override
+            public void call(Boolean aBoolean) {
+                if (aBoolean) {
+                    initRippleView();
+                }
+            }
+        });
+    }
+
     private void initView() {
         findWidget();
         initToolBar();
@@ -98,7 +123,6 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         nextBtn = findViewById(R.id.next_button_play_activity);
         roundImage = findViewById(R.id.round_image_play_activity);
 
-        rippleVisualizerView = findViewById(R.id.line_renderer_demo);
 
         preBtn.setOnClickListener(this);
         playBtn.setOnClickListener(this);
@@ -106,9 +130,6 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         PlayMusicService.setOnMusicPlayListener(this);
         animatorTool = new RotateAnimatorTool(this, roundImage);
 
-        initRippleView();
-
-        changePlayBtnState();
         setViewClickListener();
         showLrc();
     }
@@ -117,6 +138,7 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
      * 初始化音频动画view
      */
     private void initRippleView() {
+        rippleVisualizerView = findViewById(R.id.line_renderer_demo);
         rippleVisualizerView.setMediaPlayer(PlayMusicService.getMediaPlayer());
 //        rippleVisualizerView.setCurrentRenderer(new BarRenderer(16, PaintUtil.getBarGraphPaint(Color.WHITE)));
 //        renderDemoView.setCurrentRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.YELLOW)));
@@ -177,11 +199,21 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     }
 
     private void stopRippleView() {
-        rippleVisualizerView.stop(); //停止音频动画
+        List<String> result = PermissionHelper.INSTANCE.checkSelfPermission(this, new String[]{Manifest.permission.RECORD_AUDIO});
+        if (result.isEmpty()) {
+            rippleVisualizerView.stop(); //停止音频动画
+        } else {
+            checkRecordAudioPermission();
+        }
     }
 
-    private void startRippleView(){
-        rippleVisualizerView.play(); //播放音频动画
+    private void startRippleView() {
+        List<String> result = PermissionHelper.INSTANCE.checkSelfPermission(this, new String[]{Manifest.permission.RECORD_AUDIO});
+        if (result.isEmpty()) {
+            rippleVisualizerView.play(); //播放音频动画
+        } else {
+            checkRecordAudioPermission();
+        }
     }
 
     private void initToolBar() {
