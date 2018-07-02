@@ -22,6 +22,7 @@ import com.jushi.muisc.chat.music.artist.model.ArtistMusic;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.music.public_model.SongDetail;
 import com.jushi.muisc.chat.music.service.NetWorkService;
+import com.jushi.muisc.chat.music.utils.AnimationUtils;
 import com.jushi.muisc.chat.utils.DisplayUtils;
 import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
 import com.jushi.muisc.chat.utils.ShadowUtils;
@@ -214,6 +215,7 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                AnimationUtils.translateAnimation(playAllLayout);
                 playAllLayout.setVisibility(View.VISIBLE);
             }
         });

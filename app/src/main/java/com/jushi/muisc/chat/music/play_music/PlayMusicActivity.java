@@ -3,6 +3,7 @@ package com.jushi.muisc.chat.music.play_music;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -86,7 +87,11 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     @Override
     protected void onResume() {
         super.onResume();
-        checkRecordAudioPermission();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            checkRecordAudioPermission();
+        }else {
+            initRippleView();
+        }
         changePlayBtnState();
     }
 
@@ -199,20 +204,28 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     }
 
     private void stopRippleView() {
-        List<String> result = PermissionHelper.INSTANCE.checkSelfPermission(this, new String[]{Manifest.permission.RECORD_AUDIO});
-        if (result.isEmpty()) {
-            rippleVisualizerView.stop(); //停止音频动画
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            List<String> result = PermissionHelper.INSTANCE.checkSelfPermission(this, new String[]{Manifest.permission.RECORD_AUDIO});
+            if (result.isEmpty()) {
+                rippleVisualizerView.stop(); //停止音频动画
+            } else {
+                checkRecordAudioPermission();
+            }
         } else {
-            checkRecordAudioPermission();
+            rippleVisualizerView.stop(); //停止音频动画
         }
     }
 
     private void startRippleView() {
-        List<String> result = PermissionHelper.INSTANCE.checkSelfPermission(this, new String[]{Manifest.permission.RECORD_AUDIO});
-        if (result.isEmpty()) {
-            rippleVisualizerView.play(); //播放音频动画
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            List<String> result = PermissionHelper.INSTANCE.checkSelfPermission(this, new String[]{Manifest.permission.RECORD_AUDIO});
+            if (result.isEmpty()) {
+                rippleVisualizerView.play(); //播放音频动画
+            } else {
+                checkRecordAudioPermission();
+            }
         } else {
-            checkRecordAudioPermission();
+            rippleVisualizerView.play(); //播放音频动画
         }
     }
 
