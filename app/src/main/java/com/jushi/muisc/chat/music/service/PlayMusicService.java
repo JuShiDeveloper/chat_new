@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.jushi.muisc.chat.JSApplication;
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.tools.music.PlayMusic;
@@ -119,7 +120,7 @@ public class PlayMusicService extends Service {
         if (songInfo != null) {
             songInfo.setLastPlayTime(System.currentTimeMillis());
         }
-        MusicDBTools.getInstance().savePlaySong(songInfo);
+        JSApplication.getMusicDBTools().savePlaySong(songInfo);
     }
 
     //获取当前播放的歌曲信息，用于保存和显示

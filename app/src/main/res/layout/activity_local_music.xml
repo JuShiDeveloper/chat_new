@@ -27,7 +27,7 @@
                 android:layout_centerVertical="true"
                 android:text="@string/local_music"
                 android:textColor="@color/_333333"
-                android:textSize="@dimen/_18sp" />
+                android:textSize="@dimen/_20sp" />
 
             <RadioButton
                 android:id="@+id/local_music_activity_search_btn"

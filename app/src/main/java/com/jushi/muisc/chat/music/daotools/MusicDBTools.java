@@ -1,9 +1,6 @@
 package com.jushi.muisc.chat.music.daotools;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.jushi.muisc.chat.JSApplication;
 import com.jushi.muisc.chat.dao.DaoMaster;
@@ -12,6 +9,7 @@ import com.jushi.muisc.chat.dao.SongDao;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.utils.LogUtils;
 
+import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.Query;
 
 import java.util.List;
@@ -25,7 +23,7 @@ import rx.schedulers.Schedulers;
 public class MusicDBTools {
     private Context context;
     private DaoMaster.DevOpenHelper devOpenHelper;
-    private String dbName = "music";
+    private String dbName = "Music";
     private DaoMaster daoMaster;
     private SongDao songDao;
 
@@ -33,7 +31,7 @@ public class MusicDBTools {
 
     private MusicDBTools() {
         context = JSApplication.getContext();
-        devOpenHelper = new DaoMaster.DevOpenHelper(context, dbName, null);
+        devOpenHelper = new DaoMaster.DevOpenHelper(context, dbName);
     }
 
     public static MusicDBTools getInstance() {
@@ -48,21 +46,21 @@ public class MusicDBTools {
      *
      * @return
      */
-    private SQLiteDatabase getReadableDatabase() {
+    private Database getReadableDatabase() {
         if (devOpenHelper == null) {
-            devOpenHelper = new DaoMaster.DevOpenHelper(context, dbName, null);
+            devOpenHelper = new DaoMaster.DevOpenHelper(context, dbName);
         }
-        return devOpenHelper.getReadableDatabase();
+        return devOpenHelper.getReadableDb();
     }
 
     /**
      * 获取可写数据库
      */
-    private SQLiteDatabase getWritableDatabase() {
+    private Database getWritableDatabase() {
         if (devOpenHelper == null) {
-            devOpenHelper = new DaoMaster.DevOpenHelper(context, dbName, null);
+            devOpenHelper = new DaoMaster.DevOpenHelper(context, dbName);
         }
-        return devOpenHelper.getWritableDatabase();
+        return devOpenHelper.getWritableDb();
     }
 
     private DaoSession getDaoSession(DaoMaster daoMaster) {
@@ -73,24 +71,16 @@ public class MusicDBTools {
      * 保存播放的歌曲
      */
     public void savePlaySong(final Song song) {
-        Observable.just("")
-                .subscribeOn(Schedulers.newThread())
-                .map(new Observable.Operator() {
-                    @Override
-                    public Object call(Object o) {
-                        Song querySong = querySongInfoBySongEntity(song);
-                        if (querySong == null) {
-                            daoMaster = new DaoMaster(getWritableDatabase());
-                            songDao = getDaoSession(daoMaster).getSongDao();
-                            song.setPlayTimes(1);
-                            long index = songDao.insert(song);
-                            LogUtils.v("savePlaySong index = " + index);
-                        } else {
-                            updateLastPlayTime(querySong);
-                        }
-                        return null;
-                    }
-                }).subscribe();
+        Song querySong = querySongInfoBySongEntity(song);
+        if (querySong == null) {
+            daoMaster = new DaoMaster(getWritableDatabase());
+            songDao = getDaoSession(daoMaster).getSongDao();
+            song.setPlayTimes(1);
+            long index = songDao.insert(song);
+            LogUtils.v("savePlaySong index = " + index);
+        } else {
+            updateLastPlayTime(querySong);
+        }
     }
 
     /**
@@ -120,7 +110,7 @@ public class MusicDBTools {
      * @return
      */
     public List<Song> getAllSongByFromDB() {
-        daoMaster = new DaoMaster(getWritableDatabase());
+        daoMaster = new DaoMaster(getReadableDatabase());
         songDao = getDaoSession(daoMaster).getSongDao();
         return songDao.queryBuilder().list();
     }

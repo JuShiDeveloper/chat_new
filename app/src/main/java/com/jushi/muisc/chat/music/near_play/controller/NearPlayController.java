@@ -12,7 +12,9 @@ import com.jushi.muisc.chat.music.localmusic.adapter.LocalMusicAdapter;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.music.near_play.minterface.INearController;
 import com.jushi.muisc.chat.music.near_play.minterface.INearPlayView;
+import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.utils.LogUtils;
+import com.jushi.muisc.chat.utils.ToastUtils;
 
 import java.util.List;
 
@@ -26,41 +28,80 @@ public class NearPlayController implements INearController {
     private INearPlayView iNearPlayView;
     private LocalMusicAdapter musicAdapter;
     private List<Song> songs;
+    //播放控制栏
+    private PlayController playController;
 
     public NearPlayController() {
         context = JSApplication.getContext();
+        initNearPlayData();
     }
 
-    public void initNearPlayData() {
-        Observable.just(MusicDBTools.getInstance().getAllSongByFromDB())
-                .subscribeOn(Schedulers.newThread())
-                .subscribe(new Subscriber<List<Song>>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(List<Song> songs) {
-                        iNearPlayView.onMusicNumber(songs.size());
-                        NearPlayController.this.songs = songs;
-                        
-                    }
-                });
+    private void initNearPlayData() {
+//        Observable.just(JSApplication.getMusicDBTools().getAllSongByFromDB())
+//                .subscribe(new Subscriber<List<Song>>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(List<Song> songs) {
+//                        iNearPlayView.onMusicNumber(songs.size());
+//                        Message msg = handler.obtainMessage();
+//                        msg.obj = songs;
+//                        handler.sendMessage(msg);
+//                        Log.v("==yufei==","song size = "+songs.size());
+//                    }
+//                });
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Message msg = handler.obtainMessage();
+                msg.obj = JSApplication.getMusicDBTools().getAllSongByFromDB();
+                handler.sendMessage(msg);
+            }
+        }).start();
     }
 
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-
+            initMusicAdapter(msg);
+            initMusicNumber();
+            setItemClickListener();
         }
     };
 
+    private void initMusicAdapter(Message msg) {
+        songs = (List<Song>) msg.obj;
+        musicAdapter = new LocalMusicAdapter(context,songs);
+        iNearPlayView.onAdapter(musicAdapter);
+    }
+
+    private void initMusicNumber() {
+        iNearPlayView.onMusicNumber(songs.size());
+    }
+
+    private void setItemClickListener() {
+        musicAdapter.setOnItemClickListener(new LocalMusicAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Song song, int position) {
+                musicAdapter.setStateChange(position);
+                playController.setPlayList(songs);
+                playController.playOneMusic(song,position);
+            }
+        });
+    }
+
+    @Override
+    public void onPlayController(PlayController playController) {
+        this.playController = playController;
+    }
 
     @Override
     public void onNearPlayView(INearPlayView iNearPlayView) {
@@ -69,6 +110,12 @@ public class NearPlayController implements INearController {
 
     @Override
     public void onPlayAllBtnClick() {
-
+        if (songs != null && songs.size() > 0){
+            playController.setPlayList(songs);
+            playController.playAllMusic();
+            musicAdapter.setStateChange(0);
+        }else {
+            ToastUtils.show(context,"暂无最近播放歌曲");
+        }
     }
 }

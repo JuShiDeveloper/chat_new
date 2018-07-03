@@ -7,13 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.near_play.controller.NearPlayController;
 import com.jushi.muisc.chat.music.near_play.minterface.INearPlayView;
+import com.jushi.muisc.chat.music.play_navgation.PlayController;
+import com.jushi.muisc.chat.utils.ShadowUtils;
 
 
 public class NearPlayActivity extends AppCompatActivity implements INearPlayView {
@@ -22,7 +23,9 @@ public class NearPlayActivity extends AppCompatActivity implements INearPlayView
     private TextView tvMusicNum;
     private RelativeLayout playAllLayout;
     private RecyclerView recyclerView;
-    private NearPlayController playController;
+    private NearPlayController nearPlayController;
+    //播放控制栏
+    private PlayController playController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +42,19 @@ public class NearPlayActivity extends AppCompatActivity implements INearPlayView
     }
 
     private void initController() {
-        playController = new NearPlayController();
-        playController.onNearPlayView(this);
-        playController.initNearPlayData();
+        nearPlayController = new NearPlayController();
+        nearPlayController.onNearPlayView(this);
+
+        playController = PlayController.getInstance(this);
+        playController.showPlayControllerInfo();
+        nearPlayController.onPlayController(playController);
     }
 
     private void findWidget() {
         toolbar = findViewById(R.id.activity_near_play_toolbar);
         tvMusicNum = findViewById(R.id.play_all_music_number);
         playAllLayout = findViewById(R.id.play_all_music_layout);
+        ShadowUtils.setShadowDown_2(this,playAllLayout);
         recyclerView = findViewById(R.id.activity_near_play_RecyclerView);
     }
 
@@ -61,7 +68,7 @@ public class NearPlayActivity extends AppCompatActivity implements INearPlayView
         playAllLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playController.onPlayAllBtnClick();
+                nearPlayController.onPlayAllBtnClick();
             }
         });
     }
