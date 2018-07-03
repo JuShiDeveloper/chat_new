@@ -67,7 +67,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".music.play_music.PlayMusicActivity" />
-        <activity android:name=".music.near_play.NearPlayActivity"></activity>
+        <activity android:name=".music.near_play.ui.NearPlayActivity"></activity>
     </application>
 
 </manifest>
