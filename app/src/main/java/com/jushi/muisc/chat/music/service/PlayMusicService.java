@@ -7,11 +7,16 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.jushi.muisc.chat.music.daotools.MusicDBTools;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.tools.music.PlayMusic;
 import com.jushi.muisc.chat.music.utils.SaveUtils;
 
 import java.util.List;
+
+import rx.Observable;
+import rx.Scheduler;
+import rx.schedulers.Schedulers;
 
 public class PlayMusicService extends Service {
     private static Context mContext;
@@ -77,6 +82,7 @@ public class PlayMusicService extends Service {
     private static void play() {
         playMusic.play();
         getSongInfo();
+        saveSongToDB();
     }
 
     //开始播放
@@ -106,6 +112,14 @@ public class PlayMusicService extends Service {
 //            playMusic.setData(songs.get(index).getSongPath());
 //            play();
 //        }
+    }
+
+    //保存当前播放的歌曲到数据库表中
+    private static void saveSongToDB() {
+        if (songInfo != null) {
+            songInfo.setLastPlayTime(System.currentTimeMillis());
+        }
+        MusicDBTools.getInstance().savePlaySong(songInfo);
     }
 
     //获取当前播放的歌曲信息，用于保存和显示

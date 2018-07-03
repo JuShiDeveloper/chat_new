@@ -33,6 +33,8 @@ public class PlayMusic implements MediaPlayer.OnCompletionListener,
         mediaPlayer.setOnPreparedListener(this);
         //设置播放出错监听
         mediaPlayer.setOnErrorListener(this);
+        //设置一首歌播放完成监听
+        mediaPlayer.setOnCompletionListener(this);
     }
 
     /**
@@ -123,12 +125,7 @@ public class PlayMusic implements MediaPlayer.OnCompletionListener,
      */
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
-        try {
-            Thread.sleep(500);
-            play();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        play();
     }
 
     @Override

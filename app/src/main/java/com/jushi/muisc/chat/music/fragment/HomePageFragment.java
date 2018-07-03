@@ -115,6 +115,5 @@ public class HomePageFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.v("==yufei==","ondestory");
     }
 }

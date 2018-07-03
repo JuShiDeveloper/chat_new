@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.music.localmusic.ui.LocalMusicActivity;
+import com.jushi.muisc.chat.music.near_play.NearPlayActivity;
 import com.jushi.muisc.chat.sliding_menu.minterface.IController;
 import com.jushi.muisc.chat.transform.CircleTransform;
 import com.wyf.pictures.camera.OnPicturePathListener;
@@ -42,7 +43,7 @@ public class SlidingMenuController implements IController, View.OnClickListener 
 
     @Override
     public void nearPlay() {
-
+        ActivityManager.startActivity(context, NearPlayActivity.class);
     }
 
     @Override

@@ -6,9 +6,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
+        android:name=".JSApplication"
         android:allowBackup="true"
         android:icon="@mipmap/music_logo"
         android:label="@string/app_name"
@@ -65,7 +66,8 @@
             android:name=".music.artist.ui.ArtistMusicActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".music.play_music.PlayMusicActivity"></activity>
+        <activity android:name=".music.play_music.PlayMusicActivity" />
+        <activity android:name=".music.near_play.NearPlayActivity"></activity>
     </application>
 
 </manifest>
