@@ -4,23 +4,21 @@ package com.jushi.muisc.chat.music.near_play.controller;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 import com.jushi.muisc.chat.JSApplication;
-import com.jushi.muisc.chat.music.daotools.MusicDBTools;
 import com.jushi.muisc.chat.music.localmusic.adapter.LocalMusicAdapter;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.music.near_play.minterface.INearController;
 import com.jushi.muisc.chat.music.near_play.minterface.INearPlayView;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
-import com.jushi.muisc.chat.utils.LogUtils;
 import com.jushi.muisc.chat.utils.ToastUtils;
 
 import java.util.List;
 
 import rx.Observable;
-import rx.Subscriber;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+
 
 public class NearPlayController implements INearController {
 
@@ -37,35 +35,25 @@ public class NearPlayController implements INearController {
     }
 
     private void initNearPlayData() {
-//        Observable.just(JSApplication.getMusicDBTools().getAllSongByFromDB())
-//                .subscribe(new Subscriber<List<Song>>() {
-//                    @Override
-//                    public void onCompleted() {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onNext(List<Song> songs) {
-//                        iNearPlayView.onMusicNumber(songs.size());
-//                        Message msg = handler.obtainMessage();
-//                        msg.obj = songs;
-//                        handler.sendMessage(msg);
-//                        Log.v("==yufei==","song size = "+songs.size());
-//                    }
-//                });
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Message msg = handler.obtainMessage();
-                msg.obj = JSApplication.getMusicDBTools().getAllSongByFromDB();
-                handler.sendMessage(msg);
-            }
-        }).start();
+        Observable.just("")
+                .subscribeOn(Schedulers.newThread())
+                .map(new Func1<String, String>() {
+                    @Override
+                    public String call(String s) {
+                        Message msg = handler.obtainMessage();
+                        msg.obj = JSApplication.getMusicDBTools().getAllSongByFromDB();
+                        handler.sendMessage(msg);
+                        return null;
+                    }
+                }).subscribe();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Message msg = handler.obtainMessage();
+//                msg.obj = JSApplication.getMusicDBTools().getAllSongByFromDB();
+//                handler.sendMessage(msg);
+//            }
+//        }).start();
     }
 
     private Handler handler = new Handler(){

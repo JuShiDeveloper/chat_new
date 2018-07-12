@@ -19,6 +19,8 @@ import com.jushi.muisc.chat.music.public_model.SongDetail;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.service.PlayMusicService;
 import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
+import com.jushi.muisc.chat.music.utils.MusicDataUtils;
+import com.jushi.muisc.chat.utils.NetWorkUtils;
 import com.jushi.muisc.chat.utils.ToastUtils;
 import com.jushi.muisc.chat.utils.Utils;
 
@@ -30,6 +32,7 @@ import java.util.List;
  */
 
 public class TodayRecommendController implements View.OnClickListener {
+    private final String SAVE_KEY = "recommendBeans";
     private Context mContext;
     private RecyclerView recyclerView;
     private RadioButton moreBtn;
@@ -39,6 +42,7 @@ public class TodayRecommendController implements View.OnClickListener {
     private List<TodayRecommendModel.ResultBean.ListBean> recommendBeans;
     private TodayRecommendAdapter recommendAdapter;
     private List<Song> songs = new ArrayList<>();
+    private boolean isRefresh = false;
 
     public TodayRecommendController(Context mContext) {
         this.mContext = mContext;
@@ -55,19 +59,23 @@ public class TodayRecommendController implements View.OnClickListener {
         moreBtn = rootView.findViewById(R.id.today_recommend_more);
         moreBtn.setOnClickListener(this);
 
-        getRecommendData();
-    }
-
-    private void getRecommendData() {
         loadRecommendData();
     }
 
     private void loadRecommendData() {
-        dataTask = new DataTask();
-        dataTask.run();
+        if (NetWorkUtils.isNetworkAvailable(mContext)) {
+            dataTask = new DataTask();
+            dataTask.run();
+        }else {
+            if (!isRefresh){
+                recommendBeans = (List<TodayRecommendModel.ResultBean.ListBean>) MusicDataUtils.getInstance(mContext).getSaveData(SAVE_KEY,TodayRecommendModel.ResultBean.ListBean.class);
+                showRecommendData();
+            }
+        }
     }
 
     public void refreshData() {
+        isRefresh = true;
         if (recommendBeans == null) {
             recommendBeans = new ArrayList<>();
         }
@@ -92,6 +100,7 @@ public class TodayRecommendController implements View.OnClickListener {
                 public void onTodayRecommendData(List<TodayRecommendModel.ResultBean.ListBean> listBeans) {
                     recommendBeans = listBeans;
                     showRecommendData();
+                    MusicDataUtils.getInstance(mContext).saveData(SAVE_KEY,recommendBeans);
                     new SongInfoTask().run();
                 }
             });

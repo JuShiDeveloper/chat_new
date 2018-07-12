@@ -18,6 +18,8 @@ import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.music.banner.model.BannerModel;
 import com.jushi.muisc.chat.music.service.NetWorkService;
+import com.jushi.muisc.chat.music.utils.MusicDataUtils;
+import com.jushi.muisc.chat.utils.NetWorkUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ import java.util.TimerTask;
  */
 
 public class BannerImageController {
+    private final String SAVE_KEY = "sliderBeans";
     private Context mContext;
     private Handler handler;
     private ViewPager viewPager;
@@ -42,6 +45,7 @@ public class BannerImageController {
     private int currentItem;
     private List<BannerModel.DataBean.SliderBean> sliders;
     private Timer timer;
+    private boolean isRefresh = false;
 
     public BannerImageController(Context mContext) {
         this.mContext = mContext;
@@ -60,8 +64,15 @@ public class BannerImageController {
     }
 
     private void loadBannerData() {
-        bannerImageTask = new BannerImageTask();
-        bannerImageTask.run();
+        if (NetWorkUtils.isNetworkAvailable(mContext)) {
+            bannerImageTask = new BannerImageTask();
+            bannerImageTask.run();
+        }else {
+            if (!isRefresh){
+                sliders = (List<BannerModel.DataBean.SliderBean>) MusicDataUtils.getInstance(mContext).getSaveData(SAVE_KEY,BannerModel.DataBean.SliderBean.class);
+                showBannerData();
+            }
+        }
     }
 
     class BannerImageTask extends Thread {
@@ -72,6 +83,7 @@ public class BannerImageController {
                 public void onBannerData(List<BannerModel.DataBean.SliderBean> sliderBeans) {
                     sliders = sliderBeans;
                     showBannerData();
+                    MusicDataUtils.getInstance(mContext).saveData(SAVE_KEY,sliders);
                 }
             });
         }
@@ -227,6 +239,7 @@ public class BannerImageController {
     }
 
     public void refreshData() {
+        isRefresh = true;
         loadBannerData();
     }
 

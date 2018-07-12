@@ -16,6 +16,8 @@ import com.jushi.muisc.chat.manager.JSGridLayoutManager;
 import com.jushi.muisc.chat.music.artist.model.ArtistsModel;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.utils.DataUrlUtils;
+import com.jushi.muisc.chat.music.utils.MusicDataUtils;
+import com.jushi.muisc.chat.utils.NetWorkUtils;
 import com.jushi.muisc.chat.utils.Utils;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.List;
  */
 
 public class HotArtistController implements View.OnClickListener {
+    private final String SAVE_KEY = "artistBeans";
     private Context mContext;
     private RecyclerView recyclerView;
     private RadioButton moreButton;
@@ -34,6 +37,7 @@ public class HotArtistController implements View.OnClickListener {
     private HotArtistTask artistTask;
     private List<ArtistsModel.ArtistBean> artists;
     private HotArtistAdapter artistAdapter;
+    private boolean isRefresh = false;
 
     public HotArtistController(Context mContext) {
         this.mContext = mContext;
@@ -41,12 +45,12 @@ public class HotArtistController implements View.OnClickListener {
         workService = NetWorkService.getInstance(mContext);
     }
 
-    public void initView(View rootView){
+    public void initView(View rootView) {
         recyclerView = rootView.findViewById(R.id.hot_artist_recyclerView);
-        JSGridLayoutManager manager = new JSGridLayoutManager(mContext,3);
+        JSGridLayoutManager manager = new JSGridLayoutManager(mContext, 3);
         manager.setScrollEnable(false);
         recyclerView.setLayoutManager(manager);
-        Utils.setArtistRecyclerViewParams((Activity) mContext,recyclerView);
+        Utils.setArtistRecyclerViewParams((Activity) mContext, recyclerView);
         moreButton = rootView.findViewById(R.id.hot_artist_moreButton);
         moreButton.setOnClickListener(this);
 
@@ -58,11 +62,19 @@ public class HotArtistController implements View.OnClickListener {
     }
 
     private void loadHotArtistData() {
-        artistTask = new HotArtistTask();
-        artistTask.run();
+        if (NetWorkUtils.isNetworkAvailable(mContext)) {
+            artistTask = new HotArtistTask();
+            artistTask.run();
+        }else {
+            if (!isRefresh){
+                artists = (List<ArtistsModel.ArtistBean>) MusicDataUtils.getInstance(mContext).getSaveData(SAVE_KEY,ArtistsModel.ArtistBean.class);
+                showHotArtistData();
+            }
+        }
     }
 
-    public void refreshData(){
+    public void refreshData() {
+        isRefresh = true;
         if (artists == null) {
             artists = new ArrayList<>();
         }
@@ -72,14 +84,14 @@ public class HotArtistController implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.hot_artist_moreButton:
                 ActivityManager.startActivity(mContext, AllArtistActivity.class);
                 break;
         }
     }
 
-    class HotArtistTask extends Thread{
+    class HotArtistTask extends Thread {
         @Override
         public void run() {
             workService.getArtistData(DataUrlUtils.getHotArtistsUrl(6), new MusicDataAdapter() {
@@ -87,6 +99,7 @@ public class HotArtistController implements View.OnClickListener {
                 public void onArtistData(List<ArtistsModel.ArtistBean> artistBeans) {
                     artists = artistBeans;
                     showHotArtistData();
+                    MusicDataUtils.getInstance(mContext).saveData(SAVE_KEY, artists);
                 }
             });
         }
@@ -96,7 +109,7 @@ public class HotArtistController implements View.OnClickListener {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                artistAdapter = new HotArtistAdapter(mContext,artists);
+                artistAdapter = new HotArtistAdapter(mContext, artists);
                 recyclerView.setAdapter(artistAdapter);
                 setItemClickListener();
             }
@@ -107,7 +120,7 @@ public class HotArtistController implements View.OnClickListener {
         artistAdapter.setOnItemClickListener(new HotArtistAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(ArtistsModel.ArtistBean artistBean, int position) {
-                ActivityManager.startArtistMusicActivity(mContext,artistBean.getTing_uid(),artistBean.getName());
+                ActivityManager.startArtistMusicActivity(mContext, artistBean.getTing_uid(), artistBean.getName());
             }
         });
     }
