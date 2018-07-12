@@ -16,7 +16,9 @@ import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.utils.ShadowUtils;
 
-
+/**
+ * 最近播放页面
+ */
 public class NearPlayActivity extends AppCompatActivity implements INearPlayView {
 
     private Toolbar toolbar;

@@ -16,6 +16,9 @@ import com.jushi.muisc.chat.sliding_menu.my_favorites.controller.FavoritesContro
 import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
 import com.jushi.muisc.chat.utils.ShadowUtils;
 
+/**
+ * 我的收藏页面
+ */
 public class MyFavoritesActivity extends AppCompatActivity implements INearPlayView {
 
     private Toolbar toolbar;

@@ -19,7 +19,9 @@ import rx.Observable;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-
+/**
+ * 最近播放控制类
+ */
 public class NearPlayController implements INearController {
 
     private Context context;

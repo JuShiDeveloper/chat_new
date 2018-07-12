@@ -22,6 +22,9 @@ import rx.Observable;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 点击更多按钮（三个点的按钮）弹出的dialog
+ */
 public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickListener {
     private Context context;
     private Dialog dialog;

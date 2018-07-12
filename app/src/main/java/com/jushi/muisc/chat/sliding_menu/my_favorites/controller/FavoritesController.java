@@ -19,6 +19,9 @@ import rx.Observable;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 我的收藏控制类
+ */
 public class FavoritesController implements INearController {
 
     private INearPlayView iNearPlayView;
