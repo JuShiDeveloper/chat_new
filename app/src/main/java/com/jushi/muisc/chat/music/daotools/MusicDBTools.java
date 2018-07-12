@@ -1,6 +1,7 @@
 package com.jushi.muisc.chat.music.daotools;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.jushi.muisc.chat.JSApplication;
 import com.jushi.muisc.chat.dao.DaoMaster;

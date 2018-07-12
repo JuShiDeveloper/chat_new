@@ -149,6 +149,7 @@ public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickLi
                         netWorkService.getSongInfo(song.getSongId(), new MusicDataAdapter() {
                             @Override
                             public void onSongDetail(SongDetail detail) {
+                                song.setSongImagePath(detail.getSonginfo().getArtist_list().get(0).getAvatar_s300());
                                 String fileLink = detail.getBitrate().getFile_link();
                                 if (TextUtils.isEmpty(fileLink))
                                     fileLink = detail.getBitrate().getShow_link();
@@ -201,9 +202,7 @@ public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickLi
 
             @Override
             public void onDownloadSuccess() {
-                Message msg = handler.obtainMessage();
-                msg.obj = "下载成功！";
-                handler.sendMessage(msg);
+                sendMessage("下载成功！");
 
                 song.setSongPath(PATH.downloadMusicDir() + song.getSongName() + ".mp3");
                 song.setLrcPath(PATH.downloadMusicDir() + song.getSongName() + ".lrc");
@@ -212,9 +211,7 @@ public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickLi
 
             @Override
             public void onDownloadFailed() {
-                Message msg = handler.obtainMessage();
-                msg.obj = "下载失败！";
-                handler.sendMessage(msg);
+                sendMessage("下载失败！");
             }
         });
     }
@@ -237,13 +234,21 @@ public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickLi
                                 song.setSongAlbum(detail.getSonginfo().getAlbum_title());
                                 song.setSongImagePath(detail.getSonginfo().getArtist_list().get(0).getAvatar_s300());
                                 song.setSongSize(LocalMusicUtils.getSongSize(detail.getBitrate().getFile_size()));
+
                                 MusicDBTools.getInstance().addFavoritesToDB(song);
+
+                                sendMessage("收藏成功，请到我的收藏页查看！");
                             }
                         });
                         return null;
                     }
                 }).subscribe();
-//        ToastUtils.show(context, "收藏成功，请到我的收藏页查看！");
+    }
+
+    private void sendMessage(String msgs){
+        Message msg = handler.obtainMessage();
+        msg.obj = msgs;
+        handler.sendMessage(msg);
     }
 
 }
