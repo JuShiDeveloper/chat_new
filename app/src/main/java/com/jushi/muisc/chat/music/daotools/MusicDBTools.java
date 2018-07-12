@@ -137,7 +137,7 @@ public class MusicDBTools {
      *
      * @return
      */
-    public List<Song> getAllSongByFromDB() {
+    public List<Song> getAllPlaySong() {
         daoMaster = new DaoMaster(getReadableDatabase());
         songDao = getDaoSession(daoMaster).getSongDao();
         Query query = songDao.queryBuilder().where(SongDao.Properties.PlayTimes.notEq(0)).build();

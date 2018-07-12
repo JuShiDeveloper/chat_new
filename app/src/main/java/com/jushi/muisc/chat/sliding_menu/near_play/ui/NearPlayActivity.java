@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.sliding_menu.near_play.controller.NearPlayController;
-import com.jushi.muisc.chat.sliding_menu.near_play.minterface.INearPlayView;
+import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.utils.ShadowUtils;
 
@@ -52,6 +52,7 @@ public class NearPlayActivity extends AppCompatActivity implements INearPlayView
 
     private void findWidget() {
         toolbar = findViewById(R.id.activity_near_play_toolbar);
+        toolbar.setTitle(R.string.near_play);
         tvMusicNum = findViewById(R.id.play_all_music_number);
         playAllLayout = findViewById(R.id.play_all_music_layout);
         ShadowUtils.setShadowDown_2(this,playAllLayout);

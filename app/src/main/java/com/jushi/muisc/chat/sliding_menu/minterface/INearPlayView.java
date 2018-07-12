@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.sliding_menu.near_play.minterface;
+package com.jushi.muisc.chat.sliding_menu.minterface;
 
 import android.support.v7.widget.RecyclerView;
 

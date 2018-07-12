@@ -8,8 +8,8 @@ import android.os.Message;
 import com.jushi.muisc.chat.JSApplication;
 import com.jushi.muisc.chat.music.localmusic.adapter.LocalMusicAdapter;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
-import com.jushi.muisc.chat.sliding_menu.near_play.minterface.INearController;
-import com.jushi.muisc.chat.sliding_menu.near_play.minterface.INearPlayView;
+import com.jushi.muisc.chat.sliding_menu.minterface.INearController;
+import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.utils.ToastUtils;
 
@@ -41,7 +41,7 @@ public class NearPlayController implements INearController {
                     @Override
                     public String call(String s) {
                         Message msg = handler.obtainMessage();
-                        msg.obj = JSApplication.getMusicDBTools().getAllSongByFromDB();
+                        msg.obj = JSApplication.getMusicDBTools().getAllPlaySong();
                         handler.sendMessage(msg);
                         return null;
                     }
@@ -50,7 +50,7 @@ public class NearPlayController implements INearController {
 //            @Override
 //            public void run() {
 //                Message msg = handler.obtainMessage();
-//                msg.obj = JSApplication.getMusicDBTools().getAllSongByFromDB();
+//                msg.obj = JSApplication.getMusicDBTools().getAllPlaySong();
 //                handler.sendMessage(msg);
 //            }
 //        }).start();

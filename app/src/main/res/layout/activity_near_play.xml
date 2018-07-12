@@ -12,8 +12,7 @@
         android:id="@+id/activity_near_play_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:navigationIcon="@drawable/back_icon_red"
-        app:title="@string/near_play" />
+        app:navigationIcon="@drawable/back_icon_red" />
 
     <include layout="@layout/play_all_music_layout" />
 

@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.sliding_menu.near_play.minterface;
+package com.jushi.muisc.chat.sliding_menu.minterface;
 
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
 
