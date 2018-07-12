@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.sliding_menu.near_play.ui;
+package com.jushi.muisc.chat.sliding_menu.near_play;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.sliding_menu.near_play.controller.NearPlayController;
+import com.jushi.muisc.chat.sliding_menu.near_play.NearPlayController;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.utils.ShadowUtils;

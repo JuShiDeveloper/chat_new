@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.sliding_menu.my_favorites.ui;
+package com.jushi.muisc.chat.sliding_menu.my_favorites;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
-import com.jushi.muisc.chat.sliding_menu.my_favorites.controller.FavoritesController;
+import com.jushi.muisc.chat.sliding_menu.my_favorites.FavoritesController;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
 import com.jushi.muisc.chat.utils.ShadowUtils;
 
