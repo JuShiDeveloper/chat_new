@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
+import com.jushi.muisc.chat.music.jsinterface.DownloadListener;
 import com.jushi.muisc.chat.music.jsinterface.LiveAndMvDataAdapter;
 import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.music.artist.model.ArtistMusic;
@@ -20,8 +21,12 @@ import com.jushi.muisc.chat.music.public_model.SongDetail;
 import com.jushi.muisc.chat.music.zhibo.model.ZhiBoModel;
 import com.jushi.muisc.chat.tools.music.OkHttpTool;
 import com.jushi.muisc.chat.music.utils.DataUrlUtils;
+import com.jushi.muisc.chat.utils.PATH;
 import com.squareup.okhttp.Response;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -182,7 +187,7 @@ public class NetWorkService {
             public void onResponse(com.squareup.okhttp.Response response) {
                 try {
                     String body = response.body().string();
-                    MVItemModel itemModel = new Gson().fromJson(body,MVItemModel.class);
+                    MVItemModel itemModel = new Gson().fromJson(body, MVItemModel.class);
                     dataAdapter.onMvDetailInfo(itemModel);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -317,6 +322,56 @@ public class NetWorkService {
                     dataAdapter.onArtistMusics(artistMusic.getSonglist());
                 } catch (Exception e) {
                     e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * download
+     */
+    public void downloadMusic(final String fileLink,final String fileName, final DownloadListener downloadListener) {
+        OkHttpTool.httpClient(fileLink, new OkHttpTool.OnClientListener() {
+            @Override
+            public void onError() {
+                downloadListener.onDownloadFailed();
+            }
+
+            @Override
+            public void onResponse(Response response) {
+                InputStream is = null;
+                byte[] buf = new byte[2048];
+                int length = 0;
+                FileOutputStream fos = null;
+                String downloadPath = PATH.downloadMusicDir();
+                try {
+                    is = response.body().byteStream();
+                    long total = response.body().contentLength();
+                    File file = new File(downloadPath, fileName);
+                    fos = new FileOutputStream(file);
+                    long sum = 0;
+                    while ((length = is.read(buf)) != -1) {
+                        fos.write(buf, 0, length);
+                        sum += length;
+                        int progress = (int) (sum * 1.0f / total * 100);
+                        downloadListener.onDownloading(progress);
+                    }
+                    fos.flush();
+                    downloadListener.onDownloadSuccess();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    downloadListener.onDownloadFailed();
+                } finally {
+                    try {
+                        if (is != null) {
+                            is.close();
+                        }
+                        if (fos != null) {
+                            fos.close();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

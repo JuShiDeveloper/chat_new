@@ -37,6 +37,7 @@ public class SongDao extends AbstractDao<Song, Long> {
         public final static Property LastPlayTime = new Property(10, long.class, "lastPlayTime", false, "LAST_PLAY_TIME");
         public final static Property PlayTimes = new Property(11, int.class, "playTimes", false, "PLAY_TIMES");
         public final static Property Favorites = new Property(12, String.class, "favorites", false, "FAVORITES");
+        public final static Property Download = new Property(13, String.class, "download", false, "DOWNLOAD");
     }
 
 
@@ -64,7 +65,8 @@ public class SongDao extends AbstractDao<Song, Long> {
                 "\"LRC_PATH\" TEXT," + // 9: lrcPath
                 "\"LAST_PLAY_TIME\" INTEGER NOT NULL ," + // 10: lastPlayTime
                 "\"PLAY_TIMES\" INTEGER NOT NULL ," + // 11: playTimes
-                "\"FAVORITES\" TEXT);"); // 12: favorites
+                "\"FAVORITES\" TEXT," + // 12: favorites
+                "\"DOWNLOAD\" TEXT);"); // 13: download
     }
 
     /** Drops the underlying database table. */
@@ -129,6 +131,11 @@ public class SongDao extends AbstractDao<Song, Long> {
         if (favorites != null) {
             stmt.bindString(13, favorites);
         }
+ 
+        String download = entity.getDownload();
+        if (download != null) {
+            stmt.bindString(14, download);
+        }
     }
 
     @Override
@@ -187,6 +194,11 @@ public class SongDao extends AbstractDao<Song, Long> {
         if (favorites != null) {
             stmt.bindString(13, favorites);
         }
+ 
+        String download = entity.getDownload();
+        if (download != null) {
+            stmt.bindString(14, download);
+        }
     }
 
     @Override
@@ -209,7 +221,8 @@ public class SongDao extends AbstractDao<Song, Long> {
             cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // lrcPath
             cursor.getLong(offset + 10), // lastPlayTime
             cursor.getInt(offset + 11), // playTimes
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12) // favorites
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // favorites
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13) // download
         );
         return entity;
     }
@@ -229,6 +242,7 @@ public class SongDao extends AbstractDao<Song, Long> {
         entity.setLastPlayTime(cursor.getLong(offset + 10));
         entity.setPlayTimes(cursor.getInt(offset + 11));
         entity.setFavorites(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setDownload(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
      }
     
     @Override

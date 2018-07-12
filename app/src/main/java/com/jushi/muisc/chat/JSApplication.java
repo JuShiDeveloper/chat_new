@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
+import com.jushi.muisc.chat.utils.PATH;
 
 public class JSApplication extends Application{
     private static Context context;
@@ -12,6 +13,7 @@ public class JSApplication extends Application{
     public void onCreate() {
         super.onCreate();
         context = this;
+        PATH.initPath();
     }
 
     public static Context getContext(){

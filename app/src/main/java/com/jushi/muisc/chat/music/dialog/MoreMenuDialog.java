@@ -2,6 +2,9 @@ package com.jushi.muisc.chat.music.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +14,15 @@ import android.widget.LinearLayout;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
 import com.jushi.muisc.chat.music.dialog.minterface.MenuDialogChangedListener;
+import com.jushi.muisc.chat.music.jsinterface.DownloadListener;
 import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.music.public_model.SongDetail;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
+import com.jushi.muisc.chat.utils.LogUtils;
+import com.jushi.muisc.chat.utils.PATH;
+import com.jushi.muisc.chat.utils.ToastUtils;
 import com.jushi.muisc.chat.view.JSTextView;
 
 import rx.Observable;
@@ -38,6 +45,7 @@ public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickLi
         this.context = context;
         dialog = new Dialog(context, R.style.BottomDialog);
         netWorkService = NetWorkService.getInstance(context);
+
         initialize();
     }
 
@@ -105,6 +113,14 @@ public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickLi
         dialog.dismiss();
     }
 
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            String text = (String) msg.obj;
+            ToastUtils.show(context, text);
+        }
+    };
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -113,11 +129,94 @@ public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickLi
                 hide();
                 break;
             case R.id.menu_download_btn:
+                downloadMusic();
                 hide();
                 break;
             case R.id.menu_share_btn:
                 break;
         }
+    }
+
+    /**
+     * download
+     */
+    private void downloadMusic() {
+        Observable.just("")
+                .subscribeOn(Schedulers.newThread())
+                .map(new Func1<String, Object>() {
+                    @Override
+                    public Object call(String s) {
+                        netWorkService.getSongInfo(song.getSongId(), new MusicDataAdapter() {
+                            @Override
+                            public void onSongDetail(SongDetail detail) {
+                                String fileLink = detail.getBitrate().getFile_link();
+                                if (TextUtils.isEmpty(fileLink))
+                                    fileLink = detail.getBitrate().getShow_link();
+                                if (TextUtils.isEmpty(fileLink)) return;
+                                startDownloadMusic(fileLink);
+                                String lrcLink = detail.getSonginfo().getLrclink();
+                                startDownloadLrc(lrcLink);
+                            }
+                        });
+                        return null;
+                    }
+                }).subscribe();
+    }
+
+    /**
+     * 下载歌词
+     *
+     * @param lrcLink
+     */
+    private void startDownloadLrc(String lrcLink) {
+        netWorkService.downloadMusic(lrcLink, song.getSongName() + ".lrc", new DownloadListener() {
+            @Override
+            public void onDownloading(int progress) {
+
+            }
+
+            @Override
+            public void onDownloadSuccess() {
+
+            }
+
+            @Override
+            public void onDownloadFailed() {
+
+            }
+        });
+    }
+
+    /**
+     * 开始下载歌曲
+     *
+     * @param fileLink
+     */
+    private void startDownloadMusic(String fileLink) {
+        netWorkService.downloadMusic(fileLink, song.getSongName() + ".mp3", new DownloadListener() {
+            @Override
+            public void onDownloading(int progress) {
+                LogUtils.v("progress = " + progress);
+            }
+
+            @Override
+            public void onDownloadSuccess() {
+                Message msg = handler.obtainMessage();
+                msg.obj = "下载成功！";
+                handler.sendMessage(msg);
+
+                song.setSongPath(PATH.downloadMusicDir() + song.getSongName() + ".mp3");
+                song.setLrcPath(PATH.downloadMusicDir() + song.getSongName() + ".lrc");
+                MusicDBTools.getInstance().addDownloadToDB(song);
+            }
+
+            @Override
+            public void onDownloadFailed() {
+                Message msg = handler.obtainMessage();
+                msg.obj = "下载失败！";
+                handler.sendMessage(msg);
+            }
+        });
     }
 
     /**
@@ -144,5 +243,7 @@ public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickLi
                         return null;
                     }
                 }).subscribe();
+//        ToastUtils.show(context, "收藏成功，请到我的收藏页查看！");
     }
+
 }

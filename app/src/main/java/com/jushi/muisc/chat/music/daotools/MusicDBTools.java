@@ -28,6 +28,7 @@ public class MusicDBTools {
     private SongDao songDao;
     private final String FAVORITES = "y"; //收藏
     private final String UN_FAVORITES = "n";  //未收藏
+    private final String DOWNLOAD = FAVORITES; //是否是新下载的
 
     private static MusicDBTools musicDBTools;
 
@@ -109,6 +110,49 @@ public class MusicDBTools {
         songDao = getDaoSession(daoMaster).getSongDao();
         song.setFavorites(FAVORITES);
         songDao.update(song);
+    }
+
+    /**
+     * 保存下载数据到DB
+     *
+     * @param song
+     */
+    public void addDownloadToDB(Song song) {
+        Song querySong = querySongInfoBySongEntity(song);
+        if (querySong == null) {
+            daoMaster = new DaoMaster(getWritableDatabase());
+            songDao = getDaoSession(daoMaster).getSongDao();
+            song.setDownload(DOWNLOAD);
+            songDao.insert(song);
+        } else {
+            querySong.setLrcPath(song.getLrcPath());
+            querySong.setSongPath(song.getSongPath());
+            updataDownloadStatus(querySong);
+        }
+    }
+
+    /**
+     * 更新是否是下载的状态
+     *
+     * @param song
+     */
+    private void updataDownloadStatus(Song song) {
+        daoMaster = new DaoMaster(getWritableDatabase());
+        songDao = getDaoSession(daoMaster).getSongDao();
+        song.setDownload(DOWNLOAD);
+        songDao.update(song);
+    }
+
+    /**
+     * 查询所有下载的数据
+     *
+     * @return
+     */
+    public List<Song> getAllDownloadMusic() {
+        daoMaster = new DaoMaster(getReadableDatabase());
+        songDao = getDaoSession(daoMaster).getSongDao();
+        Query query = songDao.queryBuilder().where(SongDao.Properties.Download.eq(DOWNLOAD)).build();
+        return query.list();
     }
 
     /**

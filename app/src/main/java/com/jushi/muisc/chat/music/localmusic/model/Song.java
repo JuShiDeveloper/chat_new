@@ -23,12 +23,14 @@ public class Song {
     private int playTimes;
     //是否收藏（y收藏 n未收藏）
     private String favorites;
+    //是否是新下载的(y是，n否)
+    private String download;
 
-    @Generated(hash = 850498896)
+    @Generated(hash = 1559814666)
     public Song(Long id, String songId, String songName, String songAuthor,
             String songAlbum, String songPath, String songImagePath,
             String songSize, int songDuration, String lrcPath, long lastPlayTime,
-            int playTimes, String favorites) {
+            int playTimes, String favorites, String download) {
         this.id = id;
         this.songId = songId;
         this.songName = songName;
@@ -42,6 +44,7 @@ public class Song {
         this.lastPlayTime = lastPlayTime;
         this.playTimes = playTimes;
         this.favorites = favorites;
+        this.download = download;
     }
 
     @Generated(hash = 87031450)
@@ -153,6 +156,14 @@ public class Song {
         this.id = id;
     }
 
+    public String getDownload() {
+        return download;
+    }
+
+    public void setDownload(String download) {
+        this.download = download;
+    }
+
     @Override
     public String toString() {
         return "Song{" +
@@ -169,6 +180,7 @@ public class Song {
                 ", lastPlayTime=" + lastPlayTime +
                 ", playTimes=" + playTimes +
                 ", favorites='" + favorites + '\'' +
+                ", download='" + download + '\'' +
                 '}';
     }
 }
