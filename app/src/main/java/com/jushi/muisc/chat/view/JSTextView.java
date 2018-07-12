@@ -30,6 +30,6 @@ public class JSTextView extends TextView {
 
     @Override
     public void setTypeface(Typeface tf,int style) {
-        super.setTypeface(createTypeface(getContext(),"fonts/microsoft_ya_hei.ttf"),style);
+        super.setTypeface(createTypeface(getContext(),"fonts/Roboto-Medium.ttf"),style);
     }
 }
