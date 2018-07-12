@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.RadioButton;
 
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.music.utils.MusicDataUtils;
 import com.jushi.muisc.chat.music.zhibo.ui.AllZhiBoActivity;
 import com.jushi.muisc.chat.music.zhibo.adapter.LiveDataAdapter;
 import com.jushi.muisc.chat.music.jsinterface.LiveAndMvDataAdapter;
@@ -17,6 +18,7 @@ import com.jushi.muisc.chat.music.zhibo.model.ZhiBoModel;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.utils.Constant;
 import com.jushi.muisc.chat.music.utils.DataUrlUtils;
+import com.jushi.muisc.chat.utils.NetWorkUtils;
 import com.jushi.muisc.chat.utils.Utils;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.List;
  */
 
 public class LiveController implements View.OnClickListener {
+    private final String SAVE_KEY = "liveBeans";
     private Context mContext;
     private RadioButton moreBtn;
     private RecyclerView recyclerView;
@@ -34,6 +37,7 @@ public class LiveController implements View.OnClickListener {
     private Handler handler;
     private List<ZhiBoModel.DataBeanX.DataBean> liveBeans;
     private LiveDataAdapter liveDataAdapter;
+    private boolean isRefresh = false;
 
 
     public LiveController(Context mContext) {
@@ -55,7 +59,14 @@ public class LiveController implements View.OnClickListener {
     }
 
     private void loadLiveData() {
-        new LiveDataTask().run();
+        if (NetWorkUtils.isNetworkAvailable(mContext)) {
+            new LiveDataTask().run();
+        }else {
+            if (!isRefresh){
+                liveBeans = (List<ZhiBoModel.DataBeanX.DataBean>) MusicDataUtils.getInstance(mContext).getSaveData(SAVE_KEY,ZhiBoModel.DataBeanX.DataBean.class);
+                showLiveData();
+            }
+        }
     }
 
     @Override
@@ -75,6 +86,7 @@ public class LiveController implements View.OnClickListener {
                 public void onLiveData(List<ZhiBoModel.DataBeanX.DataBean> dataBeans) {
                     liveBeans = dataBeans;
                     showLiveData();
+                    MusicDataUtils.getInstance(mContext).saveData(SAVE_KEY,liveBeans);
                 }
             });
         }
@@ -102,6 +114,7 @@ public class LiveController implements View.OnClickListener {
     }
 
     public void refreshData(){
+        isRefresh = true;
         if (liveBeans == null){
             liveBeans = new ArrayList<>();
         }

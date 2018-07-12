@@ -1,6 +1,7 @@
 package com.jushi.muisc.chat.music.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jushi.muisc.chat.JSApplication;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.chart.adapter.ChartDataAdapter;
 import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
@@ -17,6 +19,8 @@ import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.music.chart.model.ChartDataModel;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.utils.Constant;
+import com.jushi.muisc.chat.music.utils.MusicDataUtils;
+import com.jushi.muisc.chat.utils.NetWorkUtils;
 import com.jushi.muisc.chat.view.JSTextView;
 
 import java.util.ArrayList;
@@ -26,6 +30,7 @@ import java.util.List;
  * 榜单
  */
 public class ChartFragment extends Fragment {
+    private static final String SAVE_KEY = "contentBeanXs";
     private View rootView;
     private static RecyclerView recyclerView;
     private static JSTextView tvLoad;
@@ -33,6 +38,7 @@ public class ChartFragment extends Fragment {
     private static NetWorkService workService;
     private static Handler handler;
     private static List<ChartDataModel.ContentBeanX> contentBeanXs = new ArrayList<>();
+    private static boolean isRefresh = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,7 +72,14 @@ public class ChartFragment extends Fragment {
     }
 
     private static void getChartData() {
-        new ChartDataTask().run();
+        if (NetWorkUtils.isNetworkAvailable(JSApplication.getContext())) {
+            new ChartDataTask().run();
+        }else {
+            if (!isRefresh){
+                contentBeanXs.addAll((List<ChartDataModel.ContentBeanX>) MusicDataUtils.getInstance(JSApplication.getContext()).getSaveData(SAVE_KEY,ChartDataModel.ContentBeanX.class));
+                showChartData();
+            }
+        }
     }
 
     static class ChartDataTask extends Thread{
@@ -78,6 +91,7 @@ public class ChartFragment extends Fragment {
                 public void onChartData(List<ChartDataModel.ContentBeanX> contentBeans) {
                     contentBeanXs.addAll(contentBeans);
                     showChartData();
+                    MusicDataUtils.getInstance(JSApplication.getContext()).saveData(SAVE_KEY,contentBeanXs);
                 }
             });
 
@@ -98,6 +112,7 @@ public class ChartFragment extends Fragment {
     }
 
     public static void refreshData(){
+        isRefresh = true;
         contentBeanXs.clear();
         getChartData();
     }

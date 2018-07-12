@@ -17,6 +17,8 @@ import com.jushi.muisc.chat.manager.JSGridLayoutManager;
 import com.jushi.muisc.chat.music.mv.model.MVBean;
 import com.jushi.muisc.chat.music.service.MvItemInfoTaskService;
 import com.jushi.muisc.chat.music.service.NetWorkService;
+import com.jushi.muisc.chat.music.utils.MusicDataUtils;
+import com.jushi.muisc.chat.utils.NetWorkUtils;
 import com.jushi.muisc.chat.utils.Utils;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.List;
  */
 
 public class LatestMVController implements View.OnClickListener {
+    private final String SAVE_KEY = "mvListBeans";
     private Context mContext;
     private RadioButton moreBtn;
     private RecyclerView recyclerView;
@@ -34,6 +37,7 @@ public class LatestMVController implements View.OnClickListener {
     private NetWorkService workService;
     private List<MVBean.ResultBean.MvListBean> mvListBeans;
     private MvDataAdapter mvDataAdapter;
+    private boolean isRefresh = false;
 
     public LatestMVController(Context mContext) {
         this.mContext = mContext;
@@ -54,7 +58,14 @@ public class LatestMVController implements View.OnClickListener {
     }
 
     private void getMvData() {
-        new MVDataTask().run();
+        if (NetWorkUtils.isNetworkAvailable(mContext)) {
+            new MVDataTask().run();
+        }else {
+            if (!isRefresh){
+                mvListBeans = (List<MVBean.ResultBean.MvListBean>) MusicDataUtils.getInstance(mContext).getSaveData(SAVE_KEY,MVBean.ResultBean.MvListBean.class);
+                showMvData();
+            }
+        }
     }
 
     @Override
@@ -74,6 +85,7 @@ public class LatestMVController implements View.OnClickListener {
                 public void onMvData(List<MVBean.ResultBean.MvListBean> listBeans) {
                     mvListBeans = listBeans;
                     showMvData();
+                    MusicDataUtils.getInstance(mContext).saveData(SAVE_KEY,mvListBeans);
                 }
             });
         }
@@ -101,6 +113,7 @@ public class LatestMVController implements View.OnClickListener {
     }
 
     public void refreshData(){
+        isRefresh = true;
         if (mvListBeans == null){
             mvListBeans = new ArrayList<>();
         }
