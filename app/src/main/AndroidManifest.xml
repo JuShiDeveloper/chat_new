@@ -69,7 +69,8 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".music.play_music.PlayMusicActivity" />
         <activity android:name=".sliding_menu.near_play.ui.NearPlayActivity" />
-        <activity android:name=".sliding_menu.my_favorites.ui.MyFavoritesActivity"></activity>
+        <activity android:name=".sliding_menu.my_favorites.ui.MyFavoritesActivity" />
+        <activity android:name=".sliding_menu.download_manager.DownloadActivity"></activity>
     </application>
 
 </manifest>

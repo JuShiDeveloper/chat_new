@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.music.localmusic.ui.LocalMusicActivity;
+import com.jushi.muisc.chat.sliding_menu.download_manager.DownloadActivity;
 import com.jushi.muisc.chat.sliding_menu.my_favorites.ui.MyFavoritesActivity;
 import com.jushi.muisc.chat.sliding_menu.near_play.ui.NearPlayActivity;
 import com.jushi.muisc.chat.sliding_menu.minterface.IController;
@@ -54,7 +55,7 @@ public class SlidingMenuController implements IController, View.OnClickListener 
 
     @Override
     public void downloadManager() {
-
+        ActivityManager.startActivity(context, DownloadActivity.class);
     }
 
     @Override
