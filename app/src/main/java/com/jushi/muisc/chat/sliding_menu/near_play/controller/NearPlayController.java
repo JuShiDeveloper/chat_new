@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.music.near_play.controller;
+package com.jushi.muisc.chat.sliding_menu.near_play.controller;
 
 
 import android.content.Context;
@@ -8,8 +8,8 @@ import android.os.Message;
 import com.jushi.muisc.chat.JSApplication;
 import com.jushi.muisc.chat.music.localmusic.adapter.LocalMusicAdapter;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
-import com.jushi.muisc.chat.music.near_play.minterface.INearController;
-import com.jushi.muisc.chat.music.near_play.minterface.INearPlayView;
+import com.jushi.muisc.chat.sliding_menu.near_play.minterface.INearController;
+import com.jushi.muisc.chat.sliding_menu.near_play.minterface.INearPlayView;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.utils.ToastUtils;
 

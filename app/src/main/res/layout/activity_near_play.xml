@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".music.near_play.ui.NearPlayActivity"
+    tools:context=".sliding_menu.near_play.ui.NearPlayActivity"
     android:background="@color/c_ffffff">
 
     <android.support.v7.widget.Toolbar

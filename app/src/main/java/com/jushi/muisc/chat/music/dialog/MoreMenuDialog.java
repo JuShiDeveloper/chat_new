@@ -9,9 +9,18 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.music.daotools.MusicDBTools;
 import com.jushi.muisc.chat.music.dialog.minterface.MenuDialogChangedListener;
+import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
+import com.jushi.muisc.chat.music.public_model.SongDetail;
+import com.jushi.muisc.chat.music.service.NetWorkService;
+import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
 import com.jushi.muisc.chat.view.JSTextView;
+
+import rx.Observable;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickListener {
     private Context context;
@@ -20,10 +29,12 @@ public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickLi
     private Song song;
     private JSTextView tvSongName;
     private LinearLayout favoritesBtn, downloadBtn, shareBtn;
+    private NetWorkService netWorkService;
 
     public MoreMenuDialog(Context context) {
         this.context = context;
         dialog = new Dialog(context, R.style.BottomDialog);
+        netWorkService = NetWorkService.getInstance(context);
         initialize();
     }
 
@@ -95,6 +106,7 @@ public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.menu_favorite_btn:
+                addFavoritesToDB();
                 hide();
                 break;
             case R.id.menu_download_btn:
@@ -103,5 +115,31 @@ public class MoreMenuDialog implements MenuDialogChangedListener, View.OnClickLi
             case R.id.menu_share_btn:
                 break;
         }
+    }
+
+    /**
+     * 添加收藏到数据库
+     */
+    private void addFavoritesToDB() {
+        Observable.just("")
+                .subscribeOn(Schedulers.newThread())
+                .map(new Func1<String, Object>() {
+                    @Override
+                    public Object call(final String s) {
+                        netWorkService.getSongInfo(song.getSongId(), new MusicDataAdapter() {
+                            @Override
+                            public void onSongDetail(SongDetail detail) {
+                                song.setSongPath(detail.getBitrate().getShow_link());
+                                song.setSongDuration(detail.getBitrate().getFile_duration());
+                                song.setLrcPath(detail.getSonginfo().getLrclink());
+                                song.setSongAlbum(detail.getSonginfo().getAlbum_title());
+                                song.setSongImagePath(detail.getSonginfo().getArtist_list().get(0).getAvatar_s300());
+                                song.setSongSize(LocalMusicUtils.getSongSize(detail.getBitrate().getFile_size()));
+                                MusicDBTools.getInstance().addFavoritesToDB(song);
+                            }
+                        });
+                        return null;
+                    }
+                }).subscribe();
     }
 }

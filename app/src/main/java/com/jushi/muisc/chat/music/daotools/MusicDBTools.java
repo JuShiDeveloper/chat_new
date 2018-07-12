@@ -26,6 +26,8 @@ public class MusicDBTools {
     private String dbName = "Music";
     private DaoMaster daoMaster;
     private SongDao songDao;
+    private final String FAVORITES = "y"; //收藏
+    private final String UN_FAVORITES = "n";  //未收藏
 
     private static MusicDBTools musicDBTools;
 
@@ -77,10 +79,36 @@ public class MusicDBTools {
             songDao = getDaoSession(daoMaster).getSongDao();
             song.setPlayTimes(1);
             long index = songDao.insert(song);
-            LogUtils.v("savePlaySong index = " + index);
         } else {
             updateLastPlayTime(querySong);
         }
+    }
+
+    /**
+     * 添加收藏
+     */
+    public void addFavoritesToDB(Song song) {
+        Song querySong = querySongInfoBySongEntity(song);
+        if (querySong == null) {
+            daoMaster = new DaoMaster(getWritableDatabase());
+            songDao = getDaoSession(daoMaster).getSongDao();
+            song.setFavorites(FAVORITES);
+            songDao.insert(song);
+        } else {
+            updateFavoritesStatus(querySong);
+        }
+    }
+
+    /**
+     * 更新收藏状态
+     *
+     * @param song
+     */
+    private void updateFavoritesStatus(Song song) {
+        daoMaster = new DaoMaster(getWritableDatabase());
+        songDao = getDaoSession(daoMaster).getSongDao();
+        song.setFavorites(FAVORITES);
+        songDao.update(song);
     }
 
     /**
@@ -105,14 +133,27 @@ public class MusicDBTools {
     }
 
     /**
-     * 从表中获取所有添加进来的song
+     * 从表中获取所有添加进来并且播放过的song
      *
      * @return
      */
     public List<Song> getAllSongByFromDB() {
         daoMaster = new DaoMaster(getReadableDatabase());
         songDao = getDaoSession(daoMaster).getSongDao();
-        return songDao.queryBuilder().list();
+        Query query = songDao.queryBuilder().where(SongDao.Properties.PlayTimes.notEq(0)).build();
+        return query.list();
+    }
+
+    /**
+     * 从表中查询所有收藏的数据
+     *
+     * @return
+     */
+    public List<Song> getAllFavoritesSong() {
+        daoMaster = new DaoMaster(getReadableDatabase());
+        songDao = getDaoSession(daoMaster).getSongDao();
+        Query query = songDao.queryBuilder().where(SongDao.Properties.Favorites.eq(FAVORITES)).build();
+        return query.list();
     }
 
     /**
@@ -136,4 +177,6 @@ public class MusicDBTools {
         }
         return songResult;
     }
+
+
 }

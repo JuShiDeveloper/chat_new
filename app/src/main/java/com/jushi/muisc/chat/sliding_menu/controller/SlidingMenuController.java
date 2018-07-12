@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.music.localmusic.ui.LocalMusicActivity;
-import com.jushi.muisc.chat.music.near_play.ui.NearPlayActivity;
+import com.jushi.muisc.chat.sliding_menu.near_play.ui.NearPlayActivity;
 import com.jushi.muisc.chat.sliding_menu.minterface.IController;
 import com.jushi.muisc.chat.transform.CircleTransform;
 import com.wyf.pictures.camera.OnPicturePathListener;
