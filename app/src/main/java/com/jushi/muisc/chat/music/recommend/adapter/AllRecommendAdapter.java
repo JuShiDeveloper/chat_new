@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.music.dialog.tools.ShowMoreMenuDialog;
+import com.jushi.muisc.chat.dialog.music.ShowMoreMenuDialog;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.music.recommend.model.TodayRecommendModel;
 import com.jushi.muisc.chat.view.JSTextView;

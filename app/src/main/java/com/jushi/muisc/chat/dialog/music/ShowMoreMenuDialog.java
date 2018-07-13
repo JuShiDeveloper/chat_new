@@ -1,8 +1,7 @@
-package com.jushi.muisc.chat.music.dialog.tools;
+package com.jushi.muisc.chat.dialog.music;
 
 import android.content.Context;
 
-import com.jushi.muisc.chat.music.dialog.MoreMenuDialog;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 
 public class ShowMoreMenuDialog {

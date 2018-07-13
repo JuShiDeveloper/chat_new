@@ -6,7 +6,6 @@ import android.os.Message;
 
 import com.jushi.muisc.chat.JSApplication;
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
-import com.jushi.muisc.chat.music.localmusic.adapter.LocalMusicAdapter;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearController;
@@ -22,7 +21,7 @@ import rx.schedulers.Schedulers;
 public class DownloadController implements INearController {
     private Context context;
     private INearPlayView iNearPlayView;
-    private LocalMusicAdapter musicAdapter;
+    private DownloadAdapter musicAdapter;
     private List<Song> songs;
     private PlayController playController;
 
@@ -57,7 +56,7 @@ public class DownloadController implements INearController {
 
     private void initMusicAdapter(Message msg) {
         songs = (List<Song>) msg.obj;
-        musicAdapter = new LocalMusicAdapter(context, songs);
+        musicAdapter = new DownloadAdapter(context, songs);
         iNearPlayView.onAdapter(musicAdapter);
     }
 
@@ -66,7 +65,7 @@ public class DownloadController implements INearController {
     }
 
     private void setItemClickListener() {
-        musicAdapter.setOnItemClickListener(new LocalMusicAdapter.OnItemClickListener() {
+        musicAdapter.setOnItemClickListener(new DownloadAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Song song, int position) {
                 musicAdapter.setStateChange(position);

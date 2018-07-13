@@ -185,7 +185,10 @@ public class MusicDBTools {
     public List<Song> getAllPlaySong() {
         daoMaster = new DaoMaster(getReadableDatabase());
         songDao = getDaoSession(daoMaster).getSongDao();
-        Query query = songDao.queryBuilder().where(SongDao.Properties.PlayTimes.notEq(0)).build();
+        Query query = songDao.queryBuilder()
+                .where(SongDao.Properties.PlayTimes.notEq(0))
+                .orderDesc(SongDao.Properties.PlayTimes)
+                .build();
         return query.list();
     }
 

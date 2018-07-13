@@ -14,6 +14,9 @@
     <dimen name="_10sp">10sp</dimen>
     <dimen name="_20sp">20sp</dimen>
     <dimen name="_22sp">22sp</dimen>
+    <dimen name="_23sp">23sp</dimen>
+    <dimen name="_24sp">24sp</dimen>
+    <dimen name="_25sp">25sp</dimen>
     <dimen name="design_navigation_separator_vertical_padding" tools:override="true">5dp</dimen>
     <dimen name="design_navigation_icon_size" tools:override="true">40dp</dimen>
     <!--<dimen name="design_navigation_icon_padding" tools:override="true">40dp</dimen>-->

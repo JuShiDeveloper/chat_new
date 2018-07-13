@@ -39,6 +39,7 @@
     <string name="menu_favorites_text">收藏</string>
     <string name="menu_download_text">下载</string>
     <string name="menu_share_text">分享</string>
+    <string name="play_times">播放次数</string>
 
 
 </resources>

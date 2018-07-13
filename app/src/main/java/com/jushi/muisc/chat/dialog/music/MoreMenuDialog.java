@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.music.dialog;
+package com.jushi.muisc.chat.dialog.music;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
-import com.jushi.muisc.chat.music.dialog.minterface.MenuDialogChangedListener;
+import com.jushi.muisc.chat.dialog.music.MenuDialogChangedListener;
 import com.jushi.muisc.chat.music.jsinterface.DownloadListener;
 import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.music.localmusic.model.Song;

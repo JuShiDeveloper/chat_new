@@ -8,7 +8,7 @@ android {
     aaptOptions.useNewCruncher = false
     defaultConfig {
         applicationId "com.jushi.muisc.chat"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -48,7 +48,7 @@ dependencies {
     //弹幕
 //    api 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
     //从相册或拍照获取图片以及图片压缩
-    api 'com.jushi:pictures_lib:1.0.3'
+    api 'com.jushi:pictures_lib:1.0.4'
     //圆形图片控件
 //    api 'de.hdodenhof:circleimageview:2.2.0'
 //    api 'io.reactivex:rxjava:latest.integration'

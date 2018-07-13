@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.music.dialog.minterface;
+package com.jushi.muisc.chat.dialog.music;
 
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 
