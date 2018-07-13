@@ -1,11 +1,16 @@
 package com.jushi.muisc.chat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
+import com.jushi.muisc.chat.utils.PATH;
 
 public class LoadingActivity extends AppCompatActivity {
 
@@ -20,6 +25,8 @@ public class LoadingActivity extends AppCompatActivity {
         super.onResume();
         final Intent intent = new Intent(this,MainActivity.class);
         LocalMusicUtils.getSongs(this);
+        requestPermission();
+        PATH.initPath();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -27,5 +34,16 @@ public class LoadingActivity extends AppCompatActivity {
                 finish();
             }
         },1500);
+    }
+
+    //SD卡读写权限请求
+    private void requestPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    1);
+        } else {
+
+        }
     }
 }

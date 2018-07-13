@@ -25,8 +25,8 @@ public class DownloadController implements INearController {
     private List<Song> songs;
     private PlayController playController;
 
-    public DownloadController() {
-        context = JSApplication.getContext();
+    public DownloadController(Context context) {
+        this.context = context;
         initDownloadData();
     }
 

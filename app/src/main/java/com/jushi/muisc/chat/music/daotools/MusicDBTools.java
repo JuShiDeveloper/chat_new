@@ -9,6 +9,7 @@ import com.jushi.muisc.chat.dao.DaoSession;
 import com.jushi.muisc.chat.dao.SongDao;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.utils.LogUtils;
+import com.jushi.muisc.chat.utils.PATH;
 
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.Query;
@@ -16,6 +17,7 @@ import org.greenrobot.greendao.query.Query;
 import java.util.List;
 
 import rx.Observable;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -157,6 +159,25 @@ public class MusicDBTools {
     }
 
     /**
+     * 删除下载的歌曲（删除数据库中的记录和本地文件）
+     */
+    public void deleteDownloadSong(final Song song) {
+        Observable.just("")
+                .subscribeOn(Schedulers.newThread())
+                .map(new Func1<String, Object>() {
+                    @Override
+                    public Object call(String s) {
+                        daoMaster = new DaoMaster(getWritableDatabase());
+                        songDao = getDaoSession(daoMaster).getSongDao();
+                        songDao.delete(song);
+                        PATH.deleteFile(song.getLrcPath());
+                        PATH.deleteFile(song.getSongPath());
+                        return null;
+                    }
+                }).subscribe();
+    }
+
+    /**
      * 更新最后一次播放时间
      * 同时播放次数加 1
      *
@@ -165,9 +186,9 @@ public class MusicDBTools {
     private void updateLastPlayTime(final Song song) {
         Observable.just("")
                 .subscribeOn(Schedulers.newThread())
-                .map(new Observable.Operator() {
+                .map(new Func1<String, Object>() {
                     @Override
-                    public Object call(Object o) {
+                    public Object call(String s) {
                         daoMaster = new DaoMaster(getWritableDatabase());
                         songDao = getDaoSession(daoMaster).getSongDao();
                         song.setPlayTimes(song.getPlayTimes() + 1);  //播放次数加 1

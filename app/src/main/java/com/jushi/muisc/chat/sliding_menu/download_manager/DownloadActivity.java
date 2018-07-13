@@ -44,7 +44,7 @@ public class DownloadActivity extends AppCompatActivity implements INearPlayView
     }
 
     private void initController() {
-        downloadController = new DownloadController();
+        downloadController = new DownloadController(this);
         downloadController.onNearPlayView(this);
 
         playController = PlayController.getInstance(this);

@@ -2,14 +2,19 @@ package com.jushi.muisc.chat.sliding_menu.download_manager;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.base.muslim.tipsdialog.TipsDialog;
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.dialog.BottomTipsDialog;
+import com.jushi.muisc.chat.music.daotools.MusicDBTools;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
+import com.jushi.muisc.chat.utils.LogUtils;
 import com.jushi.muisc.chat.view.JSTextView;
 
 import java.util.List;
@@ -51,16 +56,34 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.ViewHo
                 }
             });
         }
-        setMoreBtnClickListener(holder,song);
+        setMoreBtnClickListener(holder, song);
     }
 
-    private void setMoreBtnClickListener(ViewHolder holder, Song song) {
+    private void setMoreBtnClickListener(ViewHolder holder, final Song song) {
         holder.moreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                BottomTipsDialog.create(mContext)
+                        .setListener(new BottomTipsDialog.OnOkBtnClickListener() {
+                            @Override
+                            public void onDeleteBtnClick(JSTextView view) {
+                                showTipsDialog(song);
+                            }
+                        }).show();
             }
         });
+    }
+
+    private void showTipsDialog(final Song song) {
+        new TipsDialog(mContext, new TipsDialog.OnDropBtnClickListener() {
+            @Override
+            public void onClick(View view, Object o) {
+                MusicDBTools.getInstance().deleteDownloadSong(song);
+                songs.remove(song);
+                notifyDataSetChanged();
+            }
+        }).showDialog(mContext.getString(R.string.delete),
+                "是否删除歌曲：" + song.getSongName());
     }
 
     private void setStateChange(ViewHolder holder, int position) {

@@ -330,7 +330,8 @@ public class NetWorkService {
     /**
      * download
      */
-    public void downloadMusic(final String fileLink,final String fileName, final DownloadListener downloadListener) {
+    public void downloadMusic(final String fileLink, final String fileName, final DownloadListener downloadListener) {
+        PATH.initPath();
         OkHttpTool.httpClient(fileLink, new OkHttpTool.OnClientListener() {
             @Override
             public void onError() {
