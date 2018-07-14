@@ -10,12 +10,12 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.dialog.playlist.SongListDialog;
 import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.transform.CornersTransform;
 
 /**
  * 底部播放控制栏
- *
  */
 public class PlayMusicView extends RelativeLayout implements View.OnClickListener {
 
@@ -78,6 +78,7 @@ public class PlayMusicView extends RelativeLayout implements View.OnClickListene
                 }
                 break;
             case R.id.play_music_controller_layout_playListMenu_btn: //play list button
+                SongListDialog.create(getContext()).show();
                 break;
             case R.id.play_music_controller_layout_song_info_container: //song info container
                 ActivityManager.startPlayMusicActivity(getContext());

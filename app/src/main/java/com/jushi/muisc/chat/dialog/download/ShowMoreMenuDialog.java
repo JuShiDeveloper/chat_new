@@ -1,9 +1,12 @@
-package com.jushi.muisc.chat.dialog.music;
+package com.jushi.muisc.chat.dialog.download;
 
 import android.content.Context;
 
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 
+/**
+ * 显示搜藏  下载   分享 三个选项的dialog
+ */
 public class ShowMoreMenuDialog {
 
     private static MoreMenuDialog menuDialog;

@@ -67,6 +67,8 @@
             android:id="@+id/local_music_activity_RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_above="@+id/PlayMusicView"/>
 
         <include layout="@layout/buttom_play_controller_layout"/>

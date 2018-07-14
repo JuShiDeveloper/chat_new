@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import com.jushi.muisc.chat.JSApplication;
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
+import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
 import com.jushi.muisc.chat.tools.music.PlayMusic;
 import com.jushi.muisc.chat.music.utils.SaveUtils;
 
@@ -55,6 +56,17 @@ public class PlayMusicService extends Service {
     //将播放列表传递进来
     public static void setPlayList(List<Song> songs1) {
         songs = songs1;
+    }
+
+    /**
+     * 将当前播放列表传递到显示播放列表歌曲的dialog中
+     * @return
+     */
+    public static List<Song> getSongs(){
+        if (songs == null || songs.size() == 0){
+            songs = LocalMusicUtils.getSongs(JSApplication.getContext());
+        }
+        return songs;
     }
 
     //播放全部歌曲

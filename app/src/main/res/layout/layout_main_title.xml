@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/e80b0b"/>
+            android:backgroundTint="@color/e80b0b" />
     </LinearLayout>
 
     <ImageView

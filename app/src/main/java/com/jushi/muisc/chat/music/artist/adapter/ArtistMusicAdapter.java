@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.artist.model.ArtistMusic;
-import com.jushi.muisc.chat.dialog.music.ShowMoreMenuDialog;
+import com.jushi.muisc.chat.dialog.download.ShowMoreMenuDialog;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.view.JSTextView;
 

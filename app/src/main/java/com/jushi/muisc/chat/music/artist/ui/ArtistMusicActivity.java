@@ -69,6 +69,7 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
         findWidget();
         initToolBar();
         initCollapsingToolbarLayout();
+        getArtistMusicData();
     }
 
     private void findWidget() {
@@ -101,7 +102,6 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
         super.onResume();
         playController = PlayController.getInstance(this);
         playController.showPlayControllerInfo();
-        getArtistMusicData();
     }
 
     private void getArtistMusicData() {

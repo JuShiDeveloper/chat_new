@@ -95,7 +95,7 @@ public class FavoritesController implements INearController {
             playController.playAllMusic();
             musicAdapter.setStateChange(0);
         } else {
-            ToastUtils.show(context, "暂无最近播放歌曲");
+            ToastUtils.show(context, "暂无收藏的歌曲");
         }
     }
 

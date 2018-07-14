@@ -7,6 +7,9 @@ import android.view.View;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.view.JSTextView;
 
+/**
+ * 在底部显示删除  取消  两个选项的dialog
+ */
 public class BottomTipsDialog {
 
     private static OnOkBtnClickListener onListener;

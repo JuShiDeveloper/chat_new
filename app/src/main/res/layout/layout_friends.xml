@@ -2,6 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent">
+    android:background="@color/c_ffffff">
+
+    <com.jushi.muisc.chat.view.JSTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/e80b0b"
+        android:layout_centerInParent="true"
+        android:textSize="@dimen/_18sp"
+        android:text="正在努力开发中，敬请期待！"/>
 
 </RelativeLayout>

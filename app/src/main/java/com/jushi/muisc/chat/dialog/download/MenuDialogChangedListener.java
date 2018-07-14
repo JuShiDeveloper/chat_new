@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.dialog.music;
+package com.jushi.muisc.chat.dialog.download;
 
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 

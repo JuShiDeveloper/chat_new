@@ -43,6 +43,7 @@
     <string name="js_cancel">取消</string>
     <string name="OK">确定</string>
     <string name="delete">删除</string>
+    <string name="current_play_list">当前播放列表：</string>
 
 
 </resources>
