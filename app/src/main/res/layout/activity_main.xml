@@ -21,7 +21,8 @@
             android:layout_alignParentTop="true"
             android:background="@color/white"
             app:background="@color/white"
-            app:navigationIcon="@drawable/menu_icon">
+            app:navigationIcon="@drawable/menu_icon"
+            app:contentInsetStartWithNavigation="0dp">
 
             <com.jushi.muisc.chat.view.MainTitleLayout
                 android:id="@+id/MainTitleLayout"

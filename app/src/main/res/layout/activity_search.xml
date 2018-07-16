@@ -14,6 +14,7 @@
         android:id="@+id/search_activity_toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        app:contentInsetStartWithNavigation="0dp"
         android:layout_alignParentTop="true"
         app:navigationIcon="@drawable/back_icon_red">
 
@@ -54,6 +55,8 @@
         android:id="@+id/search_activity_refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_below="@+id/search_activity_toolBar"
         android:layout_above="@+id/PlayMusicView"
         android:visibility="gone">

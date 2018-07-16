@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:navigationIcon="@drawable/back_icon_red"
+        app:contentInsetStartWithNavigation="0dp"
         app:subtitleTextColor="@color/_666666"
         app:titleTextColor="@color/white">
 

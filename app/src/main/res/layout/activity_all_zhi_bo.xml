@@ -16,6 +16,7 @@
         app:navigationIcon="@drawable/back_icon_red"
         android:background="@color/white"
         app:titleTextColor="@color/_333333"
+        app:contentInsetStartWithNavigation="0dp"
         app:title="@string/zhiBo_live"
         android:elevation="2dp"/>
 
