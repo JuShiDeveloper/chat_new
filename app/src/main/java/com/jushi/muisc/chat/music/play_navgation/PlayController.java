@@ -1,6 +1,7 @@
 package com.jushi.muisc.chat.music.play_navgation;
 
 import android.app.Activity;
+import android.view.View;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
@@ -122,4 +123,7 @@ public class PlayController implements PlayMusicService.OnMusicPlayListener, Pla
         }
     }
 
+    public void setViewVisible(int visiblity){
+        controllerView.setVisible(visiblity);
+    }
 }

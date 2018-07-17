@@ -134,4 +134,8 @@ public class PlayMusicView extends RelativeLayout implements View.OnClickListene
         void onPlayBtnClickPlay(boolean isPlayState);
     }
 
+    public void setVisible(int visibity){
+        setVisibility(visibity);
+    }
+
 }

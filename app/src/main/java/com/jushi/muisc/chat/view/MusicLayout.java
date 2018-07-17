@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by paocai on 2018/5/4.
+ * Created by wyf on 2018/5/4.
  */
 
 public class MusicLayout extends RelativeLayout {

@@ -45,5 +45,10 @@
     <string name="delete">删除</string>
     <string name="current_play_list">当前播放列表：</string>
 
+    <!--friends-->
+    <string name="news">消息</string>
+    <string name="my_friends">好友</string>
+    <string name="my_page">我的</string>
+
 
 </resources>

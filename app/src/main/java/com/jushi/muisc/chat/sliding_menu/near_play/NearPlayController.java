@@ -7,6 +7,7 @@ import android.os.Message;
 
 import com.jushi.muisc.chat.JSApplication;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
+import com.jushi.muisc.chat.sliding_menu.ComparisonUtils;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearController;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
@@ -57,7 +58,7 @@ public class NearPlayController implements INearController {
 //        }).start();
     }
 
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             initMusicAdapter(msg);
@@ -68,8 +69,13 @@ public class NearPlayController implements INearController {
 
     private void initMusicAdapter(Message msg) {
         songs = (List<Song>) msg.obj;
-        musicAdapter = new NearPlayAdapter(context,songs);
+        musicAdapter = new NearPlayAdapter(context, songs);
         iNearPlayView.onAdapter(musicAdapter);
+        for (int i = 0; i < songs.size(); i++) {
+            if (ComparisonUtils.isEquals(context, songs.get(i))) {
+                musicAdapter.setStateChange(i);
+            }
+        }
     }
 
     private void initMusicNumber() {
@@ -82,7 +88,7 @@ public class NearPlayController implements INearController {
             public void onItemClick(Song song, int position) {
                 musicAdapter.setStateChange(position);
                 playController.setPlayList(songs);
-                playController.playOneMusic(song,position);
+                playController.playOneMusic(song, position);
             }
         });
     }
@@ -99,12 +105,12 @@ public class NearPlayController implements INearController {
 
     @Override
     public void onPlayAllBtnClick() {
-        if (songs != null && songs.size() > 0){
+        if (songs != null && songs.size() > 0) {
             playController.setPlayList(songs);
             playController.playAllMusic();
             musicAdapter.setStateChange(0);
-        }else {
-            ToastUtils.show(context,"暂无最近播放歌曲");
+        } else {
+            ToastUtils.show(context, "暂无最近播放歌曲");
         }
     }
 }
