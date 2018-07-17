@@ -27,6 +27,9 @@ import com.jushi.muisc.chat.view.FriendsLayout;
 import com.jushi.muisc.chat.view.MainTitleLayout;
 import com.jushi.muisc.chat.view.MusicLayout;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,11 +38,12 @@ public class MainActivity extends AppCompatActivity
     private Toolbar toolbar;
     private RelativeLayout contentContainer;
     private MainTitleLayout titleLayout;
-    private MusicLayout musicLayout;
-    private FriendsLayout friendsLayout;
     private NavigationView nav;
     private ImageView headerImage;
     private TextView landingTv;
+    private Map<String, View> views = new HashMap<>();
+    private final String TAG_MUAIS_LAYOUT = MusicLayout.class.getSimpleName();
+    private final String TAG_FRIENDS_LAYOUT = FriendsLayout.class.getSimpleName();
     //播放控制栏
     private PlayController playController;
     //侧滑菜单控制类
@@ -100,9 +104,7 @@ public class MainActivity extends AppCompatActivity
     private void findWidget() {
         titleLayout = findViewById(R.id.MainTitleLayout);
         contentContainer = findViewById(R.id.content_main_activity);
-        musicLayout = new MusicLayout(this);
-        friendsLayout = new FriendsLayout(this);
-        contentContainer.addView(musicLayout);
+        contentContainer.addView(getMusicOrFriendsView(TAG_MUAIS_LAYOUT));
 
         nav = findViewById(R.id.nav_view);
         nav.setItemIconTintList(null);
@@ -136,17 +138,30 @@ public class MainActivity extends AppCompatActivity
                 switch (state) {
                     case 1:
                         contentContainer.removeAllViews();
-                        contentContainer.addView(musicLayout);
+                        contentContainer.addView(getMusicOrFriendsView(TAG_MUAIS_LAYOUT));
                         playController.setViewVisible(View.VISIBLE);
                         break;
                     case 2:
                         contentContainer.removeAllViews();
-                        contentContainer.addView(friendsLayout);
+                        contentContainer.addView(getMusicOrFriendsView(TAG_FRIENDS_LAYOUT));
                         playController.setViewVisible(View.GONE);
                         break;
                 }
             }
         });
+    }
+
+    private View getMusicOrFriendsView(String tag) {
+        View view = views.get(tag);
+        if (view == null) {
+            if (tag.equals(TAG_MUAIS_LAYOUT)) {
+                view = new MusicLayout(this);
+            } else if (tag.equals(TAG_FRIENDS_LAYOUT)) {
+                view = new FriendsLayout(this);
+            }
+        }
+        views.put(tag, view);
+        return view;
     }
 
     @Override

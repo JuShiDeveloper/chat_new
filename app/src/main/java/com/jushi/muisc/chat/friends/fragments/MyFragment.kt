@@ -10,14 +10,15 @@ import android.view.ViewGroup
 import com.jushi.muisc.chat.R
 
 /**
- *消息页面
+ * A simple [Fragment] subclass.
+ *  我的页面
  */
-class NewsFragment : Fragment() {
+class MyFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news, container, false)
+        return inflater.inflate(R.layout.fragment_my, container, false)
     }
 
 
