@@ -15,6 +15,7 @@ import com.jushi.muisc.chat.dialog.BottomTipsDialog;
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
 import com.jushi.muisc.chat.music.localmusic.model.Song;
 import com.jushi.muisc.chat.utils.LogUtils;
+import com.jushi.muisc.chat.utils.ToastUtils;
 import com.jushi.muisc.chat.view.JSTextView;
 
 import java.util.List;
@@ -81,6 +82,7 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.ViewHo
                 MusicDBTools.getInstance().deleteDownloadSong(song);
                 songs.remove(song);
                 notifyDataSetChanged();
+                ToastUtils.show(mContext,"删除成功");
             }
         }).showDialog(mContext.getString(R.string.delete),
                 "是否删除歌曲：" + song.getSongName());

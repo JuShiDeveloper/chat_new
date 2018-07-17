@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/c_ffffff">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/friends_ViewPager"
+    <RelativeLayout
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/BottomNavigationView" />

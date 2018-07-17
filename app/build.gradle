@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
 android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
@@ -54,5 +58,9 @@ dependencies {
 //    api 'io.reactivex:rxjava:latest.integration'
 //    数据库
     api 'org.greenrobot:greendao:3.2.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.31"
+
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
 }
+
+

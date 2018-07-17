@@ -3,7 +3,6 @@ package com.jushi.muisc.chat.view;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -18,7 +17,7 @@ import com.jushi.muisc.chat.R;
 public class FriendsLayout extends RelativeLayout implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView navigationView;
-    private ViewPager viewPager;
+    private RelativeLayout fragmentContainer;
 
     public FriendsLayout(Context context) {
         this(context, null);
@@ -41,7 +40,7 @@ public class FriendsLayout extends RelativeLayout implements BottomNavigationVie
     private void findWidget() {
         LayoutInflater.from(getContext()).inflate(R.layout.layout_friends, this);
         navigationView = findViewById(R.id.BottomNavigationView);
-        viewPager = findViewById(R.id.friends_ViewPager);
+        fragmentContainer = findViewById(R.id.fragmentContainer);
     }
 
     private void setListener(){
