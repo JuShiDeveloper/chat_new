@@ -2,7 +2,6 @@ package com.jushi.muisc.chat.sliding_menu.download_manager;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,7 @@ import com.base.muslim.tipsdialog.TipsDialog;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.dialog.BottomTipsDialog;
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
-import com.jushi.muisc.chat.music.localmusic.model.Song;
-import com.jushi.muisc.chat.utils.LogUtils;
+import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.utils.ToastUtils;
 import com.jushi.muisc.chat.view.JSTextView;
 

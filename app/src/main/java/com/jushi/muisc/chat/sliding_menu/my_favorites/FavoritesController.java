@@ -6,9 +6,10 @@ import android.os.Message;
 
 import com.jushi.muisc.chat.JSApplication;
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
-import com.jushi.muisc.chat.music.localmusic.adapter.LocalMusicAdapter;
-import com.jushi.muisc.chat.music.localmusic.model.Song;
+import com.jushi.muisc.chat.sliding_menu.localmusic.adapter.LocalMusicAdapter;
+import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
+import com.jushi.muisc.chat.music.service.PlayMusicService;
 import com.jushi.muisc.chat.sliding_menu.ComparisonUtils;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearController;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
@@ -71,9 +72,11 @@ public class FavoritesController implements INearController {
         songs = (List<Song>) msg.obj;
         musicAdapter = new LocalMusicAdapter(context, songs);
         iNearPlayView.onAdapter(musicAdapter);
-        for (int i = 0; i < songs.size(); i++) {
-            if (ComparisonUtils.isEquals(context,songs.get(i))) {
-                musicAdapter.setStateChange(i);
+        if (PlayMusicService.isPlaying()){
+            for (int i = 0; i < songs.size(); i++) {
+                if (ComparisonUtils.isEquals(context,songs.get(i))) {
+                    musicAdapter.setStateChange(i);
+                }
             }
         }
     }

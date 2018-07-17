@@ -8,17 +8,12 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.jushi.muisc.chat.JSApplication;
-import com.jushi.muisc.chat.music.daotools.MusicDBTools;
-import com.jushi.muisc.chat.music.localmusic.model.Song;
+import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
 import com.jushi.muisc.chat.tools.music.PlayMusic;
 import com.jushi.muisc.chat.music.utils.SaveUtils;
 
 import java.util.List;
-
-import rx.Observable;
-import rx.Scheduler;
-import rx.schedulers.Schedulers;
 
 public class PlayMusicService extends Service {
     private static Context mContext;

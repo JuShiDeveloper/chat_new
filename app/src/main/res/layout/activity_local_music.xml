@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".music.localmusic.ui.LocalMusicActivity">
+    tools:context=".sliding_menu.localmusic.ui.LocalMusicActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/local_music_activity_toolBar"

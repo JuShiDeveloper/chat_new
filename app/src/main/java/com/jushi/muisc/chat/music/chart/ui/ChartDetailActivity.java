@@ -22,7 +22,7 @@ import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.music.chart.model.ChartDataModel;
 import com.jushi.muisc.chat.music.public_model.LatestMusicModel;
-import com.jushi.muisc.chat.music.localmusic.model.Song;
+import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.music.public_model.SongDetail;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.utils.AnimationUtils;

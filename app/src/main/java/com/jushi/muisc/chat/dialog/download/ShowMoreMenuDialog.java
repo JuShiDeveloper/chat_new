@@ -2,7 +2,7 @@ package com.jushi.muisc.chat.dialog.download;
 
 import android.content.Context;
 
-import com.jushi.muisc.chat.music.localmusic.model.Song;
+import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 
 /**
  * 显示搜藏  下载   分享 三个选项的dialog

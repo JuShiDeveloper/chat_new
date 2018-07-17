@@ -15,7 +15,7 @@ import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
 import com.jushi.muisc.chat.music.jsinterface.DownloadListener;
 import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
-import com.jushi.muisc.chat.music.localmusic.model.Song;
+import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.music.public_model.SongDetail;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.utils.LocalMusicUtils;

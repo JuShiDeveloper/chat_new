@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.music.localmusic.model;
+package com.jushi.muisc.chat.sliding_menu.localmusic.model;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;

@@ -13,7 +13,7 @@ import com.jushi.muisc.chat.music.recommend.adapter.TodayRecommendAdapter;
 import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.manager.JSGridLayoutManager;
-import com.jushi.muisc.chat.music.localmusic.model.Song;
+import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.music.recommend.model.TodayRecommendModel;
 import com.jushi.muisc.chat.music.public_model.SongDetail;
 import com.jushi.muisc.chat.music.service.NetWorkService;

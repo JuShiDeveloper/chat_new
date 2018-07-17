@@ -18,6 +18,7 @@ import com.jushi.muisc.chat.friends.fragments.NewsFragment
 
 /**
  * Created by wyf on 2018/5/4.
+ * 好友模块
  */
 
 class FriendsLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -47,7 +48,7 @@ class FriendsLayout @JvmOverloads constructor(context: Context, attrs: Attribute
     }
 
     private fun setListener() {
-        navigationView!!.setOnNavigationItemSelectedListener(this)
+        navigationView.setOnNavigationItemSelectedListener(this)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

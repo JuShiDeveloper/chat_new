@@ -12,7 +12,7 @@ import com.jushi.muisc.chat.music.artist.model.ArtistsModel;
 import com.jushi.muisc.chat.music.banner.model.BannerModel;
 import com.jushi.muisc.chat.music.chart.model.ChartDataModel;
 import com.jushi.muisc.chat.music.public_model.LatestMusicModel;
-import com.jushi.muisc.chat.music.localmusic.model.Song;
+import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.music.mv.model.MVBean;
 import com.jushi.muisc.chat.music.mv.model.MVItemModel;
 import com.jushi.muisc.chat.music.search.model.SearchDataModel;

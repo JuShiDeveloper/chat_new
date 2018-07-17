@@ -2,7 +2,7 @@ package com.jushi.muisc.chat.sliding_menu;
 
 import android.content.Context;
 
-import com.jushi.muisc.chat.music.localmusic.model.Song;
+import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.music.utils.SaveUtils;
 
 /**

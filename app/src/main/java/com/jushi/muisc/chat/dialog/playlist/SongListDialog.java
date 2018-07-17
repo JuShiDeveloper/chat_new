@@ -9,8 +9,8 @@ import android.widget.LinearLayout;
 
 import com.jushi.muisc.chat.JSApplication;
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.music.localmusic.adapter.LocalMusicAdapter;
-import com.jushi.muisc.chat.music.localmusic.model.Song;
+import com.jushi.muisc.chat.sliding_menu.localmusic.adapter.LocalMusicAdapter;
+import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.music.service.PlayMusicService;
 import com.jushi.muisc.chat.music.utils.SaveUtils;
 import com.jushi.muisc.chat.utils.ShadowUtils;
