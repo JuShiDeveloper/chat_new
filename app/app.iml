@@ -159,6 +159,7 @@
     <orderEntry type="library" name="Gradle: com.squareup.okhttp:okhttp:2.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.2.4@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.hyman:flowlayout-lib-1.1.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.baidu.mobstat:mtj-sdk:3.9.0.7@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:common:1.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:recyclerview-v7-27.0.2" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:3.0.1@jar" level="project" />

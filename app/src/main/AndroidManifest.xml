@@ -8,6 +8,12 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--百度统计-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".JSApplication"
@@ -70,7 +76,13 @@
         <activity android:name=".music.play_music.PlayMusicActivity" />
         <activity android:name=".sliding_menu.near_play.NearPlayActivity" />
         <activity android:name=".sliding_menu.my_favorites.MyFavoritesActivity" />
-        <activity android:name=".sliding_menu.download_manager.DownloadActivity"></activity>
+        <activity android:name=".sliding_menu.download_manager.DownloadActivity"/>
+
+        <!--百度统计开始-->
+        <!-- 设置您在百度移动统计网站上添加的APP的AppKey -->
+        <meta-data
+            android:name="BaiduMobAd_STAT_ID"
+            android:value="34b5c79e71" />
     </application>
 
 </manifest>

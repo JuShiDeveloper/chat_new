@@ -182,7 +182,10 @@ public static java.lang.String TABLENAME;
 # If you do not use RxJava:
 -dontwarn rx.**
 
-#-----------------------------------------------
+#------------------百度统计-------------------------------------
+-keep class com.baidu.**{*;}
+
+#--------------------自己的包---------------------------
 -keep class com.jushi.muisc.chat.utils.**{*;}
 -keep class com.jushi.muisc.chat.music.artist.model.**{*;}
 -keep class com.jushi.muisc.chat.music.chart.model.**{*;}

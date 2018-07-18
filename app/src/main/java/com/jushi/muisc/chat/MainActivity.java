@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.baidu.mobstat.StatService;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.sliding_menu.controller.SlidingMenuController;
 import com.jushi.muisc.chat.utils.DisplayUtils;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         DisplayUtils.setStatusBarColor(this, R.color.color_status);
         setContentView(R.layout.activity_main);
+        StatService.start(this);
         initialize();
     }
 
