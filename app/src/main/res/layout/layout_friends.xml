@@ -16,9 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:background="?android:attr/windowBackground"
+        app:itemIconTint="@drawable/select_item_icon_tint"
+        app:itemTextColor="@drawable/select_item_text_color"
         app:menu="@menu/menu_friends_bottom_navigation" />
 
 </RelativeLayout>
