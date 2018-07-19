@@ -182,8 +182,21 @@ public static java.lang.String TABLENAME;
 # If you do not use RxJava:
 -dontwarn rx.**
 
-#------------------百度统计-------------------------------------
+#-------------------百度统计---------------------------------------
 -keep class com.baidu.**{*;}
+
+#------------------友盟统计-------------------------------------
+-keep class com.umeng.** {*;}
+-keepclassmembers class * {
+   public <init> (org.json.JSONObject);
+}
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+-keep public class com.jushi.muisc.chat.R$*{
+public static final int *;
+}
 
 #--------------------自己的包---------------------------
 -keep class com.jushi.muisc.chat.utils.**{*;}

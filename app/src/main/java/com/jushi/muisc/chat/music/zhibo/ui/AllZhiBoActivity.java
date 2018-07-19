@@ -17,6 +17,7 @@ import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.utils.Constant;
 import com.jushi.muisc.chat.music.utils.DataUrlUtils;
 import com.jushi.muisc.chat.utils.DisplayUtils;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -30,6 +31,19 @@ public class AllZhiBoActivity extends AppCompatActivity {
     private NetWorkService workService;
     private List<ZhiBoModel.DataBeanX.DataBean> liveBeans;
     private LiveDataAdapter liveDataAdapter;
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

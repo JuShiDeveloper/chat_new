@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.utils.DisplayUtils;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * 点击轮播图显示轮播图信息的页面
@@ -27,6 +28,18 @@ public class BannerViewActivity extends AppCompatActivity implements View.OnClic
     private WebView webView;
     private LinearLayout linearLayout;
     private ImageView backButton;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

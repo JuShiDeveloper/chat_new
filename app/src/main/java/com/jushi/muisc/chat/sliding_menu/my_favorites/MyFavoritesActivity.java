@@ -15,6 +15,7 @@ import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.sliding_menu.my_favorites.FavoritesController;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
 import com.jushi.muisc.chat.utils.ShadowUtils;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * 我的收藏页面
@@ -28,6 +29,19 @@ public class MyFavoritesActivity extends AppCompatActivity implements INearPlayV
     private FavoritesController favoritesController;
     //播放控制栏
     private PlayController playController;
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

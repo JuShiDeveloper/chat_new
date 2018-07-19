@@ -21,6 +21,7 @@ import com.jushi.muisc.chat.music.utils.DataUrlUtils;
 import com.jushi.muisc.chat.utils.DisplayUtils;
 import com.jushi.muisc.chat.utils.ShadowUtils;
 import com.jushi.muisc.chat.view.JSTextView;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,18 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
 
     public enum ArtistItem {
         HOT, CHINA, OUMEI, HANGUO, JAPAN, OTHER
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

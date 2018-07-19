@@ -27,6 +27,7 @@ import com.jushi.muisc.chat.utils.PATH;
 import com.jushi.muisc.chat.view.FriendsLayout;
 import com.jushi.muisc.chat.view.MainTitleLayout;
 import com.jushi.muisc.chat.view.MusicLayout;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,8 +58,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         DisplayUtils.setStatusBarColor(this, R.color.color_status);
         setContentView(R.layout.activity_main);
-        StatService.start(this);
         initialize();
+        StatService.start(this);
     }
 
 
@@ -67,6 +68,13 @@ public class MainActivity extends AppCompatActivity
         super.onResume();
         requestPermission();
         initPlayController();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     //SD卡读写权限请求

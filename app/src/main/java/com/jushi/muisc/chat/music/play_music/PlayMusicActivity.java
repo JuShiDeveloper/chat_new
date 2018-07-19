@@ -35,6 +35,7 @@ import com.jushi.muisc.chat.view.ripplesoundplayer.RippleVisualizerView;
 import com.jushi.muisc.chat.view.ripplesoundplayer.renderer.ColorfulBarRenderer;
 import com.jushi.muisc.chat.view.ripplesoundplayer.util.PaintUtil;
 import com.squareup.okhttp.Response;
+import com.umeng.analytics.MobclickAgent;
 import com.wyf.pictures.camera.helper.PermissionHelper;
 import com.wyf.pictures.rxPermissions.RxPermissions;
 
@@ -85,8 +86,15 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkRecordAudioPermission();
         }else {

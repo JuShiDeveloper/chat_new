@@ -15,6 +15,7 @@ import com.jushi.muisc.chat.music.mv.model.MVBean;
 import com.jushi.muisc.chat.music.service.MvItemInfoTaskService;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.utils.DisplayUtils;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -28,6 +29,18 @@ public class AllMVActivity extends AppCompatActivity {
     private NetWorkService workService;
     private MvDataAdapter mvDataAdapter;
     private List<MVBean.ResultBean.MvListBean> mvListBeans;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

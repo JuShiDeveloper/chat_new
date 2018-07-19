@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
 import com.jushi.muisc.chat.utils.PATH;
+import com.umeng.analytics.MobclickAgent;
 
 public class LoadingActivity extends AppCompatActivity {
 
@@ -34,6 +35,7 @@ public class LoadingActivity extends AppCompatActivity {
                 finish();
             }
         },1500);
+        MobclickAgent.onResume(this);
     }
 
     //SD卡读写权限请求
@@ -45,5 +47,11 @@ public class LoadingActivity extends AppCompatActivity {
         } else {
 
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

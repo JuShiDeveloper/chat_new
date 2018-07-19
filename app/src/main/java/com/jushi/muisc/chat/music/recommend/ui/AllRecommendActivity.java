@@ -29,6 +29,7 @@ import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
 import com.jushi.muisc.chat.utils.ShadowUtils;
 import com.jushi.muisc.chat.utils.ToastUtils;
 import com.jushi.muisc.chat.view.JSTextView;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,12 @@ public class AllRecommendActivity extends AppCompatActivity implements View.OnCl
     private List<Song> songs = new ArrayList<>();
     private AllRecommendAdapter recommendAdapter;
     private PlayController playController;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +107,7 @@ public class AllRecommendActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
         playController = PlayController.getInstance(this);
         playController.showPlayControllerInfo();
     }

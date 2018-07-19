@@ -15,6 +15,7 @@ import com.jushi.muisc.chat.sliding_menu.near_play.NearPlayController;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.utils.ShadowUtils;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * 最近播放页面
@@ -28,6 +29,18 @@ public class NearPlayActivity extends AppCompatActivity implements INearPlayView
     private NearPlayController nearPlayController;
     //播放控制栏
     private PlayController playController;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

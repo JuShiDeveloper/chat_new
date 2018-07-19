@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.baidu.mobstat:mtj-sdk:3.9.0.7@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.baidu.mobstat/mtj-sdk/3.9.0.7/c78e44b18946d89d4599cf071acbde0216f51ed8/mtj-sdk-3.9.0.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.baidu.mobstat/mtj-sdk/3.9.0.7/da39a3ee5e6b4b0d3255bfef95601890afd80709/mtj-sdk-3.9.0.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

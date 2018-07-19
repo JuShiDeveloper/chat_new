@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">居士音乐</string>
+    <!--百度统计app key-->
+    <string name="baidu_tong_ji_appKey">34b5c79e71</string>
+    <!--友盟app key-->
+    <string name="Umen_app_key">5b4ee0db8f4a9d2bf1000091</string>
+    <string name="Umeng_Channel">jushiMusicUmeng</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -50,8 +55,6 @@
     <string name="my_friends">好友</string>
     <string name="my_page">我的</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

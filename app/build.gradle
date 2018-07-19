@@ -70,6 +70,11 @@ dependencies {
 
     api 'com.android.support.constraint:constraint-layout:1.0.2'
     api 'com.android.support:support-v4:27.0.2'
-    //百度统计
+    /////////////友盟//////开始//////////////
+    //////////////////友盟统计///////////////////////
+    api 'com.umeng.sdk:common:1.5.0'
+    api 'com.umeng.sdk:analytics:7.5.0'
+
+    /*百度统计*/
     api 'com.baidu.mobstat:mtj-sdk:latest.integration'
 }

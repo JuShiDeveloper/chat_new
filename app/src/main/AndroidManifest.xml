@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jushi.muisc.chat">
+    <uses-sdk android:minSdkVersion="8"></uses-sdk>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -8,12 +9,16 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--友盟统计-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
     <!--百度统计-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".JSApplication"
@@ -78,11 +83,15 @@
         <activity android:name=".sliding_menu.my_favorites.MyFavoritesActivity" />
         <activity android:name=".sliding_menu.download_manager.DownloadActivity"/>
 
-        <!--百度统计开始-->
+        <!--Umeng-->
+        <!--<meta-data android:value="@string/Umen_app_key" android:name="UMENG_APPKEY"/>-->
+        <!--<meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>-->
+
+        <!--baidu tong ji-->
         <!-- 设置您在百度移动统计网站上添加的APP的AppKey -->
         <meta-data
             android:name="BaiduMobAd_STAT_ID"
-            android:value="34b5c79e71" />
+            android:value="@string/baidu_tong_ji_appKey" />
     </application>
 
 </manifest>

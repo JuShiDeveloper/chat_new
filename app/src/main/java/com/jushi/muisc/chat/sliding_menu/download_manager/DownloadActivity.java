@@ -14,6 +14,7 @@ import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.play_navgation.PlayController;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
 import com.jushi.muisc.chat.utils.ShadowUtils;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * 下载管理页面
@@ -27,6 +28,18 @@ public class DownloadActivity extends AppCompatActivity implements INearPlayView
     //播放控制栏
     private PlayController playController;
     private DownloadController downloadController;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

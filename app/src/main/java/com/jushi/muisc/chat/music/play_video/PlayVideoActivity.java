@@ -16,6 +16,7 @@ import android.webkit.WebViewClient;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.utils.DisplayUtils;
 import com.jushi.muisc.chat.view.JSTextView;
+import com.umeng.analytics.MobclickAgent;
 
 
 /**
@@ -28,6 +29,19 @@ public class PlayVideoActivity extends AppCompatActivity {
     private String type;
     private String url;
     private String nickName;
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
