@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.dialog.playlist.SongListDialog;
+import com.jushi.muisc.chat.music.dialog.playlist.SongListDialog;
 import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.transform.CornersTransform;
 

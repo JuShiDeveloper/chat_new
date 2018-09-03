@@ -3,10 +3,10 @@ package com.jushi.muisc.chat.manager;
 import android.content.Context;
 import android.content.Intent;
 
-import com.jushi.muisc.chat.music.artist.ui.ArtistMusicActivity;
+import com.jushi.muisc.chat.music.home_page.artist.ui.ArtistMusicActivity;
 import com.jushi.muisc.chat.music.chart.ui.ChartDetailActivity;
-import com.jushi.muisc.chat.music.play_music.PlayMusicActivity;
-import com.jushi.muisc.chat.music.play_video.PlayVideoActivity;
+import com.jushi.muisc.chat.music.play.play_music.PlayMusicActivity;
+import com.jushi.muisc.chat.music.play.play_video.PlayVideoActivity;
 
 /**
  * Created by paocai on 2018/5/5.

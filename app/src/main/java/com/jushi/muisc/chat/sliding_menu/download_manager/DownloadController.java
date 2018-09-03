@@ -6,8 +6,8 @@ import android.os.Message;
 
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
-import com.jushi.muisc.chat.music.play_navgation.PlayController;
-import com.jushi.muisc.chat.music.service.PlayMusicService;
+import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
+import com.jushi.muisc.chat.music.play.play_music.PlayMusicService;
 import com.jushi.muisc.chat.sliding_menu.ComparisonUtils;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearController;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;

@@ -1,6 +1,6 @@
 package com.jushi.muisc.chat.sliding_menu.minterface;
 
-import com.jushi.muisc.chat.music.play_navgation.PlayController;
+import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
 
 public interface INearController {
     void onNearPlayView(INearPlayView iNearPlayView);

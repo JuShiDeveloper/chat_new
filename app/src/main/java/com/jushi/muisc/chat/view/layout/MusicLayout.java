@@ -15,9 +15,9 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.music.fragment.ChartFragment;
-import com.jushi.muisc.chat.music.fragment.HomePageFragment;
-import com.jushi.muisc.chat.music.fragment.VideoAndLiveFragment;
+import com.jushi.muisc.chat.music.chart.ChartFragment;
+import com.jushi.muisc.chat.music.home_page.HomePageFragment;
+import com.jushi.muisc.chat.music.zhibo_video.VideoAndLiveFragment;
 import com.jushi.muisc.chat.utils.ShadowUtils;
 
 import java.util.ArrayList;

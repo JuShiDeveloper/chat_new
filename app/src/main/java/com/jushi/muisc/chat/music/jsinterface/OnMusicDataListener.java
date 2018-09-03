@@ -1,12 +1,12 @@
 package com.jushi.muisc.chat.music.jsinterface;
 
-import com.jushi.muisc.chat.music.artist.model.ArtistMusic;
-import com.jushi.muisc.chat.music.artist.model.ArtistsModel;
-import com.jushi.muisc.chat.music.banner.model.BannerModel;
+import com.jushi.muisc.chat.music.home_page.artist.model.ArtistMusic;
+import com.jushi.muisc.chat.music.home_page.artist.model.ArtistsModel;
+import com.jushi.muisc.chat.music.home_page.banner.model.BannerModel;
 import com.jushi.muisc.chat.music.chart.model.ChartDataModel;
 import com.jushi.muisc.chat.music.public_model.LatestMusicModel;
 import com.jushi.muisc.chat.music.search.model.SearchDataModel;
-import com.jushi.muisc.chat.music.recommend.model.TodayRecommendModel;
+import com.jushi.muisc.chat.music.home_page.recommend.model.TodayRecommendModel;
 import com.jushi.muisc.chat.music.public_model.SongDetail;
 
 import java.util.List;

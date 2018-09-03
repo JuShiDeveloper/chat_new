@@ -20,14 +20,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.music.service.PlayMusicService;
+import com.jushi.muisc.chat.music.play.play_music.PlayMusicService;
 import com.jushi.muisc.chat.sliding_menu.ComparisonUtils;
 import com.jushi.muisc.chat.sliding_menu.localmusic.adapter.LocalMusicAdapter;
-import com.jushi.muisc.chat.music.play_navgation.PlayController;
+import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
 import com.jushi.muisc.chat.manager.ActivityManager;
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.utils.DisplayUtils;
-import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
+import com.jushi.muisc.chat.music.utils.music.LocalMusicUtils;
 import com.jushi.muisc.chat.utils.ShadowUtils;
 import com.jushi.muisc.chat.utils.ToastUtils;
 import com.jushi.muisc.chat.view.JSTextView;

@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".music.artist.ui.AllArtistActivity">
+    tools:context=".music.home_page.artist.ui.AllArtistActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/all_artist_activity_toolbar"

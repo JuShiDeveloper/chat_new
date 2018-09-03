@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.jushi.muisc.chat.music.fragment.VideoAndLiveFragment">
+    tools:context="com.jushi.muisc.chat.music.zhibo_video.VideoAndLiveFragment">
 
     <ScrollView
         android:layout_width="match_parent"

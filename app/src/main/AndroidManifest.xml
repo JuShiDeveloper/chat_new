@@ -41,23 +41,23 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".music.banner.ui.BannerViewActivity"
+            android:name=".music.home_page.banner.ui.BannerViewActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".music.recommend.ui.AllRecommendActivity"
+            android:name=".music.home_page.recommend.ui.AllRecommendActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".music.artist.ui.AllArtistActivity"
+            android:name=".music.home_page.artist.ui.AllArtistActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".music.mv.ui.AllMVActivity"
+            android:name=".music.zhibo_video.mv.ui.AllMVActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".music.zhibo.ui.AllZhiBoActivity"
+            android:name=".music.zhibo_video.zhibo.ui.AllZhiBoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".music.play_video.PlayVideoActivity"
+            android:name=".music.play.play_video.PlayVideoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".music.search.ui.SearchActivity"
@@ -72,13 +72,13 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
-        <service android:name=".music.service.PlayMusicService" />
+        <service android:name=".music.play.play_music.PlayMusicService" />
 
         <activity
-            android:name=".music.artist.ui.ArtistMusicActivity"
+            android:name=".music.home_page.artist.ui.ArtistMusicActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".music.play_music.PlayMusicActivity" />
+        <activity android:name=".music.play.play_music.PlayMusicActivity" />
         <activity android:name=".sliding_menu.near_play.NearPlayActivity" />
         <activity android:name=".sliding_menu.my_favorites.MyFavoritesActivity" />
         <activity android:name=".sliding_menu.download_manager.DownloadActivity"/>

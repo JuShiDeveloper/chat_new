@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".music.play_video.PlayVideoActivity">
+    tools:context=".music.play.play_video.PlayVideoActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/play_video_activity_toolBar"

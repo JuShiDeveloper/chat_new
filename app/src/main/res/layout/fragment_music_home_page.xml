@@ -3,7 +3,7 @@
     android:id="@+id/homepage_refreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jushi.muisc.chat.music.fragment.HomePageFragment"
+    tools:context="com.jushi.muisc.chat.music.home_page.HomePageFragment"
     android:background="@color/white">
 
     <com.jingchen.pulltorefresh.PullableScrollView

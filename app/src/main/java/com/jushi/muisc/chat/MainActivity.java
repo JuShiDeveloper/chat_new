@@ -19,10 +19,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.baidu.mobstat.StatService;
-import com.jushi.muisc.chat.music.play_navgation.PlayController;
+import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
 import com.jushi.muisc.chat.sliding_menu.controller.SlidingMenuController;
 import com.jushi.muisc.chat.utils.DisplayUtils;
-import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
+import com.jushi.muisc.chat.music.utils.music.LocalMusicUtils;
 import com.jushi.muisc.chat.utils.PATH;
 import com.jushi.muisc.chat.view.layout.FriendsLayout;
 import com.jushi.muisc.chat.view.main.MainTitleLayout;
