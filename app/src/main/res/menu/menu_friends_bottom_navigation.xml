@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/news"
         android:icon="@drawable/news"
-        android:title="@string/news"/>
+        android:enabled="true"
+        android:title="@string/news"
+        app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/my_friends"
-        android:title="@string/my_friends"/>
+        android:enabled="true"
+        android:title="@string/my_friends"
+        android:icon="@drawable/friends_icon"
+        app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/my_"
-        android:title="@string/my_page"/>
+        android:enabled="true"
+        android:title="@string/my_page"
+        android:icon="@drawable/my_icon"
+        app:showAsAction="ifRoom"/>
 
 </menu>

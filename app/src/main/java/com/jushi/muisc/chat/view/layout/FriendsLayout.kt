@@ -53,12 +53,15 @@ class FriendsLayout @JvmOverloads constructor(context: Context, attrs: Attribute
         when (item.itemId) {
             R.id.news -> {//消息
                 replaceFragment(getFragment(TAG_NEWS_FRAGMENT), TAG_NEWS_FRAGMENT)
+                return true
             }
             R.id.my_friends -> {//好友
                 replaceFragment(getFragment(TAG_FRIENDS_FRAGMENT), TAG_FRIENDS_FRAGMENT)
+                return true
             }
             R.id.my_ -> {//我的
                 replaceFragment(getFragment(TAG_MY_FRAGMENT), TAG_MY_FRAGMENT)
+                return true
             }
         }
         return false
