@@ -1,11 +1,10 @@
-package com.jushi.muisc.chat.view;
+package com.jushi.muisc.chat.view.main;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
 import com.jushi.muisc.chat.R;

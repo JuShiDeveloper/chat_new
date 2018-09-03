@@ -24,9 +24,9 @@ import com.jushi.muisc.chat.sliding_menu.controller.SlidingMenuController;
 import com.jushi.muisc.chat.utils.DisplayUtils;
 import com.jushi.muisc.chat.music.utils.LocalMusicUtils;
 import com.jushi.muisc.chat.utils.PATH;
-import com.jushi.muisc.chat.view.FriendsLayout;
-import com.jushi.muisc.chat.view.MainTitleLayout;
-import com.jushi.muisc.chat.view.MusicLayout;
+import com.jushi.muisc.chat.view.layout.FriendsLayout;
+import com.jushi.muisc.chat.view.main.MainTitleLayout;
+import com.jushi.muisc.chat.view.layout.MusicLayout;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.HashMap;

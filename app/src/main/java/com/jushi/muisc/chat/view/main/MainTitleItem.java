@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.view;
+package com.jushi.muisc.chat.view.main;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.view.JSTextView;
 
 /**
  * Created by paocai on 2018/5/4.

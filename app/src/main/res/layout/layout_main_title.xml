@@ -12,7 +12,7 @@
         android:background="@drawable/botton"
         android:backgroundTint="@color/e80b0b">
 
-        <com.jushi.muisc.chat.view.MainTitleItem
+        <com.jushi.muisc.chat.view.main.MainTitleItem
             android:id="@+id/music_layout_main_title"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -21,7 +21,7 @@
             android:background="@drawable/botton1"
             android:backgroundTint="@color/e80b0b"/>
 
-        <com.jushi.muisc.chat.view.MainTitleItem
+        <com.jushi.muisc.chat.view.main.MainTitleItem
             android:id="@+id/friends_layout_main_title"
             android:layout_width="0dp"
             android:layout_height="match_parent"

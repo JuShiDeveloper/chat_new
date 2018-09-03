@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.view;
+package com.jushi.muisc.chat.view.layout;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
