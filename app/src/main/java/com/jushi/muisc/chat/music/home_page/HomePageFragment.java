@@ -2,12 +2,12 @@ package com.jushi.muisc.chat.music.home_page;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.base.ViewPagerFragment;
 import com.jushi.muisc.chat.music.home_page.banner.controller.BannerImageController;
 import com.jushi.muisc.chat.music.home_page.artist.controller.HotArtistController;
 import com.jushi.muisc.chat.music.chart.ChartFragment;
@@ -18,9 +18,9 @@ import com.jushi.muisc.chat.view.RefreshHeadView;
 /**
  * 首页
  */
-public class HomePageFragment extends Fragment {
+public class HomePageFragment extends ViewPagerFragment {
 
-    private View rootView;
+//    private View rootView;
     private PullToRefreshLayout refreshLayout;
     private Handler handler;
     //轮播图
@@ -46,6 +46,7 @@ public class HomePageFragment extends Fragment {
         initMusicData();
         setBannerListener();
     }
+    
 
     private void findWidget() {
         refreshLayout = rootView.findViewById(R.id.homepage_refreshLayout);
