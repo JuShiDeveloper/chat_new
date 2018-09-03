@@ -46,7 +46,7 @@ public class HomePageFragment extends ViewPagerFragment {
         initMusicData();
         setBannerListener();
     }
-    
+
 
     private void findWidget() {
         refreshLayout = rootView.findViewById(R.id.homepage_refreshLayout);
