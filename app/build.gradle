@@ -7,9 +7,6 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.3'
-    aaptOptions.cruncherEnabled = false
-    aaptOptions.useNewCruncher = false
     defaultConfig {
         applicationId "com.jushi.muisc.chat"
         minSdkVersion 17
@@ -18,7 +15,7 @@ android {
         versionName "1.0"
     }
     buildTypes {
-        debug{
+        debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -31,6 +28,9 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+
+    //use legacy for android 6.0
+    useLibrary 'org.apache.http.legacy'  /* 环信*/
 }
 
 greendao {
@@ -61,6 +61,7 @@ dependencies {
 //    api 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
     //从相册或拍照获取图片以及图片压缩
     api 'com.jushi:pictures_lib:1.0.4'
+//    api project(':pictures')
     //圆形图片控件
 //    api 'de.hdodenhof:circleimageview:2.2.0'
 //    api 'io.reactivex:rxjava:latest.integration'
@@ -70,11 +71,16 @@ dependencies {
 
     api 'com.android.support.constraint:constraint-layout:1.0.2'
     api 'com.android.support:support-v4:27.0.2'
-    /////////////友盟//////开始//////////////
+
     //////////////////友盟统计///////////////////////
     api 'com.umeng.sdk:common:1.5.0'
     api 'com.umeng.sdk:analytics:7.5.0'
 
     /*百度统计*/
-    api 'com.baidu.mobstat:mtj-sdk:latest.integration'
+//    api 'com.baidu.mobstat:mtj-sdk:latest.integration'
+
+    /* 环信*/
+    //Optional compile for GCM (Google Cloud Messaging).
+    api 'com.google.android.gms:play-services-gcm:10.2.1'
+    api 'com.hyphenate:hyphenate-sdk:3.3.0'
 }

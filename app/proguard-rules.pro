@@ -212,3 +212,7 @@ public static final int *;
 -keep class com.jushi.muisc.chat.music.utils.**{*;}
 -keep class com.jushi.muisc.chat.music.zhibo_video.zhibo.model.**{*;}
 -keep class com.jingchen.pulltorefresh.**{*;}
+
+#-------------------环信------------------------------------------
+-keep class com.hyphenate.** {*;}
+-dontwarn  com.hyphenate.**

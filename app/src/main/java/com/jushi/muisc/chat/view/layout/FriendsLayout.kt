@@ -10,9 +10,9 @@ import android.view.View
 import android.widget.RelativeLayout
 
 import com.jushi.muisc.chat.R
-import com.jushi.muisc.chat.friends.fragments.FriendsFragment
-import com.jushi.muisc.chat.friends.fragments.MyFragment
-import com.jushi.muisc.chat.friends.fragments.NewsFragment
+import com.jushi.muisc.chat.friends.friends.FriendsFragment
+import com.jushi.muisc.chat.friends.my.MyFragment
+import com.jushi.muisc.chat.friends.message.NewsFragment
 
 /**
  * Created by wyf on 2018/5/4.

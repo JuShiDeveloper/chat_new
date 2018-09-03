@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.friends.fragments
+package com.jushi.muisc.chat.friends.message
 
 
 import android.os.Bundle
