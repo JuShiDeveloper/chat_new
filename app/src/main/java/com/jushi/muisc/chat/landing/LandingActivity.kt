@@ -16,6 +16,7 @@ class LandingActivity : BaseActivity() {
 
     override fun initWidget() {
         setBtnClickListener()
+        setRegisterBtnClickListener()
     }
 
     private fun setBtnClickListener() {
@@ -27,6 +28,21 @@ class LandingActivity : BaseActivity() {
             landing_layout.visibility = View.VISIBLE
             register_layout.visibility = View.GONE
         }
+    }
+
+    private fun setRegisterBtnClickListener() {
+        register_btn.setOnClickListener {
+            if (!isPswEquals()) {
+                register_failure_hint.text = getString(R.string.input_psw_not_equals)
+
+            }
+        }
+    }
+
+    private fun isPswEquals(): Boolean {
+        var startPsw = et_regist_psw.text.toString()
+        var secondPsw = et_confirm_psw.text.toString()
+        return startPsw == secondPsw
     }
 
     override fun initResource() {

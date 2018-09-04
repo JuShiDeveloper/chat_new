@@ -59,6 +59,10 @@
     <string name="landing">登陆</string>
     <string name="forget_psw">忘记密码？</string>
     <string name="new_user_register">新用户注册</string>
+    <string name="input_register_user_name">输入注册用户名</string>
+    <string name="confirm_psw">确认密码</string>
+    <string name="register">注册</string>
+    <string name="input_psw_not_equals">两次输入的密码不一致！</string>
 
 
 </resources>

@@ -85,10 +85,11 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/register_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/register_page_back_btn"
@@ -97,6 +98,63 @@
             android:padding="15dp"
             android:src="@drawable/back_icon_red" />
 
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/et_register_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/input_register_user_name"
+                android:inputType="textPhonetic|number"
+                android:textColor="@color/c_001208" />
+
+            <EditText
+                android:id="@+id/et_regist_psw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_register_name"
+                android:layout_marginTop="15dp"
+                android:hint="@string/landing_psw"
+                android:inputType="textPassword|numberPassword" />
+
+            <EditText
+                android:id="@+id/et_confirm_psw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_regist_psw"
+                android:layout_marginTop="15dp"
+                android:hint="@string/confirm_psw"
+                android:inputType="textPassword|numberPassword" />
+
+            <TextView
+                android:id="@+id/register_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_confirm_psw"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_landing_btn_drawable"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/register"
+                android:textColor="@color/c_ffffff"
+                android:textSize="@dimen/_18sp" />
+
+            <TextView
+                android:id="@+id/register_failure_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/register_btn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/e80b0b"
+                android:textSize="@dimen/_14sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
 
 </FrameLayout>
