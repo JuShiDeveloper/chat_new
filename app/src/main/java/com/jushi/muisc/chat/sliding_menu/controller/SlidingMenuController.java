@@ -1,6 +1,7 @@
 package com.jushi.muisc.chat.sliding_menu.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.manager.ActivityManager;
+import com.jushi.muisc.chat.register.LandingActivity;
 import com.jushi.muisc.chat.sliding_menu.localmusic.ui.LocalMusicActivity;
 import com.jushi.muisc.chat.sliding_menu.download_manager.DownloadActivity;
 import com.jushi.muisc.chat.sliding_menu.my_favorites.MyFavoritesActivity;
@@ -62,10 +64,17 @@ public class SlidingMenuController implements IController, View.OnClickListener 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.header_imageView:
-            case R.id.landing_tv:
                 getPicture();
                 break;
+            case R.id.landing_tv:
+                toRegisterActivity();
+                break;
         }
+    }
+
+    private void toRegisterActivity() {
+        Intent intent = new Intent(context, LandingActivity.class);
+        context.startActivity(intent);
     }
 
     private void getPicture() {
