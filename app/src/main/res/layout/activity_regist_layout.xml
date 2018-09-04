@@ -9,7 +9,8 @@
         android:layout_height="match_parent"
         android:layout_marginEnd="25dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="100dp"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/app_logo"
@@ -72,6 +73,7 @@
             android:textSize="@dimen/_14sp" />
 
         <TextView
+            android:id="@+id/to_register_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -86,8 +88,14 @@
     <RelativeLayout
         android:id="@+id/register_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/register_page_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:src="@drawable/back_icon_red" />
 
     </RelativeLayout>
 
