@@ -31,10 +31,10 @@ import com.jushi.muisc.chat.view.lrcview.impl.LrcView;
 import com.jushi.muisc.chat.view.ripplesoundplayer.RippleVisualizerView;
 import com.jushi.muisc.chat.view.ripplesoundplayer.renderer.ColorfulBarRenderer;
 import com.jushi.muisc.chat.view.ripplesoundplayer.util.PaintUtil;
+import com.jushi.pictures.camera.helper.PermissionHelper;
+import com.jushi.pictures.rxPermissions.RxPermissions;
 import com.squareup.okhttp.Response;
 import com.umeng.analytics.MobclickAgent;
-import com.wyf.pictures.camera.helper.PermissionHelper;
-import com.wyf.pictures.rxPermissions.RxPermissions;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

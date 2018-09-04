@@ -2,18 +2,16 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
     defaultConfig {
-        applicationId "com.jushi.muisc.chat"
-        minSdkVersion 17
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
     }
+
     buildTypes {
         debug {
             minifyEnabled true
@@ -41,46 +39,13 @@ greendao {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    api 'com.android.support:appcompat-v7:27.0.2'
-    api 'com.android.support:design:27.0.2'
-//    api 'com.android.support:support-v4:27.0.2'
-    api 'com.squareup.okhttp3:okhttp:3.0.1'
-    api 'com.squareup.okhttp:okhttp:2.0.0'
-    api 'com.google.code.gson:gson:2.2.4'
-//    api 'com.android.support:cardview-v7:27.0.2'
+
+    api rootProject.ext.dependencies["systembartint"]
+    api rootProject.ext.dependencies["flowlayout"]
+    api rootProject.ext.dependencies["Umeng"]
+    api rootProject.ext.dependencies["Umeng-analytics"]
+    api rootProject.ext.dependencies["hyphenate"]
     api files('libs/wyf_shadow.jar')
-    api 'com.github.bumptech.glide:glide:3.7.0'
     api project(':pullToRefreshlibrary')
-    //设置状态栏颜色
-    api 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-    //流式布局
-    api 'com.hyman:flowlayout-lib:1.1.2'
-    api 'com.alibaba:fastjson:1.2.47'
-//    api 'com.squareup.retrofit2:retrofit:2.1.0'
-    //弹幕
-//    api 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
-    //从相册或拍照获取图片以及图片压缩
-//    api 'com.jushi:pictures_lib:1.0.4'
     api project(':jushilibrary')
-    //圆形图片控件
-//    api 'de.hdodenhof:circleimageview:2.2.0'
-//    api 'io.reactivex:rxjava:latest.integration'
-//    数据库
-    api 'org.greenrobot:greendao:3.2.0'
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.31"
-
-    api 'com.android.support.constraint:constraint-layout:1.0.2'
-    api 'com.android.support:support-v4:27.0.2'
-
-    //////////////////友盟统计///////////////////////
-    api 'com.umeng.sdk:common:1.5.0'
-    api 'com.umeng.sdk:analytics:7.5.0'
-
-    /*百度统计*/
-//    api 'com.baidu.mobstat:mtj-sdk:latest.integration'
-
-    /* 环信*/
-    //Optional compile for GCM (Google Cloud Messaging).
-    api 'com.google.android.gms:play-services-gcm:10.2.1'
-    api 'com.hyphenate:hyphenate-sdk:3.3.0'
 }

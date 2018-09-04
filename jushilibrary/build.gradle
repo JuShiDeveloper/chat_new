@@ -4,16 +4,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 17
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
     }
 
     buildTypes {
@@ -26,11 +21,16 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'com.android.support:appcompat-v7:27.0.2'
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.41'
-    implementation 'com.android.support:design:27.0.2'
-    implementation 'io.reactivex:rxjava:latest.integration'
-    implementation 'io.reactivex:rxandroid:1.2.1'
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api rootProject.ext.dependencies["support-v7"]
+    api rootProject.ext.dependencies["kotlin"]
+    api rootProject.ext.dependencies["support-design"]
+    api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["okhttp3"]
+    api rootProject.ext.dependencies["okhttp2"]
+    api rootProject.ext.dependencies["gson"]
+    api rootProject.ext.dependencies["fastjson"]
+    api rootProject.ext.dependencies["glide"]
+    api rootProject.ext.dependencies["greendao"]
 }

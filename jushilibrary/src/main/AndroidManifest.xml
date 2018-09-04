@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name="com.wyf.pictures.camera.capturedialog.PictureCaptureDialog"
+            android:name="com.jushi.pictures.camera.capturedialog.PictureCaptureDialog"
             android:theme="@style/PictureCaptureDialog" />
 
         <activity
@@ -12,7 +12,7 @@
 
         <!--拍照或从相册获取图片-->
         <provider
-            android:name="com.wyf.pictures.camera.provider.PictureFileProvider"
+            android:name="com.jushi.pictures.camera.provider.PictureFileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
