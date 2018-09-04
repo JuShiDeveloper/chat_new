@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.register
+package com.jushi.muisc.chat.landing
 
 import com.jushi.base.activity.BaseActivity
 import com.jushi.muisc.chat.R

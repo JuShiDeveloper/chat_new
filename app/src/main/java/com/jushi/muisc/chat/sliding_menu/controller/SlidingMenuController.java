@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.manager.ActivityManager;
-import com.jushi.muisc.chat.register.LandingActivity;
+import com.jushi.muisc.chat.landing.LandingActivity;
 import com.jushi.muisc.chat.sliding_menu.localmusic.ui.LocalMusicActivity;
 import com.jushi.muisc.chat.sliding_menu.download_manager.DownloadActivity;
 import com.jushi.muisc.chat.sliding_menu.my_favorites.MyFavoritesActivity;

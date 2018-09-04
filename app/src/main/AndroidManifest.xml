@@ -90,6 +90,8 @@
         <activity android:name=".sliding_menu.near_play.NearPlayActivity" />
         <activity android:name=".sliding_menu.my_favorites.MyFavoritesActivity" />
         <activity android:name=".sliding_menu.download_manager.DownloadActivity"/>
+        <activity android:name=".landing.LandingActivity"/>
+
 
         <!--Umeng--> <!--在application中设置appkey-->
         <!--<meta-data android:value="@string/Umen_app_key" android:name="UMENG_APPKEY"/>-->
