@@ -18,7 +18,7 @@ public class JSApplication extends Application {
         super.onCreate();
         context = this;
         PATH.initPath();
-//        initHuanXin();
+        initHuanXin();
         initUmeng();
     }
 
@@ -34,11 +34,11 @@ public class JSApplication extends Application {
 // 是否自动下载附件类消息的缩略图等，默认为 true 这里和上边这个参数相关联
 //        options.setAutoDownloadThumbnail(true);
 //        自动登陆
-//        options.setAutoLogin(true);
+        options.setAutoLogin(true);
 //初始化
-//        EMClient.getInstance().init(this, options);
+        EMClient.getInstance().init(this, options);
 //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
-//        EMClient.getInstance().setDebugMode(true);
+        EMClient.getInstance().setDebugMode(true);
         try {
             EMClient.getInstance().createAccount("musics", "123456");
         } catch (HyphenateException e) {

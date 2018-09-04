@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.base
+package com.jushi.base.fragment
 
 import android.app.Dialog
 import android.content.Context
@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.Toast
-import com.jushi.muisc.chat.R
+import com.jushi.share.R
 
 open class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
     /**

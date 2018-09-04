@@ -135,6 +135,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 27 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: com.android.support.constraint:constraint-layout-solver:1.0.2@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.greenrobot:greendao:3.2.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:transition-27.0.2" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-v4-27.0.2" level="project" />
@@ -165,6 +166,7 @@
     <orderEntry type="library" name="Gradle: com.hyphenate:hyphenate-sdk-3.3.1" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:E.\master\chat_new\app\libs\wyf_shadow.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-fragment-27.0.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support.constraint:constraint-layout-1.0.2" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.31@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:E.\master\chat_new\pullToRefreshlibrary\libs\gif.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:design-27.0.2" level="project" />

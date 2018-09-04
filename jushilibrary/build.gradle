@@ -23,8 +23,10 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api rootProject.ext.dependencies["support-v7"]
-    api rootProject.ext.dependencies["kotlin"]
+    api rootProject.ext.dependencies["support-v4"]
     api rootProject.ext.dependencies["support-design"]
+    api rootProject.ext.dependencies["support-constraint"]
+    api rootProject.ext.dependencies["kotlin"]
     api rootProject.ext.dependencies["rxjava"]
     api rootProject.ext.dependencies["rxandroid"]
     api rootProject.ext.dependencies["okhttp3"]

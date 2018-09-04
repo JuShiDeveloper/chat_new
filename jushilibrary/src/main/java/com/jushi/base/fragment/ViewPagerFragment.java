@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.base;
+package com.jushi.base.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

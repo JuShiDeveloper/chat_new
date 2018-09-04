@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.base.ViewPagerFragment;
+import com.jushi.base.fragment.ViewPagerFragment;
 import com.jushi.muisc.chat.music.home_page.banner.controller.BannerImageController;
 import com.jushi.muisc.chat.music.home_page.artist.controller.HotArtistController;
 import com.jushi.muisc.chat.music.chart.ChartFragment;

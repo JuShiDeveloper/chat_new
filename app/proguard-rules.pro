@@ -215,4 +215,5 @@ public static final int *;
 
 #-------------------环信------------------------------------------
 -keep class com.hyphenate.** {*;}
+-keep class com.superrtc.** {*;}
 -dontwarn  com.hyphenate.**
