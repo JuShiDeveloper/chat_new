@@ -63,6 +63,8 @@
     <string name="confirm_psw">确认密码</string>
     <string name="register">注册</string>
     <string name="not_input_register_name">未填写用户名</string>
+    <string name="please_input_psw">请输入密码！</string>
+    <string name="please_input_psw_again">请再次输入密码！</string>
     <string name="input_psw_not_equals">两次输入的密码不一致！</string>
 
 

@@ -29,23 +29,6 @@ class LandingActivity : BaseActivity() {
     override fun initWidget() {
         setBtnClickListener()
         setRegisterBtnClickListener()
-        setRegistBtnStatus()
-    }
-
-    private fun setRegistBtnStatus() {
-        et_confirm_psw.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                register_btn.isEnabled = !TextUtils.isEmpty(s)
-            }
-
-        })
     }
 
     private fun setBtnClickListener() {
@@ -68,6 +51,10 @@ class LandingActivity : BaseActivity() {
             }
             if (TextUtils.isEmpty(registerName)) {
                 register_failure_hint.text = getString(R.string.not_input_register_name)
+                return@setOnClickListener
+            }
+            if (TextUtils.isEmpty(startPsw)){
+                register_failure_hint.text = getString(R.string.please_input_psw)
                 return@setOnClickListener
             }
             Observable.just("")

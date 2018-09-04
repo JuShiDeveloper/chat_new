@@ -9,8 +9,7 @@
         android:layout_height="match_parent"
         android:layout_marginEnd="25dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="100dp"
-        android:visibility="gone">
+        android:layout_marginTop="100dp">
 
         <ImageView
             android:id="@+id/app_logo"
@@ -89,7 +88,8 @@
         android:id="@+id/register_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/register_page_back_btn"
@@ -109,8 +109,8 @@
                 android:id="@+id/et_register_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="@string/input_register_user_name"
-                android:inputType="textPhonetic|number"
                 android:textColor="@color/c_001208" />
 
             <EditText
@@ -120,7 +120,7 @@
                 android:layout_below="@+id/et_register_name"
                 android:layout_marginTop="15dp"
                 android:hint="@string/landing_psw"
-                android:inputType="textPassword|numberPassword" />
+                android:inputType="textPassword" />
 
             <EditText
                 android:id="@+id/et_confirm_psw"
@@ -129,7 +129,7 @@
                 android:layout_below="@+id/et_regist_psw"
                 android:layout_marginTop="15dp"
                 android:hint="@string/confirm_psw"
-                android:inputType="textPassword|numberPassword" />
+                android:inputType="textPassword" />
 
             <TextView
                 android:id="@+id/register_btn"
