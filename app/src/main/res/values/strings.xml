@@ -54,7 +54,11 @@
     <string name="news">消息</string>
     <string name="my_friends">好友</string>
     <string name="my_page">我的</string>
-
+    <string name="landing_account_number">登陆账号</string>
+    <string name="landing_psw">密码</string>
+    <string name="landing">登陆</string>
+    <string name="forget_psw">忘记密码？</string>
+    <string name="new_user_register">新用户注册</string>
 
 
 </resources>
