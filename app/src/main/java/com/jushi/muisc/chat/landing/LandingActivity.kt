@@ -1,14 +1,26 @@
 package com.jushi.muisc.chat.landing
 
+import android.text.Editable
+import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.View
+import com.hyphenate.chat.EMClient
+import com.hyphenate.exceptions.HyphenateException
 import com.jushi.base.activity.BaseActivity
 import com.jushi.muisc.chat.R
 import kotlinx.android.synthetic.main.activity_regist_layout.*
+import rx.Observable
+import rx.Scheduler
+import rx.schedulers.Schedulers
 
 /**
  * 登陆/注册界面
  */
 class LandingActivity : BaseActivity() {
+
+    private lateinit var startPsw: String
+    private lateinit var endPsw: String
+    private lateinit var registerName: String
 
     override fun setContentView() {
         setContentView(R.layout.activity_regist_layout)
@@ -17,6 +29,23 @@ class LandingActivity : BaseActivity() {
     override fun initWidget() {
         setBtnClickListener()
         setRegisterBtnClickListener()
+        setRegistBtnStatus()
+    }
+
+    private fun setRegistBtnStatus() {
+        et_confirm_psw.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                register_btn.isEnabled = !TextUtils.isEmpty(s)
+            }
+
+        })
     }
 
     private fun setBtnClickListener() {
@@ -32,17 +61,32 @@ class LandingActivity : BaseActivity() {
 
     private fun setRegisterBtnClickListener() {
         register_btn.setOnClickListener {
+            registerName = et_register_name.text.toString()
             if (!isPswEquals()) {
                 register_failure_hint.text = getString(R.string.input_psw_not_equals)
-
+                return@setOnClickListener
             }
+            if (TextUtils.isEmpty(registerName)) {
+                register_failure_hint.text = getString(R.string.not_input_register_name)
+                return@setOnClickListener
+            }
+            Observable.just("")
+                    .subscribeOn(Schedulers.newThread())
+                    .map {
+                        try {
+                            EMClient.getInstance().createAccount(registerName, endPsw)
+                        } catch (e: HyphenateException) {
+                            e.printStackTrace()
+                        }
+                    }
+                    .subscribe({},{})
         }
     }
 
     private fun isPswEquals(): Boolean {
-        var startPsw = et_regist_psw.text.toString()
-        var secondPsw = et_confirm_psw.text.toString()
-        return startPsw == secondPsw
+        startPsw = et_regist_psw.text.toString()
+        endPsw = et_confirm_psw.text.toString()
+        return startPsw == endPsw
     }
 
     override fun initResource() {

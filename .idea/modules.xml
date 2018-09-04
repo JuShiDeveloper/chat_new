@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/chat_new.iml" filepath="$PROJECT_DIR$/chat_new.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chat_new1.iml" filepath="$PROJECT_DIR$/chat_new1.iml" />
       <module fileurl="file://$PROJECT_DIR$/jushilibrary/jushilibrary.iml" filepath="$PROJECT_DIR$/jushilibrary/jushilibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/pullToRefreshlibrary/pullToRefreshlibrary.iml" filepath="$PROJECT_DIR$/pullToRefreshlibrary/pullToRefreshlibrary.iml" />
     </modules>
