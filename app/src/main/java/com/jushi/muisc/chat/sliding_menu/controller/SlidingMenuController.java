@@ -15,9 +15,9 @@ import com.jushi.muisc.chat.sliding_menu.my_favorites.MyFavoritesActivity;
 import com.jushi.muisc.chat.sliding_menu.near_play.NearPlayActivity;
 import com.jushi.muisc.chat.sliding_menu.minterface.IController;
 import com.jushi.muisc.chat.transform.CircleTransform;
-import com.wyf.pictures.camera.OnPicturePathListener;
-import com.wyf.pictures.camera.PictureCapture;
-import com.wyf.pictures.camera.utils.Photo;
+import com.jushi.pictures.camera.OnPicturePathListener;
+import com.jushi.pictures.camera.PictureCapture;
+import com.jushi.pictures.camera.utils.Photo;
 
 /**
  * 侧滑菜单控制类

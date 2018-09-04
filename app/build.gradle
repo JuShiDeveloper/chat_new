@@ -60,8 +60,8 @@ dependencies {
     //弹幕
 //    api 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
     //从相册或拍照获取图片以及图片压缩
-    api 'com.jushi:pictures_lib:1.0.4'
-//    api project(':pictures')
+//    api 'com.jushi:pictures_lib:1.0.4'
+    api project(':jushilibrary')
     //圆形图片控件
 //    api 'de.hdodenhof:circleimageview:2.2.0'
 //    api 'io.reactivex:rxjava:latest.integration'
