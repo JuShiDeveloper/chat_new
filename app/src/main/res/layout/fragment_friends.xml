@@ -1,26 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".friends.friends.FriendsFragment">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/c_ffffff"
-        android:elevation="3dp">
-
-        <ImageView
-            android:id="@+id/add_friends_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_person_add_black"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
-
-    </RelativeLayout>
 
     <com.jushi.base.easyrecyclerview.EasyRecyclerView
         android:id="@+id/friends_listRecyclerView"
@@ -28,4 +12,14 @@
         android:layout_height="match_parent"
         app:scrollbars="none" />
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_friends_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
+        android:src="@drawable/ic_person_add_black"
+        app:backgroundTint="@color/c_2aafe3"/>
+
+</RelativeLayout>

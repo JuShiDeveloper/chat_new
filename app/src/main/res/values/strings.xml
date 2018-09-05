@@ -79,5 +79,8 @@
     <string name="input_friends_name">输入好友名称</string>
     <string name="input_add_friends_reason">填写添加好友的原因</string>
     <string name="add_friends">添加好友</string>
+    <string name="not_input_friends_name">请先填写好友名称</string>
+    <string name="add_msg_send_success">添加消息发送成功</string>
+    <string name="can_not_add_self">不能添加自己为好友</string>
 
 </resources>

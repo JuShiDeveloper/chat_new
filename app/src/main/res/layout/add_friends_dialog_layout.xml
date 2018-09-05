@@ -11,24 +11,34 @@
         android:layout_margin="10dp"
         android:background="@drawable/bg_mv_item_layout"
         android:elevation="3dp"
-        android:padding="5dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/dialog_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="@string/add_friends"
-            android:textColor="@color/e80b0b"
+            android:textColor="@color/c_2aafe3"
             android:textSize="@dimen/_18sp" />
+
+        <TextView
+            android:id="@+id/add_friends_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialog_title"
+            android:layout_marginBottom="6dp"
+            android:textColor="@color/e80b0b"
+            android:textSize="@dimen/_16sp"
+            android:layout_centerHorizontal="true"/>
 
         <EditText
             android:id="@+id/et_add_friends_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/dialog_title"
+            android:layout_below="@+id/add_friends_hint"
             android:hint="@string/input_friends_name"
             android:textSize="@dimen/_16sp" />
 
@@ -49,11 +59,12 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/et_add_friends_reason"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="70dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_cancel_btn_drawable"
             android:gravity="center"
             android:paddingBottom="8dp"
+            android:textColor="@color/c_000000"
             android:paddingEnd="15dp"
             android:paddingStart="15dp"
             android:paddingTop="8dp"
@@ -67,11 +78,12 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/et_add_friends_reason"
             android:layout_marginBottom="10dp"
-            android:layout_marginEnd="70dp"
+            android:layout_marginEnd="50dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_login_btn_drawable"
             android:gravity="center"
             android:paddingBottom="8dp"
+            android:textColor="@color/c_ffffff"
             android:paddingEnd="15dp"
             android:paddingStart="15dp"
             android:paddingTop="8dp"

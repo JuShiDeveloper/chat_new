@@ -12,5 +12,7 @@
     <color name="c_F9F9F9">#F9F9F9</color>
     <color name="c_EFEFEF">#EFEFEF</color>
     <color name="c_525252">#525252</color>
+    <color name="e80b0b">#e80b0b</color>
+    <color name="c_80e80b0b">#80e80b0b</color> <!--50%-->
 
 </resources>
