@@ -76,5 +76,8 @@
     <string name="User_is_already_login">已经登陆！</string>
     <string name="account_already_delete">账号已经被删除</string>
     <string name="account_login_on_other_device">账号在其他设备上登陆</string>
+    <string name="input_friends_name">输入好友名称</string>
+    <string name="input_add_friends_reason">填写添加好友的原因</string>
+    <string name="add_friends">添加好友</string>
 
 </resources>
