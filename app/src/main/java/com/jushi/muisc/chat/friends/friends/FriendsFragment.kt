@@ -7,10 +7,8 @@ import android.os.Handler
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.*
 import com.hyphenate.chat.EMClient
-import com.hyphenate.chat.EMMessage
 import com.jushi.base.fragment.ViewPagerFragment
 
 import com.jushi.muisc.chat.R
@@ -76,7 +74,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
         adapter.setOnItemClickListener(object : FriendsListAdapter.ItemClickListener {
             override fun onItemClick(userName: String) {
                 val intent = Intent()
-                intent.putExtra(ChatActivity.USER_NAME_KEY, userName)
+                intent.putExtra(ChatActivity.FRIENDS_NAME_KEY, userName)
                 startActivity(intent)
             }
         })

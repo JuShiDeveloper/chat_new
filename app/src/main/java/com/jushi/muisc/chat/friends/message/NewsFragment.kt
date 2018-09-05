@@ -30,37 +30,8 @@ class NewsFragment : ViewPagerFragment() {
     }
 
     override fun onFragmentVisibleChange(isVisible: Boolean) {
-        EMClient.getInstance().chatManager().addMessageListener(msgListener)
+
     }
 
-    private var msgListener: EMMessageListener = object : EMMessageListener {
 
-        override fun onMessageReceived(messages: List<EMMessage>) {
-            //收到消息
-            for (message in messages) {
-                val msgType = message.type
-                val textBody: EMTextMessageBody = message.body as EMTextMessageBody
-            }
-        }
-
-        override fun onCmdMessageReceived(messages: List<EMMessage>) {
-            //收到透传消息
-        }
-
-        override fun onMessageRead(messages: List<EMMessage>) {
-            //收到已读回执
-        }
-
-        override fun onMessageDelivered(message: List<EMMessage>) {
-            //收到已送达回执
-        }
-
-        fun onMessageRecalled(messages: List<EMMessage>) {
-            //消息被撤回
-        }
-
-        override fun onMessageChanged(message: EMMessage, change: Any) {
-            //消息状态变动
-        }
-    }
 }
