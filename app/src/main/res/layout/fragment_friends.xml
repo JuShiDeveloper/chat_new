@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".friends.friends.FriendsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/c_ffffff"
+        android:elevation="3dp">
+
+        <ImageView
+            android:id="@+id/add_friends_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_person_add_black"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <com.jushi.base.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/friends_listRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="friends" />
+        app:scrollbars="none" />
 
-</FrameLayout>
+</LinearLayout>

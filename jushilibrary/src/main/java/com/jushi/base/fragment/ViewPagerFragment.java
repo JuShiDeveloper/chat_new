@@ -50,6 +50,7 @@ public class ViewPagerFragment extends Fragment {
             onFragmentVisibleChange(true);
             isFragmentVisible = true;
         }
+        initWidget();
     }
 
     /**
@@ -57,4 +58,6 @@ public class ViewPagerFragment extends Fragment {
      * @param isVisible   true 表示可见，false表示不可见
      */
     protected  void onFragmentVisibleChange(boolean isVisible) {}
+
+    protected void initWidget(){}
 }
