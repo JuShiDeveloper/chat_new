@@ -1,9 +1,8 @@
-package com.jushi.muisc.chat.landing
+package com.jushi.muisc.chat.friends.login
 
 import android.app.Activity
 import android.content.Intent
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import com.hyphenate.EMCallBack
 import com.hyphenate.chat.EMClient

@@ -96,7 +96,7 @@
         <activity android:name=".sliding_menu.near_play.NearPlayActivity" />
         <activity android:name=".sliding_menu.my_favorites.MyFavoritesActivity" />
         <activity android:name=".sliding_menu.download_manager.DownloadActivity"/>
-        <activity android:name=".landing.LoginActivity"/>
+        <activity android:name="com.jushi.muisc.chat.friends.login.LoginActivity"/>
 
 
         <!--Umeng--> <!--在application中设置appkey-->

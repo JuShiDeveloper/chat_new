@@ -43,6 +43,9 @@ public class SlidingMenuController implements IController, View.OnClickListener 
         checkIsLogin();
     }
 
+    /**
+     * 应用启动时检查是否已登录
+     */
     private void checkIsLogin() {
         if (isLogin()) {
             showUserName(EMClient.getInstance().getCurrentUser());
