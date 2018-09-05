@@ -34,7 +34,6 @@
             android:layout_below="@+id/app_logo"
             android:layout_marginTop="15dp"
             android:hint="@string/landing_account_number"
-            android:textColor="@color/c_ffffff"
             android:textSize="@dimen/_18sp" />
 
         <EditText
@@ -44,7 +43,6 @@
             android:layout_below="@+id/et_landing_number"
             android:layout_marginTop="15dp"
             android:hint="@string/landing_psw"
-            android:textColor="@color/c_ffffff"
             android:textSize="@dimen/_18sp" />
 
         <TextView

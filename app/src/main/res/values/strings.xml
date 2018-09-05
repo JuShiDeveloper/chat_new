@@ -66,6 +66,8 @@
     <string name="please_input_psw">请输入密码！</string>
     <string name="please_input_psw_again">请再次输入密码！</string>
     <string name="input_psw_not_equals">两次输入的密码不一致！</string>
+    <string name="user_name_exists">用户名已存在！</string>
+    <string name="input_psw_must_">密码必须大于等于6位数！</string>
 
 
 </resources>
