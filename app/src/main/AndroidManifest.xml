@@ -36,7 +36,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".LoadingActivity"
+            android:name=".WelcomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Wellcome_Style">
             <!--<intent-filter>-->
@@ -47,7 +47,13 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".music.home_page.banner.ui.BannerViewActivity"
             android:screenOrientation="portrait" />
@@ -90,13 +96,7 @@
         <activity android:name=".sliding_menu.near_play.NearPlayActivity" />
         <activity android:name=".sliding_menu.my_favorites.MyFavoritesActivity" />
         <activity android:name=".sliding_menu.download_manager.DownloadActivity"/>
-        <activity android:name=".landing.LandingActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".landing.LoginActivity"/>
 
 
         <!--Umeng--> <!--在application中设置appkey-->

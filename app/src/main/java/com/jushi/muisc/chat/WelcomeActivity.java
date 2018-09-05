@@ -13,7 +13,7 @@ import com.jushi.muisc.chat.music.utils.music.LocalMusicUtils;
 import com.jushi.muisc.chat.utils.PATH;
 import com.umeng.analytics.MobclickAgent;
 
-public class LoadingActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

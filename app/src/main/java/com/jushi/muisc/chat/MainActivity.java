@@ -1,6 +1,8 @@
 package com.jushi.muisc.chat;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -18,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jushi.muisc.chat.landing.LoginActivity;
 import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
 import com.jushi.muisc.chat.sliding_menu.controller.SlidingMenuController;
 import com.jushi.muisc.chat.utils.DisplayUtils;
@@ -51,6 +54,8 @@ public class MainActivity extends AppCompatActivity
     private SlidingMenuController menuController;
     //判断是否添加过本地歌曲数据
     private boolean isSetList = false;
+    public static final String LOGIN_SUCCESS_KEY = "login_success";
+    private final int REQUEST_LOGIN_PAGE_CODE = 0x0001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +124,7 @@ public class MainActivity extends AppCompatActivity
 
         View headerView = nav.getHeaderView(0);
         headerImage = headerView.findViewById(R.id.header_imageView);
-        landingTv = headerView.findViewById(R.id.landing_tv);
+        landingTv = headerView.findViewById(R.id.login_tv);
 
     }
 
@@ -207,6 +212,20 @@ public class MainActivity extends AppCompatActivity
 
 //        drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void toLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivityForResult(intent, REQUEST_LOGIN_PAGE_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_LOGIN_PAGE_CODE) {
+            String loginName = data.getStringExtra(LOGIN_SUCCESS_KEY);
+            menuController.showUserName(loginName);
+        }
     }
 
     @Override

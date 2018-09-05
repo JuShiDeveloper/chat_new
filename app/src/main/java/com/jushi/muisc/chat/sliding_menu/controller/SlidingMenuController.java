@@ -1,16 +1,17 @@
 package com.jushi.muisc.chat.sliding_menu.controller;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.hyphenate.chat.EMClient;
+import com.jushi.muisc.chat.MainActivity;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.manager.ActivityManager;
-import com.jushi.muisc.chat.landing.LandingActivity;
 import com.jushi.muisc.chat.sliding_menu.localmusic.ui.LocalMusicActivity;
 import com.jushi.muisc.chat.sliding_menu.download_manager.DownloadActivity;
 import com.jushi.muisc.chat.sliding_menu.my_favorites.MyFavoritesActivity;
@@ -27,6 +28,7 @@ import com.jushi.pictures.camera.utils.Photo;
 public class SlidingMenuController implements IController, View.OnClickListener {
     private Context context;
     private ImageView headerImage;
+    private TextView tvLogin;
 
     public SlidingMenuController(Context context) {
         this.context = context;
@@ -35,10 +37,17 @@ public class SlidingMenuController implements IController, View.OnClickListener 
     @Override
     public void headerView(ImageView headerImage, TextView loadingTv) {
         this.headerImage = headerImage;
+        this.tvLogin = loadingTv;
         headerImage.setOnClickListener(this);
         loadingTv.setOnClickListener(this);
+        checkIsLogin();
     }
 
+    private void checkIsLogin() {
+        if (isLogin()) {
+            showUserName(EMClient.getInstance().getCurrentUser());
+        }
+    }
 
     @Override
     public void localMusic() {
@@ -66,15 +75,21 @@ public class SlidingMenuController implements IController, View.OnClickListener 
             case R.id.header_imageView:
                 getPicture();
                 break;
-            case R.id.landing_tv:
-                toRegisterActivity();
+            case R.id.login_tv:
+                if (isLogin()) { //如果已经登陆过
+                    return;
+                }
+                toLoginActivity();
                 break;
         }
     }
 
-    private void toRegisterActivity() {
-        Intent intent = new Intent(context, LandingActivity.class);
-        context.startActivity(intent);
+    private boolean isLogin() {
+        return EMClient.getInstance().isLoggedInBefore();
+    }
+
+    private void toLoginActivity() {
+        ((MainActivity) context).toLoginActivity();
     }
 
     private void getPicture() {
@@ -87,5 +102,9 @@ public class SlidingMenuController implements IController, View.OnClickListener 
                         .into(headerImage);
             }
         }, false);
+    }
+
+    public void showUserName(String userName) {
+        tvLogin.setText(userName);
     }
 }

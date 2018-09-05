@@ -1,5 +1,7 @@
 package com.jushi.muisc.chat.landing
 
+import android.app.Activity
+import android.content.Intent
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
@@ -7,6 +9,7 @@ import com.hyphenate.EMCallBack
 import com.hyphenate.chat.EMClient
 import com.hyphenate.exceptions.HyphenateException
 import com.jushi.base.activity.BaseActivity
+import com.jushi.muisc.chat.MainActivity
 import com.jushi.muisc.chat.R
 import kotlinx.android.synthetic.main.activity_regist_layout.*
 import rx.Observable
@@ -15,7 +18,7 @@ import rx.schedulers.Schedulers
 /**
  * 登陆/注册界面
  */
-class LandingActivity : BaseActivity() {
+class LoginActivity : BaseActivity() {
     /*---------注册填写的信息(注册名和密码)-----------*/
     private lateinit var registerName: String
     private lateinit var startPsw: String
@@ -155,7 +158,12 @@ class LandingActivity : BaseActivity() {
         private var loginStatus: String = ""
 
         override fun onSuccess() {
-
+            EMClient.getInstance().groupManager().loadAllGroups()
+            EMClient.getInstance().chatManager().loadAllConversations()
+            val intent = Intent()
+            intent.putExtra(MainActivity.LOGIN_SUCCESS_KEY, loginName)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
         }
 
         override fun onProgress(progress: Int, status: String?) {
