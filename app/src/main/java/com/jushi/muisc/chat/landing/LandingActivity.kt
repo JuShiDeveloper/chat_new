@@ -1,9 +1,6 @@
 package com.jushi.muisc.chat.landing
 
-import android.text.Editable
 import android.text.TextUtils
-import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import com.hyphenate.chat.EMClient
 import com.hyphenate.exceptions.HyphenateException
@@ -11,17 +8,20 @@ import com.jushi.base.activity.BaseActivity
 import com.jushi.muisc.chat.R
 import kotlinx.android.synthetic.main.activity_regist_layout.*
 import rx.Observable
-import rx.Scheduler
 import rx.schedulers.Schedulers
 
 /**
  * 登陆/注册界面
  */
 class LandingActivity : BaseActivity() {
-
+    /*---------注册填写的信息(注册名和密码)-----------*/
+    private lateinit var registerName: String
     private lateinit var startPsw: String
     private lateinit var endPsw: String
-    private lateinit var registerName: String
+
+    /*---------登陆填写的信息(登陆名和密码)---------*/
+    private lateinit var landingName: String
+    private lateinit var landingPsw: String
 
     override fun setContentView() {
         setContentView(R.layout.activity_regist_layout)
@@ -30,6 +30,7 @@ class LandingActivity : BaseActivity() {
     override fun initWidget() {
         setBtnClickListener()
         setRegisterBtnClickListener()
+        setLandingBtnClickListener()
     }
 
     private fun setBtnClickListener() {
@@ -64,7 +65,7 @@ class LandingActivity : BaseActivity() {
                 register_failure_hint.text = getString(R.string.please_input_psw)
                 return@setOnClickListener
             }
-            if (TextUtils.isEmpty(endPsw)){ //判断再次输入密码是否为空
+            if (TextUtils.isEmpty(endPsw)) { //判断再次输入密码是否为空
                 register_failure_hint.text = getString(R.string.please_input_psw_again)
                 return@setOnClickListener
             }
@@ -72,7 +73,7 @@ class LandingActivity : BaseActivity() {
                 register_failure_hint.text = getString(R.string.input_psw_not_equals)
                 return@setOnClickListener
             }
-            if (startPsw.length < 6){ //判断密码是否在6位数以上
+            if (startPsw.length < 6) { //判断密码是否在6位数以上
                 register_failure_hint.text = getString(R.string.input_psw_must_)
                 return@setOnClickListener
             }
@@ -80,14 +81,14 @@ class LandingActivity : BaseActivity() {
                     .subscribeOn(Schedulers.newThread())
                     .map {
                         try {
+                            //注册
                             EMClient.getInstance().createAccount(registerName, endPsw)
                             runOnUiThread { registerSuccess() }
                         } catch (e: HyphenateException) {
                             e.printStackTrace()
                             runOnUiThread { registerFailure() }
                         }
-                    }
-                    .subscribe({}, {})
+                    }.subscribe({}, {})
         }
     }
 
@@ -107,12 +108,30 @@ class LandingActivity : BaseActivity() {
         et_regist_psw.setText("")
         et_confirm_psw.setText("")
         register_failure_hint.text = ""
-        /*-----------显示登陆的布局------------------*/
+        /*-----------显示登陆的布局并显示刚才注册的用户名------------------*/
         showLandingLayout()
         et_landing_number.setText(registerName)
-
     }
 
+    private fun setLandingBtnClickListener() {
+        landing_btn.setOnClickListener {
+            landingName = et_landing_number.text.toString()
+            landingPsw = et_landing_psw.text.toString()
+            if (TextUtils.isEmpty(landingName)) { //判断输入的账号是否为空
+                landing_hint.text = getString(R.string.user_name_must_not_empty)
+                return@setOnClickListener
+            }
+            if (TextUtils.isEmpty(landingPsw)) { //判断密码是否为空
+                landing_hint.text = getString(R.string.psw_must_not_empty)
+                return@setOnClickListener
+            }
+            if (landingPsw.length < 6) { //密码是否在6位数以上
+                landing_hint.text = getString(R.string.psw_input_error)
+                return@setOnClickListener
+            }
+
+        }
+    }
 
     override fun initResource() {
 

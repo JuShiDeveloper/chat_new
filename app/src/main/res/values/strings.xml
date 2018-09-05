@@ -62,12 +62,15 @@
     <string name="input_register_user_name">输入注册用户名</string>
     <string name="confirm_psw">确认密码</string>
     <string name="register">注册</string>
-    <string name="not_input_register_name">未填写用户名</string>
+    <string name="not_input_register_name">未填写用户名！</string>
     <string name="please_input_psw">请输入密码！</string>
     <string name="please_input_psw_again">请再次输入密码！</string>
     <string name="input_psw_not_equals">两次输入的密码不一致！</string>
     <string name="user_name_exists">用户名已存在！</string>
     <string name="input_psw_must_">密码必须大于等于6位数！</string>
+    <string name="psw_must_not_empty">密码不能为空！</string>
+    <string name="user_name_must_not_empty">登陆账号不能为空!</string>
+    <string name="psw_input_error">密码输入错误！</string>
 
 
 </resources>
