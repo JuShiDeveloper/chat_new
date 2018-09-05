@@ -71,6 +71,8 @@
     <string name="psw_must_not_empty">密码不能为空！</string>
     <string name="user_name_must_not_empty">登陆账号不能为空!</string>
     <string name="psw_input_error">密码输入错误！</string>
-
+    <string name="User_do_not_exist">用户名不存在！</string>
+    <string name="Username_or_password_is_wrong">用户名或密码错误！</string>
+    <string name="User_is_already_login">已经登陆！</string>
 
 </resources>

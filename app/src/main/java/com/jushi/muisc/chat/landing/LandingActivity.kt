@@ -1,7 +1,9 @@
 package com.jushi.muisc.chat.landing
 
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
+import com.hyphenate.EMCallBack
 import com.hyphenate.chat.EMClient
 import com.hyphenate.exceptions.HyphenateException
 import com.jushi.base.activity.BaseActivity
@@ -20,8 +22,8 @@ class LandingActivity : BaseActivity() {
     private lateinit var endPsw: String
 
     /*---------登陆填写的信息(登陆名和密码)---------*/
-    private lateinit var landingName: String
-    private lateinit var landingPsw: String
+    private lateinit var loginName: String
+    private lateinit var loginPsw: String
 
     override fun setContentView() {
         setContentView(R.layout.activity_regist_layout)
@@ -30,7 +32,7 @@ class LandingActivity : BaseActivity() {
     override fun initWidget() {
         setBtnClickListener()
         setRegisterBtnClickListener()
-        setLandingBtnClickListener()
+        setLoginBtnClickListener()
     }
 
     private fun setBtnClickListener() {
@@ -38,17 +40,17 @@ class LandingActivity : BaseActivity() {
             showRegisterLayout()
         }
         register_page_back_btn.setOnClickListener {
-            showLandingLayout()
+            showLoginLayout()
         }
     }
 
-    private fun showLandingLayout() {
-        landing_layout.visibility = View.VISIBLE
+    private fun showLoginLayout() {
+        login_layout.visibility = View.VISIBLE
         register_layout.visibility = View.GONE
     }
 
     private fun showRegisterLayout() {
-        landing_layout.visibility = View.GONE
+        login_layout.visibility = View.GONE
         register_layout.visibility = View.VISIBLE
     }
 
@@ -109,27 +111,27 @@ class LandingActivity : BaseActivity() {
         et_confirm_psw.setText("")
         register_failure_hint.text = ""
         /*-----------显示登陆的布局并显示刚才注册的用户名------------------*/
-        showLandingLayout()
-        et_landing_number.setText(registerName)
+        showLoginLayout()
+        et_login_number.setText(registerName)
     }
 
-    private fun setLandingBtnClickListener() {
+    private fun setLoginBtnClickListener() {
         landing_btn.setOnClickListener {
-            landingName = et_landing_number.text.toString()
-            landingPsw = et_landing_psw.text.toString()
-            if (TextUtils.isEmpty(landingName)) { //判断输入的账号是否为空
-                landing_hint.text = getString(R.string.user_name_must_not_empty)
+            loginName = et_login_number.text.toString()
+            loginPsw = et_landing_psw.text.toString()
+            if (TextUtils.isEmpty(loginName)) { //判断输入的账号是否为空
+                login_hint.text = getString(R.string.user_name_must_not_empty)
                 return@setOnClickListener
             }
-            if (TextUtils.isEmpty(landingPsw)) { //判断密码是否为空
-                landing_hint.text = getString(R.string.psw_must_not_empty)
+            if (TextUtils.isEmpty(loginPsw)) { //判断密码是否为空
+                login_hint.text = getString(R.string.psw_must_not_empty)
                 return@setOnClickListener
             }
-            if (landingPsw.length < 6) { //密码是否在6位数以上
-                landing_hint.text = getString(R.string.psw_input_error)
+            if (loginPsw.length < 6) { //密码是否在6位数以上
+                login_hint.text = getString(R.string.psw_input_error)
                 return@setOnClickListener
             }
-
+            EMClient.getInstance().login(loginName, loginPsw, LoginCallBack())
         }
     }
 
@@ -138,8 +140,40 @@ class LandingActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        if (landing_layout.visibility == View.GONE) {
-            showLandingLayout()
+        if (login_layout.visibility == View.GONE) {
+            showLoginLayout()
         } else super.onBackPressed()
+    }
+
+    /**
+     * 登陆回调
+     */
+    inner class LoginCallBack : EMCallBack {
+        private val NOT_EXIST = "User dosn't exist"
+        private val WRONG = "Username or password is wrong"
+        private val ALREADY_LOGIN = "User is already login"
+        private var loginStatus: String = ""
+
+        override fun onSuccess() {
+
+        }
+
+        override fun onProgress(progress: Int, status: String?) {
+
+        }
+
+        override fun onError(code: Int, error: String) {
+            if (error == NOT_EXIST) {
+                loginStatus = getString(R.string.User_do_not_exist)
+            }
+            if (error == WRONG) {
+                loginStatus = getString(R.string.Username_or_password_is_wrong)
+            }
+            if (error == ALREADY_LOGIN) {
+                loginStatus = getString(R.string.User_is_already_login)
+            }
+            runOnUiThread { login_hint.text = loginStatus }
+        }
+
     }
 }

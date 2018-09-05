@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/landing_layout"
+        android:id="@+id/login_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginEnd="25dp"
@@ -28,7 +28,7 @@
             android:text="@string/app_name" />
 
         <TextView
-            android:id="@+id/landing_hint"
+            android:id="@+id/login_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/app_logo"
@@ -38,10 +38,10 @@
             android:textSize="@dimen/_14sp" />
 
         <EditText
-            android:id="@+id/et_landing_number"
+            android:id="@+id/et_login_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/landing_hint"
+            android:layout_below="@+id/login_hint"
             android:layout_marginTop="10dp"
             android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:hint="@string/landing_account_number"
@@ -51,7 +51,7 @@
             android:id="@+id/et_landing_psw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/et_landing_number"
+            android:layout_below="@+id/et_login_number"
             android:layout_marginTop="15dp"
             android:hint="@string/landing_psw"
             android:inputType="textPassword"
