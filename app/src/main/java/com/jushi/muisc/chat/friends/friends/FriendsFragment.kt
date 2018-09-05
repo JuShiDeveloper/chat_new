@@ -91,6 +91,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
     }
 
     override fun onRefresh() {
+        isRefresh = true
         initAllContacts()
     }
 
