@@ -1,6 +1,7 @@
 package com.jushi.muisc.chat.friends.friends
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.widget.SwipeRefreshLayout
@@ -9,11 +10,13 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
 import com.hyphenate.chat.EMClient
+import com.hyphenate.chat.EMMessage
 import com.jushi.base.fragment.ViewPagerFragment
 
 import com.jushi.muisc.chat.R
 import com.jushi.muisc.chat.friends.add_friends.AddFriendsDialog
 import com.jushi.muisc.chat.friends.add_friends.AddStatusListener
+import com.jushi.muisc.chat.friends.chat.ChatActivity
 import com.jushi.utils.SuccessToast
 import kotlinx.android.synthetic.main.fragment_friends.*
 import rx.Observable
@@ -66,6 +69,17 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
     override fun initWidget() {
         initRecyclerView()
         setAddBtnClickListener()
+        setItemClick()
+    }
+
+    private fun setItemClick() {
+        adapter.setOnItemClickListener(object : FriendsListAdapter.ItemClickListener {
+            override fun onItemClick(userName: String) {
+                val intent = Intent()
+                intent.putExtra(ChatActivity.USER_NAME_KEY, userName)
+                startActivity(intent)
+            }
+        })
     }
 
     private fun setAddBtnClickListener() {
