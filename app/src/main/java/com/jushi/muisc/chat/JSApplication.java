@@ -5,7 +5,6 @@ import android.content.Context;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
-import com.hyphenate.exceptions.HyphenateException;
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
 import com.jushi.muisc.chat.utils.PATH;
 import com.umeng.commonsdk.UMConfigure;
@@ -60,4 +59,5 @@ public class JSApplication extends Application {
     public static MusicDBTools getMusicDBTools() {
         return MusicDBTools.getInstance();
     }
+
 }

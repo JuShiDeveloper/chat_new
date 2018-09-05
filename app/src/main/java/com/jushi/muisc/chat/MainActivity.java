@@ -20,12 +20,17 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hyphenate.EMConnectionListener;
+import com.hyphenate.EMError;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.util.NetUtils;
 import com.jushi.muisc.chat.friends.login.LoginActivity;
 import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
 import com.jushi.muisc.chat.sliding_menu.controller.SlidingMenuController;
 import com.jushi.muisc.chat.utils.DisplayUtils;
 import com.jushi.muisc.chat.music.utils.music.LocalMusicUtils;
 import com.jushi.muisc.chat.utils.PATH;
+import com.jushi.muisc.chat.utils.ToastUtils;
 import com.jushi.muisc.chat.view.layout.FriendsLayout;
 import com.jushi.muisc.chat.view.main.MainTitleLayout;
 import com.jushi.muisc.chat.view.layout.MusicLayout;
@@ -97,6 +102,7 @@ public class MainActivity extends AppCompatActivity
         findWidget();
         setTitleLatoutListener();
         initSlidingMenuController();
+        registerConnectionListener();
     }
 
     private void initToolbar() {
@@ -227,6 +233,44 @@ public class MainActivity extends AppCompatActivity
             menuController.showUserName(loginName);
         }
     }
+
+    /**
+     * 注册即时通讯链接状态监听
+     */
+    private void registerConnectionListener() {
+        //注册一个监听连接状态的listener
+        EMClient.getInstance().addConnectionListener(new MyConnectionListener());
+    }
+
+    //实现ConnectionListener接口
+    private class MyConnectionListener implements EMConnectionListener {
+        @Override
+        public void onConnected() {
+        }
+
+        @Override
+        public void onDisconnected(final int error) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (error == EMError.USER_REMOVED) {
+                        // 显示帐号已经被移除
+                        ToastUtils.show(MainActivity.this, getString(R.string.account_already_delete));
+                    } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
+                        // 显示帐号在其他设备登录
+                        ToastUtils.show(MainActivity.this, getString(R.string.account_login_on_other_device));
+                    } else {
+                        if (NetUtils.hasNetwork(MainActivity.this)) {
+
+                        } else {
+                            //当前网络不可用，请检查网络设置
+                        }
+                    }
+                }
+            });
+        }
+    }
+
 
     @Override
     protected void onDestroy() {
