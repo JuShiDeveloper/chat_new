@@ -122,7 +122,7 @@ public class PlayController implements PlayMusicService.OnMusicPlayListener, Pla
         }
     }
 
-    public void setViewVisible(int visiblity){
+    public void setControllerViewVisible(int visiblity){
         controllerView.setVisible(visiblity);
     }
 }

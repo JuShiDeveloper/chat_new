@@ -158,12 +158,12 @@ public class MainActivity extends AppCompatActivity
                     case 1:
                         contentContainer.removeAllViews();
                         contentContainer.addView(getMusicOrFriendsView(TAG_MUAIS_LAYOUT));
-                        playController.setViewVisible(View.VISIBLE);
+                        playController.setControllerViewVisible(View.VISIBLE);
                         break;
                     case 2:
                         contentContainer.removeAllViews();
                         contentContainer.addView(getMusicOrFriendsView(TAG_FRIENDS_LAYOUT));
-                        playController.setViewVisible(View.GONE);
+                        playController.setControllerViewVisible(View.GONE);
                         break;
                 }
             }

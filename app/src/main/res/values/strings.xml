@@ -83,5 +83,6 @@
     <string name="add_msg_send_success">添加消息发送成功</string>
     <string name="can_not_add_self">不能添加自己为好友</string>
     <string name="send_btn">发送</string>
+    <string name="who_">%1$s :</string>
 
 </resources>

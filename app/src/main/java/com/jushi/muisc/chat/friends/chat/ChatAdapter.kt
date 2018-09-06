@@ -1,10 +1,12 @@
 package com.jushi.muisc.chat.friends.chat
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMMessage
@@ -19,16 +21,21 @@ class ChatAdapter(val mContext: Context) : RecyclerArrayAdapter<EMMessage>(mCont
 
     inner class ChatViewHolder : BaseViewHolder<EMMessage> {
         private val msgContent: TextView = `$`(R.id.msg_content)
+        private val msgLayout: LinearLayout = `$`(R.id.msg_layout)
+        private val msgUserName: TextView = `$`(R.id.msg_user_name)
 
         constructor(parent: ViewGroup?) : super(parent, R.layout.activity_chat_item_layout)
 
+        @SuppressLint("StringFormatInvalid")
         override fun setData(data: EMMessage) {
             super.setData(data)
             val msgType = data.type
             if (data.from == EMClient.getInstance().currentUser) {
-                msgContent.layoutParams = rightGravity()
-            }else{
-                msgContent.layoutParams = leftGravity()
+                msgLayout.layoutParams = rightGravity()
+                msgUserName.text = context.getString(R.string.who_, EMClient.getInstance().currentUser)
+            } else {
+                msgLayout.layoutParams = leftGravity()
+                msgUserName.text = context.getString(R.string.who_, data.from)
             }
             when (msgType) {
                 EMMessage.Type.TXT -> { //文本消息
