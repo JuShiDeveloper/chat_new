@@ -82,5 +82,6 @@
     <string name="not_input_friends_name">请先填写好友名称</string>
     <string name="add_msg_send_success">添加消息发送成功</string>
     <string name="can_not_add_self">不能添加自己为好友</string>
+    <string name="send_btn">发送</string>
 
 </resources>

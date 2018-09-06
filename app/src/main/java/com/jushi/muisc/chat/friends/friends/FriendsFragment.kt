@@ -73,7 +73,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
     private fun setItemClick() {
         adapter.setOnItemClickListener(object : FriendsListAdapter.ItemClickListener {
             override fun onItemClick(userName: String) {
-                val intent = Intent()
+                val intent = Intent(context,ChatActivity::class.java)
                 intent.putExtra(ChatActivity.FRIENDS_NAME_KEY, userName)
                 startActivity(intent)
             }

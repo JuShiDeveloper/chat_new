@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</LinearLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/chat_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        app:contentInsetStartWithNavigation="0dp"
+        app:navigationIcon="@drawable/back_icon_red" />
+
+    <com.jushi.base.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/chat_msg_RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/send_msg_layout"
+        android:layout_below="@+id/chat_toolbar"
+        app:scrollbars="none" />
+
+    <RelativeLayout
+        android:id="@+id/send_msg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:elevation="3dp">
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/c_999999" />
+
+        <EditText
+            android:id="@+id/et_input_msg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toStartOf="@+id/chat_send_btn"
+            android:textSize="@dimen/_18sp" />
+
+        <TextView
+            android:id="@+id/chat_send_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_login_btn_drawable"
+            android:padding="6dp"
+            android:text="@string/send_btn"
+            android:textColor="@color/c_ffffff"
+            android:textSize="@dimen/_18sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
