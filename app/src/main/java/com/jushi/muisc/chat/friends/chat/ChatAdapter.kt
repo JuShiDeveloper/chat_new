@@ -60,12 +60,20 @@ class ChatAdapter(val mContext: Context) : RecyclerArrayAdapter<EMMessage>(mCont
     private fun leftGravity(): FrameLayout.LayoutParams {
         val params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
         params.gravity = Gravity.LEFT
+        params.topMargin = 10
+        params.bottomMargin = 10
+        params.leftMargin = 30
+        params.rightMargin = 30
         return params
     }
 
     private fun rightGravity(): FrameLayout.LayoutParams {
         val params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
         params.gravity = Gravity.RIGHT
+        params.topMargin = 10
+        params.bottomMargin = 10
+        params.leftMargin = 30
+        params.rightMargin = 30
         return params
     }
 

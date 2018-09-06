@@ -4,6 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
+import android.util.Log
 import android.view.MenuItem
 import com.hyphenate.EMMessageListener
 import com.hyphenate.chat.EMClient
@@ -75,6 +76,13 @@ class ChatActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     override fun initResource() {
         getChatHistroyMsg()
         setAddMessageListener()
+        setItemClickListener()
+    }
+
+    private fun setItemClickListener() {
+        chatAdapter.setOnItemClickListener {
+            Log.v("==yufei==", "position = $it")
+        }
     }
 
     /**
@@ -94,6 +102,8 @@ class ChatActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         //获取startMsgId之前的pagesize条消息，此方法获取的messages SDK会自动存入到此会话中，
         // APP中无需再次把获取到的messages添加到会话中
         val moreList = conversation.loadMoreMsgFromDB(chatAdapter.allData[0].msgId, 20)
+        moreList.addAll(moreList.size, chatAdapter.allData)
+        chatAdapter.clear()
         chatAdapter.addAll(moreList)
         chatAdapter.notifyDataSetChanged()
     }
