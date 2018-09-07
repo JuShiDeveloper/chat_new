@@ -35,7 +35,9 @@ class ChatAdapter(val mContext: Context) : RecyclerArrayAdapter<EMMessage>(mCont
                 msgUserName.text = context.getString(R.string.who_, EMClient.getInstance().currentUser)
             } else {
                 msgLayout.layoutParams = leftGravity()
-                msgUserName.text = context.getString(R.string.who_, data.from)
+                if (data.from == context.getString(R.string.admin_)){
+                    msgUserName.text = context.getString(R.string.admin, data.from)
+                }else msgUserName.text = context.getString(R.string.who_, data.from)
             }
             when (msgType) {
                 EMMessage.Type.TXT -> { //文本消息

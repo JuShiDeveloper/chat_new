@@ -13,7 +13,6 @@ import com.hyphenate.chat.adapter.EMAConversation
 import com.jushi.base.activity.BaseActivity
 import com.jushi.muisc.chat.R
 import kotlinx.android.synthetic.main.activity_chat_layout.*
-import com.hyphenate.chat.EMChatManager
 
 
 /**
