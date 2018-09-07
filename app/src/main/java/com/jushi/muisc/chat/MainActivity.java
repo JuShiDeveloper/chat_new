@@ -67,7 +67,18 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         DisplayUtils.setStatusBarColor(this, R.color.color_status);
         setContentView(R.layout.activity_main);
+        ckeckIsLogin();
         initialize();
+    }
+
+    /**
+     * 检查如果已经登陆，加载所有会话和群主到本地
+     */
+    private void ckeckIsLogin() {
+        if (EMClient.getInstance().isLoggedInBefore()) {
+            EMClient.getInstance().groupManager().loadAllGroups();
+            EMClient.getInstance().chatManager().loadAllConversations();
+        }
     }
 
 

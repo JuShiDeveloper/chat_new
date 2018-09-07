@@ -30,6 +30,7 @@ class NewsFragment : ViewPagerFragment() {
     }
 
     override fun onFragmentVisibleChange(isVisible: Boolean) {
+        val allConversations = EMClient.getInstance().chatManager().allConversations
 
     }
 

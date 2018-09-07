@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.jushi.muisc.chat.MainActivity;
 import com.jushi.muisc.chat.R;
@@ -73,13 +74,35 @@ public class SlidingMenuController implements IController, View.OnClickListener 
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
         switch (view.getId()) {
             case R.id.header_imageView:
                 getPicture();
                 break;
             case R.id.login_tv:
-                if (isLogin()) { //如果已经登陆过
+                if (isLogin()) { //如果已经登陆过，退出登录
+                    EMClient.getInstance().logout(true,new EMCallBack(){
+
+                        @Override
+                        public void onSuccess() {
+                            view.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showUserName(context.getString(R.string.click_login));
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onError(int code, String error) {
+
+                        }
+
+                        @Override
+                        public void onProgress(int progress, String status) {
+
+                        }
+                    });
                     return;
                 }
                 toLoginActivity();

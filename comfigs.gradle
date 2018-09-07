@@ -32,7 +32,8 @@ ext {
             /*百度统计*/
             "baidu-mobstat"     : 'com.baidu.mobstat:mtj-sdk:latest.integration',
             /*环信即时通讯*/
-            "hyphenate"         : 'com.hyphenate:hyphenate-sdk:3.3.1',
+            "hyphenate"         : 'com.hyphenate:hyphenate-sdk:3.3.0',
+            "google-service"    : 'com.google.android.gms:play-services-gcm:9.4.0'
 
 
     ]

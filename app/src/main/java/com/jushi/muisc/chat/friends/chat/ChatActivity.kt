@@ -2,7 +2,6 @@ package com.jushi.muisc.chat.friends.chat
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.util.Log
 import android.view.MenuItem
@@ -10,10 +9,12 @@ import com.hyphenate.EMMessageListener
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMConversation
 import com.hyphenate.chat.EMMessage
-import com.hyphenate.chat.EMTextMessageBody
+import com.hyphenate.chat.adapter.EMAConversation
 import com.jushi.base.activity.BaseActivity
 import com.jushi.muisc.chat.R
 import kotlinx.android.synthetic.main.activity_chat_layout.*
+import com.hyphenate.chat.EMChatManager
+
 
 /**
  * 聊天界面
@@ -24,7 +25,7 @@ class ChatActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         const val FRIENDS_NAME_KEY = "friendsName"
     }
 
-    private lateinit var conversation: EMConversation
+    private var conversation: EMConversation? = null
     private val chatAdapter by lazy { ChatAdapter(this) }
     private lateinit var friendsName: String
 
@@ -74,8 +75,8 @@ class ChatActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     override fun initResource() {
-        getChatHistroyMsg()
         setAddMessageListener()
+        getChatHistroyMsg()
         setItemClickListener()
     }
 
@@ -89,8 +90,10 @@ class ChatActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
      * 获取消息记录
      */
     private fun getChatHistroyMsg() {
-        conversation = EMClient.getInstance().chatManager().getConversation(friendsName)
-        val allMessages = conversation.allMessages
+        val emClient = EMClient.getInstance()
+        val chatManager = emClient.chatManager()
+        conversation = chatManager.getConversation(friendsName) ?: return
+        val allMessages = conversation!!.allMessages
         chatAdapter.addAll(allMessages)
     }
 
@@ -101,7 +104,8 @@ class ChatActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         //SDK初始化加载的聊天记录为20条，到顶时需要去DB里获取更多
         //获取startMsgId之前的pagesize条消息，此方法获取的messages SDK会自动存入到此会话中，
         // APP中无需再次把获取到的messages添加到会话中
-        val moreList = conversation.loadMoreMsgFromDB(chatAdapter.allData[0].msgId, 20)
+        if (conversation == null) return
+        val moreList = conversation!!.loadMoreMsgFromDB(chatAdapter.allData[0].msgId, 20)
         moreList.addAll(moreList.size, chatAdapter.allData)
         chatAdapter.clear()
         chatAdapter.addAll(moreList)
