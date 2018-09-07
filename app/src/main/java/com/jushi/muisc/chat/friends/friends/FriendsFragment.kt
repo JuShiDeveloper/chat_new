@@ -15,7 +15,6 @@ import com.jushi.muisc.chat.R
 import com.jushi.muisc.chat.friends.add_friends.AddFriendsDialog
 import com.jushi.muisc.chat.friends.add_friends.AddStatusListener
 import com.jushi.muisc.chat.friends.chat.ChatActivity
-import com.jushi.utils.SuccessToast
 import kotlinx.android.synthetic.main.fragment_friends.*
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -48,6 +47,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
         }
     }
 
+
     private fun initAllContacts() {
         Observable.just("")
                 .subscribeOn(Schedulers.newThread())
@@ -70,10 +70,17 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
         setItemClick()
     }
 
+    /**
+     * 设置监听
+     */
+    override fun setListener() {
+
+    }
+
     private fun setItemClick() {
         adapter.setOnItemClickListener(object : FriendsListAdapter.ItemClickListener {
             override fun onItemClick(userName: String) {
-                val intent = Intent(context,ChatActivity::class.java)
+                val intent = Intent(context, ChatActivity::class.java)
                 intent.putExtra(ChatActivity.FRIENDS_NAME_KEY, userName)
                 startActivity(intent)
             }
@@ -111,8 +118,9 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
      * 在弹窗中发送好友添加请求成功
      */
     override fun onSendAddFriendsSuccess() {
-        handler.post({
-            SuccessToast.makeToast(context!!).show(context!!.getString(R.string.add_msg_send_success))
-        })
+//        handler.post({
+//            SuccessToast.makeToast(context!!).show(context!!.getString(R.string.add_msg_send_success))
+//        })
     }
+
 }

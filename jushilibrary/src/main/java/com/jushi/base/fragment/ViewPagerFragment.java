@@ -51,6 +51,7 @@ public class ViewPagerFragment extends Fragment {
             isFragmentVisible = true;
         }
         initWidget();
+        setListener();
     }
 
     /**
@@ -60,4 +61,6 @@ public class ViewPagerFragment extends Fragment {
     protected  void onFragmentVisibleChange(boolean isVisible) {}
 
     protected void initWidget(){}
+
+    protected void setListener(){}
 }

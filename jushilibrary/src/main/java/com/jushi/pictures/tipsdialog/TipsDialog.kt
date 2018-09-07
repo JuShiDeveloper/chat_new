@@ -16,11 +16,13 @@ class TipsDialog : BaseDialog {
     private lateinit var adapter: TipsDialogAdapter
     private var type: Any = "type"
     private var okBtnText: String = context.getString(R.string.tips_dialog_Drop)
+    private lateinit var builder: TipsBuilder
 
     constructor(context: Context, listener: OnDropBtnClickListener) : super(context) {
         this.listener = listener
         setDialogSystemLine()
         init(R.layout.exit_dialog_layout)
+        builder = TipsBuilder()
     }
 
     /**
@@ -48,11 +50,15 @@ class TipsDialog : BaseDialog {
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.Cancel_btn -> dismiss()
-            R.id.Drop_btn -> {
-                dismiss()
+            R.id.Cancel_btn -> {
                 if (listener != null)
-                    listener.onClick(Drop_btn!!, type)
+                    listener.onCancelButtonClick()
+                dismiss()
+            }
+            R.id.Drop_btn -> {
+                if (listener != null)
+                    listener.onOkButtonClick(Drop_btn!!, type)
+                dismiss()
             }
         }
     }
@@ -67,6 +73,15 @@ class TipsDialog : BaseDialog {
     }
 
     /**
+     * 设置取消按钮的文字
+     */
+    fun setCancelButtonText(text: String): TipsBuilder {
+        Cancel_btn.text = text
+        return builder
+    }
+
+
+    /**
      * 显示弹窗
      * 参数1：确定按钮的文字，默认为Drop
      * 参数2：可变参数，弹窗的提示内容
@@ -78,7 +93,7 @@ class TipsDialog : BaseDialog {
         adapter = TipsDialogAdapter(tipsText.toList(), context)
         ExitDialog_ListView.adapter = adapter
         show()
-        return TipsBuilder()
+        return builder
     }
 
     /**
@@ -95,7 +110,7 @@ class TipsDialog : BaseDialog {
         ExitDialog_ListView.adapter = adapter
         this.type = type
         show()
-        return TipsBuilder()
+        return builder
     }
 
     /**
@@ -104,7 +119,7 @@ class TipsDialog : BaseDialog {
     fun showDialog(): TipsBuilder {
         setListViewHeight(null)
         show()
-        return TipsBuilder()
+        return builder
     }
 
     /**
@@ -115,20 +130,60 @@ class TipsDialog : BaseDialog {
     }
 
     interface OnDropBtnClickListener {
-        fun onClick(v: View, type: Any)
+        fun onOkButtonClick(v: View, type: Any)
+        fun onCancelButtonClick()
     }
 
     inner class TipsBuilder {
-        fun setTextColor(color: Int) {
+        /**
+         * 设置按钮及提示信息的颜色
+         */
+        fun setTextColor(color: Int): TipsBuilder {
             Drop_btn.setTextColor(color)
             Cancel_btn.setTextColor(color)
             adapter.setContentColor(color)
+            return builder
         }
 
-        fun setTextColor(okBtnColor: Int, cancelBtnColor: Int, contentColor: Int) {
+        /**
+         * 分别设置按钮及提示信息的颜色
+         */
+        fun setTextColor(okBtnColor: Int, cancelBtnColor: Int, contentColor: Int): TipsBuilder {
             Drop_btn.setTextColor(okBtnColor)
             Cancel_btn.setTextColor(cancelBtnColor)
             adapter.setContentColor(contentColor)
+            return builder
+        }
+
+        /**
+         * 分别设置按钮的颜色
+         */
+        fun setTextColor(okBtnColor: Int, cancelBtnColor: Int): TipsBuilder {
+            Drop_btn.setTextColor(okBtnColor)
+            Cancel_btn.setTextColor(cancelBtnColor)
+            return builder
+        }
+
+        /**
+         * 设置确定按钮的文字
+         */
+        fun setOkButtonText(text: String): TipsBuilder {
+            Drop_btn.text = text
+            return builder
+        }
+
+        /**
+         * 设置提示信息
+         * @param tipsText 可变参数
+         */
+        fun setHintText(vararg tipsText: String): TipsBuilder {
+            adapter = TipsDialogAdapter(tipsText.toList(), context)
+            ExitDialog_ListView.adapter = adapter
+            return builder
+        }
+
+        fun show() {
+            this@TipsDialog.show()
         }
 
     }

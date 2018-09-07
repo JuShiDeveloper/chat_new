@@ -76,11 +76,16 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.ViewHo
     private void showTipsDialog(final Song song) {
         new TipsDialog(mContext, new TipsDialog.OnDropBtnClickListener() {
             @Override
-            public void onClick(View view, Object o) {
+            public void onOkButtonClick(View view, Object o) {
                 MusicDBTools.getInstance().deleteDownloadSong(song);
                 songs.remove(song);
                 notifyDataSetChanged();
                 ToastUtils.show(mContext,"删除成功");
+            }
+
+            @Override
+            public void onCancelButtonClick() {
+
             }
         }).showDialog(mContext.getString(R.string.delete),
                 "是否删除歌曲：" + song.getSongName());

@@ -21,8 +21,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hyphenate.EMConnectionListener;
+import com.hyphenate.EMContactListener;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.NetUtils;
 import com.jushi.muisc.chat.friends.login.LoginActivity;
 import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
@@ -34,7 +36,10 @@ import com.jushi.muisc.chat.utils.ToastUtils;
 import com.jushi.muisc.chat.view.layout.FriendsLayout;
 import com.jushi.muisc.chat.view.main.MainTitleLayout;
 import com.jushi.muisc.chat.view.layout.MusicLayout;
+import com.jushi.pictures.tipsdialog.TipsDialog;
 import com.umeng.analytics.MobclickAgent;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -114,6 +119,7 @@ public class MainActivity extends AppCompatActivity
         setTitleLatoutListener();
         initSlidingMenuController();
         registerConnectionListener();
+        setContactListener();
     }
 
     private void initToolbar() {
@@ -282,6 +288,72 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+    /**
+     * 监听好友状态事件
+     */
+    private void setContactListener() {
+        EMClient.getInstance().contactManager().setContactListener(new EMContactListener() {
+            @Override
+            public void onContactAdded(String username) {
+                //增加联系人时回调此方法
+            }
+
+            @Override
+            public void onContactDeleted(String username) {
+                //被删除时回调此方法
+            }
+
+            @Override
+            public void onContactInvited(String username, String reason) {
+                //收到好友邀请
+                toDetailContactInvited(username);
+            }
+
+            @Override
+            public void onFriendRequestAccepted(String username) {
+                //好友请求被同意
+            }
+
+            @Override
+            public void onFriendRequestDeclined(String username) {
+                //好友请求被拒绝
+            }
+        });
+    }
+
+    /**
+     * 处理添加好友邀请
+     *
+     * @param username
+     */
+    private void toDetailContactInvited(final String username) {
+        new TipsDialog(MainActivity.this, new TipsDialog.OnDropBtnClickListener() {
+            @Override
+            public void onOkButtonClick(@NotNull View v, @NotNull Object type) {
+                //同意好友请求
+                try {
+                    EMClient.getInstance().contactManager().acceptInvitation(username);
+                } catch (HyphenateException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onCancelButtonClick() {
+                //拒绝好友请求
+                try {
+                    EMClient.getInstance().contactManager().declineInvitation(username);
+                } catch (HyphenateException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).setCancelButtonText(getString(R.string.request_unaccepted))
+                .setOkButtonText(getString(R.string.request_accepted))
+                .setTextColor(getResources().getColor(R.color._999999), getResources().getColor(R.color.c_2aafe3))
+                .setHintText(username, getString(R.string.request_add_friends))
+                .show();
+    }
 
     @Override
     protected void onDestroy() {

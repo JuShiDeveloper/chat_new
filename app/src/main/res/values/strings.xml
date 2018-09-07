@@ -86,5 +86,8 @@
     <string name="who_">%1$s :</string>
     <string name="admin_">admin</string>
     <string name="admin">管理员：</string>
+    <string name="request_add_friends">请求添加你为好友！</string>
+    <string name="request_accepted">同意</string>
+    <string name="request_unaccepted">不同意</string>
 
 </resources>
