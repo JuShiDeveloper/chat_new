@@ -297,6 +297,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onContactAdded(String username) {
                 //增加联系人时回调此方法
+                //发送广播通知好友界面刷新好友列表数据
+                Intent intent = new Intent();
+                intent.setAction(getString(R.string.ADD_FRIENDS_SUCCESS_BROADCAST_ACTION));
+                sendBroadcast(intent);
             }
 
             @Override
@@ -318,6 +322,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onFriendRequestAccepted(String username) {
                 //好友请求被同意
+
             }
 
             @Override
@@ -355,7 +360,7 @@ public class MainActivity extends AppCompatActivity
             }
         }).setCancelButtonText(getString(R.string.request_unaccepted))
                 .setOkButtonText(getString(R.string.request_accepted))
-                .setTextColor( getResources().getColor(R.color.c_2aafe3),getResources().getColor(R.color._999999))
+                .setTextColor(getResources().getColor(R.color.c_2aafe3), getResources().getColor(R.color._999999))
                 .setHintText(username, getString(R.string.request_add_friends))
                 .show();
     }

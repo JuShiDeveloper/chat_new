@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.add_friends_dialog_layout.*
 class AddFriendsDialog(val mContext: Context, val listener: AddStatusListener) : BaseDialog(mContext) {
     private lateinit var friendsName: String
     private lateinit var addReason: String
+    private lateinit var friendsList: List<String>
 
     init {
         init(R.layout.add_friends_dialog_layout)
@@ -29,7 +30,10 @@ class AddFriendsDialog(val mContext: Context, val listener: AddStatusListener) :
     }
 
     private fun setBtnClickListener() {
-        add_Cancel.setOnClickListener { dismiss() }
+        add_Cancel.setOnClickListener {
+            clearData()
+            dismiss()
+        }
         add_OK_btn.setOnClickListener {
             friendsName = et_add_friends_name.text.toString()
             addReason = et_add_friends_reason.text.toString()
@@ -41,6 +45,10 @@ class AddFriendsDialog(val mContext: Context, val listener: AddStatusListener) :
                 add_friends_hint.text = mContext.getString(R.string.can_not_add_self)
                 return@setOnClickListener
             }
+            if (friendsList.contains(friendsName)) {
+                add_friends_hint.text = mContext.getString(R.string.can_not_repeat_add_friends)
+                return@setOnClickListener
+            }
             EMClient.getInstance().contactManager().aysncAddContact(friendsName, addReason, callBack)
             clearData()
         }
@@ -50,6 +58,10 @@ class AddFriendsDialog(val mContext: Context, val listener: AddStatusListener) :
         et_add_friends_name.setText("")
         et_add_friends_reason.setText("")
         add_friends_hint.text = ""
+    }
+
+    fun setFriendsList(friendsList: List<String>) {
+        this.friendsList = friendsList
     }
 
     private val callBack = object : EMCallBack {

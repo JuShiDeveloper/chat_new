@@ -1,7 +1,10 @@
 package com.jushi.muisc.chat.friends.friends
 
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.widget.SwipeRefreshLayout
@@ -29,7 +32,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
 
     private val adapter by lazy { FriendsListAdapter(context!!) }
     private val addFriendsDialog by lazy { AddFriendsDialog(context!!, this) }
-    private val handler by lazy { Handler() }
+    private lateinit var friendsList: List<String>
     private var isFinished = false
     private var isRefresh = false
 
@@ -38,6 +41,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
         // Inflate the layout for this fragment
         if (rootView == null)
             rootView = inflater.inflate(R.layout.fragment_friends, container, false)
+        context!!.registerReceiver(refreshFriendsListReceiver, IntentFilter(context!!.getString(R.string.ADD_FRIENDS_SUCCESS_BROADCAST_ACTION)))
         return rootView
     }
 
@@ -47,7 +51,9 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
         }
     }
 
-
+    /**
+     * 初始化所有的好友列表数据
+     */
     private fun initAllContacts() {
         Observable.just("")
                 .subscribeOn(Schedulers.newThread())
@@ -60,6 +66,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
                     }
                     adapter.addAll(it)
                     adapter.notifyDataSetChanged()
+                    friendsList = it
                     isFinished = true
                 }, {})
     }
@@ -89,6 +96,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
 
     private fun setAddBtnClickListener() {
         add_friends_btn.setOnClickListener {
+            addFriendsDialog.setFriendsList(friendsList)
             addFriendsDialog.show()
         }
     }
@@ -121,6 +129,22 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
 //        handler.post({
 //            SuccessToast.makeToast(context!!).show(context!!.getString(R.string.add_msg_send_success))
 //        })
+    }
+
+    private val refreshFriendsListReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            //接收从MainActivity中发送过来的添加好友成功的广播
+            if (intent!!.action == context!!.getString(R.string.ADD_FRIENDS_SUCCESS_BROADCAST_ACTION)) {
+                isRefresh = true
+                initAllContacts()
+            }
+        }
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        context!!.unregisterReceiver(refreshFriendsListReceiver)
     }
 
 }
