@@ -309,12 +309,12 @@ public class MainActivity extends AppCompatActivity
             }
 
             @Override
-            public void onContactInvited(final String username, String reason) {
+            public void onContactInvited(final String username, final String reason) {
                 //收到好友邀请
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        toDetailContactInvited(username);
+                        toDetailContactInvited(username,reason);
                     }
                 });
             }
@@ -336,8 +336,9 @@ public class MainActivity extends AppCompatActivity
      * 处理添加好友邀请
      *
      * @param username
+     * @param reason
      */
-    private void toDetailContactInvited(final String username) {
+    private void toDetailContactInvited(final String username, String reason) {
         new TipsDialog(MainActivity.this, new TipsDialog.OnDropBtnClickListener() {
             @Override
             public void onOkButtonClick(@NotNull View v, @NotNull Object type) {

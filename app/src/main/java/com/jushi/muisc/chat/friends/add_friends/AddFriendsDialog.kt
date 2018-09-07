@@ -1,8 +1,10 @@
 package com.jushi.muisc.chat.friends.add_friends
 
 import android.content.Context
+import android.graphics.Color
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import com.hyphenate.EMCallBack
 import com.hyphenate.chat.EMClient
 import com.jushi.base.dialog.BaseDialog
@@ -19,6 +21,20 @@ class AddFriendsDialog(val mContext: Context, val listener: AddStatusListener) :
 
     init {
         init(R.layout.add_friends_dialog_layout)
+        setDialogSystemLine()
+    }
+
+    /**
+     * 适配低版本顶部的出现的蓝色横线问题
+     */
+    private fun setDialogSystemLine() {
+        try {
+            var divierId = context.resources.getIdentifier("android:id/titleDivider", null, null)
+            val divider: View = this.findViewById(divierId)
+            divider.setBackgroundColor(Color.TRANSPARENT) //横线透明色
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     override fun initResource() {
@@ -77,7 +93,6 @@ class AddFriendsDialog(val mContext: Context, val listener: AddStatusListener) :
         }
 
         override fun onError(code: Int, error: String) {
-            Log.v("==yufei==", error)
 
         }
     }
