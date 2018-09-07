@@ -305,9 +305,14 @@ public class MainActivity extends AppCompatActivity
             }
 
             @Override
-            public void onContactInvited(String username, String reason) {
+            public void onContactInvited(final String username, String reason) {
                 //收到好友邀请
-                toDetailContactInvited(username);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        toDetailContactInvited(username);
+                    }
+                });
             }
 
             @Override
@@ -350,7 +355,7 @@ public class MainActivity extends AppCompatActivity
             }
         }).setCancelButtonText(getString(R.string.request_unaccepted))
                 .setOkButtonText(getString(R.string.request_accepted))
-                .setTextColor(getResources().getColor(R.color._999999), getResources().getColor(R.color.c_2aafe3))
+                .setTextColor( getResources().getColor(R.color.c_2aafe3),getResources().getColor(R.color._999999))
                 .setHintText(username, getString(R.string.request_add_friends))
                 .show();
     }
