@@ -12,41 +12,47 @@ import java.util.Date;
 
 public class DateUtils {
 
+    public static final String HH_mm = "HH:mm";
+    public static final String YY_MM_DD = "yyyy/MM/dd";
+    public static final String YY_MM_DD_HH_mm = "yyyy/MM/dd HH:mm";
+    public static final String MM_DD_HH_mm = "M月d日 HH:mm";
+
     //获得当前日期
-    public static String getCurrentDate(){
+    public static String getCurrentDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
     //获得当前时间
-    public static String getCurrentTime(){
+    public static String getCurrentTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
     //时间戳转换为日期
-    public static String timeToDate(long time){
-        time = time*1000;
-        SimpleDateFormat format =  new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    public static String timeToDate(long time, String pattern) {
+//        time = time * 1000;
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
         String d = format.format(time);
         return d;
     }
 
     /**
      * 日期转为时间戳
+     *
      * @return
      */
-    public static long dateToTime(String date){
-        String[] times = date.substring(0,5).split(":");
-        long dateTime = Long.parseLong(times[0]) * 3600  + Long.parseLong(times[1])* 60;
+    public static long dateToTime(String date) {
+        String[] times = date.substring(0, 5).split(":");
+        long dateTime = Long.parseLong(times[0]) * 3600 + Long.parseLong(times[1]) * 60;
         return dateTime;
     }
 
     //根据日期获得一周中对应的一天
     @SuppressLint("WrongConstant")
-    public static String dateToWeek(String dateTime,Context context){
+    public static String dateToWeek(String dateTime, Context context) {
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 //        String[] week = {context.getResources().getString(R.string.Sunday), context.getResources().getString(R.string.Monday),
 //                context.getResources().getString(R.string.Tuesday),context.getResources().getString(R.string.Wednesday),
@@ -74,14 +80,14 @@ public class DateUtils {
      * @param duration
      * @return
      */
-    public static String getGenTimeMS(long duration){
+    public static String getGenTimeMS(long duration) {
         long timef = (duration / 1000) / 60;
         long time_s = (duration / 1000) % 60;
         String allTime = "";
-        if (time_s < 10){
-            allTime = timef + ":0"+time_s;
-        }else {
-            allTime = timef + ":"+time_s;
+        if (time_s < 10) {
+            allTime = timef + ":0" + time_s;
+        } else {
+            allTime = timef + ":" + time_s;
         }
         return allTime;
     }

@@ -8,16 +8,16 @@
         android:id="@+id/msg_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_login_btn_drawable"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:elevation="3dp">
 
         <TextView
             android:id="@+id/msg_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_18sp"
-            android:textStyle="italic"/>
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/msg_content"

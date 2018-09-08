@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -32,12 +33,14 @@ class ChatAdapter(val mContext: Context) : RecyclerArrayAdapter<EMMessage>(mCont
             val msgType = data.type
             if (data.from == EMClient.getInstance().currentUser) {
                 msgLayout.layoutParams = rightGravity()
-                msgUserName.text = context.getString(R.string.who_, EMClient.getInstance().currentUser)
+                msgLayout.setBackgroundResource(R.drawable.bg_login_btn_drawable)
             } else {
                 msgLayout.layoutParams = leftGravity()
-                if (data.from == context.getString(R.string.admin_)){
+                msgLayout.setBackgroundResource(R.drawable.bg_chat_msg_white_drawable)
+                if (data.from == context.getString(R.string.admin_)) {
                     msgUserName.text = context.getString(R.string.admin, data.from)
-                }else msgUserName.text = context.getString(R.string.who_, data.from)
+                    msgUserName.visibility = View.VISIBLE
+                }
             }
             when (msgType) {
                 EMMessage.Type.TXT -> { //文本消息

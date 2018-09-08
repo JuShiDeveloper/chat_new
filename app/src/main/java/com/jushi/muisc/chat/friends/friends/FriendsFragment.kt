@@ -68,6 +68,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
                     adapter.notifyDataSetChanged()
                     friendsList = it
                     isFinished = true
+                    friends_listRecyclerView.setRefreshing(false)
                 }, {})
     }
 
@@ -104,6 +105,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
     private fun initRecyclerView() {
         friends_listRecyclerView.setLayoutManager(LinearLayoutManager(context))
         friends_listRecyclerView.setRefreshListener(this)
+        friends_listRecyclerView.setRefreshing(true)
         friends_listRecyclerView.adapter = adapter
         friends_listRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
@@ -119,6 +121,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
 
     override fun onRefresh() {
         isRefresh = true
+        friends_listRecyclerView.setRefreshing(true)
         initAllContacts()
     }
 

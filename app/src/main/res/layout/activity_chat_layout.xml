@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/chat_activity_bg_4">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/chat_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
+        app:titleTextColor="@color/c_001208"
         app:contentInsetStartWithNavigation="0dp"
         app:navigationIcon="@drawable/back_icon_red" />
 
@@ -31,7 +33,7 @@
         <View
             android:id="@+id/line"
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
+            android:layout_height="0.8dp"
             android:layout_alignParentTop="true"
             android:background="@color/c_999999" />
 
