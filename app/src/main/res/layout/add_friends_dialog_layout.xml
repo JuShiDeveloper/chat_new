@@ -29,16 +29,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/dialog_title"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="6dp"
             android:textColor="@color/e80b0b"
-            android:textSize="@dimen/_16sp"
-            android:layout_centerHorizontal="true"/>
+            android:textSize="@dimen/_16sp" />
 
         <EditText
             android:id="@+id/et_add_friends_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/add_friends_hint"
+            android:digits="@string/editText_digits"
+            android:padding="5dp"
+            android:background="@drawable/bg_add_friends_reason_drawable"
             android:hint="@string/input_friends_name"
             android:textSize="@dimen/_16sp" />
 
@@ -47,8 +50,9 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_below="@+id/et_add_friends_name"
+            android:padding="5dp"
             android:layout_marginTop="10dp"
-            android:background="@null"
+            android:background="@drawable/bg_add_friends_reason_drawable"
             android:gravity="start"
             android:hint="@string/input_add_friends_reason" />
 
@@ -64,11 +68,11 @@
             android:background="@drawable/bg_cancel_btn_drawable"
             android:gravity="center"
             android:paddingBottom="8dp"
-            android:textColor="@color/c_000000"
             android:paddingEnd="15dp"
             android:paddingStart="15dp"
             android:paddingTop="8dp"
             android:text="@string/js_cancel"
+            android:textColor="@color/c_000000"
             android:textSize="@dimen/_16sp" />
 
         <TextView
@@ -83,11 +87,11 @@
             android:background="@drawable/bg_login_btn_drawable"
             android:gravity="center"
             android:paddingBottom="8dp"
-            android:textColor="@color/c_ffffff"
             android:paddingEnd="15dp"
             android:paddingStart="15dp"
             android:paddingTop="8dp"
             android:text="@string/OK"
+            android:textColor="@color/c_ffffff"
             android:textSize="@dimen/_16sp" />
 
     </RelativeLayout>

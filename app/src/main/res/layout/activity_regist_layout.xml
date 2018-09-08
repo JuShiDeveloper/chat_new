@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_hint"
             android:layout_marginTop="10dp"
-            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:digits="@string/editText_digits"
             android:hint="@string/landing_account_number"
             android:textSize="@dimen/_18sp" />
 
@@ -122,7 +122,7 @@
                 android:id="@+id/et_register_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                android:digits="@string/editText_digits"
                 android:hint="@string/input_register_user_name"
                 android:textColor="@color/c_001208" />
 

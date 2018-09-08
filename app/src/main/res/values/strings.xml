@@ -94,5 +94,7 @@
 
     <!--添加好友成功后的广播-->
     <string name="ADD_FRIENDS_SUCCESS_BROADCAST_ACTION">action.add.friends.success</string>
+    <!--限制只能输入数字和字母-->
+    <string name="editText_digits">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
 
 </resources>
