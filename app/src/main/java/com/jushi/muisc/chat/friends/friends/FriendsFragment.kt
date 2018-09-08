@@ -69,7 +69,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
                     friendsList = it
                     isFinished = true
                     friends_listRecyclerView.setRefreshing(false)
-                }, {})
+                }, {friends_listRecyclerView.setRefreshing(false)})
     }
 
     override fun initWidget() {
@@ -105,7 +105,6 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
     private fun initRecyclerView() {
         friends_listRecyclerView.setLayoutManager(LinearLayoutManager(context))
         friends_listRecyclerView.setRefreshListener(this)
-        friends_listRecyclerView.setRefreshing(true)
         friends_listRecyclerView.adapter = adapter
         friends_listRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
@@ -136,10 +135,15 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
 
     private val refreshFriendsListReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            //接收从MainActivity中发送过来的添加好友成功的广播
-            if (intent!!.action == context!!.getString(R.string.ADD_FRIENDS_SUCCESS_BROADCAST_ACTION)) {
+            //接收从MainActivity中发送过来的添加好友成功的广播,和登陆成功的广播
+            if (intent!!.action == context!!.getString(R.string.ADD_FRIENDS_SUCCESS_BROADCAST_ACTION)
+                    || intent!!.action == context!!.getString(R.string.LOGIN_SUCCESS_BROADCAST_ACTION)) {
                 isRefresh = true
                 initAllContacts()
+            }
+            //退出登录成功的广播
+            if (intent!!.action == context!!.getString(R.string.EXIT_LOGIN_SUCCESS_BROADCAST_ACTION)){
+                adapter.clear()
             }
         }
 

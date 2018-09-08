@@ -1,6 +1,7 @@
 package com.jushi.muisc.chat.sliding_menu.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.jushi.muisc.chat.sliding_menu.my_favorites.MyFavoritesActivity;
 import com.jushi.muisc.chat.sliding_menu.near_play.NearPlayActivity;
 import com.jushi.muisc.chat.sliding_menu.minterface.IController;
 import com.jushi.muisc.chat.transform.CircleTransform;
+import com.jushi.muisc.chat.utils.ToastUtils;
 import com.jushi.pictures.camera.OnPicturePathListener;
 import com.jushi.pictures.camera.PictureCapture;
 import com.jushi.pictures.camera.utils.Photo;
@@ -81,14 +83,18 @@ public class SlidingMenuController implements IController, View.OnClickListener 
                 break;
             case R.id.login_tv:
                 if (isLogin()) { //如果已经登陆过，退出登录
-                    EMClient.getInstance().logout(true,new EMCallBack(){
+                    EMClient.getInstance().logout(true, new EMCallBack() {
 
                         @Override
                         public void onSuccess() {
+
                             view.post(new Runnable() {
                                 @Override
                                 public void run() {
+                                    ToastUtils.show(context, context.getString(R.string.exit_login_success));
                                     showUserName(context.getString(R.string.click_login));
+                                    //发送退出登录成功的广播
+                                    context.sendBroadcast(new Intent().setAction(context.getString(R.string.EXIT_LOGIN_SUCCESS_BROADCAST_ACTION)));
                                 }
                             });
                         }

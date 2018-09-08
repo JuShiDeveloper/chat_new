@@ -1,15 +1,19 @@
 package com.jushi.muisc.chat.friends.login
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.hyphenate.EMCallBack
 import com.hyphenate.chat.EMClient
 import com.hyphenate.exceptions.HyphenateException
 import com.jushi.base.activity.BaseActivity
 import com.jushi.muisc.chat.MainActivity
 import com.jushi.muisc.chat.R
+import com.jushi.muisc.chat.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_regist_layout.*
 import rx.Observable
 import rx.schedulers.Schedulers
@@ -134,7 +138,13 @@ class LoginActivity : BaseActivity() {
                 return@setOnClickListener
             }
             EMClient.getInstance().login(loginName, loginPsw, LoginCallBack())
+            hideKeyboard()
         }
+    }
+
+    private fun hideKeyboard() {
+        var imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(et_landing_psw.windowToken, 0)
     }
 
     override fun initResource() {
@@ -162,11 +172,15 @@ class LoginActivity : BaseActivity() {
             val intent = Intent()
             intent.putExtra(MainActivity.LOGIN_SUCCESS_KEY, loginName)
             setResult(Activity.RESULT_OK, intent)
+            //发送一个登陆成功广播
+            sendBroadcast(Intent().setAction(getString(R.string.LOGIN_SUCCESS_BROADCAST_ACTION)))
+            runOnUiThread {
+                ToastUtils.show(this@LoginActivity,getString(R.string.login_success))
+            }
             finish()
         }
 
         override fun onProgress(progress: Int, status: String?) {
-
         }
 
         override fun onError(code: Int, error: String) {

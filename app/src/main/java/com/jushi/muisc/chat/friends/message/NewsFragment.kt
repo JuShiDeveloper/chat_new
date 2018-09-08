@@ -1,7 +1,10 @@
 package com.jushi.muisc.chat.friends.message
 
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
@@ -40,12 +43,12 @@ class NewsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListener {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_news, container, false)
         }
+        context!!.registerReceiver(refreshDataReceiver, IntentFilter(context!!.getString(R.string.LOGIN_SUCCESS_BROADCAST_ACTION)))
         return rootView
     }
 
     override fun initWidget() {
         initRecyclerView()
-
     }
 
     private fun initRecyclerView() {
@@ -85,14 +88,14 @@ class NewsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListener {
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    if (isRefresh){
-                        messageAdapter.removeAll()
+                    if (isRefresh) {
+                        messageAdapter.clear()
                     }
                     messageAdapter.addAll(it)
                     messageAdapter.notifyDataSetChanged()
                     isFinished = true
                     msg_RecyclerView.setRefreshing(false)
-                },{})
+                }, {msg_RecyclerView.setRefreshing(false)})
     }
 
 
@@ -102,4 +105,22 @@ class NewsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListener {
         initAllConversations()
     }
 
+    private val refreshDataReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            //接收登陆成功的广播
+            if (intent!!.action == context!!.getString(R.string.LOGIN_SUCCESS_BROADCAST_ACTION)) {
+                isRefresh = true
+                initAllConversations()
+            }
+            //退出登录成功的广播
+            if (intent!!.action == context!!.getString(R.string.EXIT_LOGIN_SUCCESS_BROADCAST_ACTION)){
+                messageAdapter.clear()
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        context!!.unregisterReceiver(refreshDataReceiver)
+    }
 }
