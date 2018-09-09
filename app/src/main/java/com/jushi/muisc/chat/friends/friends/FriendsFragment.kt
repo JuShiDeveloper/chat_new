@@ -18,6 +18,7 @@ import com.jushi.muisc.chat.R
 import com.jushi.muisc.chat.friends.add_friends.AddFriendsDialog
 import com.jushi.muisc.chat.friends.add_friends.AddStatusListener
 import com.jushi.muisc.chat.friends.chat.ChatActivity
+import com.jushi.muisc.chat.friends.login.LoginActivity
 import kotlinx.android.synthetic.main.fragment_friends.*
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -69,7 +70,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
                     friendsList = it
                     isFinished = true
                     friends_listRecyclerView.setRefreshing(false)
-                }, {friends_listRecyclerView.setRefreshing(false)})
+                }, { friends_listRecyclerView.setRefreshing(false) })
     }
 
     override fun initWidget() {
@@ -97,6 +98,11 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
 
     private fun setAddBtnClickListener() {
         add_friends_btn.setOnClickListener {
+            if (!EMClient.getInstance().isLoggedInBefore) { //如果未登陆就跳转到登陆页面
+                val intent = Intent(context, LoginActivity::class.java)
+                startActivity(intent)
+                return@setOnClickListener
+            }
             addFriendsDialog.setFriendsList(friendsList)
             addFriendsDialog.show()
         }
@@ -144,7 +150,7 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
         }
     }
 
-    fun exitLoginSuccess(){
+    fun exitLoginSuccess() {
         adapter.clear()
     }
 
