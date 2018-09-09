@@ -122,7 +122,7 @@ class NewsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListener {
                     if (it.isEmpty()) {
                         no_msg_layout.visibility = View.VISIBLE
                         return@subscribe
-                    }else{
+                    } else {
                         no_msg_layout.visibility = View.GONE
                         please_login_btn.visibility = View.GONE
                     }
@@ -140,7 +140,7 @@ class NewsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListener {
 
 
     override fun onRefresh() {
-        if (!isLogin()){
+        if (!isLogin()) {
             messageAdapter.clear()
             please_login_btn.visibility = View.VISIBLE
             msg_RecyclerView.setRefreshing(false)
@@ -165,7 +165,7 @@ class NewsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListener {
     /**
      * 退出登录成功
      */
-    fun exitLoginSuccess(){
+    fun exitLoginSuccess() {
         messageAdapter.clear()
         please_login_btn.visibility = View.VISIBLE
     }

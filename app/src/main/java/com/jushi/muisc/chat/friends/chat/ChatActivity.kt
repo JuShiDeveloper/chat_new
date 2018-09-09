@@ -1,5 +1,6 @@
 package com.jushi.muisc.chat.friends.chat
 
+import android.content.Intent
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
@@ -159,6 +160,7 @@ class ChatActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onDestroy() {
         super.onDestroy()
+
         //记得在不需要的时候移除listener，如在activity的onDestroy()时
         EMClient.getInstance().chatManager().removeMessageListener(msgListener)
     }
