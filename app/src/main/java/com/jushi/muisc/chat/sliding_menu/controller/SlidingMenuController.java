@@ -92,14 +92,12 @@ public class SlidingMenuController implements IController, View.OnClickListener 
 
                         @Override
                         public void onSuccess() {
-
                             view.post(new Runnable() {
                                 @Override
                                 public void run() {
                                     ToastUtils.show(context, context.getString(R.string.exit_login_success));
                                     showUserName(context.getString(R.string.click_login));
-                                    //发送退出登录成功的广播
-                                    context.sendBroadcast(new Intent().setAction(context.getString(R.string.EXIT_LOGIN_SUCCESS_BROADCAST_ACTION)));
+                                    ((MainActivity)context).exitLoginSuccess();
                                 }
                             });
                         }

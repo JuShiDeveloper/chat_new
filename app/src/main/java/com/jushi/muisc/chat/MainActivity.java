@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity
     private Map<String, View> views = new HashMap<>();
     private final String TAG_MUAIS_LAYOUT = MusicLayout.class.getSimpleName();
     private final String TAG_FRIENDS_LAYOUT = FriendsLayout.class.getSimpleName();
+    private FriendsLayout friendsLayout;
     //播放控制栏
     private PlayController playController;
     //侧滑菜单控制类
@@ -172,14 +173,15 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onStateChanged(int state) {
                 switch (state) {
-                    case 1:
+                    case MainTitleLayout.MUSIC_STATE:
                         contentContainer.removeAllViews();
                         contentContainer.addView(getMusicOrFriendsView(TAG_MUAIS_LAYOUT));
                         playController.setControllerViewVisible(View.VISIBLE);
                         break;
-                    case 2:
+                    case MainTitleLayout.FRIENDS_STATE:
                         contentContainer.removeAllViews();
-                        contentContainer.addView(getMusicOrFriendsView(TAG_FRIENDS_LAYOUT));
+                        friendsLayout = (FriendsLayout) getMusicOrFriendsView(TAG_FRIENDS_LAYOUT);
+                        contentContainer.addView(friendsLayout);
                         playController.setControllerViewVisible(View.GONE);
                         break;
                 }
@@ -364,6 +366,13 @@ public class MainActivity extends AppCompatActivity
                 .setTextColor(getResources().getColor(R.color.c_2aafe3), getResources().getColor(R.color._999999))
                 .setHintText(username, getString(R.string.request_add_friends))
                 .show();
+    }
+
+    /**
+     * 退出登录成功
+     */
+    public void exitLoginSuccess(){
+        friendsLayout.exitLoginSuccess();
     }
 
     @Override

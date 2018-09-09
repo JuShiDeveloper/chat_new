@@ -20,7 +20,7 @@ import com.jushi.muisc.chat.friends.message.NewsFragment
  */
 
 class FriendsLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr),
-        BottomNavigationView.OnNavigationItemSelectedListener ,FriendsLayoutListener{
+        BottomNavigationView.OnNavigationItemSelectedListener, FriendsLayoutListener {
 
     private lateinit var navigationView: BottomNavigationView
     private var fragments = HashMap<String, Fragment>()
@@ -52,6 +52,14 @@ class FriendsLayout @JvmOverloads constructor(context: Context, attrs: Attribute
 
     override fun toFriendsPage() {
         navigationView.selectedItemId = R.id.my_friends
+    }
+
+    /**
+     * 退出登录成功
+     */
+    fun exitLoginSuccess() {
+        (getFragment(TAG_NEWS_FRAGMENT) as NewsFragment).exitLoginSuccess()
+        (getFragment(TAG_FRIENDS_FRAGMENT) as FriendsFragment).exitLoginSuccess()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

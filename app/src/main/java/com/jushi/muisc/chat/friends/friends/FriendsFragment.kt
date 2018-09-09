@@ -141,12 +141,11 @@ class FriendsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListene
                 isRefresh = true
                 initAllContacts()
             }
-            //退出登录成功的广播
-            if (intent!!.action == context!!.getString(R.string.EXIT_LOGIN_SUCCESS_BROADCAST_ACTION)){
-                adapter.clear()
-            }
         }
+    }
 
+    fun exitLoginSuccess(){
+        adapter.clear()
     }
 
     override fun onDestroy() {

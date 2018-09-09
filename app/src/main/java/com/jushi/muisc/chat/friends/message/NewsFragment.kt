@@ -140,6 +140,12 @@ class NewsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListener {
 
 
     override fun onRefresh() {
+        if (!isLogin()){
+            messageAdapter.clear()
+            please_login_btn.visibility = View.VISIBLE
+            msg_RecyclerView.setRefreshing(false)
+            return
+        }
         isRefresh = true
         msg_RecyclerView.setRefreshing(true)
         initAllConversations()
@@ -153,11 +159,15 @@ class NewsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListener {
                 initAllConversations()
                 please_login_btn.visibility = View.GONE
             }
-            //退出登录成功的广播
-            if (intent!!.action == context!!.getString(R.string.EXIT_LOGIN_SUCCESS_BROADCAST_ACTION)) {
-                messageAdapter.clear()
-            }
         }
+    }
+
+    /**
+     * 退出登录成功
+     */
+    fun exitLoginSuccess(){
+        messageAdapter.clear()
+        please_login_btn.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {
