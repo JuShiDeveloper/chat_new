@@ -103,5 +103,10 @@
 
     <!--限制只能输入数字和字母-->
     <string name="editText_digits">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="no_anything_message">暂时没有任何消息,点击</string>
+    <string name="and_with_friends_chat">或与好友</string>
+    <string name="refresh">刷新</string>
+    <string name="to_chat">互动</string>
+    <string name="please_to_login">请先登陆</string>
 
 </resources>

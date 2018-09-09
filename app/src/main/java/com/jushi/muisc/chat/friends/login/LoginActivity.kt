@@ -13,6 +13,7 @@ import com.hyphenate.exceptions.HyphenateException
 import com.jushi.base.activity.BaseActivity
 import com.jushi.muisc.chat.MainActivity
 import com.jushi.muisc.chat.R
+import com.jushi.muisc.chat.sliding_menu.controller.SlidingMenuController
 import com.jushi.muisc.chat.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_regist_layout.*
 import rx.Observable
@@ -173,7 +174,10 @@ class LoginActivity : BaseActivity() {
             intent.putExtra(MainActivity.LOGIN_SUCCESS_KEY, loginName)
             setResult(Activity.RESULT_OK, intent)
             //发送一个登陆成功广播
-            sendBroadcast(Intent().setAction(getString(R.string.LOGIN_SUCCESS_BROADCAST_ACTION)))
+            val broadcastIntent = Intent()
+            broadcastIntent.action = getString(R.string.LOGIN_SUCCESS_BROADCAST_ACTION)
+            broadcastIntent.putExtra(SlidingMenuController.LOGIN_NAME_KEY,loginName)
+            sendBroadcast(broadcastIntent)
             runOnUiThread {
                 ToastUtils.show(this@LoginActivity,getString(R.string.login_success))
             }

@@ -1,15 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".friends.message.NewsFragment">
 
     <com.jushi.base.easyrecyclerview.EasyRecyclerView
         android:id="@+id/msg_RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:scrollbars="none"/>
+        app:scrollbars="none" />
+
+    <RelativeLayout
+        android:id="@+id/no_msg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_no_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:text="@string/no_anything_message"
+            android:textColor="@color/_666666"
+            android:textSize="@dimen/_15sp" />
+
+        <TextView
+            android:id="@+id/tv_refresh_msg_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_toEndOf="@+id/tv_no_msg"
+            android:background="@drawable/bg_cancel_btn_drawable"
+            android:padding="5dp"
+            android:text="@string/refresh"
+            android:textColor="@color/e80b0b"
+            android:textSize="@dimen/_18sp" />
+
+        <TextView
+            android:id="@+id/with_friends_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:layout_toEndOf="@+id/tv_refresh_msg_btn"
+            android:text="@string/and_with_friends_chat"
+            android:textColor="@color/_666666"
+            android:textSize="@dimen/_15sp" />
+
+        <TextView
+            android:id="@+id/tv_to_chat_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/with_friends_chat"
+            android:background="@drawable/bg_login_btn_drawable"
+            android:padding="5dp"
+            android:text="@string/to_chat"
+            android:textColor="@color/c_ffffff"
+            android:textSize="@dimen/_18sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/please_login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/please_to_login"
+        android:background="@drawable/bg_login_btn_drawable"
+        android:padding="5dp"
+        android:textColor="@color/c_001208"
+        android:layout_gravity="center"
+        android:textSize="@dimen/_20sp"
+        android:visibility="gone"/>
 
 </FrameLayout>

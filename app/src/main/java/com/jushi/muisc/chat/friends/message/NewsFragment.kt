@@ -6,25 +6,21 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hyphenate.EMMessageListener
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMConversation
 import com.jushi.base.fragment.ViewPagerFragment
 
 import com.jushi.muisc.chat.R
-import com.hyphenate.chat.EMMessage
-import com.hyphenate.chat.EMTextMessageBody
 import com.jushi.muisc.chat.friends.chat.ChatActivity
+import com.jushi.muisc.chat.friends.login.LoginActivity
+import com.jushi.muisc.chat.view.layout.FriendsLayoutListener
 import kotlinx.android.synthetic.main.fragment_news.*
 import rx.Observable
-import rx.Scheduler
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -35,6 +31,7 @@ import rx.schedulers.Schedulers
 class NewsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private val messageAdapter by lazy { MessageAdapter(context!!) }
+    private lateinit var listener: FriendsLayoutListener
     private var isFinished = false
     private var isRefresh = false
 
@@ -47,14 +44,30 @@ class NewsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListener {
         return rootView
     }
 
+    fun setListener(listener: FriendsLayoutListener) {
+        this.listener = listener
+    }
+
     override fun initWidget() {
+        checkIsLogin()
         initRecyclerView()
+        setBtnClickListener()
+    }
+
+    private fun checkIsLogin() {
+        if (!isLogin()) {
+            please_login_btn.visibility = View.VISIBLE
+        }
+    }
+
+    private fun isLogin(): Boolean {
+        return EMClient.getInstance().isLoggedInBefore
     }
 
     private fun initRecyclerView() {
         msg_RecyclerView.setLayoutManager(LinearLayoutManager(context!!))
         msg_RecyclerView.setRefreshListener(this)
-        msg_RecyclerView.setRefreshing(true)
+        if (isLogin()) msg_RecyclerView.setRefreshing(true)
         msg_RecyclerView.adapter = messageAdapter
         messageAdapter.setOnItemClickListener {
             val friendsName = messageAdapter.allData[it].allMessages[0].userName
@@ -64,8 +77,25 @@ class NewsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListener {
         }
     }
 
+    private fun setBtnClickListener() {
+        tv_refresh_msg_btn.setOnClickListener {
+            isRefresh = true
+            msg_RecyclerView.setRefreshing(true)
+            initAllConversations()
+        }
+
+        tv_to_chat_btn.setOnClickListener {
+            listener.toFriendsPage()
+        }
+
+        please_login_btn.setOnClickListener {
+            val intent = Intent(context, LoginActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
     override fun onFragmentVisibleChange(isVisible: Boolean) {
-        if (isVisible && !isFinished) {
+        if (isVisible && !isFinished && isLogin()) {
             initAllConversations()
         }
     }
@@ -88,14 +118,24 @@ class NewsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListener {
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    msg_RecyclerView.setRefreshing(false)
+                    if (it.isEmpty()) {
+                        no_msg_layout.visibility = View.VISIBLE
+                        return@subscribe
+                    }else{
+                        no_msg_layout.visibility = View.GONE
+                        please_login_btn.visibility = View.GONE
+                    }
                     if (isRefresh) {
                         messageAdapter.clear()
                     }
                     messageAdapter.addAll(it)
                     messageAdapter.notifyDataSetChanged()
                     isFinished = true
+                }, {
+                    no_msg_layout.visibility = View.VISIBLE
                     msg_RecyclerView.setRefreshing(false)
-                }, {msg_RecyclerView.setRefreshing(false)})
+                })
     }
 
 
@@ -111,9 +151,10 @@ class NewsFragment : ViewPagerFragment(), SwipeRefreshLayout.OnRefreshListener {
             if (intent!!.action == context!!.getString(R.string.LOGIN_SUCCESS_BROADCAST_ACTION)) {
                 isRefresh = true
                 initAllConversations()
+                please_login_btn.visibility = View.GONE
             }
             //退出登录成功的广播
-            if (intent!!.action == context!!.getString(R.string.EXIT_LOGIN_SUCCESS_BROADCAST_ACTION)){
+            if (intent!!.action == context!!.getString(R.string.EXIT_LOGIN_SUCCESS_BROADCAST_ACTION)) {
                 messageAdapter.clear()
             }
         }

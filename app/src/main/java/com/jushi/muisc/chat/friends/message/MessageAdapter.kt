@@ -27,7 +27,7 @@ class MessageAdapter(val mContext: Context) : RecyclerArrayAdapter<EMConversatio
 
         override fun setData(data: EMConversation) {
             super.setData(data)
-            val message = data.allMessages[0]
+            val message = data.allMessages[data.allMessages.size - 1]
             if (message.userName == context.getString(R.string.admin_)){
                 userName.text = "管理员"
             }else userName.text = message.userName

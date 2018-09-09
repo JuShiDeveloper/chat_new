@@ -1,7 +1,9 @@
 package com.jushi.muisc.chat.sliding_menu.controller;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
@@ -32,9 +34,12 @@ public class SlidingMenuController implements IController, View.OnClickListener 
     private Context context;
     private ImageView headerImage;
     private TextView tvLogin;
+    public static final String LOGIN_NAME_KEY = "login_name";
 
     public SlidingMenuController(Context context) {
         this.context = context;
+        context.registerReceiver(loginBroadcastReceiver,
+                new IntentFilter(context.getString(R.string.LOGIN_SUCCESS_BROADCAST_ACTION)));
     }
 
     @Override
@@ -139,4 +144,17 @@ public class SlidingMenuController implements IController, View.OnClickListener 
     public void showUserName(String userName) {
         tvLogin.setText(userName);
     }
+
+    public void unRegistReceiver(){
+        context.unregisterReceiver(loginBroadcastReceiver);
+    }
+
+    private BroadcastReceiver loginBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction() == context.getString(R.string.LOGIN_SUCCESS_BROADCAST_ACTION)) {
+                showUserName(intent.getStringExtra(LOGIN_NAME_KEY));
+            }
+        }
+    };
 }

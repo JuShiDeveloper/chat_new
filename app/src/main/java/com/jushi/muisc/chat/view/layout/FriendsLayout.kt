@@ -19,7 +19,8 @@ import com.jushi.muisc.chat.friends.message.NewsFragment
  * 好友模块
  */
 
-class FriendsLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr), BottomNavigationView.OnNavigationItemSelectedListener {
+class FriendsLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr),
+        BottomNavigationView.OnNavigationItemSelectedListener ,FriendsLayoutListener{
 
     private lateinit var navigationView: BottomNavigationView
     private var fragments = HashMap<String, Fragment>()
@@ -47,6 +48,10 @@ class FriendsLayout @JvmOverloads constructor(context: Context, attrs: Attribute
 
     private fun setListener() {
         navigationView.setOnNavigationItemSelectedListener(this)
+    }
+
+    override fun toFriendsPage() {
+        navigationView.selectedItemId = R.id.my_friends
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -91,6 +96,7 @@ class FriendsLayout @JvmOverloads constructor(context: Context, attrs: Attribute
             when (tag) {
                 TAG_NEWS_FRAGMENT -> {
                     fragment = NewsFragment()
+                    fragment.setListener(this)
                 }
                 TAG_FRIENDS_FRAGMENT -> {
                     fragment = FriendsFragment()

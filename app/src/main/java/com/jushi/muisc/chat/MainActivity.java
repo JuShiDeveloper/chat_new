@@ -370,5 +370,6 @@ public class MainActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         playController.destory();
+        menuController.unRegistReceiver();
     }
 }
