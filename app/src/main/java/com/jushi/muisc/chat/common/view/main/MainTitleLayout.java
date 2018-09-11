@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.music.search.ui.SearchActivity;
+import com.jushi.muisc.chat.music.search.SearchActivity;
 import com.jushi.muisc.chat.common.manager.ActivityManager;
 
 /**

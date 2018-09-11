@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
-import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
+import com.jushi.muisc.chat.sliding_menu.common.minterface.INearPlayView;
 import com.jushi.muisc.chat.common.utils.ShadowUtils;
 import com.umeng.analytics.MobclickAgent;
 

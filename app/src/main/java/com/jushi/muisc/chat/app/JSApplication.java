@@ -6,7 +6,7 @@ import android.content.Context;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.music.daotools.MusicDBTools;
+import com.jushi.muisc.chat.music.common.daotools.MusicDBTools;
 import com.jushi.muisc.chat.common.utils.PATH;
 import com.umeng.commonsdk.UMConfigure;
 

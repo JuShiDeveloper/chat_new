@@ -8,15 +8,15 @@ import android.view.View;
 import android.widget.RadioButton;
 
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.music.home_page.artist.ui.AllArtistActivity;
+import com.jushi.muisc.chat.music.home_page.artist.AllArtistActivity;
 import com.jushi.muisc.chat.music.home_page.artist.adapter.HotArtistAdapter;
-import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
+import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.common.manager.ActivityManager;
 import com.jushi.muisc.chat.common.manager.JSGridLayoutManager;
 import com.jushi.muisc.chat.music.home_page.artist.model.ArtistsModel;
-import com.jushi.muisc.chat.music.service.NetWorkService;
-import com.jushi.muisc.chat.music.utils.music.DataUrlUtils;
-import com.jushi.muisc.chat.music.utils.music.MusicDataUtils;
+import com.jushi.muisc.chat.music.common.service.NetWorkService;
+import com.jushi.muisc.chat.music.common.utils.music.DataUrlUtils;
+import com.jushi.muisc.chat.music.common.utils.music.MusicDataUtils;
 import com.jushi.muisc.chat.common.utils.NetWorkUtils;
 import com.jushi.muisc.chat.common.utils.Utils;
 

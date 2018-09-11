@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".music.zhibo_video.mv.ui.AllMVActivity">
+    tools:context=".music.zhibo_video.mv.AllMVActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/all_mv_activity_toolbar"

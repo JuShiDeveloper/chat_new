@@ -10,10 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.jushi.muisc.chat.main.MainActivity;
-import com.jushi.muisc.chat.music.utils.music.LocalMusicUtils;
+import com.jushi.muisc.chat.music.common.utils.music.LocalMusicUtils;
 import com.jushi.muisc.chat.common.utils.PATH;
 import com.umeng.analytics.MobclickAgent;
 
+/**
+ * 应用启动时的欢迎界面
+ */
 public class WelcomeActivity extends AppCompatActivity {
 
     @Override

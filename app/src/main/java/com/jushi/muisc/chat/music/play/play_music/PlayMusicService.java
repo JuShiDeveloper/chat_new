@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 
 import com.jushi.muisc.chat.app.JSApplication;
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
-import com.jushi.muisc.chat.music.utils.music.LocalMusicUtils;
+import com.jushi.muisc.chat.music.common.utils.music.LocalMusicUtils;
 import com.jushi.muisc.chat.common.utils.SaveUtils;
 
 import java.util.List;

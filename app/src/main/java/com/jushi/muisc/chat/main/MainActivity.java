@@ -31,7 +31,7 @@ import com.jushi.muisc.chat.friends.login.LoginActivity;
 import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
 import com.jushi.muisc.chat.sliding_menu.controller.SlidingMenuController;
 import com.jushi.muisc.chat.common.utils.DisplayUtils;
-import com.jushi.muisc.chat.music.utils.music.LocalMusicUtils;
+import com.jushi.muisc.chat.music.common.utils.music.LocalMusicUtils;
 import com.jushi.muisc.chat.common.utils.PATH;
 import com.jushi.muisc.chat.common.utils.ToastUtils;
 import com.jushi.muisc.chat.common.view.layout.FriendsLayout;
@@ -45,7 +45,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * 主界面
+ */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

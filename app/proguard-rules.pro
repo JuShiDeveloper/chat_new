@@ -205,11 +205,11 @@ public static final int *;
 -keep class com.jushi.muisc.chat.music.home_page.banner.model.**{*;}
 -keep class com.jushi.muisc.chat.sliding_menu.localmusic.model.**{*;}
 -keep class com.jushi.muisc.chat.music.zhibo_video.mv.model.**{*;}
--keep class com.jushi.muisc.chat.music.public_model.**{*;}
+-keep class com.jushi.muisc.chat.music.common.public_model.**{*;}
 -keep class com.jushi.muisc.chat.music.home_page.recommend.model.**{*;}
 -keep class com.jushi.muisc.chat.music.search.model.**{*;}
-#-keep class com.jushi.muisc.chat.music.service.**{*;}
--keep class com.jushi.muisc.chat.music.utils.**{*;}
+#-keep class com.jushi.muisc.chat.music.common.service.**{*;}
+-keep class com.jushi.muisc.chat.music.common.utils.**{*;}
 -keep class com.jushi.muisc.chat.music.zhibo_video.zhibo.model.**{*;}
 -keep class com.jingchen.pulltorefresh.**{*;}
 -keep class com.jushi.muisc.chat.music.play.**{*;}

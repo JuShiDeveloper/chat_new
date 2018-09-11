@@ -3,7 +3,7 @@ package com.jushi.muisc.chat.common.manager;
 import android.content.Context;
 import android.content.Intent;
 
-import com.jushi.muisc.chat.music.home_page.artist.ui.ArtistMusicActivity;
+import com.jushi.muisc.chat.music.home_page.artist.music.ArtistMusicActivity;
 import com.jushi.muisc.chat.music.chart.ui.ChartDetailActivity;
 import com.jushi.muisc.chat.music.play.play_music.PlayMusicActivity;
 import com.jushi.muisc.chat.music.play.play_video.PlayVideoActivity;

@@ -8,16 +8,16 @@ import android.view.View;
 import android.widget.RadioButton;
 
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.music.utils.music.MusicDataUtils;
-import com.jushi.muisc.chat.music.zhibo_video.zhibo.ui.AllZhiBoActivity;
+import com.jushi.muisc.chat.music.common.utils.music.MusicDataUtils;
+import com.jushi.muisc.chat.music.zhibo_video.zhibo.AllZhiBoActivity;
 import com.jushi.muisc.chat.music.zhibo_video.zhibo.adapter.LiveDataAdapter;
-import com.jushi.muisc.chat.music.zhibo_video.LiveAndMvDataAdapter;
+import com.jushi.muisc.chat.music.zhibo_video.common.LiveAndMvDataAdapter;
 import com.jushi.muisc.chat.common.manager.ActivityManager;
 import com.jushi.muisc.chat.common.manager.JSGridLayoutManager;
 import com.jushi.muisc.chat.music.zhibo_video.zhibo.model.ZhiBoModel;
-import com.jushi.muisc.chat.music.service.NetWorkService;
+import com.jushi.muisc.chat.music.common.service.NetWorkService;
 import com.jushi.muisc.chat.common.utils.Constant;
-import com.jushi.muisc.chat.music.utils.music.DataUrlUtils;
+import com.jushi.muisc.chat.music.common.utils.music.DataUrlUtils;
 import com.jushi.muisc.chat.common.utils.NetWorkUtils;
 import com.jushi.muisc.chat.common.utils.Utils;
 

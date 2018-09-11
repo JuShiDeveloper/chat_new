@@ -8,7 +8,7 @@
     android:background="@color/white"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".music.search.ui.SearchActivity">
+    tools:context=".music.search.SearchActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/search_activity_toolBar"
