@@ -102,8 +102,7 @@ public class SlidingMenuController implements IController, View.OnClickListener 
                 break;
             case R.id.login_tv:
                 if (isLogin()) { //如果已经登陆过，跳转到设置页面
-                    Intent intent = new Intent(context, SettingsActivity.class);
-                    context.startActivity(intent);
+                    ActivityManager.startSettingsActivity(context);
                     return;
                 }
                 toLoginActivity();

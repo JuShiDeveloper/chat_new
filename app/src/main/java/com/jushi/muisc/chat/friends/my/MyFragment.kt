@@ -1,6 +1,7 @@
 package com.jushi.muisc.chat.friends.my
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.TextUtils
@@ -12,9 +13,11 @@ import com.hyphenate.chat.EMClient
 import com.jushi.base.fragment.ViewPagerFragment
 
 import com.jushi.muisc.chat.R
+import com.jushi.muisc.chat.common.manager.ActivityManager
 import com.jushi.muisc.chat.common.transform.CircleTransform
 import com.jushi.muisc.chat.common.utils.SaveUtils
-import kotlinx.android.synthetic.main.nav_header_main.*
+import com.jushi.muisc.chat.friends.login.LoginActivity
+import kotlinx.android.synthetic.main.fragment_my.*
 
 /**
  * A simple [Fragment] subclass.
@@ -43,11 +46,12 @@ class MyFragment : ViewPagerFragment() {
             Glide.with(context)
                     .load(imagePath)
                     .transform(CircleTransform(context))
-                    .into(header_imageView)
+                    .error(R.drawable.round_header)
+                    .into(iv_userImage)
         }
         if (isLogin()) {
-            login_tv.text = EMClient.getInstance().currentUser
-        }
+            tv_userName.text = EMClient.getInstance().currentUser
+        } else tv_userName.text = context!!.getString(R.string.click_login)
     }
 
     override fun initWidget() {
@@ -55,7 +59,14 @@ class MyFragment : ViewPagerFragment() {
     }
 
     override fun setListener() {
-
+        ll_userInfo.setOnClickListener {
+            if (isLogin()) {
+                ActivityManager.startSettingsActivity(context)
+                return@setOnClickListener
+            }
+            val intent = Intent(context, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun isLogin(): Boolean {
