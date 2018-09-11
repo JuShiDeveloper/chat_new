@@ -67,6 +67,7 @@ class MyFragment : ViewPagerFragment() {
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
         }
+        tv_settings.setOnClickListener { ActivityManager.startSettingsActivity(context) }
     }
 
     private fun isLogin(): Boolean {
