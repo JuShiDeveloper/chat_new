@@ -66,7 +66,7 @@ class MyFragment : ViewPagerFragment() {
     }
 
     override fun setListener() {
-        ll_userInfo.setOnClickListener {
+        rl_userInfo.setOnClickListener {
             if (isLogin()) {
                 ActivityManager.startSettingsActivity(context)
                 return@setOnClickListener

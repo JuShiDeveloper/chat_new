@@ -60,7 +60,7 @@ public class SlidingMenuController implements IController, View.OnClickListener 
      * 判断用户是否有设置过头像
      */
     private void checkSaveUserImage() {
-        if (isLogin()) {
+        if (!isLogin()) {
             showUserImage("");
             return;
         }

@@ -49,7 +49,8 @@ class SettingsActivity : BaseActivity() {
     }
 
     /**
-     * 切换账号，退出当前账号跳转到登陆页面
+     * 退出当前账号
+     * @param isChangeAccount  true 表示要切换账号  false 表示不切换账号
      */
     private fun toLoginOut(isChangeAccount: Boolean) {
         EMClient.getInstance().logout(false, object : EMCallBack {
