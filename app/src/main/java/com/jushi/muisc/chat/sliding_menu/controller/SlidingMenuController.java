@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -33,6 +34,7 @@ public class SlidingMenuController implements IController, View.OnClickListener 
     private Context context;
     private ImageView headerImage;
     private TextView tvLogin;
+    private RelativeLayout imageLayout;
     public static final String LOGIN_NAME_KEY = "login_name";
 
 
@@ -43,9 +45,10 @@ public class SlidingMenuController implements IController, View.OnClickListener 
     }
 
     @Override
-    public void headerView(ImageView headerImage, TextView loadingTv) {
+    public void headerView(ImageView headerImage, TextView loadingTv, RelativeLayout imageLayout) {
         this.headerImage = headerImage;
         this.tvLogin = loadingTv;
+        this.imageLayout = imageLayout;
         headerImage.setOnClickListener(this);
         loadingTv.setOnClickListener(this);
         checkIsLogin();
@@ -151,7 +154,9 @@ public class SlidingMenuController implements IController, View.OnClickListener 
         Glide.with(context)
                 .load(imagePath)
                 .transform(new CircleTransform(context))
+                .error(R.drawable.round_header)
                 .into(headerImage);
+        imageLayout.setBackgroundResource(R.drawable.bg_header_container);
     }
 
     public void showUserName(String userName) {

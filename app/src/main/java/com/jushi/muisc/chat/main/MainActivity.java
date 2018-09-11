@@ -17,6 +17,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity
     private MainTitleLayout titleLayout;
     private NavigationView nav;
     private ImageView headerImage;
+    private RelativeLayout imageLayout;
     private TextView landingTv;
     private Map<String, View> views = new HashMap<>();
     private final String TAG_MUAIS_LAYOUT = MusicLayout.class.getSimpleName();
@@ -152,6 +154,7 @@ public class MainActivity extends AppCompatActivity
         View headerView = nav.getHeaderView(0);
         headerImage = headerView.findViewById(R.id.header_imageView);
         landingTv = headerView.findViewById(R.id.login_tv);
+        imageLayout = headerView.findViewById(R.id.image_layout);
 
     }
 
@@ -167,7 +170,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initSlidingMenuController() {
         menuController = new SlidingMenuController(this);
-        menuController.headerView(headerImage, landingTv);
+        menuController.headerView(headerImage, landingTv,imageLayout);
     }
 
     //点击音乐或好友时相应的切换显示的内容
@@ -319,7 +322,7 @@ public class MainActivity extends AppCompatActivity
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        toDetailContactInvited(username,reason);
+                        toDetailContactInvited(username, reason);
                     }
                 });
             }
@@ -374,7 +377,7 @@ public class MainActivity extends AppCompatActivity
     /**
      * 退出登录成功
      */
-    public void exitLoginSuccess(){
+    public void exitLoginSuccess() {
         friendsLayout.exitLoginSuccess();
     }
 
