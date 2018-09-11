@@ -19,10 +19,10 @@ import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.music.public_model.SongDetail;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.utils.music.LocalMusicUtils;
-import com.jushi.muisc.chat.utils.LogUtils;
-import com.jushi.muisc.chat.utils.PATH;
-import com.jushi.muisc.chat.utils.ToastUtils;
-import com.jushi.muisc.chat.view.JSTextView;
+import com.jushi.muisc.chat.common.utils.LogUtils;
+import com.jushi.muisc.chat.common.utils.PATH;
+import com.jushi.muisc.chat.common.utils.ToastUtils;
+import com.jushi.muisc.chat.common.view.JSTextView;
 
 import rx.Observable;
 import rx.functions.Func1;

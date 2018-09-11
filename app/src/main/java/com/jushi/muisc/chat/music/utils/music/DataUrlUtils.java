@@ -1,6 +1,6 @@
 package com.jushi.muisc.chat.music.utils.music;
 
-import com.jushi.muisc.chat.music.utils.Constant;
+import com.jushi.muisc.chat.common.utils.Constant;
 
 /**
  * Created by cpx on 2018/1/27.

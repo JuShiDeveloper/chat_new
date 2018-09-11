@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:gravity="center">
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/hot_singer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -35,7 +35,7 @@
         android:layout_height="match_parent"
         android:gravity="center">
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/china_singer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -58,7 +58,7 @@
         android:layout_height="match_parent"
         android:gravity="center">
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/ouMei_singer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -81,7 +81,7 @@
         android:layout_height="match_parent"
         android:gravity="center">
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/hanGuo_singer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -104,7 +104,7 @@
         android:layout_height="match_parent"
         android:gravity="center">
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/riBen_singer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -127,7 +127,7 @@
         android:layout_height="match_parent"
         android:gravity="center">
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/other_singer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

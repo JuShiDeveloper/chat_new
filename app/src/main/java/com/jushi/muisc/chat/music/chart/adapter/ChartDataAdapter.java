@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.chart.model.ChartDataModel;
-import com.jushi.muisc.chat.transform.CornersTransform;
-import com.jushi.muisc.chat.view.JSTextView;
+import com.jushi.muisc.chat.common.transform.CornersTransform;
+import com.jushi.muisc.chat.common.view.JSTextView;
 
 import java.util.List;
 

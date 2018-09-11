@@ -7,14 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.jushi.muisc.chat.JSApplication;
+import com.jushi.muisc.chat.app.JSApplication;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.sliding_menu.localmusic.adapter.LocalMusicAdapter;
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.music.play.play_music.PlayMusicService;
-import com.jushi.muisc.chat.music.utils.SaveUtils;
-import com.jushi.muisc.chat.utils.ShadowUtils;
-import com.jushi.muisc.chat.view.JSTextView;
+import com.jushi.muisc.chat.common.utils.SaveUtils;
+import com.jushi.muisc.chat.common.utils.ShadowUtils;
+import com.jushi.muisc.chat.common.view.JSTextView;
 
 import java.util.List;
 

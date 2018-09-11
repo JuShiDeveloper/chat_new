@@ -20,7 +20,7 @@
         app:title=""
         app:titleTextColor="@color/_333333">
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/play_video_activity_title_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -14,8 +14,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.utils.DisplayUtils;
-import com.jushi.muisc.chat.view.JSTextView;
+import com.jushi.muisc.chat.common.utils.DisplayUtils;
+import com.jushi.muisc.chat.common.view.JSTextView;
 import com.umeng.analytics.MobclickAgent;
 
 

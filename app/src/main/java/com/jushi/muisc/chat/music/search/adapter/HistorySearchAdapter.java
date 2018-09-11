@@ -9,8 +9,8 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.utils.ShadowUtils;
-import com.jushi.muisc.chat.view.JSTextView;
+import com.jushi.muisc.chat.common.utils.ShadowUtils;
+import com.jushi.muisc.chat.common.view.JSTextView;
 
 import java.util.List;
 

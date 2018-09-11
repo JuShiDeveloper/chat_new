@@ -3,7 +3,7 @@ package com.jushi.muisc.chat.sliding_menu;
 import android.content.Context;
 
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
-import com.jushi.muisc.chat.music.utils.SaveUtils;
+import com.jushi.muisc.chat.common.utils.SaveUtils;
 
 /**
  * 比较当前播放的是否在列表中

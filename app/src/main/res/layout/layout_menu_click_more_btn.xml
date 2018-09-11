@@ -6,7 +6,7 @@
     android:gravity="center_vertical"
     android:orientation="vertical">
 
-    <com.jushi.muisc.chat.view.JSTextView
+    <com.jushi.muisc.chat.common.view.JSTextView
         android:id="@+id/menu_show_songName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/my_favorites_icon" />
 
-            <com.jushi.muisc.chat.view.JSTextView
+            <com.jushi.muisc.chat.common.view.JSTextView
                 android:id="@+id/favorites_tv"
                 style="@style/menu_text_style"
                 android:text="@string/menu_favorites_text" />
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/download_manager_icon" />
 
-            <com.jushi.muisc.chat.view.JSTextView
+            <com.jushi.muisc.chat.common.view.JSTextView
                 android:id="@+id/download_tv"
                 style="@style/menu_text_style"
                 android:text="@string/menu_download_text" />
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/share_icon" />
 
-            <com.jushi.muisc.chat.view.JSTextView
+            <com.jushi.muisc.chat.common.view.JSTextView
                 android:id="@+id/share_tv"
                 style="@style/menu_text_style"
                 android:text="@string/menu_share_text" />

@@ -15,11 +15,11 @@ import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.home_page.banner.ui.BannerViewActivity;
 import com.jushi.muisc.chat.music.home_page.banner.adapter.BannerImageAdapter;
 import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
-import com.jushi.muisc.chat.manager.ActivityManager;
+import com.jushi.muisc.chat.common.manager.ActivityManager;
 import com.jushi.muisc.chat.music.home_page.banner.model.BannerModel;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.utils.music.MusicDataUtils;
-import com.jushi.muisc.chat.utils.NetWorkUtils;
+import com.jushi.muisc.chat.common.utils.NetWorkUtils;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -11,8 +11,8 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVBean;
-import com.jushi.muisc.chat.utils.Utils;
-import com.jushi.muisc.chat.view.JSTextView;
+import com.jushi.muisc.chat.common.utils.Utils;
+import com.jushi.muisc.chat.common.view.JSTextView;
 
 import java.util.List;
 

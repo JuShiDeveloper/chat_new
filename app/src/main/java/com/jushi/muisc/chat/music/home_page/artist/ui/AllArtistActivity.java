@@ -14,13 +14,13 @@ import android.widget.ProgressBar;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.home_page.artist.adapter.AllArtistAdapter;
 import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
-import com.jushi.muisc.chat.manager.ActivityManager;
+import com.jushi.muisc.chat.common.manager.ActivityManager;
 import com.jushi.muisc.chat.music.home_page.artist.model.ArtistsModel;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.utils.music.DataUrlUtils;
-import com.jushi.muisc.chat.utils.DisplayUtils;
-import com.jushi.muisc.chat.utils.ShadowUtils;
-import com.jushi.muisc.chat.view.JSTextView;
+import com.jushi.muisc.chat.common.utils.DisplayUtils;
+import com.jushi.muisc.chat.common.utils.ShadowUtils;
+import com.jushi.muisc.chat.common.view.JSTextView;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;

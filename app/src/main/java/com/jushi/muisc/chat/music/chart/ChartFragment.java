@@ -10,17 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.jushi.muisc.chat.JSApplication;
+import com.jushi.muisc.chat.app.JSApplication;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.chart.adapter.ChartDataAdapter;
 import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
-import com.jushi.muisc.chat.manager.ActivityManager;
+import com.jushi.muisc.chat.common.manager.ActivityManager;
 import com.jushi.muisc.chat.music.chart.model.ChartDataModel;
 import com.jushi.muisc.chat.music.service.NetWorkService;
-import com.jushi.muisc.chat.music.utils.Constant;
+import com.jushi.muisc.chat.common.utils.Constant;
 import com.jushi.muisc.chat.music.utils.music.MusicDataUtils;
-import com.jushi.muisc.chat.utils.NetWorkUtils;
-import com.jushi.muisc.chat.view.JSTextView;
+import com.jushi.muisc.chat.common.utils.NetWorkUtils;
+import com.jushi.muisc.chat.common.view.JSTextView;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -11,12 +11,12 @@ import android.view.MenuItem;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.zhibo_video.zhibo.adapter.LiveDataAdapter;
 import com.jushi.muisc.chat.music.zhibo_video.LiveAndMvDataAdapter;
-import com.jushi.muisc.chat.manager.ActivityManager;
+import com.jushi.muisc.chat.common.manager.ActivityManager;
 import com.jushi.muisc.chat.music.zhibo_video.zhibo.model.ZhiBoModel;
 import com.jushi.muisc.chat.music.service.NetWorkService;
-import com.jushi.muisc.chat.music.utils.Constant;
+import com.jushi.muisc.chat.common.utils.Constant;
 import com.jushi.muisc.chat.music.utils.music.DataUrlUtils;
-import com.jushi.muisc.chat.utils.DisplayUtils;
+import com.jushi.muisc.chat.common.utils.DisplayUtils;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;

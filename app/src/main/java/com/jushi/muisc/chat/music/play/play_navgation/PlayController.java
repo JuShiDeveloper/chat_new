@@ -5,8 +5,8 @@ import android.app.Activity;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.music.play.play_music.PlayMusicService;
-import com.jushi.muisc.chat.music.utils.SaveUtils;
-import com.jushi.muisc.chat.view.PlayMusicView;
+import com.jushi.muisc.chat.common.utils.SaveUtils;
+import com.jushi.muisc.chat.common.view.PlayMusicView;
 
 import java.util.List;
 

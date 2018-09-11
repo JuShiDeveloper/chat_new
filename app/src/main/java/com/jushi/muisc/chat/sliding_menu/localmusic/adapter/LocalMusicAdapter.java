@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
-import com.jushi.muisc.chat.view.JSTextView;
+import com.jushi.muisc.chat.common.view.JSTextView;
 
 import java.util.List;
 

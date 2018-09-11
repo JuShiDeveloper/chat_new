@@ -11,7 +11,7 @@ import com.jushi.muisc.chat.music.play.play_music.PlayMusicService;
 import com.jushi.muisc.chat.sliding_menu.ComparisonUtils;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearController;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
-import com.jushi.muisc.chat.utils.ToastUtils;
+import com.jushi.muisc.chat.common.utils.ToastUtils;
 
 import java.util.List;
 

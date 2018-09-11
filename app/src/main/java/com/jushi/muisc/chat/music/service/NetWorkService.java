@@ -21,7 +21,7 @@ import com.jushi.muisc.chat.music.public_model.SongDetail;
 import com.jushi.muisc.chat.music.zhibo_video.zhibo.model.ZhiBoModel;
 import com.jushi.muisc.chat.music.utils.http.OkHttpTool;
 import com.jushi.muisc.chat.music.utils.music.DataUrlUtils;
-import com.jushi.muisc.chat.utils.PATH;
+import com.jushi.muisc.chat.common.utils.PATH;
 import com.squareup.okhttp.Response;
 
 import java.io.File;

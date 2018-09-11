@@ -13,7 +13,7 @@ import com.jushi.muisc.chat.music.home_page.artist.controller.HotArtistControlle
 import com.jushi.muisc.chat.music.chart.ChartFragment;
 import com.jushi.muisc.chat.music.zhibo_video.VideoAndLiveFragment;
 import com.jushi.muisc.chat.music.home_page.recommend.controller.TodayRecommendController;
-import com.jushi.muisc.chat.view.RefreshHeadView;
+import com.jushi.muisc.chat.common.view.RefreshHeadView;
 
 /**
  * 首页

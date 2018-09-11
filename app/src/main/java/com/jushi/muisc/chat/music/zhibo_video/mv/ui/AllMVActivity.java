@@ -14,7 +14,7 @@ import com.jushi.muisc.chat.music.zhibo_video.LiveAndMvDataAdapter;
 import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVBean;
 import com.jushi.muisc.chat.music.service.MvItemInfoTaskService;
 import com.jushi.muisc.chat.music.service.NetWorkService;
-import com.jushi.muisc.chat.utils.DisplayUtils;
+import com.jushi.muisc.chat.common.utils.DisplayUtils;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,16 +12,17 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
-import com.jushi.muisc.chat.MainActivity;
+import com.jushi.muisc.chat.common.utils.SaveUtils;
+import com.jushi.muisc.chat.main.MainActivity;
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.manager.ActivityManager;
-import com.jushi.muisc.chat.sliding_menu.localmusic.ui.LocalMusicActivity;
+import com.jushi.muisc.chat.common.manager.ActivityManager;
+import com.jushi.muisc.chat.sliding_menu.localmusic.LocalMusicActivity;
 import com.jushi.muisc.chat.sliding_menu.download_manager.DownloadActivity;
 import com.jushi.muisc.chat.sliding_menu.my_favorites.MyFavoritesActivity;
 import com.jushi.muisc.chat.sliding_menu.near_play.NearPlayActivity;
 import com.jushi.muisc.chat.sliding_menu.minterface.IController;
-import com.jushi.muisc.chat.transform.CircleTransform;
-import com.jushi.muisc.chat.utils.ToastUtils;
+import com.jushi.muisc.chat.common.transform.CircleTransform;
+import com.jushi.muisc.chat.common.utils.ToastUtils;
 import com.jushi.pictures.camera.OnPicturePathListener;
 import com.jushi.pictures.camera.PictureCapture;
 import com.jushi.pictures.camera.utils.Photo;
@@ -35,6 +35,7 @@ public class SlidingMenuController implements IController, View.OnClickListener 
     private ImageView headerImage;
     private TextView tvLogin;
     public static final String LOGIN_NAME_KEY = "login_name";
+
 
     public SlidingMenuController(Context context) {
         this.context = context;
@@ -49,6 +50,16 @@ public class SlidingMenuController implements IController, View.OnClickListener 
         headerImage.setOnClickListener(this);
         loadingTv.setOnClickListener(this);
         checkIsLogin();
+        checkSaveUserImage();
+    }
+
+    /**
+     * 判断用户是否有设置过头像
+     */
+    private void checkSaveUserImage() {
+        String userImage = SaveUtils.getInstance(context).getSaveUserImage();
+        if (userImage == null) return;
+        showUserImage(userImage);
     }
 
     /**
@@ -97,7 +108,7 @@ public class SlidingMenuController implements IController, View.OnClickListener 
                                 public void run() {
                                     ToastUtils.show(context, context.getString(R.string.exit_login_success));
                                     showUserName(context.getString(R.string.click_login));
-                                    ((MainActivity)context).exitLoginSuccess();
+                                    ((MainActivity) context).exitLoginSuccess();
                                 }
                             });
                         }
@@ -131,19 +142,24 @@ public class SlidingMenuController implements IController, View.OnClickListener 
         PictureCapture.INSTANCE.getPicture(context, new OnPicturePathListener() {
             @Override
             public void onPhoto(Photo photo) {
-                Glide.with(context)
-                        .load(Uri.fromFile(photo.getOriginalFile()))
-                        .transform(new CircleTransform(context))
-                        .into(headerImage);
+                showUserImage(photo.getOriginalFile().getPath());
+                SaveUtils.getInstance(context).saveUserImage(photo.getOriginalFile().getPath());
             }
         }, false);
+    }
+
+    private void showUserImage(String imagePath) {
+        Glide.with(context)
+                .load(imagePath)
+                .transform(new CircleTransform(context))
+                .into(headerImage);
     }
 
     public void showUserName(String userName) {
         tvLogin.setText(userName);
     }
 
-    public void unRegistReceiver(){
+    public void unRegistReceiver() {
         context.unregisterReceiver(loginBroadcastReceiver);
     }
 

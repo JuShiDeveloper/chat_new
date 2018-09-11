@@ -28,13 +28,13 @@
         android:paddingStart="10dp"
         android:paddingEnd="10dp">
 
-        <com.jushi.muisc.chat.view.ripplesoundplayer.RippleVisualizerView
+        <com.jushi.muisc.chat.common.view.ripplesoundplayer.RippleVisualizerView
             android:id="@+id/line_renderer_demo"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:elevation="4dp" />
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/play_music_activity_songName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:textSize="@dimen/_22sp"
             android:visibility="gone" />
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/play_music_activity_author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             android:layout_centerHorizontal="true"
             android:scaleType="fitXY" />
 
-        <com.jushi.muisc.chat.view.lrcview.impl.LrcView
+        <com.jushi.muisc.chat.common.view.lrcview.impl.LrcView
             android:id="@+id/play_music_activity_lrcView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -87,7 +87,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp">
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/play_activity_music_progress_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
             android:thumb="@drawable/seekbar_point_icon"
             android:thumbTint="@color/c_ffffff" />
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/play_activity_music_total_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

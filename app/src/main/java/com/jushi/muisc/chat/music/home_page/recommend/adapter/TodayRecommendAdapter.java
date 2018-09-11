@@ -11,9 +11,9 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.home_page.recommend.model.TodayRecommendModel;
-import com.jushi.muisc.chat.transform.CornersTransform;
-import com.jushi.muisc.chat.utils.Utils;
-import com.jushi.muisc.chat.view.JSTextView;
+import com.jushi.muisc.chat.common.transform.CornersTransform;
+import com.jushi.muisc.chat.common.utils.Utils;
+import com.jushi.muisc.chat.common.view.JSTextView;
 
 import java.util.List;
 

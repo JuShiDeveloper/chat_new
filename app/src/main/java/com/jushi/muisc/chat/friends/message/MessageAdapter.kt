@@ -8,7 +8,7 @@ import com.hyphenate.chat.EMTextMessageBody
 import com.jushi.base.easyrecyclerview.adapter.BaseViewHolder
 import com.jushi.base.easyrecyclerview.adapter.RecyclerArrayAdapter
 import com.jushi.muisc.chat.R
-import com.jushi.muisc.chat.utils.DateUtils
+import com.jushi.muisc.chat.common.utils.DateUtils
 
 /**
  * 消息列表适配器

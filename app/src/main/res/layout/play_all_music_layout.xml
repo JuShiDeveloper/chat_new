@@ -13,7 +13,7 @@
         android:src="@drawable/all_play_icon"
         android:tint="@color/_333333" />
 
-    <com.jushi.muisc.chat.view.JSTextView
+    <com.jushi.muisc.chat.common.view.JSTextView
         android:id="@+id/play_all_text"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -31,14 +31,14 @@
         android:layout_toRightOf="@+id/play_all_text"
         android:orientation="horizontal">
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/total_"
             android:textColor="@color/_bbbbbb"
             android:textSize="@dimen/_16sp" />
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/play_all_music_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             android:textSize="@dimen/_16sp"
             android:text="0"/>
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/shou_"

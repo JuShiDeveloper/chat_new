@@ -12,8 +12,8 @@ import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.dialog.BottomTipsDialog;
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
-import com.jushi.muisc.chat.utils.ToastUtils;
-import com.jushi.muisc.chat.view.JSTextView;
+import com.jushi.muisc.chat.common.utils.ToastUtils;
+import com.jushi.muisc.chat.common.view.JSTextView;
 import com.jushi.pictures.tipsdialog.TipsDialog;
 
 import java.util.List;

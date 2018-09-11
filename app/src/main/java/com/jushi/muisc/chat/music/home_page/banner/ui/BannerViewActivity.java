@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.utils.DisplayUtils;
+import com.jushi.muisc.chat.common.utils.DisplayUtils;
 import com.umeng.analytics.MobclickAgent;
 
 /**

@@ -5,7 +5,7 @@
     tools:context="com.jushi.muisc.chat.music.chart.ChartFragment"
     android:background="@color/white">
 
-    <com.jushi.muisc.chat.view.JSTextView
+    <com.jushi.muisc.chat.common.view.JSTextView
         android:id="@+id/chart_fragment_loading_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

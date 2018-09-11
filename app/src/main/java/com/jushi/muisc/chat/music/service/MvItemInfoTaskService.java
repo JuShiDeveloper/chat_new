@@ -3,7 +3,7 @@ package com.jushi.muisc.chat.music.service;
 import android.content.Context;
 
 import com.jushi.muisc.chat.music.zhibo_video.LiveAndMvDataAdapter;
-import com.jushi.muisc.chat.manager.ActivityManager;
+import com.jushi.muisc.chat.common.manager.ActivityManager;
 import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVItemModel;
 
 /**

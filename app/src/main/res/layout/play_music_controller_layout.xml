@@ -44,7 +44,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
 
-            <com.jushi.muisc.chat.view.JSTextView
+            <com.jushi.muisc.chat.common.view.JSTextView
                 android:id="@+id/play_music_controller_layout_songName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                 android:textColor="@color/_666666"
                 android:textSize="@dimen/_16sp" />
 
-            <com.jushi.muisc.chat.view.JSTextView
+            <com.jushi.muisc.chat.common.view.JSTextView
                 android:id="@+id/play_music_controller_layout_songAuthor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

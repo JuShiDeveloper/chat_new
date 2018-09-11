@@ -11,14 +11,14 @@ import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.home_page.artist.ui.AllArtistActivity;
 import com.jushi.muisc.chat.music.home_page.artist.adapter.HotArtistAdapter;
 import com.jushi.muisc.chat.music.jsinterface.MusicDataAdapter;
-import com.jushi.muisc.chat.manager.ActivityManager;
-import com.jushi.muisc.chat.manager.JSGridLayoutManager;
+import com.jushi.muisc.chat.common.manager.ActivityManager;
+import com.jushi.muisc.chat.common.manager.JSGridLayoutManager;
 import com.jushi.muisc.chat.music.home_page.artist.model.ArtistsModel;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.utils.music.DataUrlUtils;
 import com.jushi.muisc.chat.music.utils.music.MusicDataUtils;
-import com.jushi.muisc.chat.utils.NetWorkUtils;
-import com.jushi.muisc.chat.utils.Utils;
+import com.jushi.muisc.chat.common.utils.NetWorkUtils;
+import com.jushi.muisc.chat.common.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

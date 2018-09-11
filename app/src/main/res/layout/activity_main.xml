@@ -24,7 +24,7 @@
             app:navigationIcon="@drawable/menu_icon"
             app:contentInsetStartWithNavigation="0dp">
 
-            <com.jushi.muisc.chat.view.main.MainTitleLayout
+            <com.jushi.muisc.chat.common.view.main.MainTitleLayout
                 android:id="@+id/MainTitleLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

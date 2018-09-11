@@ -11,14 +11,14 @@ import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.zhibo_video.mv.ui.AllMVActivity;
 import com.jushi.muisc.chat.music.zhibo_video.mv.adapter.MvDataAdapter;
 import com.jushi.muisc.chat.music.zhibo_video.LiveAndMvDataAdapter;
-import com.jushi.muisc.chat.manager.ActivityManager;
-import com.jushi.muisc.chat.manager.JSGridLayoutManager;
+import com.jushi.muisc.chat.common.manager.ActivityManager;
+import com.jushi.muisc.chat.common.manager.JSGridLayoutManager;
 import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVBean;
 import com.jushi.muisc.chat.music.service.MvItemInfoTaskService;
 import com.jushi.muisc.chat.music.service.NetWorkService;
 import com.jushi.muisc.chat.music.utils.music.MusicDataUtils;
-import com.jushi.muisc.chat.utils.NetWorkUtils;
-import com.jushi.muisc.chat.utils.Utils;
+import com.jushi.muisc.chat.common.utils.NetWorkUtils;
+import com.jushi.muisc.chat.common.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

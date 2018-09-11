@@ -26,7 +26,7 @@
             android:layout_marginRight="15dp"
             android:src="@drawable/recent_icon" />
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/history_search_recycler_item_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

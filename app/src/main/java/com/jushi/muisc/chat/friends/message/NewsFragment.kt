@@ -18,7 +18,7 @@ import com.jushi.base.fragment.ViewPagerFragment
 import com.jushi.muisc.chat.R
 import com.jushi.muisc.chat.friends.chat.ChatActivity
 import com.jushi.muisc.chat.friends.login.LoginActivity
-import com.jushi.muisc.chat.view.layout.FriendsLayoutListener
+import com.jushi.muisc.chat.common.view.layout.FriendsLayoutListener
 import kotlinx.android.synthetic.main.fragment_news.*
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers

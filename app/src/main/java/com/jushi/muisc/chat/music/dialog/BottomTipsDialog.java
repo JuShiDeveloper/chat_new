@@ -5,7 +5,7 @@ import android.support.design.widget.BottomSheetDialog;
 import android.view.View;
 
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.view.JSTextView;
+import com.jushi.muisc.chat.common.view.JSTextView;
 
 /**
  * 在底部显示删除  取消  两个选项的dialog

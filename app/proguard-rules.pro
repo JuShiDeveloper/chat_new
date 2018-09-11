@@ -199,7 +199,7 @@ public static final int *;
 }
 
 #--------------------自己的包---------------------------
--keep class com.jushi.muisc.chat.utils.**{*;}
+-keep class com.jushi.muisc.chat.common.utils.**{*;}
 -keep class com.jushi.muisc.chat.music.home_page.artist.model.**{*;}
 -keep class com.jushi.muisc.chat.music.chart.model.**{*;}
 -keep class com.jushi.muisc.chat.music.home_page.banner.model.**{*;}

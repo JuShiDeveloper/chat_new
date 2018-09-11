@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".sliding_menu.localmusic.ui.LocalMusicActivity">
+    tools:context=".sliding_menu.localmusic.LocalMusicActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/local_music_activity_toolBar"
@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.jushi.muisc.chat.view.JSTextView
+            <com.jushi.muisc.chat.common.view.JSTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"

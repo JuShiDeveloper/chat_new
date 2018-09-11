@@ -2,12 +2,12 @@ package com.jushi.muisc.chat.music.daotools;
 
 import android.content.Context;
 
-import com.jushi.muisc.chat.JSApplication;
+import com.jushi.muisc.chat.app.JSApplication;
 import com.jushi.muisc.chat.dao.DaoMaster;
 import com.jushi.muisc.chat.dao.DaoSession;
 import com.jushi.muisc.chat.dao.SongDao;
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
-import com.jushi.muisc.chat.utils.PATH;
+import com.jushi.muisc.chat.common.utils.PATH;
 
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.Query;

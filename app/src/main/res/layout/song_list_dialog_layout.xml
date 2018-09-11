@@ -12,14 +12,14 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/current_play_list"
             android:textColor="@color/c_001208"
             android:textSize="@dimen/_16sp" />
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/tv_song_list_tips"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

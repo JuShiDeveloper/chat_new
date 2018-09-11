@@ -9,8 +9,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.jushi.muisc.chat.main.MainActivity;
 import com.jushi.muisc.chat.music.utils.music.LocalMusicUtils;
-import com.jushi.muisc.chat.utils.PATH;
+import com.jushi.muisc.chat.common.utils.PATH;
 import com.umeng.analytics.MobclickAgent;
 
 public class WelcomeActivity extends AppCompatActivity {

@@ -12,8 +12,8 @@ import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.chart.model.ChartDataModel;
 import com.jushi.muisc.chat.music.dialog.download.ShowMoreMenuDialog;
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
-import com.jushi.muisc.chat.music.utils.Constant;
-import com.jushi.muisc.chat.view.JSTextView;
+import com.jushi.muisc.chat.common.utils.Constant;
+import com.jushi.muisc.chat.common.view.JSTextView;
 
 /**
  * 没有新的Url的榜单歌曲详情

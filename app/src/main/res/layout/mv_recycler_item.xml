@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:scaleType="centerCrop" />
 
-        <com.jushi.muisc.chat.view.JSTextView
+        <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/mv_title_info_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

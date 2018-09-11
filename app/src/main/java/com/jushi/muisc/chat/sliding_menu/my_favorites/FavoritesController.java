@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
-import com.jushi.muisc.chat.JSApplication;
+import com.jushi.muisc.chat.app.JSApplication;
 import com.jushi.muisc.chat.music.daotools.MusicDBTools;
 import com.jushi.muisc.chat.sliding_menu.localmusic.adapter.LocalMusicAdapter;
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
@@ -13,7 +13,7 @@ import com.jushi.muisc.chat.music.play.play_music.PlayMusicService;
 import com.jushi.muisc.chat.sliding_menu.ComparisonUtils;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearController;
 import com.jushi.muisc.chat.sliding_menu.minterface.INearPlayView;
-import com.jushi.muisc.chat.utils.ToastUtils;
+import com.jushi.muisc.chat.common.utils.ToastUtils;
 
 import java.util.List;
 
