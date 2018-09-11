@@ -33,5 +33,6 @@ public class Constant {
     /*-----------保存用户信息--------------------*/
     public static final String SAVE_USER_INFO = "user_info";
     public static final String SAVE_USER_IMAGE_KEY = "user_image";
+    public static final String SAVE_AUTO_LOGIN = "auto_login"; //设置是否自动登陆
 
 }

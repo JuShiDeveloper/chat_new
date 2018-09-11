@@ -61,5 +61,4 @@ public class JSApplication extends Application {
         return MusicDBTools.getInstance();
     }
 
-
 }

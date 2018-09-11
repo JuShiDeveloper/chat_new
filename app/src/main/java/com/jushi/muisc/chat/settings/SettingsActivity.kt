@@ -35,31 +35,27 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun setBtnClickListener() {
-        tv_change_account.setOnClickListener {
-            toLoginOut(true)
-        }
         tv_exit_login.setOnClickListener {
-            toLoginOut(false)
+            toLoginOut()
         }
         tv_userName_setting.setOnClickListener {
-            if (!isLogin()){
+            if (!isLogin()) {
                 startActivity(Intent(this@SettingsActivity, LoginActivity::class.java))
             }
         }
-    }
 
+    }
+    
     /**
      * 退出当前账号
-     * @param isChangeAccount  true 表示要切换账号  false 表示不切换账号
      */
-    private fun toLoginOut(isChangeAccount: Boolean) {
+    private fun toLoginOut() {
         EMClient.getInstance().logout(false, object : EMCallBack {
             override fun onSuccess() {
-                if (isChangeAccount){
+                runOnUiThread {
                     startActivity(Intent(this@SettingsActivity, LoginActivity::class.java))
-                }else{
-                    ToastUtils.show(this@SettingsActivity,getString(R.string.exit_login_success))
-                    initUserInfo()
+                    ToastUtils.show(this@SettingsActivity, getString(R.string.exit_login_success))
+                    finish()
                 }
             }
 
