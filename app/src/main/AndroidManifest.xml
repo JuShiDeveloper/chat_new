@@ -98,6 +98,7 @@
         <activity android:name=".sliding_menu.download_manager.DownloadActivity" />
         <activity android:name="com.jushi.muisc.chat.friends.login.LoginActivity" />
         <activity android:name=".friends.chat.ChatActivity" />
+        <activity android:name="com.jushi.muisc.chat.settings.SettingsActivity"/>
 
 
         <!--Umeng--> <!--在application中设置appkey-->

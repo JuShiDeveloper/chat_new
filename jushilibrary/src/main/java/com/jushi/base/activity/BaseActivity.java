@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+/**
+ * @author WYF
+ */
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
@@ -17,9 +20,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void setContentView();
 
-    protected abstract void initWidget() ;
+    protected abstract void initWidget();
 
-    protected abstract void initResource() ;
+    protected abstract void initResource();
 
     protected void saveData(Bundle savedInstanceState) {
 

@@ -16,6 +16,7 @@ import com.jushi.muisc.chat.common.utils.SaveUtils;
 import com.jushi.muisc.chat.main.MainActivity;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.common.manager.ActivityManager;
+import com.jushi.muisc.chat.settings.SettingsActivity;
 import com.jushi.muisc.chat.sliding_menu.localmusic.LocalMusicActivity;
 import com.jushi.muisc.chat.sliding_menu.download_manager.DownloadActivity;
 import com.jushi.muisc.chat.sliding_menu.my_favorites.MyFavoritesActivity;
@@ -100,31 +101,9 @@ public class SlidingMenuController implements IController, View.OnClickListener 
                 getPicture();
                 break;
             case R.id.login_tv:
-                if (isLogin()) { //如果已经登陆过，退出登录
-                    EMClient.getInstance().logout(true, new EMCallBack() {
-
-                        @Override
-                        public void onSuccess() {
-                            view.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    ToastUtils.show(context, context.getString(R.string.exit_login_success));
-                                    showUserName(context.getString(R.string.click_login));
-                                    ((MainActivity) context).exitLoginSuccess();
-                                }
-                            });
-                        }
-
-                        @Override
-                        public void onError(int code, String error) {
-
-                        }
-
-                        @Override
-                        public void onProgress(int progress, String status) {
-
-                        }
-                    });
+                if (isLogin()) { //如果已经登陆过，跳转到设置页面
+                    Intent intent = new Intent(context, SettingsActivity.class);
+                    context.startActivity(intent);
                     return;
                 }
                 toLoginActivity();
