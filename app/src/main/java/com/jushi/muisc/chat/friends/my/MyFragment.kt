@@ -41,6 +41,16 @@ class MyFragment : ViewPagerFragment() {
      * 检查用户信息（用户名、头像）
      */
     private fun checkUserInfo() {
+        if (!isLogin()) { //未登陆
+            tv_userName.text = context!!.getString(R.string.click_login)
+            Glide.with(context)
+                    .load(R.drawable.round_header)
+                    .transform(CircleTransform(context))
+                    .into(iv_userImage)
+            return
+        }
+        //登陆
+        tv_userName.text = EMClient.getInstance().currentUser
         val imagePath = SaveUtils.getInstance(context).saveUserImage
         if (!TextUtils.isEmpty(imagePath)) {
             Glide.with(context)
@@ -49,9 +59,6 @@ class MyFragment : ViewPagerFragment() {
                     .error(R.drawable.round_header)
                     .into(iv_userImage)
         }
-        if (isLogin()) {
-            tv_userName.text = EMClient.getInstance().currentUser
-        } else tv_userName.text = context!!.getString(R.string.click_login)
     }
 
     override fun initWidget() {

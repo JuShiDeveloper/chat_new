@@ -60,6 +60,10 @@ public class SlidingMenuController implements IController, View.OnClickListener 
      * 判断用户是否有设置过头像
      */
     private void checkSaveUserImage() {
+        if (isLogin()) {
+            showUserImage("");
+            return;
+        }
         String userImage = SaveUtils.getInstance(context).getSaveUserImage();
         if (userImage == null) return;
         showUserImage(userImage);
@@ -132,6 +136,7 @@ public class SlidingMenuController implements IController, View.OnClickListener 
         Glide.with(context)
                 .load(imagePath)
                 .transform(new CircleTransform(context))
+                .placeholder(R.drawable.round_header)
                 .error(R.drawable.round_header)
                 .into(headerImage);
         imageLayout.setBackgroundResource(R.drawable.bg_header_container);

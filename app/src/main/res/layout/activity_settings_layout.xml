@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_EFEFEF"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_settings"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/c_ffffff"
+        app:contentInsetStartWithNavigation="0dp"
+        app:navigationIcon="@drawable/back_icon_red"
+        app:title="@string/settings" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@color/c_ffffff"
+        android:elevation="3dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingEnd="15dp"
+        android:paddingStart="15dp"
+        android:paddingTop="5dp">
+
+        <ImageView
+            android:id="@+id/iv_userImage_setting"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="15dp" />
+
+        <com.jushi.muisc.chat.common.view.JSTextView
+            android:id="@+id/tv_userName_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/c_001208"
+            android:textSize="@dimen/_18sp" />
+
+    </LinearLayout>
+
+    <com.jushi.muisc.chat.common.view.JSTextView
+        android:id="@+id/tv_change_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/c_ffffff"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="@string/change_account"
+        android:textColor="@color/c_001208"
+        android:textSize="@dimen/_18sp" />
+
+    <com.jushi.muisc.chat.common.view.JSTextView
+        android:id="@+id/tv_exit_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/c_ffffff"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="@string/exit_login"
+        android:textColor="@color/c_001208"
+        android:textSize="@dimen/_18sp" />
+
+</LinearLayout>
