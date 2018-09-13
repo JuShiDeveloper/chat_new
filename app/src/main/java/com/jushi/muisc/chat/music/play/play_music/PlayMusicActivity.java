@@ -31,8 +31,8 @@ import com.jushi.muisc.chat.common.view.lrcview.impl.LrcView;
 import com.jushi.muisc.chat.common.view.ripplesoundplayer.RippleVisualizerView;
 import com.jushi.muisc.chat.common.view.ripplesoundplayer.renderer.ColorfulBarRenderer;
 import com.jushi.muisc.chat.common.view.ripplesoundplayer.util.PaintUtil;
-import com.jushi.pictures.camera.helper.PermissionHelper;
-import com.jushi.pictures.rxPermissions.RxPermissions;
+import com.jushi.camera.helper.PermissionHelper;
+import com.jushi.rxPermissions.RxPermissions;
 import com.squareup.okhttp.Response;
 import com.umeng.analytics.MobclickAgent;
 

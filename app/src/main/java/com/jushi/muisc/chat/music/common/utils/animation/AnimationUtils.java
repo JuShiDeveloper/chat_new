@@ -5,6 +5,9 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 
+/**
+ * 平移动画
+ */
 public class AnimationUtils {
 
     public static void translateAnimation(View view) {

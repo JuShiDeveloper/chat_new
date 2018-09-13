@@ -3,16 +3,16 @@
 
     <application>
         <activity
-            android:name="com.jushi.pictures.camera.capturedialog.PictureCaptureDialog"
+            android:name="com.jushi.camera.capturedialog.PictureCaptureDialog"
             android:theme="@style/PictureCaptureDialog" />
 
         <activity
-            android:name="com.jushi.pictures.rxPermissions.ShadowActivity"
+            android:name="com.jushi.rxPermissions.ShadowActivity"
             android:theme="@style/AppTheme_bg_no"></activity>
 
         <!--拍照或从相册获取图片-->
         <provider
-            android:name="com.jushi.pictures.camera.provider.PictureFileProvider"
+            android:name="com.jushi.camera.provider.PictureFileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">

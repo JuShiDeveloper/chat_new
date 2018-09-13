@@ -17,7 +17,6 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -38,7 +37,7 @@ import com.jushi.muisc.chat.common.utils.ToastUtils;
 import com.jushi.muisc.chat.common.view.layout.FriendsLayout;
 import com.jushi.muisc.chat.common.view.main.MainTitleLayout;
 import com.jushi.muisc.chat.common.view.layout.MusicLayout;
-import com.jushi.pictures.tipsdialog.TipsDialog;
+import com.jushi.tipsdialog.TipsDialog;
 import com.umeng.analytics.MobclickAgent;
 
 import org.jetbrains.annotations.NotNull;

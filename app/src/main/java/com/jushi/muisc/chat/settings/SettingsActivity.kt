@@ -45,7 +45,7 @@ class SettingsActivity : BaseActivity() {
         }
 
     }
-    
+
     /**
      * 退出当前账号
      */

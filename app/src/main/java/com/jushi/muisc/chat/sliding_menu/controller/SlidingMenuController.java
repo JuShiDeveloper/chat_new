@@ -10,23 +10,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.jushi.muisc.chat.common.utils.SaveUtils;
 import com.jushi.muisc.chat.main.MainActivity;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.common.manager.ActivityManager;
-import com.jushi.muisc.chat.settings.SettingsActivity;
 import com.jushi.muisc.chat.sliding_menu.localmusic.LocalMusicActivity;
 import com.jushi.muisc.chat.sliding_menu.download_manager.DownloadActivity;
 import com.jushi.muisc.chat.sliding_menu.my_favorites.MyFavoritesActivity;
 import com.jushi.muisc.chat.sliding_menu.near_play.NearPlayActivity;
 import com.jushi.muisc.chat.sliding_menu.common.minterface.IController;
 import com.jushi.muisc.chat.common.transform.CircleTransform;
-import com.jushi.muisc.chat.common.utils.ToastUtils;
-import com.jushi.pictures.camera.OnPicturePathListener;
-import com.jushi.pictures.camera.PictureCapture;
-import com.jushi.pictures.camera.utils.Photo;
+import com.jushi.camera.OnPicturePathListener;
+import com.jushi.camera.PictureCapture;
+import com.jushi.camera.utils.Photo;
 
 /**
  * 侧滑菜单控制类

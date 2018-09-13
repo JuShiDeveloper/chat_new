@@ -3,39 +3,82 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_exit_dialog"
-    android:orientation="vertical"
-    android:paddingBottom="10dp"
-    android:paddingEnd="20dp"
-    android:paddingStart="20dp"
-    android:paddingTop="20dp">
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:src="@mipmap/pop_left_img" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/pop_middle_img" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@mipmap/pop_right_img" />
+
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/ExitDialog_ListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:divider="@color/c_ffffff"
         android:dividerHeight="10dp"
         android:scrollbars="none" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/c_EFEFEF" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:orientation="horizontal"
-        android:paddingTop="35dp">
+        android:layout_height="52dp"
+        android:orientation="horizontal">
 
-        <RadioButton
+        <TextView
             android:id="@+id/Cancel_btn"
-            style="@style/exit_dialog_tv_style"
-            android:layout_marginEnd="45dp"
+            android:layout_width="0dp"
+            android:background="@drawable/selector_bg_click_btn"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/Cancel"
-            android:textColor="@color/c_334139" />
+            android:textColor="@color/c_334139"
+            android:textSize="16sp" />
 
-        <RadioButton
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/c_EFEFEF" />
+
+        <TextView
             android:id="@+id/Drop_btn"
-            style="@style/exit_dialog_tv_style"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_bg_click_btn"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/tips_dialog_Drop"
-            android:textColor="@color/c_00732F" />
+            android:textColor="@color/c_00732F"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>
