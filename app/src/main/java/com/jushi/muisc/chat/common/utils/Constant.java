@@ -35,4 +35,10 @@ public class Constant {
     public static final String SAVE_USER_IMAGE_KEY = "user_image";
     public static final String SAVE_AUTO_LOGIN = "auto_login"; //设置是否自动登陆
 
+
+    public static class Dir{
+        public static final String USER_AVATAR_DIR ="/userAvatar";
+        public static final String USER_AVATAR_NAME = "/avatar.png";
+    }
+
 }

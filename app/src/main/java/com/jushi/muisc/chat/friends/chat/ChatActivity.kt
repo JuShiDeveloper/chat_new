@@ -57,6 +57,7 @@ class ChatActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
             EMClient.getInstance().chatManager().sendMessage(msg)
             et_input_msg.setText("")
             notificationMsgCountChanged(msg)
+//            EMMessage.createImageSendMessage()
         }
     }
 

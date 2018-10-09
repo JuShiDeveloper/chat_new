@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hyphenate.chat.EMClient;
+import com.jushi.muisc.chat.common.utils.Constant;
+import com.jushi.muisc.chat.common.utils.CopyUtils;
 import com.jushi.muisc.chat.common.utils.SaveUtils;
 import com.jushi.muisc.chat.main.MainActivity;
 import com.jushi.muisc.chat.R;
@@ -24,6 +26,9 @@ import com.jushi.muisc.chat.common.transform.CircleTransform;
 import com.jushi.camera.OnPicturePathListener;
 import com.jushi.camera.PictureCapture;
 import com.jushi.camera.utils.Photo;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 侧滑菜单控制类
@@ -123,8 +128,25 @@ public class SlidingMenuController implements IController, View.OnClickListener 
         PictureCapture.INSTANCE.getPicture(context, new OnPicturePathListener() {
             @Override
             public void onPhoto(Photo photo) {
-                showUserImage(photo.getOriginalFile().getPath());
-                SaveUtils.getInstance(context).saveUserImage(photo.getOriginalFile().getPath());
+                File fileDir = new File(context.getExternalCacheDir() + Constant.Dir.USER_AVATAR_DIR);
+                File fileName = new File(fileDir.getPath() + Constant.Dir.USER_AVATAR_NAME);
+                if (!fileDir.exists()) {
+                    try {
+                        fileDir.mkdirs();
+                        if (!fileName.exists()){
+                            fileName.createNewFile();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (CopyUtils.copyFile(photo.getOriginalFile().getPath(), fileName.getPath())){
+                    showUserImage(photo.getOriginalFile().getPath());
+                    SaveUtils.getInstance(context).saveUserImage(fileName.getPath());
+                }else {
+                    showUserImage(photo.getOriginalFile().getPath());
+                    SaveUtils.getInstance(context).saveUserImage(photo.getOriginalFile().getPath());
+                }
             }
         }, false);
     }
