@@ -26,7 +26,7 @@ public class BannerImageAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        if (views.size() < 0)
+        if (views.size() <= 0)
             return null;
         View v = views.get(position % views.size());
         ViewGroup parent = (ViewGroup) v.getParent();
