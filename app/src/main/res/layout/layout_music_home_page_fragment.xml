@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:showIn="@layout/fragment_music_home_page"
     android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:showIn="@layout/fragment_music_home_page">
 
-    <RelativeLayout
+
+    <com.jushi.mzbanner.MZBannerView
+        android:id="@+id/mzBanner_view"
         android:layout_width="match_parent"
-        android:layout_height="180dp">
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/ViewPager_music_home_page_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <LinearLayout
-            android:id="@+id/dots_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="3dp" />
-
-    </RelativeLayout>
+        android:layout_height="180dp"
+        app:canLoop="true"
+        app:indicatorAlign="center"
+        app:indicatorPaddingLeft="10dp"
+        app:middle_page_cover="true"
+        app:open_mz_mode="false" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -40,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:background="@drawable/picture"
-            android:backgroundTint="@color/e80b0b"/>
+            android:backgroundTint="@color/e80b0b" />
 
         <com.jushi.muisc.chat.common.view.JSTextView
             android:layout_width="wrap_content"
@@ -57,7 +49,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:button="@drawable/more_icon"
-            android:buttonTint="@color/e80b0b"/>
+            android:buttonTint="@color/e80b0b" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -80,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:background="@drawable/picture"
-            android:backgroundTint="@color/e80b0b"/>
+            android:backgroundTint="@color/e80b0b" />
 
         <com.jushi.muisc.chat.common.view.JSTextView
             android:layout_width="wrap_content"
@@ -97,7 +89,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:button="@drawable/more_icon"
-            android:buttonTint="@color/e80b0b"/>
+            android:buttonTint="@color/e80b0b" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
