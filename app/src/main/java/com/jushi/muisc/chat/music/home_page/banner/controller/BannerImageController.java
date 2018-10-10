@@ -44,6 +44,7 @@ public class BannerImageController {
     public void initBannerView(View rootView) {
         bannerView = rootView.findViewById(R.id.mzBanner_view);
         bannerView.setDuration(1500);
+        bannerView.setIndicatorRes(R.drawable.banner_unselect_drawable, R.drawable.banner_select_drawable);
 
         loadBannerData();
         setBannerListener();
