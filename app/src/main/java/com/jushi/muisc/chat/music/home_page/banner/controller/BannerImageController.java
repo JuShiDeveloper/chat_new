@@ -31,7 +31,6 @@ public class BannerImageController {
     private NetWorkService workService;
     private Handler handler;
     private BannerImageTask bannerImageTask;
-    private int oldPosition = 0;
     private List<BannerModel.DataBean.SliderBean> sliders;
     private boolean isRefresh = false;
 
@@ -46,6 +45,7 @@ public class BannerImageController {
         bannerView.setDuration(1500);
 
         loadBannerData();
+        setBannerListener();
     }
 
     private void loadBannerData() {
@@ -85,7 +85,6 @@ public class BannerImageController {
                     }
                 });
                 startBanner();
-                setBannerListener();
             }
         });
     }
@@ -119,7 +118,7 @@ public class BannerImageController {
         bannerView.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
             @Override
             public void onPageClick(View view, int position) {
-                String infoLink = sliders.get(oldPosition).getLinkUrl();
+                String infoLink = sliders.get(position).getLinkUrl();
                 ActivityManager.startActivity(mContext, BannerViewActivity.class, infoLink);
             }
         });
