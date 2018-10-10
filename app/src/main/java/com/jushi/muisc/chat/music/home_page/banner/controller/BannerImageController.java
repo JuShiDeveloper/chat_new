@@ -2,6 +2,7 @@ package com.jushi.muisc.chat.music.home_page.banner.controller;
 
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 

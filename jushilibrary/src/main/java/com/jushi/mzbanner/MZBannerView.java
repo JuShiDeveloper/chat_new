@@ -296,7 +296,7 @@ public class MZBannerView<T> extends RelativeLayout {
             mHandler.postDelayed(mLoopRunnable, mDelayedTime);
         }
         if (mBannerScrollChangeListener != null) {
-            mBannerScrollChangeListener.onScroll(true);
+            mBannerScrollChangeListener.onScroll(false);
         }
     }
 
@@ -307,7 +307,7 @@ public class MZBannerView<T> extends RelativeLayout {
         mIsAutoPlay = false;
         mHandler.removeCallbacks(mLoopRunnable);
         if (mBannerScrollChangeListener != null) {
-            mBannerScrollChangeListener.onScroll(false);
+            mBannerScrollChangeListener.onScroll(true);
         }
     }
 

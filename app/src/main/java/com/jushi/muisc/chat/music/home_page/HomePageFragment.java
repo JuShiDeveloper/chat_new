@@ -115,6 +115,18 @@ public class HomePageFragment extends ViewPagerFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        bannerController.startBanner();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        bannerController.stopBanner();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
     }
