@@ -247,7 +247,7 @@ public class Utils {
         int screenWidth = getMetrics((Activity) context).widthPixels;
         int width = screenWidth / 3 - 100;
         int imageHeight = width;
-        LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(width,imageHeight);
+        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(width,imageHeight);
         params1.setMargins(0,40,0,15);
         imageView.setLayoutParams(params1);
     }

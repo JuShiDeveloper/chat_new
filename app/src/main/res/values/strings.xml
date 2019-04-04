@@ -25,6 +25,7 @@
 
     <string name="latest_MV">最新MV</string>
     <string name="zhiBo_live">直播</string>
+    <string name="radio">电台</string>
     <string name="search_hint">请输入歌曲、歌手</string>
     <string name="nothing_more">我是有底线的</string>
     <string name="play_all">播放全部</string>
@@ -110,5 +111,6 @@
     <string name="please_to_login">请先登陆</string>
     <string name="settings">设置</string>
     <string name="exit_login">退出登录</string>
+    <string name="more_text">更多</string>
 
 </resources>

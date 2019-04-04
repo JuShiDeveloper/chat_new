@@ -1,4 +1,4 @@
-package cmcc.gz.gz10086.main.ui.homePage.recommend;
+package com.jushi.muisc.chat.music.zhibo_video.radio.common;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;

@@ -36,7 +36,6 @@ public class PeriodicTask {
         if (!isSchedule()) {
             return;
         }
-
         if (progressUpdateTask != null) {
             progressUpdateTask.cancel();
             isSchedule = false;

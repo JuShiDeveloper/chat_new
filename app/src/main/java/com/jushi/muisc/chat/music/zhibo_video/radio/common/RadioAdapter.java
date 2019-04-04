@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.music.zhibo_video.radio.common.view;
+package com.jushi.muisc.chat.music.zhibo_video.radio.common;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.common.utils.Utils;
 import com.jushi.muisc.chat.music.zhibo_video.radio.model.RadioListEntity;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.RadioViewHol
 
     @Override
     public void onBindViewHolder(RadioViewHolder holder, int position) {
-        if (position > 5) return;
+        if (position > datas.size() - 1) return;
         holder.textView.setText(datas.get(position).getName());
         String imageUrl = "";
         if (title.equals(PUBLIC_CHANNEL)) {
@@ -50,7 +51,7 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.RadioViewHol
 
     @Override
     public int getItemCount() {
-        return datas.size();
+        return 6;
     }
 
     class RadioViewHolder extends RecyclerView.ViewHolder {

@@ -1,14 +1,22 @@
 package com.jushi.muisc.chat.app;
 
+import android.Manifest;
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 
+import com.blankj.utilcode.util.CrashUtils;
+import com.blankj.utilcode.util.LogUtils;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.common.daotools.MusicDBTools;
 import com.jushi.muisc.chat.common.utils.PATH;
+import com.jushi.rxPermissions.RxPermissions;
 import com.umeng.commonsdk.UMConfigure;
+
+import rx.functions.Action1;
 
 public class JSApplication extends Application {
     private static Context context;
@@ -20,6 +28,33 @@ public class JSApplication extends Application {
         PATH.initPath();
         initHuanXin();
         initUmeng();
+        initLog();
+    }
+
+    private void initLog(){
+        com.blankj.utilcode.util.Utils.init(this);
+        RxPermissions.getInstance(this).request(Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(new Action1<Boolean>() {
+            @Override
+            public void call(Boolean it) {
+                if (it){
+                    if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        CrashUtils.init(new CrashUtils.OnCrashListener() {
+                            @Override
+                            public void onCrash(String crashInfo, Throwable e) {
+                                LogUtils.d("onCrash() called with: crashInfo = [$crashInfo], e = [$e]");
+                            }
+                        });
+                    }
+                }
+            }
+        });
     }
 
     /**

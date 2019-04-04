@@ -12,6 +12,7 @@ import com.jushi.muisc.chat.music.home_page.artist.model.ArtistsModel;
 import com.jushi.muisc.chat.music.home_page.banner.model.BannerModel;
 import com.jushi.muisc.chat.music.chart.model.ChartDataModel;
 import com.jushi.muisc.chat.music.common.public_model.LatestMusicModel;
+import com.jushi.muisc.chat.music.zhibo_video.radio.model.RadioListEntity;
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVBean;
 import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVItemModel;
@@ -26,6 +27,7 @@ import com.squareup.okhttp.Response;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -165,7 +167,8 @@ public class NetWorkService {
                 try {
                     String body = response.body().string();
                     ZhiBoModel zhiBoModel = JSONObject.parseObject(body, ZhiBoModel.class);
-                    dataAdapter.onLiveData(zhiBoModel.getData().getData());
+                    if (zhiBoModel.getData().getData() != null)
+                        dataAdapter.onLiveData(zhiBoModel.getData().getData());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -378,4 +381,26 @@ public class NetWorkService {
         });
     }
 
+    /**
+     * 获取电台列表数据
+     */
+    public void getRadioListData(final LiveAndMvDataAdapter dataAdapter) {
+        OkHttpTool.httpClient(DataUrlUtils.getRadioListDataUrl(), new OkHttpTool.OnClientListener() {
+            @Override
+            public void onError() {
+                dataAdapter.onError();
+            }
+
+            @Override
+            public void onResponse(Response response) {
+                try {
+                    String body = response.body().string();
+                    RadioListEntity entity = JSONObject.parseObject(body, RadioListEntity.class);
+                    dataAdapter.onRadioListData(entity);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.zhibo_video.mv.controller.LatestMVController;
+import com.jushi.muisc.chat.music.zhibo_video.radio.RadioPresenter;
 import com.jushi.muisc.chat.music.zhibo_video.zhibo.controller.LiveController;
 
 /**
@@ -21,6 +22,8 @@ public class VideoAndLiveFragment extends Fragment {
     private static LatestMVController mvController;
     //直播
     private static LiveController liveController;
+    //电台
+    private static RadioPresenter radioPresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,11 +42,16 @@ public class VideoAndLiveFragment extends Fragment {
         //初始化直播数据
         liveController = new LiveController(getContext());
         liveController.initView(rootView);
+
+        //电台数据
+        radioPresenter = new RadioPresenter(getContext(),rootView);
+        radioPresenter.loadRadioListData();
     }
 
     public static void refreshData(){
         mvController.refreshData();
         liveController.refreshData();
+        radioPresenter.loadRadioListData();
     }
 
 }

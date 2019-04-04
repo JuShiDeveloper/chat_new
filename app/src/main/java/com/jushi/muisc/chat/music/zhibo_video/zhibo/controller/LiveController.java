@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.common.utils.music.MusicDataUtils;
@@ -32,6 +33,7 @@ public class LiveController implements View.OnClickListener {
     private final String SAVE_KEY = "liveBeans";
     private Context mContext;
     private RadioButton moreBtn;
+    private RelativeLayout titleLayout;
     private RecyclerView recyclerView;
     private NetWorkService workService;
     private Handler handler;
@@ -47,13 +49,14 @@ public class LiveController implements View.OnClickListener {
     }
 
     public void initView(View rootView) {
+        titleLayout = rootView.findViewById(R.id.zhi_bo_title_layout);
         moreBtn = rootView.findViewById(R.id.live_moreButton);
         moreBtn.setOnClickListener(this);
         recyclerView = rootView.findViewById(R.id.live_recyclerView);
-        JSGridLayoutManager manager = new JSGridLayoutManager(mContext,2);
+        JSGridLayoutManager manager = new JSGridLayoutManager(mContext, 2);
         manager.setScrollEnable(false);
         recyclerView.setLayoutManager(manager);
-        Utils.setZhiBoRecyclerViewParams((Activity) mContext,recyclerView);
+        Utils.setZhiBoRecyclerViewParams((Activity) mContext, recyclerView);
 
         loadLiveData();
     }
@@ -61,9 +64,9 @@ public class LiveController implements View.OnClickListener {
     private void loadLiveData() {
         if (NetWorkUtils.isNetworkAvailable(mContext)) {
             new LiveDataTask().run();
-        }else {
-            if (!isRefresh){
-                liveBeans = (List<ZhiBoModel.DataBeanX.DataBean>) MusicDataUtils.getInstance(mContext).getSaveData(SAVE_KEY,ZhiBoModel.DataBeanX.DataBean.class);
+        } else {
+            if (!isRefresh) {
+                liveBeans = (List<ZhiBoModel.DataBeanX.DataBean>) MusicDataUtils.getInstance(mContext).getSaveData(SAVE_KEY, ZhiBoModel.DataBeanX.DataBean.class);
                 showLiveData();
             }
         }
@@ -78,15 +81,24 @@ public class LiveController implements View.OnClickListener {
         }
     }
 
-    class LiveDataTask extends Thread{
+    class LiveDataTask extends Thread {
         @Override
         public void run() {
             workService.getLiveData(4, new LiveAndMvDataAdapter() {
                 @Override
                 public void onLiveData(List<ZhiBoModel.DataBeanX.DataBean> dataBeans) {
                     liveBeans = dataBeans;
+                    if (liveBeans != null && liveBeans.size() > 0) {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                titleLayout.setVisibility(View.VISIBLE);
+                                recyclerView.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    }
                     showLiveData();
-                    MusicDataUtils.getInstance(mContext).saveData(SAVE_KEY,liveBeans);
+                    MusicDataUtils.getInstance(mContext).saveData(SAVE_KEY, liveBeans);
                 }
             });
         }
@@ -96,7 +108,7 @@ public class LiveController implements View.OnClickListener {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                liveDataAdapter = new LiveDataAdapter(mContext,liveBeans);
+                liveDataAdapter = new LiveDataAdapter(mContext, liveBeans);
                 recyclerView.setAdapter(liveDataAdapter);
                 setItemClickListener();
             }
@@ -108,14 +120,14 @@ public class LiveController implements View.OnClickListener {
             @Override
             public void onItemClick(ZhiBoModel.DataBeanX.DataBean dataBean, int position) {
                 String playUrl = DataUrlUtils.getPlayZhiBoUrl(dataBean.getRid());
-                ActivityManager.startPlayVideoActivity(mContext,playUrl,dataBean.getNickname(), Constant.TYPE_LIVE);
+                ActivityManager.startPlayVideoActivity(mContext, playUrl, dataBean.getNickname(), Constant.TYPE_LIVE);
             }
         });
     }
 
-    public void refreshData(){
+    public void refreshData() {
         isRefresh = true;
-        if (liveBeans == null){
+        if (liveBeans == null) {
             liveBeans = new ArrayList<>();
         }
         liveBeans.clear();

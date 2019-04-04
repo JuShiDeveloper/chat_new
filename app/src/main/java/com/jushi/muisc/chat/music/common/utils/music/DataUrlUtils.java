@@ -188,4 +188,10 @@ public class DataUrlUtils {
         return url;
     }
 
+    //电台列表的Url
+    public static String getRadioListDataUrl(){
+        String url = "http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.radio.getCategoryList&format=json";
+        return url;
+    }
+
 }

@@ -50,4 +50,7 @@ dependencies {
     api files('libs/wyf_shadow.jar')
     api project(':pullToRefreshlibrary')
     api project(':jushilibrary')
+
+    implementation 'com.blankj:utilcode:1.20.3'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 }
