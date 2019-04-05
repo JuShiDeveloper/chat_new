@@ -158,6 +158,21 @@ public class RadioListEntity {
             public void setAvatar(String avatar) {
                 this.avatar = avatar;
             }
+
+            @Override
+            public String toString() {
+                return "ChannellistBean{" +
+                        "name='" + name + '\'' +
+                        ", channelid='" + channelid + '\'' +
+                        ", thumb='" + thumb + '\'' +
+                        ", ch_name='" + ch_name + '\'' +
+                        ", value=" + value +
+                        ", cate_name='" + cate_name + '\'' +
+                        ", cate_sname='" + cate_sname + '\'' +
+                        ", artistid='" + artistid + '\'' +
+                        ", avatar='" + avatar + '\'' +
+                        '}';
+            }
         }
     }
 }
