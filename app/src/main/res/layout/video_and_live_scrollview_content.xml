@@ -186,6 +186,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:gravity="start"
             android:textColor="@color/e80b0b"
             android:textSize="@dimen/_15sp" />
