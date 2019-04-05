@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.common.utils.Utils;
-import com.jushi.muisc.chat.music.zhibo_video.radio.model.RadioListEntity;
+import com.jushi.muisc.chat.music.zhibo_video.radio.entity.RadioListEntity;
 
 import java.util.List;
 
@@ -19,13 +18,16 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.RadioViewHol
     private Context context;
     private List<RadioListEntity.ResultBean.ChannellistBean> datas;
     private String title;
-    private final String PUBLIC_CHANNEL = "公共频道";
-    private final String MUSIC_CHANNEL = "音乐人频道";
+    public static final String PUBLIC_CHANNEL = "公共频道";
+    public static final String MUSIC_CHANNEL = "音乐人频道";
+    private int count;
+    private OnItemClickListener listener;
 
-    public RadioAdapter(Context context, List<RadioListEntity.ResultBean.ChannellistBean> datas, String title) {
+    public RadioAdapter(Context context, List<RadioListEntity.ResultBean.ChannellistBean> datas, String title, int count) {
         this.context = context;
         this.datas = datas;
         this.title = title;
+        this.count = count;
     }
 
     @Override
@@ -47,11 +49,19 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.RadioViewHol
         Glide.with(context).load(imageUrl)
                 .crossFade()  //淡入
                 .into(holder.imageView);
+        if (listener == null) return;
+        final int posi = position;
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemClick(datas.get(posi), posi, title);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 6;
+        return count;
     }
 
     class RadioViewHolder extends RecyclerView.ViewHolder {
@@ -65,5 +75,13 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.RadioViewHol
             textView = itemView.findViewById(R.id.item_title);
             imageView = itemView.findViewById(R.id.item_image);
         }
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(RadioListEntity.ResultBean.ChannellistBean channellistBean, int position, String type);
     }
 }

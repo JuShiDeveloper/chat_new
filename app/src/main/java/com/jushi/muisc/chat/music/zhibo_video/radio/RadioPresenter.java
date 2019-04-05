@@ -1,28 +1,38 @@
 package com.jushi.muisc.chat.music.zhibo_video.radio;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.common.utils.ToastUtils;
 import com.jushi.muisc.chat.music.common.service.NetWorkService;
+import com.jushi.muisc.chat.music.common.utils.music.DataUrlUtils;
 import com.jushi.muisc.chat.music.zhibo_video.common.LiveAndMvDataAdapter;
 import com.jushi.muisc.chat.music.zhibo_video.radio.common.CustomGridLayoutManager;
 import com.jushi.muisc.chat.music.zhibo_video.radio.common.RadioAdapter;
-import com.jushi.muisc.chat.music.zhibo_video.radio.model.RadioListEntity;
+import com.jushi.muisc.chat.music.zhibo_video.radio.entity.RadioListEntity;
+import com.jushi.muisc.chat.music.zhibo_video.radio.more.RadioMoreActivity;
+import com.jushi.muisc.chat.music.zhibo_video.radio.songList.RadioSongListActivity;
 
 import java.util.List;
 
-public class RadioPresenter extends LiveAndMvDataAdapter {
+public class RadioPresenter extends LiveAndMvDataAdapter implements RadioAdapter.OnItemClickListener {
     private Context context;
     private NetWorkService netWorkService;
     private View rootView;
     private RelativeLayout titleLayout;
     private TextView tvPtitle, tvMtitle;
+    private TextView tvPmoreBtn;
     private RecyclerView rvPublicChannel, rvMusicChannel;
+    private List<RadioListEntity.ResultBean> results;
+    private RadioAdapter pRadioAdapter;
+    private RadioAdapter mRadioAdapter;
 
     public RadioPresenter(Context context, View rootView) {
         this.context = context;
@@ -31,6 +41,7 @@ public class RadioPresenter extends LiveAndMvDataAdapter {
         initView();
         initRecyclerView(rvPublicChannel);
         initRecyclerView(rvMusicChannel);
+        setPublicChannelMoreBtnClick();
     }
 
     private void initView() {
@@ -39,6 +50,7 @@ public class RadioPresenter extends LiveAndMvDataAdapter {
         rvPublicChannel = rootView.findViewById(R.id.radio_item_rv_public_channel);
         tvMtitle = rootView.findViewById(R.id.radio_item_mTitle);
         rvMusicChannel = rootView.findViewById(R.id.radio_item_rv_music_channel);
+        tvPmoreBtn = rootView.findViewById(R.id.radio_public_channel_moreButton);
     }
 
     private void initRecyclerView(RecyclerView recyclerView) {
@@ -50,6 +62,19 @@ public class RadioPresenter extends LiveAndMvDataAdapter {
             }
         });
         recyclerView.setLayoutManager(new CustomGridLayoutManager(context, 3));
+    }
+
+    private void setPublicChannelMoreBtnClick() {
+        tvPmoreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (results == null) return;
+                String json = JSONObject.toJSONString(results);
+                Intent intent = new Intent(context, RadioMoreActivity.class);
+                intent.putExtra(RadioMoreActivity.INTENT_KEY, json);
+                context.startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -68,16 +93,20 @@ public class RadioPresenter extends LiveAndMvDataAdapter {
 
     @Override
     public void onRadioListData(RadioListEntity entity) {
-        final List<RadioListEntity.ResultBean> results = entity.getResult();
+        results = entity.getResult();
         final String title = results.get(0).getTitle();
         final String mTitle = results.get(1).getTitle();
         rootView.post(new Runnable() {
             @Override
             public void run() {
                 tvPtitle.setText(title);
-                rvPublicChannel.setAdapter(new RadioAdapter(context, results.get(0).getChannellist(), title));
+                pRadioAdapter = new RadioAdapter(context, results.get(0).getChannellist(), title, 6);
+                rvPublicChannel.setAdapter(pRadioAdapter);
+                pRadioAdapter.setOnItemClickListener(RadioPresenter.this);
                 tvMtitle.setText(mTitle);
-                rvMusicChannel.setAdapter(new RadioAdapter(context, results.get(1).getChannellist(), mTitle));
+                mRadioAdapter = new RadioAdapter(context, results.get(1).getChannellist(), mTitle, 6);
+                rvMusicChannel.setAdapter(mRadioAdapter);
+                mRadioAdapter.setOnItemClickListener(RadioPresenter.this);
             }
         });
     }
@@ -86,4 +115,23 @@ public class RadioPresenter extends LiveAndMvDataAdapter {
     public void onError() {
 
     }
+
+    @Override
+    public void onItemClick(RadioListEntity.ResultBean.ChannellistBean channellistBean, int position, String type) {
+        Intent intent = new Intent(context, RadioSongListActivity.class);
+        String url = "";
+        if (type.equals(RadioAdapter.PUBLIC_CHANNEL)) { //公共频道
+            url = DataUrlUtils.getSongListFormOncePublicChannelRadio(channellistBean.getCh_name());
+        }
+        if (type.equals(RadioAdapter.MUSIC_CHANNEL)) { //音乐人频道
+            ToastUtils.show(context, "正在开发中");
+            return;
+        }
+        intent.putExtra(RadioSongListActivity.URL_KEY, url);
+        intent.putExtra(RadioSongListActivity.TYPE_KET, type);
+        intent.putExtra(RadioSongListActivity.TITLE_KET, channellistBean.getName());
+        context.startActivity(intent);
+    }
+
+
 }

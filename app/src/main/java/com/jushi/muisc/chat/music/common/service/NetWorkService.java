@@ -12,7 +12,8 @@ import com.jushi.muisc.chat.music.home_page.artist.model.ArtistsModel;
 import com.jushi.muisc.chat.music.home_page.banner.model.BannerModel;
 import com.jushi.muisc.chat.music.chart.model.ChartDataModel;
 import com.jushi.muisc.chat.music.common.public_model.LatestMusicModel;
-import com.jushi.muisc.chat.music.zhibo_video.radio.model.RadioListEntity;
+import com.jushi.muisc.chat.music.zhibo_video.radio.entity.RadioListEntity;
+import com.jushi.muisc.chat.music.zhibo_video.radio.entity.RadioSongListEntity;
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVBean;
 import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVItemModel;
@@ -167,7 +168,7 @@ public class NetWorkService {
                 try {
                     String body = response.body().string();
                     ZhiBoModel zhiBoModel = JSONObject.parseObject(body, ZhiBoModel.class);
-                    if (zhiBoModel.getData().getData() != null)
+                    if (zhiBoModel != null && zhiBoModel.getData().getData() != null)
                         dataAdapter.onLiveData(zhiBoModel.getData().getData());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -397,6 +398,31 @@ public class NetWorkService {
                     String body = response.body().string();
                     RadioListEntity entity = JSONObject.parseObject(body, RadioListEntity.class);
                     dataAdapter.onRadioListData(entity);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * 获取某个电台下的歌曲列表
+     *
+     * @param url
+     */
+    public void getSongListFromOnceRadio(String url, final LiveAndMvDataAdapter dataAdapter) {
+        OkHttpTool.httpClient(url, new OkHttpTool.OnClientListener() {
+            @Override
+            public void onError() {
+                dataAdapter.onError();
+            }
+
+            @Override
+            public void onResponse(Response response) {
+                try {
+                    String body = response.body().string();
+                    RadioSongListEntity entity = JSONObject.parseObject(body, RadioSongListEntity.class);
+                    dataAdapter.onRadioSongListData(entity);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

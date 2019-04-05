@@ -2,7 +2,8 @@ package com.jushi.muisc.chat.music.zhibo_video.common;
 
 import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVBean;
 import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVItemModel;
-import com.jushi.muisc.chat.music.zhibo_video.radio.model.RadioListEntity;
+import com.jushi.muisc.chat.music.zhibo_video.radio.entity.RadioListEntity;
+import com.jushi.muisc.chat.music.zhibo_video.radio.entity.RadioSongListEntity;
 import com.jushi.muisc.chat.music.zhibo_video.zhibo.model.ZhiBoModel;
 
 import java.util.List;
@@ -23,6 +24,9 @@ public interface OnLiveOrMvDataListener {
 
     //电台列表数据
     void onRadioListData(RadioListEntity entity);
+
+    //某个电台的歌曲列表数据
+    void onRadioSongListData(RadioSongListEntity entity);
 
     void onError();
 }

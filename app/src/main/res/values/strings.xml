@@ -94,7 +94,6 @@
     <string name="login_success">登陆成功</string>
 
 
-
     <!--添加好友成功后的广播-->
     <string name="ADD_FRIENDS_SUCCESS_BROADCAST_ACTION">action.add.friends.success</string>
     <!--登陆成功后的广播-->
@@ -112,5 +111,7 @@
     <string name="settings">设置</string>
     <string name="exit_login">退出登录</string>
     <string name="more_text">更多</string>
+    <string name="radio_2">电台：</string>
+    <string name="dao_di_xian_le">呀~到底线了</string>
 
 </resources>

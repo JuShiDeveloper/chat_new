@@ -56,8 +56,8 @@ public class DataUrlUtils {
     }
 
     //获得歌手的歌曲Url
-    public static String getArtistMusics(String artist_ting_uid){
-        String url = "http://tingapi.ting.baidu.com/v1/restserver/ting?from=android&version=5.9.9.1&channel=ppzs&operator=0&method=baidu.ting.artist.getSongList&format=json&order=2&tinguid="+artist_ting_uid+"&artistid="+artist_ting_uid+"&offset=0&limits=100";
+    public static String getArtistMusics(String artist_ting_uid) {
+        String url = "http://tingapi.ting.baidu.com/v1/restserver/ting?from=android&version=5.9.9.1&channel=ppzs&operator=0&method=baidu.ting.artist.getSongList&format=json&order=2&tinguid=" + artist_ting_uid + "&artistid=" + artist_ting_uid + "&offset=0&limits=100";
         return url;
     }
 
@@ -98,8 +98,8 @@ public class DataUrlUtils {
     }
 
     //根据歌曲id 获得歌曲的详细信息
-    public static String getSongInfoUrl(String songId){
-        String url = "http://tingapi.ting.baidu.com/v1/restserver/ting?format=json&calback=&from=webapp_music&method=baidu.ting.song.playAAC&songid="+songId+"";
+    public static String getSongInfoUrl(String songId) {
+        String url = "http://tingapi.ting.baidu.com/v1/restserver/ting?format=json&calback=&from=webapp_music&method=baidu.ting.song.playAAC&songid=" + songId + "";
         return url;
     }
 
@@ -121,7 +121,7 @@ public class DataUrlUtils {
             return getQingGeDuiChangUrl(count);
         } else if (chartTitle.equals(Constant.yaoGunChart)) {//摇滚榜
             return getYaoGunMusicUrl(count);
-        }else if (chartTitle.equals(Constant.ouMeiChart)){ //欧美金曲榜
+        } else if (chartTitle.equals(Constant.ouMeiChart)) { //欧美金曲榜
             return getOuMeiMusicUrl(count);
         } else {
             return null;
@@ -189,8 +189,14 @@ public class DataUrlUtils {
     }
 
     //电台列表的Url
-    public static String getRadioListDataUrl(){
+    public static String getRadioListDataUrl() {
         String url = "http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.radio.getCategoryList&format=json";
+        return url;
+    }
+
+    //获取公共频道某个电台下的歌曲列表电台
+    public static String getSongListFormOncePublicChannelRadio(String ch_name) {
+        String url = "http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.radio.getChannelSong&format=json&pn=0&rn=50&channelname=" + ch_name + "";
         return url;
     }
 

@@ -11,7 +11,7 @@ import com.jushi.base.fragment.ViewPagerFragment;
 import com.jushi.muisc.chat.music.home_page.banner.controller.BannerImageController;
 import com.jushi.muisc.chat.music.home_page.artist.controller.HotArtistController;
 import com.jushi.muisc.chat.music.chart.ChartFragment;
-import com.jushi.muisc.chat.music.zhibo_video.common.VideoAndLiveFragment;
+import com.jushi.muisc.chat.music.zhibo_video.VideoAndLiveFragment;
 import com.jushi.muisc.chat.music.home_page.recommend.controller.TodayRecommendController;
 import com.jushi.muisc.chat.common.view.RefreshHeadView;
 

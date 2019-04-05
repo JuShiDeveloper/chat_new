@@ -2,7 +2,8 @@ package com.jushi.muisc.chat.music.zhibo_video.common;
 
 import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVBean;
 import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVItemModel;
-import com.jushi.muisc.chat.music.zhibo_video.radio.model.RadioListEntity;
+import com.jushi.muisc.chat.music.zhibo_video.radio.entity.RadioListEntity;
+import com.jushi.muisc.chat.music.zhibo_video.radio.entity.RadioSongListEntity;
 import com.jushi.muisc.chat.music.zhibo_video.zhibo.model.ZhiBoModel;
 
 import java.util.List;
@@ -29,6 +30,11 @@ public abstract class LiveAndMvDataAdapter implements OnLiveOrMvDataListener {
 
     @Override
     public void onRadioListData(RadioListEntity entity) {
+
+    }
+
+    @Override
+    public void onRadioSongListData(RadioSongListEntity entity) {
 
     }
 

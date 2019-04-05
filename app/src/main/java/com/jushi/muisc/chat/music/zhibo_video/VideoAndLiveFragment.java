@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.music.zhibo_video.common;
+package com.jushi.muisc.chat.music.zhibo_video;
 
 
 import android.os.Bundle;

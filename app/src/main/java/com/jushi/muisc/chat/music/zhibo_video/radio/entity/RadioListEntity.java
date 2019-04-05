@@ -1,4 +1,4 @@
-package com.jushi.muisc.chat.music.zhibo_video.radio.model;
+package com.jushi.muisc.chat.music.zhibo_video.radio.entity;
 
 import java.util.List;
 
