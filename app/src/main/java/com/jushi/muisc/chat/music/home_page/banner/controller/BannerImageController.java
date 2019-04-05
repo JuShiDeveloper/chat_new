@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.music.common.jsinterface.OnRequestListener;
 import com.jushi.muisc.chat.music.home_page.banner.BannerViewActivity;
 import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.common.manager.ActivityManager;
@@ -34,9 +35,11 @@ public class BannerImageController {
     private BannerImageTask bannerImageTask;
     private List<BannerModel.DataBean.SliderBean> sliders;
     private boolean isRefresh = false;
+    private OnRequestListener requestListener;
 
-    public BannerImageController(Context mContext) {
+    public BannerImageController(Context mContext,OnRequestListener requestListener) {
         this.mContext = mContext;
+        this.requestListener = requestListener;
         handler = new Handler();
         workService = NetWorkService.getInstance(mContext);
     }
@@ -87,6 +90,7 @@ public class BannerImageController {
                     }
                 });
                 startBanner();
+                requestListener.onRequestSuccess();
             }
         });
     }

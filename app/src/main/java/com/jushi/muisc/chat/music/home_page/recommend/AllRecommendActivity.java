@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
 import com.jushi.muisc.chat.music.home_page.recommend.adapter.AllRecommendAdapter;
 import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
 import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
@@ -113,6 +114,7 @@ public class AllRecommendActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void getRecommendData() {
+        RefreshViewUtils.showRefreshDialog(this);
         recommendTadk = new RecommendTadk();
         recommendTadk.run();
     }
@@ -166,6 +168,7 @@ public class AllRecommendActivity extends AppCompatActivity implements View.OnCl
                 }
                 tvAllMusicNum.setText(String.valueOf(listBeans.size()));
                 setItemClickListener();
+                RefreshViewUtils.dismissRefreshDialog();
             }
         });
     }

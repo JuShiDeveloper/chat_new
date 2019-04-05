@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class RadioPresenter extends LiveAndMvDataAdapter implements RadioAdapter
     private NetWorkService netWorkService;
     private View rootView;
     private RelativeLayout titleLayout;
+    private LinearLayout linearLayout;
     private TextView tvPtitle, tvMtitle;
     private TextView tvPmoreBtn;
     private RecyclerView rvPublicChannel, rvMusicChannel;
@@ -45,6 +47,7 @@ public class RadioPresenter extends LiveAndMvDataAdapter implements RadioAdapter
     }
 
     private void initView() {
+        linearLayout = rootView.findViewById(R.id.radio_total_layout);
         titleLayout = rootView.findViewById(R.id.radio_title_layout);
         tvPtitle = rootView.findViewById(R.id.radio_item_pTitle);
         rvPublicChannel = rootView.findViewById(R.id.radio_item_rv_public_channel);
@@ -81,7 +84,8 @@ public class RadioPresenter extends LiveAndMvDataAdapter implements RadioAdapter
      * 加载电台列表数据
      */
     public void loadRadioListData() {
-        new DataTask().run();
+        linearLayout.setVisibility(View.GONE);
+//        new DataTask().run();
     }
 
     class DataTask implements Runnable {
@@ -113,7 +117,12 @@ public class RadioPresenter extends LiveAndMvDataAdapter implements RadioAdapter
 
     @Override
     public void onError() {
-
+        linearLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                linearLayout.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override

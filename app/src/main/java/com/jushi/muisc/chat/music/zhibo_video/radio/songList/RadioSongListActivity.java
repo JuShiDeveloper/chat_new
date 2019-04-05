@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
 import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.music.common.service.NetWorkService;
 import com.jushi.muisc.chat.music.home_page.artist.adapter.ArtistMusicAdapter;
@@ -42,7 +43,6 @@ public class RadioSongListActivity extends AppCompatActivity implements View.OnC
     private String type;
     private List<RadioSongListEntity.ResultBean.SonglistBean> songlistBeans = new ArrayList<>();
     private RadioPublicChannelSongListAdapter publicChannelSongListAdapter;
-    private ArtistMusicAdapter artistMusicAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,7 @@ public class RadioSongListActivity extends AppCompatActivity implements View.OnC
         netWorkService = NetWorkService.getInstance(this);
         url = getIntent().getStringExtra(URL_KEY);
         type = getIntent().getStringExtra(TYPE_KET);
+        RefreshViewUtils.showRefreshDialog(this);
         initialize();
     }
 
@@ -110,6 +111,7 @@ public class RadioSongListActivity extends AppCompatActivity implements View.OnC
         publicChannelSongListAdapter = new RadioPublicChannelSongListAdapter(this, songlistBeans);
         recyclerView.setAdapter(publicChannelSongListAdapter);
         publicChannelSongListAdapter.setOnItemClickListener(this);
+        RefreshViewUtils.dismissRefreshDialog();
     }
 
     @Override

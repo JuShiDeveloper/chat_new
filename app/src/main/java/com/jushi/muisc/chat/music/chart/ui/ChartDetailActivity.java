@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
 import com.jushi.muisc.chat.music.chart.adapter.ChartDetailAdapter;
 import com.jushi.muisc.chat.music.chart.adapter.OtherChartDetailAdapter;
 import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
@@ -157,6 +158,7 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void getDetailData() {
+        RefreshViewUtils.showRefreshDialog(this);
         if (chartUrl != null) {
             getChartDetailData();
         } else {
@@ -220,6 +222,7 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
                 detailAdapter.notifyDataSetChanged();
                 showRecyclerView();
                 tvMusicNum.setText(String.valueOf(listBeans.size()));
+                RefreshViewUtils.dismissRefreshDialog();
             }
         });
     }

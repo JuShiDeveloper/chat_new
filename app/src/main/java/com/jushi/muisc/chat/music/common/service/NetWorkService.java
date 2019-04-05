@@ -1,6 +1,7 @@
 package com.jushi.muisc.chat.music.common.service;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
@@ -93,7 +94,8 @@ public class NetWorkService {
             public void onResponse(com.squareup.okhttp.Response response) {
                 try {
                     String body = response.body().string();
-                    TodayRecommendModel recommendModel = JSONObject.parseObject(body, TodayRecommendModel.class);
+//                    TodayRecommendModel recommendModel = JSONObject.parseObject(body, TodayRecommendModel.class);
+                    TodayRecommendModel recommendModel = new Gson().fromJson(body, TodayRecommendModel.class);
                     List<TodayRecommendModel.ResultBean.ListBean> rModel = recommendModel.getResult().getList();
                     dataAdapter.onTodayRecommendData(rModel);
                 } catch (Exception e) {
@@ -120,7 +122,8 @@ public class NetWorkService {
             public void onResponse(com.squareup.okhttp.Response response) {
                 try {
                     String body = response.body().string();
-                    ArtistsModel artistsModel = JSONObject.parseObject(body, ArtistsModel.class);
+//                    ArtistsModel artistsModel = JSONObject.parseObject(body, ArtistsModel.class);
+                    ArtistsModel artistsModel = new Gson().fromJson(body, ArtistsModel.class);
                     dataAdapter.onArtistData(artistsModel.getArtist());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -396,7 +399,12 @@ public class NetWorkService {
             public void onResponse(Response response) {
                 try {
                     String body = response.body().string();
-                    RadioListEntity entity = JSONObject.parseObject(body, RadioListEntity.class);
+//                    RadioListEntity entity = JSONObject.parseObject(body, RadioListEntity.class);
+                    if (body.contains("Forbidden")) {
+                        dataAdapter.onError();
+                        return;
+                    }
+                    RadioListEntity entity = new Gson().fromJson(body, RadioListEntity.class);
                     dataAdapter.onRadioListData(entity);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -421,7 +429,8 @@ public class NetWorkService {
             public void onResponse(Response response) {
                 try {
                     String body = response.body().string();
-                    RadioSongListEntity entity = JSONObject.parseObject(body, RadioSongListEntity.class);
+//                    RadioSongListEntity entity = JSONObject.parseObject(body, RadioSongListEntity.class);
+                    RadioSongListEntity entity = new Gson().fromJson(body, RadioSongListEntity.class);
                     dataAdapter.onRadioSongListData(entity);
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -5,9 +5,12 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.jushi.muisc.chat.R;
 import com.jushi.base.fragment.ViewPagerFragment;
+import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
+import com.jushi.muisc.chat.music.common.jsinterface.OnRequestListener;
 import com.jushi.muisc.chat.music.home_page.banner.controller.BannerImageController;
 import com.jushi.muisc.chat.music.home_page.artist.controller.HotArtistController;
 import com.jushi.muisc.chat.music.chart.ChartFragment;
@@ -18,9 +21,9 @@ import com.jushi.muisc.chat.common.view.RefreshHeadView;
 /**
  * 首页
  */
-public class HomePageFragment extends ViewPagerFragment {
+public class HomePageFragment extends ViewPagerFragment implements OnRequestListener {
 
-//    private View rootView;
+    //    private View rootView;
     private PullToRefreshLayout refreshLayout;
     private Handler handler;
     //轮播图
@@ -54,25 +57,26 @@ public class HomePageFragment extends ViewPagerFragment {
     }
 
     private void initMusicData() {
+        RefreshViewUtils.showRefreshDialog(getContext());
         //初始化轮播图数据
-        bannerController = new BannerImageController(getContext());
+        bannerController = new BannerImageController(getContext(),this);
         bannerController.initBannerView(rootView);
         //初始化今日推荐数据
-        recommendController = new TodayRecommendController(getContext());
+        recommendController = new TodayRecommendController(getContext(),this);
         recommendController.initView(rootView);
         //初始化热门歌手
-        hotArtistController = new HotArtistController(getContext());
+        hotArtistController = new HotArtistController(getContext(),this);
         hotArtistController.initView(rootView);
     }
 
     //手动滑动banner图时不可下拉刷新
-    private void setBannerListener(){
+    private void setBannerListener() {
         bannerController.setOnViewPagerScrollListener(new BannerImageController.OnViewPagerScrollListener() {
             @Override
             public void onScroll(boolean isScroll) {
-                if (isScroll){
+                if (isScroll) {
                     refreshLayout.setPullDownEnable(false);
-                }else {
+                } else {
                     refreshLayout.setPullDownEnable(true);
                 }
             }
@@ -102,6 +106,7 @@ public class HomePageFragment extends ViewPagerFragment {
 
     //刷新数据
     private void toRefresh() {
+        RefreshViewUtils.showRefreshDialog(getContext());
         //刷新首页中banner数据
         bannerController.refreshData();
         //刷新首页今日推荐数据
@@ -112,6 +117,16 @@ public class HomePageFragment extends ViewPagerFragment {
         VideoAndLiveFragment.refreshData();
         //刷新榜单数据
         ChartFragment.refreshData();
+    }
+
+    @Override
+    public void onRequestSuccess() {
+        RefreshViewUtils.dismissRefreshDialog();
+    }
+
+    @Override
+    public void onRequestFiled() {
+        RefreshViewUtils.dismissRefreshDialog();
     }
 
     @Override
@@ -130,4 +145,5 @@ public class HomePageFragment extends ViewPagerFragment {
     public void onDestroy() {
         super.onDestroy();
     }
+
 }

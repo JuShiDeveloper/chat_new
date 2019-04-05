@@ -93,109 +93,117 @@
         android:layout_marginTop="10dp"
         android:visibility="gone" />
 
-    <RelativeLayout
-        android:id="@+id/radio_title_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="5dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/picture"
-            android:backgroundTint="@color/e80b0b" />
-
-        <com.jushi.muisc.chat.common.view.JSTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/radio"
-            android:textColor="@color/e80b0b"
-            android:textSize="@dimen/_15sp" />
-
-        <RadioButton
-            android:id="@+id/radio_moreButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:button="@drawable/more_icon"
-            android:buttonTint="@color/e80b0b"
-            android:visibility="gone" />
-    </RelativeLayout>
-
-    <!--显示电台数据-->
     <LinearLayout
+        android:id="@+id/radio_total_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/bg_radio"
-        android:orientation="vertical"
-        android:paddingTop="5dp">
-        <!--公共频道-->
+        android:orientation="vertical">
+
         <RelativeLayout
-            android:id="@+id/radio_public_channel_title_layout"
+            android:id="@+id/radio_title_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginTop="5dp">
 
-            <com.jushi.muisc.chat.common.view.JSTextView
-                android:id="@+id/radio_item_pTitle"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/picture"
+                android:backgroundTint="@color/e80b0b" />
+
+            <com.jushi.muisc.chat.common.view.JSTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/radio"
                 android:textColor="@color/e80b0b"
                 android:textSize="@dimen/_15sp" />
 
-            <TextView
-                android:id="@+id/radio_public_channel_moreButton"
+            <RadioButton
+                android:id="@+id/radio_moreButton"
                 android:layout_width="wrap_content"
-                android:layout_height="18dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:drawablePadding="5dp"
-                android:drawableRight="@drawable/more_icon"
-                android:drawableTint="@color/e80b0b"
-                android:drawableTintMode="src_in"
-                android:text="@string/more_text"
-                android:textColor="@color/e80b0b"
-                android:textSize="@dimen/_15sp" />
+                android:button="@drawable/more_icon"
+                android:buttonTint="@color/e80b0b"
+                android:visibility="gone" />
         </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/radio_item_rv_public_channel"
+        <!--显示电台数据-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none" />
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_radio"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
+            <!--公共频道-->
+            <RelativeLayout
+                android:id="@+id/radio_public_channel_title_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="15dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/e80b0b"/>
+                <com.jushi.muisc.chat.common.view.JSTextView
+                    android:id="@+id/radio_item_pTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/e80b0b"
+                    android:textSize="@dimen/_15sp" />
 
-        <!--音乐人频道-->
-        <com.jushi.muisc.chat.common.view.JSTextView
-            android:id="@+id/radio_item_mTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:gravity="start"
-            android:textColor="@color/e80b0b"
-            android:textSize="@dimen/_15sp" />
+                <TextView
+                    android:id="@+id/radio_public_channel_moreButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@drawable/more_icon"
+                    android:drawableTint="@color/e80b0b"
+                    android:drawableTintMode="src_in"
+                    android:text="@string/more_text"
+                    android:textColor="@color/e80b0b"
+                    android:textSize="@dimen/_15sp" />
+            </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/radio_item_rv_music_channel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/radio_item_rv_public_channel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/e80b0b" />
+
+            <!--音乐人频道-->
+            <com.jushi.muisc.chat.common.view.JSTextView
+                android:id="@+id/radio_item_mTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:gravity="start"
+                android:textColor="@color/e80b0b"
+                android:textSize="@dimen/_15sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/radio_item_rv_music_channel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.common.utils.DisplayUtils;
+import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -54,7 +55,7 @@ public class BannerViewActivity extends AppCompatActivity implements View.OnClic
         linearLayout = (LinearLayout) findViewById(R.id.web_show_hint);
         backButton = findViewById(R.id.BannerViewActivity_back_button);
         backButton.setOnClickListener(this);
-
+        RefreshViewUtils.showRefreshDialog(this);
         initWebView();
     }
 
@@ -101,6 +102,7 @@ public class BannerViewActivity extends AppCompatActivity implements View.OnClic
         @Override
         public void onPageFinished(WebView view, String url) {
             linearLayout.setVisibility(View.GONE);
+            RefreshViewUtils.dismissRefreshDialog();
             super.onPageFinished(view, url);
         }
 

@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
+import com.jushi.muisc.chat.common.view.RefreshDialog;
 import com.jushi.muisc.chat.music.home_page.artist.adapter.AllArtistAdapter;
 import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.common.manager.ActivityManager;
@@ -156,42 +158,48 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void loadArtistData() {
+        RefreshViewUtils.showRefreshDialog(this);
         artistBeans.clear();
-        notifyDataChanged();
         switch (itemClick) {
             case HOT:
                 if (DataCache.hotList.size() > 0){
                     artistBeans.addAll(DataCache.hotList);
+                    notifyDataChanged();
                     return;
                 }
                 break;
             case CHINA:
                 if (DataCache.huayuList.size() > 0){
                     artistBeans.addAll(DataCache.huayuList);
+                    notifyDataChanged();
                     return;
                 }
                 break;
             case OUMEI:
                 if (DataCache.oumeiList.size() > 0){
                     artistBeans.addAll(DataCache.oumeiList);
+                    notifyDataChanged();
                     return;
                 }
                 break;
             case HANGUO:
                 if (DataCache.hanguoList.size() > 0){
                     artistBeans.addAll(DataCache.hanguoList);
+                    notifyDataChanged();
                     return;
                 }
                 break;
             case JAPAN:
                 if (DataCache.japanList.size() > 0){
                     artistBeans.addAll(DataCache.japanList);
+                    notifyDataChanged();
                     return;
                 }
                 break;
             case OTHER:
                 if (DataCache.otherList.size() > 0){
                     artistBeans.addAll(DataCache.otherList);
+                    notifyDataChanged();
                     return;
                 }
                 break;
@@ -249,6 +257,7 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
                     recyclerView.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
                 }
+                RefreshViewUtils.dismissRefreshDialog();
             }
         });
     }

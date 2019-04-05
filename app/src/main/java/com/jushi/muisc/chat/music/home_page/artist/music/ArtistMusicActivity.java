@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
 import com.jushi.muisc.chat.music.home_page.artist.adapter.ArtistMusicAdapter;
 import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
 import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
@@ -110,6 +111,7 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
         MobclickAgent.onResume(this);
         playController = PlayController.getInstance(this);
         playController.showPlayControllerInfo();
+        RefreshViewUtils.showRefreshDialog(this);
     }
 
     private void getArtistMusicData() {
@@ -147,6 +149,7 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
                 }
                 tvAllMusicNum.setText(String.valueOf(songBeans.size()));
                 setItemClickListener();
+                RefreshViewUtils.dismissRefreshDialog();
             }
         });
     }

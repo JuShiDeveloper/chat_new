@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
 import com.jushi.muisc.chat.music.zhibo_video.mv.adapter.MvDataAdapter;
 import com.jushi.muisc.chat.music.zhibo_video.common.LiveAndMvDataAdapter;
 import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVBean;
@@ -67,6 +68,7 @@ public class AllMVActivity extends AppCompatActivity {
     }
 
     private void getAllMvData() {
+        RefreshViewUtils.showRefreshDialog(this);
         new AllMvDataTask().run();
     }
 
@@ -90,6 +92,7 @@ public class AllMVActivity extends AppCompatActivity {
                 mvDataAdapter = new MvDataAdapter(AllMVActivity.this, mvListBeans);
                 recyclerView.setAdapter(mvDataAdapter);
                 setItemClick();
+                RefreshViewUtils.dismissRefreshDialog();
             }
         });
     }

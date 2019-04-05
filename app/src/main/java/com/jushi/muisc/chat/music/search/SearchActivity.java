@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.jingchen.pulltorefresh.WrapRecyclerView;
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
 import com.jushi.muisc.chat.music.search.adapter.HistorySearchAdapter;
 import com.jushi.muisc.chat.music.search.adapter.SearchDataAdapter;
 import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
@@ -176,6 +177,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.search_activity_search_button:
+                RefreshViewUtils.showRefreshDialog(this);
                 keyWords = editText.getText().toString().trim().replace(" ", "+");
                 loadSearchData();
                 break;
@@ -193,8 +195,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     //加载搜索数据，并且上一次搜索的关键词等于当前搜索的关键词（便于在上拉加载时判断）
     private void loadSearchData() {
-        if (keyWords == null || keyWords.equals(""))
+        if (keyWords == null || keyWords.equals("")) {
+            RefreshViewUtils.dismissRefreshDialog();
+            ToastUtils.show(this,"请输入搜索关键词");
             return;
+        }
         getSearchData();
         editText.setText("");
         oldKeyWords = keyWords;
@@ -285,6 +290,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     refreshLayout.setVisibility(View.VISIBLE);
                     newWordsContainer.setVisibility(View.GONE);
                 }
+                RefreshViewUtils.dismissRefreshDialog();
             }
         });
     }
@@ -328,6 +334,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         tagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
+                RefreshViewUtils.showRefreshDialog(SearchActivity.this);
                 view.setBackgroundResource(R.drawable.hot_words_text_bg_selected);
                 keyWords = songListBeans.get(position).getTitle().trim().replace(" ", "+");
                 loadSearchData();
@@ -348,6 +355,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        RefreshViewUtils.showRefreshDialog(SearchActivity.this);
                         SearchActivity.this.keyWords = keyWords.replace(" ","+");
                         loadSearchData();
                     }

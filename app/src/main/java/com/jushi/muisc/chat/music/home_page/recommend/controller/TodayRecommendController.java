@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.RadioButton;
 
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.music.common.jsinterface.OnRequestListener;
+import com.jushi.muisc.chat.music.home_page.HomePageFragment;
 import com.jushi.muisc.chat.music.home_page.recommend.AllRecommendActivity;
 import com.jushi.muisc.chat.music.home_page.recommend.adapter.TodayRecommendAdapter;
 import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
@@ -43,9 +45,11 @@ public class TodayRecommendController implements View.OnClickListener {
     private TodayRecommendAdapter recommendAdapter;
     private List<Song> songs = new ArrayList<>();
     private boolean isRefresh = false;
+    private OnRequestListener requestListener;
 
-    public TodayRecommendController(Context mContext) {
+    public TodayRecommendController(Context mContext, OnRequestListener requestListener) {
         this.mContext = mContext;
+        this.requestListener = requestListener;
         handler = new Handler();
         workService = NetWorkService.getInstance(mContext);
     }
@@ -114,6 +118,7 @@ public class TodayRecommendController implements View.OnClickListener {
                 recommendAdapter = new TodayRecommendAdapter(mContext, recommendBeans);
                 recyclerView.setAdapter(recommendAdapter);
                 setAdapterClickListener();
+                requestListener.onRequestSuccess();
             }
         });
     }

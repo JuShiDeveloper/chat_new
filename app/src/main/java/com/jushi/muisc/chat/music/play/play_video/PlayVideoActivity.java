@@ -15,6 +15,7 @@ import android.webkit.WebViewClient;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.common.utils.DisplayUtils;
+import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
 import com.jushi.muisc.chat.common.view.JSTextView;
 import com.umeng.analytics.MobclickAgent;
 
@@ -51,6 +52,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         url = getIntent().getStringExtra("videoLink");
         nickName = getIntent().getStringExtra("nickName");
         type = getIntent().getStringExtra("type");
+        RefreshViewUtils.showRefreshDialog(this);
         initView();
     }
 
@@ -116,6 +118,11 @@ public class PlayVideoActivity extends AppCompatActivity {
                 return true;
             }
 
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                RefreshViewUtils.dismissRefreshDialog();
+            }
         });
         webView.loadUrl(url);
     }

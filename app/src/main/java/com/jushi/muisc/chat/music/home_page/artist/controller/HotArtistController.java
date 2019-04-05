@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.RadioButton;
 
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.music.common.jsinterface.OnRequestListener;
+import com.jushi.muisc.chat.music.home_page.HomePageFragment;
 import com.jushi.muisc.chat.music.home_page.artist.AllArtistActivity;
 import com.jushi.muisc.chat.music.home_page.artist.adapter.HotArtistAdapter;
 import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
@@ -38,9 +40,11 @@ public class HotArtistController implements View.OnClickListener {
     private List<ArtistsModel.ArtistBean> artists;
     private HotArtistAdapter artistAdapter;
     private boolean isRefresh = false;
+    private OnRequestListener requestListener;
 
-    public HotArtistController(Context mContext) {
+    public HotArtistController(Context mContext, OnRequestListener requestListener) {
         this.mContext = mContext;
+        this.requestListener = requestListener;
         handler = new Handler();
         workService = NetWorkService.getInstance(mContext);
     }
@@ -112,6 +116,7 @@ public class HotArtistController implements View.OnClickListener {
                 artistAdapter = new HotArtistAdapter(mContext, artists);
                 recyclerView.setAdapter(artistAdapter);
                 setItemClickListener();
+                requestListener.onRequestSuccess();
             }
         });
     }

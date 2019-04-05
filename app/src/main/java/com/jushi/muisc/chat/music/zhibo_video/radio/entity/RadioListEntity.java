@@ -31,7 +31,7 @@ public class RadioListEntity {
         this.result = result;
     }
 
-    public static class ResultBean {
+    public class ResultBean {
         /**
          * title : 公共频道
          * cid : 1
@@ -66,7 +66,7 @@ public class RadioListEntity {
             this.channellist = channellist;
         }
 
-        public static class ChannellistBean {
+        public class ChannellistBean {
             /**
              * name : 漫步春天
              * channelid : 62
@@ -86,6 +86,22 @@ public class RadioListEntity {
             private String cate_sname;
             private String artistid;
             private String avatar;
+
+            public String getArtistid() {
+                return artistid;
+            }
+
+            public void setArtistid(String artistid) {
+                this.artistid = artistid;
+            }
+
+            public String getAvatar() {
+                return avatar;
+            }
+
+            public void setAvatar(String avatar) {
+                this.avatar = avatar;
+            }
 
             public String getName() {
                 return name;
@@ -141,37 +157,6 @@ public class RadioListEntity {
 
             public void setCate_sname(String cate_sname) {
                 this.cate_sname = cate_sname;
-            }
-
-            public String getArtistid() {
-                return artistid;
-            }
-
-            public void setArtistid(String artistid) {
-                this.artistid = artistid;
-            }
-
-            public String getAvatar() {
-                return avatar;
-            }
-
-            public void setAvatar(String avatar) {
-                this.avatar = avatar;
-            }
-
-            @Override
-            public String toString() {
-                return "ChannellistBean{" +
-                        "name='" + name + '\'' +
-                        ", channelid='" + channelid + '\'' +
-                        ", thumb='" + thumb + '\'' +
-                        ", ch_name='" + ch_name + '\'' +
-                        ", value=" + value +
-                        ", cate_name='" + cate_name + '\'' +
-                        ", cate_sname='" + cate_sname + '\'' +
-                        ", artistid='" + artistid + '\'' +
-                        ", avatar='" + avatar + '\'' +
-                        '}';
             }
         }
     }
