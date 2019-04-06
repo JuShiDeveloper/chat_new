@@ -36,7 +36,6 @@ public class HotArtistController implements View.OnClickListener {
     private RadioButton moreButton;
     private Handler handler;
     private NetWorkService workService;
-    private HotArtistTask artistTask;
     private List<ArtistsModel.ArtistBean> artists;
     private HotArtistAdapter artistAdapter;
     private boolean isRefresh = false;
@@ -67,11 +66,10 @@ public class HotArtistController implements View.OnClickListener {
 
     private void loadHotArtistData() {
         if (NetWorkUtils.isNetworkAvailable(mContext)) {
-            artistTask = new HotArtistTask();
-            artistTask.run();
-        }else {
-            if (!isRefresh){
-                artists = (List<ArtistsModel.ArtistBean>) MusicDataUtils.getInstance(mContext).getSaveData(SAVE_KEY,ArtistsModel.ArtistBean.class);
+            new HotArtistTask().run();
+        } else {
+            if (!isRefresh) {
+                artists = (List<ArtistsModel.ArtistBean>) MusicDataUtils.getInstance(mContext).getSaveData(SAVE_KEY, ArtistsModel.ArtistBean.class);
                 showHotArtistData();
             }
         }
@@ -104,6 +102,16 @@ public class HotArtistController implements View.OnClickListener {
                     artists = artistBeans;
                     showHotArtistData();
                     MusicDataUtils.getInstance(mContext).saveData(SAVE_KEY, artists);
+                }
+
+                @Override
+                public void onError() {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            requestListener.onRequestFiled();
+                        }
+                    });
                 }
             });
         }

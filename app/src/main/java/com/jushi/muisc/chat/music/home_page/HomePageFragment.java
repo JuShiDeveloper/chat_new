@@ -14,6 +14,9 @@ import com.jushi.muisc.chat.music.common.jsinterface.OnRequestListener;
 import com.jushi.muisc.chat.music.home_page.banner.controller.BannerImageController;
 import com.jushi.muisc.chat.music.home_page.artist.controller.HotArtistController;
 import com.jushi.muisc.chat.music.chart.ChartFragment;
+import com.jushi.muisc.chat.music.home_page.mv.controller.LatestMVController;
+import com.jushi.muisc.chat.music.home_page.radio.RadioPresenter;
+import com.jushi.muisc.chat.music.home_page.zhibo.controller.LiveController;
 import com.jushi.muisc.chat.music.zhibo_video.VideoAndLiveFragment;
 import com.jushi.muisc.chat.music.home_page.recommend.controller.TodayRecommendController;
 import com.jushi.muisc.chat.common.view.RefreshHeadView;
@@ -32,6 +35,12 @@ public class HomePageFragment extends ViewPagerFragment implements OnRequestList
     private TodayRecommendController recommendController;
     //热门歌手
     private HotArtistController hotArtistController;
+    //最新MV
+    private static LatestMVController mvController;
+    //直播
+    private static LiveController liveController;
+    //电台
+    private static RadioPresenter radioPresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +76,17 @@ public class HomePageFragment extends ViewPagerFragment implements OnRequestList
         //初始化热门歌手
         hotArtistController = new HotArtistController(getContext(),this);
         hotArtistController.initView(rootView);
+        //初始化最新MV
+        mvController = new LatestMVController(getContext());
+        mvController.initView(rootView);
+
+        //初始化直播数据
+        liveController = new LiveController(getContext());
+        liveController.initView(rootView);
+
+        //电台数据
+        radioPresenter = new RadioPresenter(getContext(),rootView);
+        radioPresenter.loadRadioListData();
     }
 
     //手动滑动banner图时不可下拉刷新
@@ -117,6 +137,9 @@ public class HomePageFragment extends ViewPagerFragment implements OnRequestList
         VideoAndLiveFragment.refreshData();
         //刷新榜单数据
         ChartFragment.refreshData();
+        mvController.refreshData();
+        liveController.refreshData();
+        radioPresenter.loadRadioListData();
     }
 
     @Override

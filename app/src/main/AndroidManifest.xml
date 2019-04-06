@@ -75,10 +75,10 @@
             android:name=".music.home_page.artist.AllArtistActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".music.zhibo_video.mv.AllMVActivity"
+            android:name=".music.home_page.mv.AllMVActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".music.zhibo_video.zhibo.AllZhiBoActivity"
+            android:name=".music.home_page.zhibo.AllZhiBoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".music.play.play_video.PlayVideoActivity"
@@ -150,8 +150,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".music.zhibo_video.radio.more.RadioMoreActivity" />
-        <activity android:name=".music.zhibo_video.radio.songList.RadioSongListActivity"></activity>
+        <activity android:name=".music.home_page.radio.more.RadioMoreActivity" />
+        <activity android:name=".music.home_page.radio.songList.RadioSongListActivity"></activity>
     </application>
 
 </manifest>

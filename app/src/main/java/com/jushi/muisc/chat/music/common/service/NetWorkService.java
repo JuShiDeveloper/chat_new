@@ -6,22 +6,22 @@ import android.util.Log;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.jushi.muisc.chat.music.common.jsinterface.DownloadListener;
-import com.jushi.muisc.chat.music.zhibo_video.common.LiveAndMvDataAdapter;
+import com.jushi.muisc.chat.music.home_page.common.LiveAndMvDataAdapter;
 import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.music.home_page.artist.model.ArtistMusic;
 import com.jushi.muisc.chat.music.home_page.artist.model.ArtistsModel;
 import com.jushi.muisc.chat.music.home_page.banner.model.BannerModel;
 import com.jushi.muisc.chat.music.chart.model.ChartDataModel;
 import com.jushi.muisc.chat.music.common.public_model.LatestMusicModel;
-import com.jushi.muisc.chat.music.zhibo_video.radio.entity.RadioListEntity;
-import com.jushi.muisc.chat.music.zhibo_video.radio.entity.RadioSongListEntity;
+import com.jushi.muisc.chat.music.home_page.radio.entity.RadioListEntity;
+import com.jushi.muisc.chat.music.home_page.radio.entity.RadioSongListEntity;
 import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
-import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVBean;
-import com.jushi.muisc.chat.music.zhibo_video.mv.model.MVItemModel;
+import com.jushi.muisc.chat.music.home_page.mv.model.MVBean;
+import com.jushi.muisc.chat.music.home_page.mv.model.MVItemModel;
 import com.jushi.muisc.chat.music.search.model.SearchDataModel;
 import com.jushi.muisc.chat.music.home_page.recommend.model.TodayRecommendModel;
 import com.jushi.muisc.chat.music.common.public_model.SongDetail;
-import com.jushi.muisc.chat.music.zhibo_video.zhibo.model.ZhiBoModel;
+import com.jushi.muisc.chat.music.home_page.zhibo.model.ZhiBoModel;
 import com.jushi.muisc.chat.music.common.utils.http.OkHttpTool;
 import com.jushi.muisc.chat.music.common.utils.music.DataUrlUtils;
 import com.jushi.muisc.chat.common.utils.PATH;
@@ -60,7 +60,7 @@ public class NetWorkService {
         OkHttpTool.httpClient(DataUrlUtils.getBannerUrl(), new OkHttpTool.OnClientListener() {
             @Override
             public void onError() {
-
+                dataAdapter.onError();
             }
 
             @Override
@@ -70,6 +70,7 @@ public class NetWorkService {
                     BannerModel bannerModel = JSONObject.parseObject(body, BannerModel.class);
                     dataAdapter.onBannerData(bannerModel.getData().getSlider());
                 } catch (Exception e) {
+                    dataAdapter.onError();
                     e.printStackTrace();
                 }
             }
@@ -87,7 +88,7 @@ public class NetWorkService {
         OkHttpTool.httpClient(DataUrlUtils.getTodayRecommendUrl(count), new OkHttpTool.OnClientListener() {
             @Override
             public void onError() {
-
+                dataAdapter.onError();
             }
 
             @Override
@@ -99,6 +100,7 @@ public class NetWorkService {
                     List<TodayRecommendModel.ResultBean.ListBean> rModel = recommendModel.getResult().getList();
                     dataAdapter.onTodayRecommendData(rModel);
                 } catch (Exception e) {
+                    dataAdapter.onError();
                     e.printStackTrace();
                 }
             }
@@ -115,7 +117,7 @@ public class NetWorkService {
         OkHttpTool.httpClient(artistUrl, new OkHttpTool.OnClientListener() {
             @Override
             public void onError() {
-
+                dataAdapter.onError();
             }
 
             @Override
@@ -126,6 +128,7 @@ public class NetWorkService {
                     ArtistsModel artistsModel = new Gson().fromJson(body, ArtistsModel.class);
                     dataAdapter.onArtistData(artistsModel.getArtist());
                 } catch (Exception e) {
+                    dataAdapter.onError();
                     e.printStackTrace();
                 }
             }
@@ -139,7 +142,7 @@ public class NetWorkService {
         OkHttpTool.httpClient(DataUrlUtils.getMvUrl(count), new OkHttpTool.OnClientListener() {
             @Override
             public void onError() {
-
+                dataAdapter.onError();
             }
 
             @Override
@@ -149,6 +152,7 @@ public class NetWorkService {
                     MVBean mvBean = JSONObject.parseObject(body, MVBean.class);
                     dataAdapter.onMvData(mvBean.getResult().getMv_list());
                 } catch (Exception e) {
+                    dataAdapter.onError();
                     e.printStackTrace();
                 }
             }
@@ -163,7 +167,7 @@ public class NetWorkService {
         OkHttpTool.httpClient(DataUrlUtils.getZhiBoUrl(count), new OkHttpTool.OnClientListener() {
             @Override
             public void onError() {
-
+                dataAdapter.onError();
             }
 
             @Override
@@ -174,6 +178,7 @@ public class NetWorkService {
                     if (zhiBoModel != null && zhiBoModel.getData().getData() != null)
                         dataAdapter.onLiveData(zhiBoModel.getData().getData());
                 } catch (Exception e) {
+                    dataAdapter.onError();
                     e.printStackTrace();
                 }
             }
@@ -187,7 +192,7 @@ public class NetWorkService {
         OkHttpTool.httpClient(DataUrlUtils.getPlayMVUrl(mv_id), new OkHttpTool.OnClientListener() {
             @Override
             public void onError() {
-
+                dataAdapter.onError();
             }
 
             @Override
@@ -197,6 +202,7 @@ public class NetWorkService {
                     MVItemModel itemModel = new Gson().fromJson(body, MVItemModel.class);
                     dataAdapter.onMvDetailInfo(itemModel);
                 } catch (Exception e) {
+                    dataAdapter.onError();
                     e.printStackTrace();
                 }
             }
@@ -214,7 +220,7 @@ public class NetWorkService {
         OkHttpTool.httpClient(DataUrlUtils.getSearchUrl(keyWords, page_no), new OkHttpTool.OnClientListener() {
             @Override
             public void onError() {
-
+                dataAdapter.onError();
             }
 
             @Override
@@ -241,7 +247,7 @@ public class NetWorkService {
         OkHttpTool.httpClient(chartUrl, new OkHttpTool.OnClientListener() {
             @Override
             public void onError() {
-
+                dataAdapter.onError();
             }
 
             @Override
@@ -252,6 +258,7 @@ public class NetWorkService {
                     dataAdapter.onLatestMusicListData(musicModel.getSong_list());
                     dataAdapter.onLatestMusicBillboardData(musicModel.getBillboard());
                 } catch (Exception e) {
+                    dataAdapter.onError();
                     e.printStackTrace();
                 }
             }
@@ -267,7 +274,7 @@ public class NetWorkService {
         OkHttpTool.httpClient(DataUrlUtils.getChartUrl(), new OkHttpTool.OnClientListener() {
             @Override
             public void onError() {
-
+                dataAdapter.onError();
             }
 
             @Override
@@ -277,6 +284,7 @@ public class NetWorkService {
                     ChartDataModel chartDataModel = JSONObject.parseObject(body, ChartDataModel.class);
                     dataAdapter.onChartData(chartDataModel.getContent());
                 } catch (Exception e) {
+                    dataAdapter.onError();
                     e.printStackTrace();
                 }
             }
@@ -303,6 +311,7 @@ public class NetWorkService {
                     SongDetail songDetail = JSONObject.parseObject(body, SongDetail.class);
                     dataAdapter.onSongDetail(songDetail);
                 } catch (Exception e) {
+                    dataAdapter.onError();
                     e.printStackTrace();
                 }
             }
@@ -328,6 +337,7 @@ public class NetWorkService {
                     ArtistMusic artistMusic = JSONObject.parseObject(body, ArtistMusic.class);
                     dataAdapter.onArtistMusics(artistMusic.getSonglist());
                 } catch (Exception e) {
+                    dataAdapter.onError();
                     e.printStackTrace();
                 }
             }
@@ -407,6 +417,7 @@ public class NetWorkService {
                     RadioListEntity entity = new Gson().fromJson(body, RadioListEntity.class);
                     dataAdapter.onRadioListData(entity);
                 } catch (IOException e) {
+                    dataAdapter.onError();
                     e.printStackTrace();
                 }
             }
@@ -433,6 +444,7 @@ public class NetWorkService {
                     RadioSongListEntity entity = new Gson().fromJson(body, RadioSongListEntity.class);
                     dataAdapter.onRadioSongListData(entity);
                 } catch (IOException e) {
+                    dataAdapter.onError();
                     e.printStackTrace();
                 }
             }

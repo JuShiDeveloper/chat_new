@@ -75,6 +75,16 @@ public class BannerImageController {
                     showBannerData();
                     MusicDataUtils.getInstance(mContext).saveData(SAVE_KEY, sliders);
                 }
+
+                @Override
+                public void onError() {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            requestListener.onRequestFiled();
+                        }
+                    });
+                }
             });
         }
     }

@@ -70,9 +70,9 @@ public class TodayRecommendController implements View.OnClickListener {
         if (NetWorkUtils.isNetworkAvailable(mContext)) {
             dataTask = new DataTask();
             dataTask.run();
-        }else {
-            if (!isRefresh){
-                recommendBeans = (List<TodayRecommendModel.ResultBean.ListBean>) MusicDataUtils.getInstance(mContext).getSaveData(SAVE_KEY,TodayRecommendModel.ResultBean.ListBean.class);
+        } else {
+            if (!isRefresh) {
+                recommendBeans = (List<TodayRecommendModel.ResultBean.ListBean>) MusicDataUtils.getInstance(mContext).getSaveData(SAVE_KEY, TodayRecommendModel.ResultBean.ListBean.class);
                 showRecommendData();
             }
         }
@@ -104,8 +104,13 @@ public class TodayRecommendController implements View.OnClickListener {
                 public void onTodayRecommendData(List<TodayRecommendModel.ResultBean.ListBean> listBeans) {
                     recommendBeans = listBeans;
                     showRecommendData();
-                    MusicDataUtils.getInstance(mContext).saveData(SAVE_KEY,recommendBeans);
+                    MusicDataUtils.getInstance(mContext).saveData(SAVE_KEY, recommendBeans);
                     new SongInfoTask().run();
+                }
+
+                @Override
+                public void onError() {
+                    requestListener.onRequestFiled();
                 }
             });
         }

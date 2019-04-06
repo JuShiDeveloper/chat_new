@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.music.zhibo_video.mv.controller.LatestMVController;
-import com.jushi.muisc.chat.music.zhibo_video.radio.RadioPresenter;
-import com.jushi.muisc.chat.music.zhibo_video.zhibo.controller.LiveController;
+import com.jushi.muisc.chat.music.home_page.mv.controller.LatestMVController;
+import com.jushi.muisc.chat.music.home_page.radio.RadioPresenter;
+import com.jushi.muisc.chat.music.home_page.zhibo.controller.LiveController;
 
 /**
  * 直播/视频
