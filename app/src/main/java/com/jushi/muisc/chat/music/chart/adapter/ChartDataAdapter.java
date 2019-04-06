@@ -36,31 +36,33 @@ public class ChartDataAdapter extends RecyclerView.Adapter<ChartDataAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         ChartDataModel.ContentBeanX contentBeanX = contentBean.get(position);
-        if (position == 4){
+        if (position == 4) {
             Glide.with(context).load(contentBeanX.getPic_s444()).
+                    placeholder(R.mipmap.music_logo).
                     transform(new CornersTransform(context, 30)).
                     crossFade().into(holder.chartImage);
-        }else {
+        } else {
             Glide.with(context).load(contentBeanX.getPic_s192()).
+                    placeholder(R.mipmap.music_logo).
                     transform(new CornersTransform(context, 30)).
                     crossFade().into(holder.chartImage);
         }
         holder.tvChartTitle.setText(contentBeanX.getName());
-        holder.tvMusicTitle1.setText("1."+contentBeanX.getContent().get(0).getTitle());
-        holder.tvMusicTitle2.setText("2."+contentBeanX.getContent().get(1).getTitle());
-        holder.tvMusicTitle3.setText("3."+contentBeanX.getContent().get(2).getTitle());
-        if (position ==contentBean.size() - 1 ){
+        holder.tvMusicTitle1.setText("1." + contentBeanX.getContent().get(0).getTitle());
+        holder.tvMusicTitle2.setText("2." + contentBeanX.getContent().get(1).getTitle());
+        holder.tvMusicTitle3.setText("3." + contentBeanX.getContent().get(2).getTitle());
+        if (position == contentBean.size() - 1) {
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) holder.itemView.getLayoutParams();
             params.bottomMargin = 35;
             holder.itemView.setLayoutParams(params);
         }
-        if (listener != null){
+        if (listener != null) {
             final ChartDataModel.ContentBeanX beanX = contentBeanX;
             final int pos = position;
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(beanX,pos);
+                    listener.onItemClick(beanX, pos);
                 }
             });
         }
@@ -73,12 +75,12 @@ public class ChartDataAdapter extends RecyclerView.Adapter<ChartDataAdapter.View
 
     private OnItemClickListener listener;
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    public interface OnItemClickListener{
-        void onItemClick(ChartDataModel.ContentBeanX contentBeanX,int position);
+    public interface OnItemClickListener {
+        void onItemClick(ChartDataModel.ContentBeanX contentBeanX, int position);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

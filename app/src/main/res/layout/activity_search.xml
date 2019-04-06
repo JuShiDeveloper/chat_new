@@ -10,13 +10,21 @@
     android:orientation="vertical"
     tools:context=".music.search.SearchActivity">
 
-    <android.support.v7.widget.Toolbar
+    <LinearLayout
         android:id="@+id/search_activity_toolBar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:contentInsetStartWithNavigation="0dp"
-        android:layout_alignParentTop="true"
-        app:navigationIcon="@drawable/back_icon_red">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/search_page_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/back_icon_red"
+            android:tint="@color/e80b0b"
+            android:alpha="0.5"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -38,9 +46,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/search_activity_search_button"
+                android:alpha="0.5"
                 android:background="@drawable/search_edit_text_bg_icon"
                 android:backgroundTint="@color/e80b0b"
-                android:alpha="0.5"
                 android:gravity="center"
                 android:hint="@string/search_hint"
                 android:maxLines="1"
@@ -48,17 +56,17 @@
                 android:textColorHint="@color/white"
                 android:textSize="@dimen/_15sp" />
         </RelativeLayout>
-    </android.support.v7.widget.Toolbar>
+    </LinearLayout>
 
     <!--显示搜索结果-->
     <com.jingchen.pulltorefresh.PullToRefreshLayout
         android:id="@+id/search_activity_refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_below="@+id/search_activity_toolBar"
         android:layout_above="@+id/PlayMusicView"
+        android:layout_below="@+id/search_activity_toolBar"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:visibility="gone">
 
         <com.jingchen.pulltorefresh.PullableRecyclerView
@@ -74,10 +82,10 @@
         android:id="@+id/new_music_hot_words_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/search_activity_toolBar"
         android:layout_above="@+id/PlayMusicView"
-        android:orientation="vertical"
-        android:layout_marginTop="5dp">
+        android:layout_below="@+id/search_activity_toolBar"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
 
         <com.jushi.muisc.chat.common.view.JSTextView
             android:layout_width="match_parent"
@@ -112,6 +120,8 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <include layout="@layout/buttom_play_controller_layout"/>
+    <include
+        android:id="@+id/play_controller_layout"
+        layout="@layout/buttom_play_controller_layout" />
 
 </RelativeLayout>

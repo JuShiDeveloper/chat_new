@@ -5,15 +5,12 @@
     tools:context="com.jushi.muisc.chat.music.chart.ChartFragment"
     android:background="@color/white">
 
-    <com.jushi.muisc.chat.common.view.JSTextView
-        android:id="@+id/chart_fragment_loading_tv"
+    <ImageView
+        android:id="@+id/chart_fragment_loading_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="200dp"
-        android:textColor="@color/_999999"
-        android:textSize="@dimen/_15sp"
-        android:text="loading..."/>
+        android:layout_marginTop="200dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/chart_fragment_recyclerView"

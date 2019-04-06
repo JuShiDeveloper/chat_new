@@ -1,15 +1,20 @@
 package com.jushi.muisc.chat.music.search;
 
 import android.content.Context;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,23 +25,24 @@ import android.widget.TextView;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.jingchen.pulltorefresh.WrapRecyclerView;
 import com.jushi.muisc.chat.R;
-import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
-import com.jushi.muisc.chat.music.search.adapter.HistorySearchAdapter;
-import com.jushi.muisc.chat.music.search.adapter.SearchDataAdapter;
-import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
-import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
-import com.jushi.muisc.chat.music.common.public_model.LatestMusicModel;
-import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
-import com.jushi.muisc.chat.music.search.model.SearchDataModel;
-import com.jushi.muisc.chat.music.common.public_model.SongDetail;
-import com.jushi.muisc.chat.music.common.service.NetWorkService;
-import com.jushi.muisc.chat.music.common.utils.music.DataUrlUtils;
 import com.jushi.muisc.chat.common.utils.DisplayUtils;
-import com.jushi.muisc.chat.music.common.utils.music.HistorySearchUtils;
-import com.jushi.muisc.chat.music.common.utils.music.LocalMusicUtils;
+import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
 import com.jushi.muisc.chat.common.utils.ShadowUtils;
 import com.jushi.muisc.chat.common.utils.ToastUtils;
 import com.jushi.muisc.chat.common.view.JSTextView;
+import com.jushi.muisc.chat.common.view.PlayMusicView;
+import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
+import com.jushi.muisc.chat.music.common.public_model.LatestMusicModel;
+import com.jushi.muisc.chat.music.common.public_model.SongDetail;
+import com.jushi.muisc.chat.music.common.service.NetWorkService;
+import com.jushi.muisc.chat.music.common.utils.music.DataUrlUtils;
+import com.jushi.muisc.chat.music.common.utils.music.HistorySearchUtils;
+import com.jushi.muisc.chat.music.common.utils.music.LocalMusicUtils;
+import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
+import com.jushi.muisc.chat.music.search.adapter.HistorySearchAdapter;
+import com.jushi.muisc.chat.music.search.adapter.SearchDataAdapter;
+import com.jushi.muisc.chat.music.search.model.SearchDataModel;
+import com.jushi.muisc.chat.sliding_menu.localmusic.model.Song;
 import com.umeng.analytics.MobclickAgent;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -48,10 +54,11 @@ import java.util.List;
 /**
  * 搜索页
  */
-public class SearchActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener {
+public class SearchFragment extends Fragment implements View.OnClickListener, TextView.OnEditorActionListener {
+    private View rootView;
     private RadioButton searchBtn;
-    private EditText editText;
     private ImageView backBtn;
+    private EditText editText;
     private WrapRecyclerView searchRecyclerView;
     private RecyclerView historyRecyclerView;
     private PullToRefreshLayout refreshLayout;
@@ -70,23 +77,18 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private PlayController playController;
     private String songId;
     private Song song = new Song();
+    private PlayMusicView playMusicView;
 
 
+    @Nullable
     @Override
-    protected void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.activity_search, container, false);
         handler = new Handler();
-        workService = NetWorkService.getInstance(this);
-        historyUtils = HistorySearchUtils.getInstance(this);
+        workService = NetWorkService.getInstance(getContext());
+        historyUtils = HistorySearchUtils.getInstance(getContext());
         initView();
+        return rootView;
     }
 
     private void initView() {
@@ -98,36 +100,32 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         showHistorySearch();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-        playController = PlayController.getInstance(this);
-        playController.showPlayControllerInfo();
-    }
 
     private void findWidget() {
-        backBtn = findViewById(R.id.search_page_back_btn);
-        searchBtn = findViewById(R.id.search_activity_search_button);
-        editText = findViewById(R.id.search_activity_editText);
+        playMusicView = rootView.findViewById(R.id.play_controller_layout);
+        playMusicView.setVisible(View.GONE);
+        backBtn = rootView.findViewById(R.id.search_page_back_btn);
+        searchBtn = rootView.findViewById(R.id.search_activity_search_button);
+        editText = rootView.findViewById(R.id.search_activity_editText);
         searchBtn.setOnClickListener(this);
+        backBtn.setOnClickListener(this);
         //上拉加载更多的布局容器
-        refreshLayout = findViewById(R.id.search_activity_refreshLayout);
-//        refreshLayout.setCustomLoadmoreView(new LoadFootView(this));
+        refreshLayout = rootView.findViewById(R.id.search_activity_refreshLayout);
+//        refreshLayout.setCustomLoadmoreView(new LoadFootView(getContext()));
         //显示搜索结果的recyclerView
         searchRecyclerView = (WrapRecyclerView) refreshLayout.getPullableView();
-        searchRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        searchRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         //显示新歌热词、历史搜索的布局容器
-        newWordsContainer = findViewById(R.id.new_music_hot_words_container);
+        newWordsContainer = rootView.findViewById(R.id.new_music_hot_words_container);
         //流式布局容器显示每一个新歌热词
-        tagFlowLayout = findViewById(R.id.TagFlowLayout_new_music_hot_words);
+        tagFlowLayout = rootView.findViewById(R.id.TagFlowLayout_new_music_hot_words);
         //显示历史搜索的RecyclerView
-        historyRecyclerView = findViewById(R.id.history_search_words_recyclerView);
-        historyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        historyRecyclerView = rootView.findViewById(R.id.history_search_words_recyclerView);
+        historyRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     private void setRecyclerAdapter() {  //设置recyclerView的适配器
-        searchDataAdapter = new SearchDataAdapter(this, songLists);
+        searchDataAdapter = new SearchDataAdapter(getContext(), songLists);
         searchRecyclerView.setAdapter(searchDataAdapter);
         setItemClickListener();
     }
@@ -164,9 +162,15 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.search_activity_search_button:
-                RefreshViewUtils.showRefreshDialog(this);
+                RefreshViewUtils.showRefreshDialog(getContext());
                 keyWords = editText.getText().toString().trim().replace(" ", "+");
                 loadSearchData();
+                break;
+            case R.id.search_page_back_btn:
+                if (refreshLayout.getVisibility() == View.VISIBLE) {
+                    refreshLayout.setVisibility(View.GONE);
+                    newWordsContainer.setVisibility(View.VISIBLE);
+                }
                 break;
         }
     }
@@ -184,7 +188,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private void loadSearchData() {
         if (keyWords == null || keyWords.equals("")) {
             RefreshViewUtils.dismissRefreshDialog();
-            ToastUtils.show(this,"请输入搜索关键词");
+            ToastUtils.show(getContext(), "请输入搜索关键词");
             return;
         }
         getSearchData();
@@ -212,8 +216,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         for (int i = 0; i < historyWords.size(); i++) {
             if (keyWords.equalsIgnoreCase(historyWords.get(i))) {
                 historyWords.remove(i);
+                historyList.remove(i);
             }
         }
+        historyList.add(0,keyWords);
+        historySearchAdapter.notifyDataSetChanged();
         historyWords.add(0, keyWords);
         historyUtils.saveKeyWords(historyWords);
     }
@@ -242,13 +249,13 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            if (isLoaded){
+                            if (isLoaded) {
                                 refreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED); //数据加载成功
-                                ToastUtils.show(SearchActivity.this, getString(R.string.load_success));
+                                ToastUtils.show(getContext(), getString(R.string.load_success));
                             }
                             isLoaded = true;
                         }
-                    },1300);
+                    }, 1300);
                 }
 
                 @Override
@@ -259,9 +266,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                         public void run() {
                             refreshLayout.refreshFinish(PullToRefreshLayout.FAIL);  //数据加载失败
                             refreshLayout.setPullUpEnable(false);
-                            ToastUtils.show(SearchActivity.this, getString(R.string.load_failed));
+                            ToastUtils.show(getContext(), getString(R.string.load_failed));
                         }
-                    },1300);
+                    }, 1300);
                 }
             });
         }
@@ -306,7 +313,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 tagFlowLayout.setAdapter(new TagAdapter(songListBeans) {
                     @Override
                     public View getView(FlowLayout parent, int position, Object o) {
-                        JSTextView view = (JSTextView) View.inflate(SearchActivity.this, R.layout.hot_words_text_layout, null);
+                        JSTextView view = (JSTextView) View.inflate(getContext(), R.layout.hot_words_text_layout, null);
                         view.setText(songListBeans.get(position).getTitle());
                         return view;
                     }
@@ -321,7 +328,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         tagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
-                RefreshViewUtils.showRefreshDialog(SearchActivity.this);
+                RefreshViewUtils.showRefreshDialog(getContext());
                 view.setBackgroundResource(R.drawable.hot_words_text_bg_selected);
                 keyWords = songListBeans.get(position).getTitle().trim().replace(" ", "+");
                 loadSearchData();
@@ -331,10 +338,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private List<String> historyList;
+
     //显示历史搜索的关键词
-    private void showHistorySearch(){
+    private void showHistorySearch() {
         historyList = historyUtils.getKeyWords();
-        historySearchAdapter = new HistorySearchAdapter(this,historyList);
+        historySearchAdapter = new HistorySearchAdapter(getContext(), historyList);
         historyRecyclerView.setAdapter(historySearchAdapter);
         historySearchAdapter.setOnItemClickListener(new HistorySearchAdapter.OnItemClickListener() {
             @Override
@@ -342,11 +350,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        RefreshViewUtils.showRefreshDialog(SearchActivity.this);
-                        SearchActivity.this.keyWords = keyWords.replace(" ","+");
+                        RefreshViewUtils.showRefreshDialog(getContext());
+                        SearchFragment.this.keyWords = keyWords.replace(" ", "+");
                         loadSearchData();
                     }
-                },250);
+                }, 250);
             }
 
             @Override
@@ -358,25 +366,25 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                         historySearchAdapter.notifyDataSetChanged();
                         historyUtils.saveKeyWords(historyList);
                     }
-                },250);
+                }, 250);
             }
         });
     }
 
     //隐藏软键盘
     private void hideKeyBoard() {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 //        imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,InputMethodManager.HIDE_IMPLICIT_ONLY);
         imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);//隐藏键盘
     }
 
     //数据转换
-    class SongInfoTask extends Thread{
+    class SongInfoTask extends Thread {
         @Override
         public void run() {
-            if (songId.equals("0")){
-                ToastUtils.show(SearchActivity.this,"无在线播放资源");
-            }else {
+            if (songId.equals("0")) {
+                ToastUtils.show(getContext(), "无在线播放资源");
+            } else {
                 workService.getSongInfo(songId, new MusicDataAdapter() {
                     @Override
                     public void onSongDetail(SongDetail detail) {
@@ -389,10 +397,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                         song.setSongPath(detail.getBitrate().getShow_link());
                         song.setSongImagePath(detail.getSonginfo().getArtist_list().get(0).getAvatar_s300());
                         song.setLrcPath(detail.getSonginfo().getLrclink());
-                        runOnUiThread(new Runnable() {
+                        handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                playController.playOneMusic(song,0);
+                                playController.playOneMusic(song, 0);
                             }
                         });
                     }

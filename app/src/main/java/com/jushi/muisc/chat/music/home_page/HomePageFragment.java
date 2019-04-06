@@ -133,8 +133,6 @@ public class HomePageFragment extends ViewPagerFragment implements OnRequestList
         recommendController.refreshData();
         //刷新首页歌手数据
         hotArtistController.refreshData();
-        //刷新MV和直播数据
-        VideoAndLiveFragment.refreshData();
         //刷新榜单数据
         ChartFragment.refreshData();
         mvController.refreshData();

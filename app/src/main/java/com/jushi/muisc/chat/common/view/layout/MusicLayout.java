@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.chart.ChartFragment;
 import com.jushi.muisc.chat.music.home_page.HomePageFragment;
+import com.jushi.muisc.chat.music.search.SearchFragment;
 import com.jushi.muisc.chat.music.zhibo_video.VideoAndLiveFragment;
 import com.jushi.muisc.chat.common.utils.ShadowUtils;
 
@@ -36,7 +37,7 @@ public class MusicLayout extends RelativeLayout {
     private List<String> tabTitles = new ArrayList<>();
     private List<Fragment> pages = new ArrayList<>();
     private HomePageFragment homePageFragment;
-    private VideoAndLiveFragment liveFragment;
+    private SearchFragment searchFragment;
     private ChartFragment chartFragment;
 
     public MusicLayout(Context context) {
@@ -68,19 +69,19 @@ public class MusicLayout extends RelativeLayout {
 
     private void viewPagerSetAdapter(){
         tabTitles.add(mContext.getResources().getString(R.string.homepage));
-        tabTitles.add(mContext.getResources().getString(R.string.video_live));
         tabTitles.add(mContext.getResources().getString(R.string.chart));
+        tabTitles.add(mContext.getResources().getString(R.string.search));
         for (int i = 0;i < tabTitles.size();i++){
             TabLayout.Tab tab = tabLayout.newTab();
             tab.setText(tabTitles.get(i));
             tabLayout.addTab(tab);
         }
         homePageFragment = new HomePageFragment();
-        liveFragment = new VideoAndLiveFragment();
         chartFragment = new ChartFragment();
+        searchFragment = new SearchFragment();
         pages.add(homePageFragment);
-        pages.add(liveFragment);
         pages.add(chartFragment);
+        pages.add(searchFragment);
         viewPager.setOffscreenPageLimit(2);
 //        viewPager.setAdapter(new MusicAdapter(((FragmentActivity)mContext).getSupportFragmentManager()));
         viewPager.setAdapter(new MusicPagerAdapter(((FragmentActivity)mContext).getSupportFragmentManager()));

@@ -43,11 +43,11 @@ public class HistorySearchUtils {
                     if (list == null || list.size() < 0) {
                         return;
                     }
-                    if (list.size() > 5) {
-                        for (int i = 5; i < list.size(); i++) {
-                            list.remove(i);
-                        }
-                    }
+//                    if (list.size() > 5) {
+//                        for (int i = 5; i < list.size(); i++) {
+//                            list.remove(i);
+//                        }
+//                    }
                     String keyWords = JSONObject.toJSONString(list);
                     SharedPreferences.Editor edit = sp.edit();
                     edit.putString("keyWords", keyWords);

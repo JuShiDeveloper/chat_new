@@ -111,10 +111,10 @@ public class ArtistMusicActivity extends AppCompatActivity implements View.OnCli
         MobclickAgent.onResume(this);
         playController = PlayController.getInstance(this);
         playController.showPlayControllerInfo();
-        RefreshViewUtils.showRefreshDialog(this);
     }
 
     private void getArtistMusicData() {
+        RefreshViewUtils.showRefreshDialog(this);
         new ArtistMusicTask().run();
     }
 
