@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -16,6 +17,7 @@ import android.widget.RelativeLayout;
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
+import com.jushi.muisc.chat.common.utils.SystemBarUtil;
 import com.jushi.muisc.chat.music.chart.adapter.ChartDetailAdapter;
 import com.jushi.muisc.chat.music.chart.adapter.OtherChartDetailAdapter;
 import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
@@ -63,7 +65,9 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_recommend);
-        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+//        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+        SystemBarUtil.setRootViewFitsSystemWindows(this, false);
+        SystemBarUtil.setTranslucentStatus(this);
         chartTitle = getIntent().getStringExtra("chartTitle");
         link = getIntent().getStringExtra("chartLink");
         chartUrl = DataUrlUtils.getDetailChartUrl(chartTitle, 200);
@@ -149,6 +153,9 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        CollapsingToolbarLayout.LayoutParams params = new CollapsingToolbarLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DisplayUtils.dpTopx(this, 56));
+        params.topMargin = DisplayUtils.getStatusBarHeight(this);
+        toolbar.setLayoutParams(params);
     }
 
     private void initCollapsingToolbarLayout() {
@@ -266,7 +273,7 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
                             song.setSongDuration(detail.getBitrate().getFile_duration());
                             song.setLrcPath(detail.getSonginfo().getLrclink());
                             songs.add(song);
-                            if (songs.size() == listBeans.size()){
+                            if (songs.size() == listBeans.size()) {
                                 setAllLayoutVisible();
                             }
                         }
@@ -289,7 +296,7 @@ public class ChartDetailActivity extends AppCompatActivity implements View.OnCli
                             song.setSongDuration(detail.getBitrate().getFile_duration());
                             song.setLrcPath(detail.getSonginfo().getLrclink());
                             songs.add(song);
-                            if (songs.size() == Constant.contentBeanX.getContent().size()){
+                            if (songs.size() == Constant.contentBeanX.getContent().size()) {
                                 setAllLayoutVisible();
                             }
                         }

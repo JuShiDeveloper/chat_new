@@ -7,9 +7,12 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
+import com.jushi.muisc.chat.common.utils.SystemBarUtil;
 import com.jushi.muisc.chat.common.utils.ToastUtils;
 import com.jushi.muisc.chat.music.home_page.mv.adapter.MvDataAdapter;
 import com.jushi.muisc.chat.music.home_page.common.LiveAndMvDataAdapter;
@@ -27,6 +30,7 @@ import java.util.List;
 public class AllMVActivity extends AppCompatActivity implements MvItemInfoTaskService.MVDetailRequestListener {
     private Toolbar toolbar;
     private RecyclerView recyclerView;
+    private View statusBar;
     private Handler handler;
     private NetWorkService workService;
     private MvDataAdapter mvDataAdapter;
@@ -47,7 +51,9 @@ public class AllMVActivity extends AppCompatActivity implements MvItemInfoTaskSe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+//        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+        SystemBarUtil.setRootViewFitsSystemWindows(this, false);
+        SystemBarUtil.setTranslucentStatus(this);
         setContentView(R.layout.activity_all_mv);
         handler = new Handler();
         workService = NetWorkService.getInstance(this);
@@ -60,6 +66,8 @@ public class AllMVActivity extends AppCompatActivity implements MvItemInfoTaskSe
     }
 
     private void findWidget() {
+        statusBar = findViewById(R.id.activity_all_mv_status_bar);
+        statusBar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DisplayUtils.getStatusBarHeight(this)));
         toolbar = findViewById(R.id.all_mv_activity_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

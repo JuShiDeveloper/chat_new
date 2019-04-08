@@ -14,11 +14,13 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.common.utils.DisplayUtils;
 import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
+import com.jushi.muisc.chat.common.utils.SystemBarUtil;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -29,6 +31,7 @@ public class BannerViewActivity extends AppCompatActivity implements View.OnClic
     private WebView webView;
     private LinearLayout linearLayout;
     private ImageView backButton;
+    private View statusBar;
 
     @Override
     protected void onResume() {
@@ -46,11 +49,15 @@ public class BannerViewActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
-        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+//        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+        SystemBarUtil.setTranslucentStatus(this);
+        SystemBarUtil.setRootViewFitsSystemWindows(this, false);
         findWidget();
     }
 
     private void findWidget() {
+        statusBar = findViewById(R.id.activity_web_view_status_bar);
+        statusBar.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, DisplayUtils.getStatusBarHeight(this)));
         webView = (WebView) findViewById(R.id.web_view_activity_webview);
         linearLayout = (LinearLayout) findViewById(R.id.web_show_hint);
         backButton = findViewById(R.id.BannerViewActivity_back_button);

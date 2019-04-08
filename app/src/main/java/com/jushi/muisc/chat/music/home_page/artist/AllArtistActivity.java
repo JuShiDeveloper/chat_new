@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
+import com.jushi.muisc.chat.common.utils.SystemBarUtil;
 import com.jushi.muisc.chat.common.view.RefreshDialog;
 import com.jushi.muisc.chat.music.home_page.artist.adapter.AllArtistAdapter;
 import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
@@ -35,6 +36,7 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
 
     private LinearLayout itemLayout;
     private Toolbar toolbar;
+    private View statusBar;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
     //顶部的选择按钮(热门、华语、韩国、日本、其他)
@@ -66,7 +68,9 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_artist);
-        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+//        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+        SystemBarUtil.setRootViewFitsSystemWindows(this, false);
+        SystemBarUtil.setTranslucentStatus(this);
         artistUrl = DataUrlUtils.getHotArtistsUrl(60);
         handler = new Handler();
         workService = NetWorkService.getInstance(this);
@@ -81,6 +85,9 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void findWidget() {
+        statusBar = findViewById(R.id.all_artist_status_bar);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DisplayUtils.getStatusBarHeight(this));
+        statusBar.setLayoutParams(params);
         itemLayout = findViewById(R.id.all_artist_item_layout);
         ShadowUtils.setShadowDown_2(this, itemLayout);
         toolbar = findViewById(R.id.all_artist_activity_toolbar);
@@ -162,42 +169,42 @@ public class AllArtistActivity extends AppCompatActivity implements View.OnClick
         artistBeans.clear();
         switch (itemClick) {
             case HOT:
-                if (DataCache.hotList.size() > 0){
+                if (DataCache.hotList.size() > 0) {
                     artistBeans.addAll(DataCache.hotList);
                     notifyDataChanged();
                     return;
                 }
                 break;
             case CHINA:
-                if (DataCache.huayuList.size() > 0){
+                if (DataCache.huayuList.size() > 0) {
                     artistBeans.addAll(DataCache.huayuList);
                     notifyDataChanged();
                     return;
                 }
                 break;
             case OUMEI:
-                if (DataCache.oumeiList.size() > 0){
+                if (DataCache.oumeiList.size() > 0) {
                     artistBeans.addAll(DataCache.oumeiList);
                     notifyDataChanged();
                     return;
                 }
                 break;
             case HANGUO:
-                if (DataCache.hanguoList.size() > 0){
+                if (DataCache.hanguoList.size() > 0) {
                     artistBeans.addAll(DataCache.hanguoList);
                     notifyDataChanged();
                     return;
                 }
                 break;
             case JAPAN:
-                if (DataCache.japanList.size() > 0){
+                if (DataCache.japanList.size() > 0) {
                     artistBeans.addAll(DataCache.japanList);
                     notifyDataChanged();
                     return;
                 }
                 break;
             case OTHER:
-                if (DataCache.otherList.size() > 0){
+                if (DataCache.otherList.size() > 0) {
                     artistBeans.addAll(DataCache.otherList);
                     notifyDataChanged();
                     return;

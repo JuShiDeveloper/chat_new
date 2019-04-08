@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.jushi.muisc.chat.common.utils.SystemBarUtil;
 import com.jushi.muisc.chat.main.MainActivity;
 import com.jushi.muisc.chat.music.common.utils.music.LocalMusicUtils;
 import com.jushi.muisc.chat.common.utils.PATH;
@@ -28,6 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(); //不设置View,在manifest中设置Theme,让欢迎页面能快速启动
+        SystemBarUtil.setRootViewFitsSystemWindows(this, false);
         Intent intent = getIntent();
         if (intent != null) {
             String action = intent.getAction();
