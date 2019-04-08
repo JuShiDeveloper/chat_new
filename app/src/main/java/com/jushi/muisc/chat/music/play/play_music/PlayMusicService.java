@@ -54,10 +54,11 @@ public class PlayMusicService extends Service {
 
     /**
      * 将当前播放列表传递到显示播放列表歌曲的dialog中
+     *
      * @return
      */
-    public static List<Song> getSongs(){
-        if (songs == null || songs.size() == 0){
+    public static List<Song> getSongs() {
+        if (songs == null || songs.size() == 0) {
             songs = LocalMusicUtils.getSongs(JSApplication.getContext());
         }
         return songs;
@@ -186,6 +187,10 @@ public class PlayMusicService extends Service {
         }
         songInfo = songs.get(index);
         setMusicData(songInfo.getSongPath(), index);
+    }
+
+    public static void setPlaySpeed(float speed) {
+        playMusic.setPlaySpeed(speed);
     }
 
     //获得歌曲总时间

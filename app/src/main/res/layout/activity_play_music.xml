@@ -89,7 +89,7 @@
         android:id="@+id/time_progress_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/play_music_activity_bottom"
+        android:layout_above="@+id/bei_su_container"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp">
@@ -99,6 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:text="0:00"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sp" />
@@ -119,9 +120,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:text="0:00"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bei_su_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/play_music_activity_bottom"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:visibility="invisible">
+
+        <com.jushi.muisc.chat.common.view.JSTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/bei_su_play"
+            android:text="@string/bei_su_play"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sp"
+            android:layout_alignBaseline="@+id/bei_su_play"/>
+
+        <Spinner
+            android:id="@+id/bei_su_play"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+
     </RelativeLayout>
 
     <include

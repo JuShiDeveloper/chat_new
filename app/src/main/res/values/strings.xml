@@ -114,5 +114,15 @@
     <string name="more_text">更多</string>
     <string name="radio_2">电台：</string>
     <string name="dao_di_xian_le">呀~到底线了</string>
+    <string name="bei_su_play">倍速播放：</string>
+
+    <string-array name="bei_su_play">
+        <item>选择</item>
+        <item>0.5</item>
+        <item>1.0</item>
+        <item>1.5</item>
+        <item>2.0</item>
+        <item>2.5</item>
+    </string-array>
 
 </resources>

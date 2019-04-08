@@ -2,6 +2,7 @@ package com.jushi.muisc.chat.music.play.play_music;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Build;
 
 import com.jushi.muisc.chat.music.play.play_music.PlayMusicService;
 
@@ -96,17 +97,18 @@ public class PlayMusic implements MediaPlayer.OnCompletionListener,
         return mediaPlayer.getCurrentPosition();
     }
 
-    public int getDuration(){
+    public int getDuration() {
         return mediaPlayer.getDuration();
     }
 
-    public void seekTo(int msec){
+    public void seekTo(int msec) {
         mediaPlayer.seekTo(msec);
     }
 
-    public MediaPlayer getMediaPlayer(){
+    public MediaPlayer getMediaPlayer() {
         return mediaPlayer;
     }
+
     /**
      * 监听一首歌是否播放完
      *
@@ -134,4 +136,17 @@ public class PlayMusic implements MediaPlayer.OnCompletionListener,
         return false;
     }
 
+    /**
+     * 设置倍速播放
+     *
+     * @param speed
+     */
+    public void setPlaySpeed(float speed) {
+        if (mediaPlayer == null) return;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (isPlaying()) {
+                mediaPlayer.setPlaybackParams(mediaPlayer.getPlaybackParams().setSpeed(speed));
+            }
+        }
+    }
 }

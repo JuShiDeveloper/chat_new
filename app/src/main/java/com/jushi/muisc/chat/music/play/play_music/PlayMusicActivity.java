@@ -10,10 +10,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
@@ -53,6 +56,8 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     private View statusBar;
     private Toolbar toolbar;
     private SeekBar seekBar;
+    private Spinner spinner;
+    private RelativeLayout speedContainer;
     private JSTextView tvProgressTime, tvTotalTime, tvSongName, tvAuthor;
     private RadioButton preBtn, playBtn, nextBtn;
     private ImageView roundImage;
@@ -121,6 +126,7 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         runTimer();
         showSongInfo();
         seekBarListener();
+        initSpinner();
     }
 
     private void findWidget() {
@@ -137,6 +143,8 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         playBtn = findViewById(R.id.play_button_play_activity);
         nextBtn = findViewById(R.id.next_button_play_activity);
         roundImage = findViewById(R.id.round_image_play_activity);
+        spinner = findViewById(R.id.bei_su_play);
+        speedContainer = findViewById(R.id.bei_su_container);
 
 
         preBtn.setOnClickListener(this);
@@ -205,11 +213,13 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
             startPeriodicTask();
             playBtn.setButtonDrawable(getDrawable(R.drawable.play_controller_icon));
             startRippleView();
+            speedContainer.setVisibility(View.VISIBLE);
         } else {
             stopAnimation();
             stopPeriodiceTask();
             playBtn.setButtonDrawable(getDrawable(R.drawable.pause_controller_icon));
             stopRippleView();
+            speedContainer.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -280,6 +290,28 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
             public void onStopTrackingTouch(SeekBar seekBar) {
                 seekTo(progressTime);
                 startPeriodicTask();
+            }
+        });
+    }
+
+    private void initSpinner() {
+        if (PlayMusicService.isPlaying()) {
+            speedContainer.setVisibility(View.VISIBLE);
+        }
+        final String[] items = getResources().getStringArray(R.array.bei_su_play);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item_layout,
+                R.id.spinner_item, items);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) return;
+                PlayMusicService.setPlaySpeed(Float.valueOf(items[i]));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
     }
