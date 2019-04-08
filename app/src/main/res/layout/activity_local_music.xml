@@ -44,7 +44,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:button="@drawable/search" />
+                android:button="@drawable/search"
+                android:buttonTint="@color/white"/>
         </RelativeLayout>
 
         <EditText
@@ -55,12 +56,12 @@
             android:layout_marginRight="15dp"
             android:alpha="0.5"
             android:background="@drawable/search_edit_text_bg_icon"
-            android:backgroundTint="@color/e80b0b"
+            android:backgroundTint="@color/white"
             android:gravity="center"
             android:hint="@string/search_local_music"
             android:maxLines="1"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/_666666"
+            android:textColorHint="@color/_666666"
             android:textSize="@dimen/_15sp"
             android:visibility="gone" />
     </android.support.v7.widget.Toolbar>
