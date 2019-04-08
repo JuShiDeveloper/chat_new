@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -16,6 +18,7 @@ import android.widget.RelativeLayout;
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
+import com.jushi.muisc.chat.common.utils.SystemBarUtil;
 import com.jushi.muisc.chat.music.home_page.recommend.adapter.AllRecommendAdapter;
 import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
 import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
@@ -66,7 +69,9 @@ public class AllRecommendActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_recommend);
-        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+//        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+        SystemBarUtil.setRootViewFitsSystemWindows(this, false);
+        SystemBarUtil.setTranslucentStatus(this);
         workService = NetWorkService.getInstance(this);
         handler = new Handler();
         initView();
@@ -97,6 +102,9 @@ public class AllRecommendActivity extends AppCompatActivity implements View.OnCl
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        CollapsingToolbarLayout.LayoutParams params = new CollapsingToolbarLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DisplayUtils.dpTopx(this, 56));
+        params.topMargin = DisplayUtils.getStatusBarHeight(this);
+        toolbar.setLayoutParams(params);
     }
 
     private void initCollapsingToolbarLayout() {
