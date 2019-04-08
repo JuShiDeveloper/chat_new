@@ -2,6 +2,7 @@ package com.jushi.muisc.chat.music.home_page.recommend.controller;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -56,10 +57,16 @@ public class TodayRecommendController implements View.OnClickListener {
 
     public void initView(View rootView) {
         recyclerView = rootView.findViewById(R.id.today_recommend_recyclerView);
-        JSGridLayoutManager manager = new JSGridLayoutManager(mContext, 3);
+        JSGridLayoutManager manager = new JSGridLayoutManager(mContext, 2);
         manager.setScrollEnable(false);
         recyclerView.setLayoutManager(manager);
-        Utils.setRecyclerViewParams((Activity) mContext, recyclerView);
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
+                super.getItemOffsets(outRect, itemPosition, parent);
+                outRect.set(10,10,10,10);
+            }
+        });
         moreBtn = rootView.findViewById(R.id.today_recommend_more);
         moreBtn.setOnClickListener(this);
 

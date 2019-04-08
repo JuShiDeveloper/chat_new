@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.common.transform.CircleTransform;
 import com.jushi.muisc.chat.music.home_page.recommend.model.TodayRecommendModel;
 import com.jushi.muisc.chat.common.transform.CornersTransform;
 import com.jushi.muisc.chat.common.utils.Utils;
@@ -32,22 +33,25 @@ public class TodayRecommendAdapter extends RecyclerView.Adapter<TodayRecommendAd
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_vew_item, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_view_item_home_page_recommend, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder,int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         TodayRecommendModel.ResultBean.ListBean listBean = listBeans.get(position);
-        Glide.with(mContext).load(listBean.getPic_premium()).transform(new CornersTransform(mContext, 30)).crossFade().into(holder.imageView);
-        holder.textView.setText(listBean.getTitle());
-        if (listener != null){
+        Glide.with(mContext).load(listBean.getPic_premium())
+                .placeholder(R.mipmap.music_logo)
+                .transform(new CircleTransform(mContext)).crossFade().into(holder.imageView);
+        holder.tvSongName.setText(listBean.getTitle());
+        holder.tvAuthor.setText(listBean.getAuthor());
+        if (listener != null) {
             final TodayRecommendModel.ResultBean.ListBean bean = listBean;
             final int pos = position;
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(bean,pos);
+                    listener.onItemClick(bean, pos);
                 }
             });
         }
@@ -71,16 +75,14 @@ public class TodayRecommendAdapter extends RecyclerView.Adapter<TodayRecommendAd
     class ViewHolder extends RecyclerView.ViewHolder {
         private View itemView;
         private ImageView imageView;
-        private JSTextView textView;
-        private LinearLayout layout;
+        private JSTextView tvSongName, tvAuthor;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
-            imageView = itemView.findViewById(R.id.iv_recyclerView_item);
-            textView = itemView.findViewById(R.id.jsTv_recyclerView_item);
-            layout = itemView.findViewById(R.id.Recycler_item_layout);
-            Utils.setRecommendImageLayoutParams(mContext, layout);
+            imageView = itemView.findViewById(R.id.home_page_recommend_image);
+            tvSongName = itemView.findViewById(R.id.home_page_recommend_songName);
+            tvAuthor = itemView.findViewById(R.id.home_page_recommend_author);
         }
     }
 }
