@@ -68,13 +68,13 @@ public class HomePageFragment extends ViewPagerFragment implements OnRequestList
     private void initMusicData() {
         RefreshViewUtils.showRefreshDialog(getContext());
         //初始化轮播图数据
-        bannerController = new BannerImageController(getContext(),this);
+        bannerController = new BannerImageController(getContext(), this);
         bannerController.initBannerView(rootView);
         //初始化今日推荐数据
-        recommendController = new TodayRecommendController(getContext(),this);
+        recommendController = new TodayRecommendController(getContext(), this);
         recommendController.initView(rootView);
         //初始化热门歌手
-        hotArtistController = new HotArtistController(getContext(),this);
+        hotArtistController = new HotArtistController(getContext(), this);
         hotArtistController.initView(rootView);
         //初始化最新MV
         mvController = new LatestMVController(getContext());
@@ -85,7 +85,7 @@ public class HomePageFragment extends ViewPagerFragment implements OnRequestList
         liveController.initView(rootView);
 
         //电台数据
-        radioPresenter = new RadioPresenter(getContext(),rootView);
+        radioPresenter = new RadioPresenter(getContext(), rootView);
         radioPresenter.loadRadioListData();
     }
 
@@ -105,16 +105,11 @@ public class HomePageFragment extends ViewPagerFragment implements OnRequestList
 
     private void setRefreshListener() {
         refreshLayout.setPullUpEnable(false);
+        refreshLayout.setPullDownEnable(true);
         refreshLayout.setOnPullListener(new PullToRefreshLayout.OnPullListener() {
             @Override
             public void onRefresh(final PullToRefreshLayout pullToRefreshLayout) {
                 toRefresh();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
-                    }
-                }, 500);
             }
 
             @Override
@@ -142,6 +137,7 @@ public class HomePageFragment extends ViewPagerFragment implements OnRequestList
 
     @Override
     public void onRequestSuccess() {
+        refreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
         RefreshViewUtils.dismissRefreshDialog();
     }
 

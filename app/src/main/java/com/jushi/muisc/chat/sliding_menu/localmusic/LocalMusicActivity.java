@@ -15,11 +15,13 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.common.utils.SystemBarUtil;
 import com.jushi.muisc.chat.music.play.play_music.PlayMusicService;
 import com.jushi.muisc.chat.sliding_menu.common.ComparisonUtils;
 import com.jushi.muisc.chat.sliding_menu.localmusic.adapter.LocalMusicAdapter;
@@ -37,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocalMusicActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener {
-
+    private View statusBar;
     private Toolbar toolbar;
     private RadioButton searchBtn;
     private EditText editText;
@@ -52,8 +54,10 @@ public class LocalMusicActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+//        DisplayUtils.setStatusBarColor(this, R.color.color_status);
         setContentView(R.layout.activity_local_music);
+        SystemBarUtil.setTranslucentStatus(this);
+        SystemBarUtil.setRootViewFitsSystemWindows(this, false);
         initView();
     }
 
@@ -62,6 +66,8 @@ public class LocalMusicActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void findWidget() {
+        statusBar = findViewById(R.id.local_music_status_bar);
+        statusBar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DisplayUtils.getStatusBarHeight(this)));
         toolbar = findViewById(R.id.local_music_activity_toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -120,7 +126,7 @@ public class LocalMusicActivity extends AppCompatActivity implements View.OnClic
         musicAdapter = new LocalMusicAdapter(this, songs);
         recyclerView.setAdapter(musicAdapter);
         tvMusicNum.setText(String.valueOf(songs.size()));
-        if (PlayMusicService.isPlaying()){
+        if (PlayMusicService.isPlaying()) {
             for (int i = 0; i < songs.size(); i++) {
                 if (ComparisonUtils.isEquals(this, songs.get(i))) {
                     musicAdapter.setStateChange(i);
@@ -208,13 +214,13 @@ public class LocalMusicActivity extends AppCompatActivity implements View.OnClic
                 setTitleBarStateChange();
                 break;
             case R.id.play_all_music_layout:  //点击播放播放
-                if (songs.size() > 0){
+                if (songs.size() > 0) {
                     playController.setPlayList(songs);
                     playController.playAllMusic();
                     musicAdapter.setStateChange(0);
                     ActivityManager.startPlayMusicActivity(this);
-                }else {
-                    ToastUtils.show(this,"暂无本地歌曲");
+                } else {
+                    ToastUtils.show(this, "暂无本地歌曲");
                 }
                 break;
         }
@@ -222,6 +228,7 @@ public class LocalMusicActivity extends AppCompatActivity implements View.OnClic
 
     //搜索本地歌曲时动态改变数据
     private List<Song> songList = new ArrayList<>();
+
     public void update(String keyWord) {
         songList.clear();
         songList.addAll(songs);

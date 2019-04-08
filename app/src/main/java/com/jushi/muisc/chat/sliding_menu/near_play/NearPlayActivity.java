@@ -7,10 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.common.utils.DisplayUtils;
+import com.jushi.muisc.chat.common.utils.SystemBarUtil;
 import com.jushi.muisc.chat.sliding_menu.common.minterface.INearPlayView;
 import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
 import com.jushi.muisc.chat.common.utils.ShadowUtils;
@@ -20,7 +23,7 @@ import com.umeng.analytics.MobclickAgent;
  * 最近播放页面
  */
 public class NearPlayActivity extends AppCompatActivity implements INearPlayView {
-
+    private View statusBar;
     private Toolbar toolbar;
     private TextView tvMusicNum;
     private RelativeLayout playAllLayout;
@@ -45,6 +48,7 @@ public class NearPlayActivity extends AppCompatActivity implements INearPlayView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_near_play);
+        SystemBarUtil.setTranslucentStatus(this);
         initialize();
     }
 
@@ -65,6 +69,8 @@ public class NearPlayActivity extends AppCompatActivity implements INearPlayView
     }
 
     private void findWidget() {
+        statusBar = findViewById(R.id.near_play_status_bar);
+        statusBar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DisplayUtils.getStatusBarHeight(this)));
         toolbar = findViewById(R.id.activity_near_play_toolbar);
         toolbar.setTitle(R.string.near_play);
         tvMusicNum = findViewById(R.id.play_all_music_number);

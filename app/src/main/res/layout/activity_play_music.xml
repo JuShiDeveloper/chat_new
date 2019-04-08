@@ -5,15 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_play_music_activity_1"
-    android:fitsSystemWindows="true"
+    android:fitsSystemWindows="false"
     tools:context=".music.play.play_music.PlayMusicActivity">
+
+    <View
+        android:id="@+id/play_music_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56px"
+        android:layout_alignParentTop="true" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/play_music_activity_toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:navigationIcon="@drawable/back_icon_red"
+        android:layout_below="@+id/play_music_status_bar"
         app:contentInsetStartWithNavigation="0dp"
+        app:navigationIcon="@drawable/back_icon_red"
         app:subtitleTextColor="@color/_666666"
         app:titleTextColor="@color/white">
 
@@ -25,8 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/play_music_activity_toolBar"
         android:orientation="vertical"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp">
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp">
 
         <com.jushi.muisc.chat.common.view.ripplesoundplayer.RippleVisualizerView
             android:id="@+id/line_renderer_demo"

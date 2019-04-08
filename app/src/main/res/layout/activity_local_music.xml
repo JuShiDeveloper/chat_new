@@ -9,12 +9,19 @@
     android:orientation="vertical"
     tools:context=".sliding_menu.localmusic.LocalMusicActivity">
 
+    <View
+        android:id="@+id/local_music_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56px"
+        android:background="@color/e80b0b" />
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/local_music_activity_toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:contentInsetStartWithNavigation="0dp"
-        app:navigationIcon="@drawable/back_icon_red">
+        app:navigationIcon="@drawable/back_icon_white"
+        android:background="@color/e80b0b">
 
         <RelativeLayout
             android:id="@+id/local_music_activity_title_layout"
@@ -46,9 +53,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
+            android:alpha="0.5"
             android:background="@drawable/search_edit_text_bg_icon"
             android:backgroundTint="@color/e80b0b"
-            android:alpha="0.5"
             android:gravity="center"
             android:hint="@string/search_local_music"
             android:maxLines="1"
@@ -68,11 +75,11 @@
             android:id="@+id/local_music_activity_RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
+            android:layout_above="@+id/PlayMusicView"
             android:layout_marginEnd="10dp"
-            android:layout_above="@+id/PlayMusicView"/>
+            android:layout_marginStart="10dp" />
 
-        <include layout="@layout/buttom_play_controller_layout"/>
+        <include layout="@layout/buttom_play_controller_layout" />
     </RelativeLayout>
 
 </LinearLayout>

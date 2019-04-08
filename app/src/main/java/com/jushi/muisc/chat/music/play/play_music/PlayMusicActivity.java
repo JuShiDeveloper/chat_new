@@ -12,11 +12,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 
 import com.bumptech.glide.Glide;
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.common.PeriodicTask;
+import com.jushi.muisc.chat.common.utils.DisplayUtils;
+import com.jushi.muisc.chat.common.utils.SystemBarUtil;
 import com.jushi.muisc.chat.music.common.utils.http.OkHttpTool;
 import com.jushi.muisc.chat.music.common.utils.animation.RotateAnimatorTool;
 import com.jushi.muisc.chat.common.transform.CircleTransform;
@@ -47,7 +50,7 @@ import java.util.TimerTask;
 import rx.functions.Action1;
 
 public class PlayMusicActivity extends AppCompatActivity implements PlayMusicService.OnMusicPlayListener, View.OnClickListener {
-
+    private View statusBar;
     private Toolbar toolbar;
     private SeekBar seekBar;
     private JSTextView tvProgressTime, tvTotalTime, tvSongName, tvAuthor;
@@ -71,8 +74,8 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_play_music);
+        SystemBarUtil.setTranslucentStatus(this);
         PlayMusicService.checkStartService(this);
         saveUtils = SaveUtils.getInstance(this);
         songName = saveUtils.getSavedSongName();
@@ -94,7 +97,7 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         MobclickAgent.onResume(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkRecordAudioPermission();
-        }else {
+        } else {
             initRippleView();
         }
         changePlayBtnState();
@@ -121,6 +124,8 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     }
 
     private void findWidget() {
+        statusBar = findViewById(R.id.play_music_status_bar);
+        statusBar.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, DisplayUtils.getStatusBarHeight(this)));
         toolbar = findViewById(R.id.play_music_activity_toolBar);
         seekBar = findViewById(R.id.play_music_activity_seekBar);
         tvProgressTime = findViewById(R.id.play_activity_music_progress_time);

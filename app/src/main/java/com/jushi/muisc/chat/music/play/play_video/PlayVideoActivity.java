@@ -12,10 +12,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 
 import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.common.utils.DisplayUtils;
 import com.jushi.muisc.chat.common.utils.RefreshViewUtils;
+import com.jushi.muisc.chat.common.utils.SystemBarUtil;
 import com.jushi.muisc.chat.common.view.JSTextView;
 import com.umeng.analytics.MobclickAgent;
 
@@ -48,7 +50,7 @@ public class PlayVideoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_video);
-        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+//        DisplayUtils.setStatusBarColor(this, R.color.color_status);
         url = getIntent().getStringExtra("videoLink");
         nickName = getIntent().getStringExtra("nickName");
         type = getIntent().getStringExtra("type");

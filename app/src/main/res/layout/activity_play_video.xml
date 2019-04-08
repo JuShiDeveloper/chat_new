@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".music.play.play_video.PlayVideoActivity">
 
@@ -13,10 +12,9 @@
         android:id="@+id/play_video_activity_toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
+        android:background="@color/e80b0b"
         app:contentInsetStartWithNavigation="0dp"
-        android:elevation="3dp"
-        app:navigationIcon="@drawable/back_icon_red"
+        app:navigationIcon="@drawable/back_icon_white"
         app:title=""
         app:titleTextColor="@color/_333333">
 
@@ -43,12 +41,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            android:clickable="true"
-            android:background="@color/f8f8f8"/>
+            android:background="@color/f8f8f8"
+            android:clickable="true" />
 
     </RelativeLayout>
 
