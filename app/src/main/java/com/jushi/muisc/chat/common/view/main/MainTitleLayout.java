@@ -48,7 +48,7 @@ public class MainTitleLayout extends RelativeLayout implements View.OnClickListe
         LayoutInflater.from(mContext).inflate(R.layout.layout_main_title, this);
         musicButton = findViewById(R.id.music_layout_main_title);
         musicButton.setText(getResources().getString(R.string.music));
-        musicButton.setTextColor(getResources().getColor(R.color.white));
+        musicButton.setTextColor(getResources().getColor(R.color.e80b0b));
         friendsButton = findViewById(R.id.friends_layout_main_title);
         friendsButton.setText(getResources().getString(R.string.friends));
         searchButton = findViewById(R.id.search_layout_main_title);
@@ -83,15 +83,15 @@ public class MainTitleLayout extends RelativeLayout implements View.OnClickListe
         switch (state) {
             case MUSIC_STATE:
                 musicButton.setBackgroundResource(R.drawable.botton1);
-                musicButton.setTextColor(getResources().getColor(R.color.white));
+                musicButton.setTextColor(getResources().getColor(R.color.e80b0b));
                 friendsButton.setBackgroundResource(0);
-                friendsButton.setTextColor(getResources().getColor(R.color._999999));
+                friendsButton.setTextColor(getResources().getColor(R.color._333333));
                 break;
             case FRIENDS_STATE:
                 musicButton.setBackgroundResource(0);
-                musicButton.setTextColor(getResources().getColor(R.color._999999));
+                musicButton.setTextColor(getResources().getColor(R.color._333333));
                 friendsButton.setBackgroundResource(R.drawable.botton1);
-                friendsButton.setTextColor(getResources().getColor(R.color.white));
+                friendsButton.setTextColor(getResources().getColor(R.color.e80b0b));
                 break;
         }
     }

@@ -27,6 +27,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.NetUtils;
 import com.jushi.muisc.chat.R;
+import com.jushi.muisc.chat.common.utils.SystemBarUtil;
 import com.jushi.muisc.chat.friends.login.LoginActivity;
 import com.jushi.muisc.chat.music.play.play_navgation.PlayController;
 import com.jushi.muisc.chat.sliding_menu.controller.SlidingMenuController;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity
     private ImageView headerImage;
     private RelativeLayout imageLayout;
     private TextView landingTv;
+    private View statusBar;
     private Map<String, View> views = new HashMap<>();
     private final String TAG_MUAIS_LAYOUT = MusicLayout.class.getSimpleName();
     private final String TAG_FRIENDS_LAYOUT = FriendsLayout.class.getSimpleName();
@@ -75,8 +77,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DisplayUtils.setStatusBarColor(this, R.color.color_status);
+//        DisplayUtils.setStatusBarColor(this, R.color.color_status);
         setContentView(R.layout.activity_main);
+        SystemBarUtil.setRootViewFitsSystemWindows(this, false);
+        SystemBarUtil.setTranslucentStatus(this);
         ckeckIsLogin();
         initialize();
     }
@@ -143,6 +147,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void findWidget() {
+        statusBar = findViewById(R.id.status_bar_view);
+        int statusBarHeight = DisplayUtils.getStatusBarHeight(this);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, statusBarHeight);
+        statusBar.setLayoutParams(params);
         titleLayout = findViewById(R.id.MainTitleLayout);
         contentContainer = findViewById(R.id.content_main_activity);
         contentContainer.addView(getMusicOrFriendsView(TAG_MUAIS_LAYOUT));
@@ -154,7 +162,6 @@ public class MainActivity extends AppCompatActivity
         headerImage = headerView.findViewById(R.id.header_imageView);
         landingTv = headerView.findViewById(R.id.login_tv);
         imageLayout = headerView.findViewById(R.id.image_layout);
-
     }
 
     //初始化播放控制栏
@@ -169,7 +176,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initSlidingMenuController() {
         menuController = new SlidingMenuController(this);
-        menuController.headerView(headerImage, landingTv,imageLayout);
+        menuController.headerView(headerImage, landingTv, imageLayout);
     }
 
     //点击音乐或好友时相应的切换显示的内容

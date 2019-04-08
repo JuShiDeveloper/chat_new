@@ -14,15 +14,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <View
+            android:id="@+id/status_bar_view"
+            android:layout_width="match_parent"
+            android:layout_height="56px"
+            android:layout_alignParentTop="true"
+            android:background="@color/e80b0b" />
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_alignParentTop="true"
-            android:background="@color/white"
+            android:layout_below="@+id/status_bar_view"
+            android:background="@color/e80b0b"
             app:background="@color/white"
-            app:navigationIcon="@drawable/menu_icon"
-            app:contentInsetStartWithNavigation="0dp">
+            app:contentInsetStartWithNavigation="0dp"
+            app:navigationIcon="@drawable/menu_icon">
 
             <com.jushi.muisc.chat.common.view.main.MainTitleLayout
                 android:id="@+id/MainTitleLayout"
@@ -34,11 +41,11 @@
             android:id="@+id/content_main_activity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar_main"
-            android:layout_above="@+id/PlayMusicView"/>
+            android:layout_above="@+id/PlayMusicView"
+            android:layout_below="@+id/toolbar_main"/>
 
         <!--播放控制栏-->
-        <include layout="@layout/buttom_play_controller_layout"/>
+        <include layout="@layout/buttom_play_controller_layout" />
 
     </RelativeLayout>
 
@@ -50,6 +57,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer"
-        app:theme="@style/MenuTextStyle"/>
+        app:theme="@style/MenuTextStyle" />
 
 </android.support.v4.widget.DrawerLayout>
