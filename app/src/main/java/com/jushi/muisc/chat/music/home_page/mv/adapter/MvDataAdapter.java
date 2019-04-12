@@ -71,16 +71,12 @@ public class MvDataAdapter extends RecyclerView.Adapter<MvDataAdapter.ViewHolder
         private View itemView;
         private ImageView imageView;
         private JSTextView textView;
-        private LinearLayout itemLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             imageView = itemView.findViewById(R.id.mv_image_info_item);
             textView = itemView.findViewById(R.id.mv_title_info_item);
-            Utils.setLatestImageViewParams(mContext, imageView);
-            itemLayout = itemView.findViewById(R.id.mv_item_layout);
-            Utils.setLatestLinerParams(mContext, itemLayout);
         }
     }
 }

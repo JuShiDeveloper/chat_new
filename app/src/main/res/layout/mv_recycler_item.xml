@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="145dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_public_channel_radio_item">
 
-    <LinearLayout
-        android:id="@+id/mv_item_layout"
+    <com.jushi.base.view.SelectableRoundedImageView
+        android:id="@+id/mv_image_info_item"
+        android:layout_width="match_parent"
+        app:sriv_left_top_corner_radius="3dp"
+        app:sriv_right_top_corner_radius="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_height="110dp"
+        android:scaleType="fitXY" />
+
+    <com.jushi.muisc.chat.common.view.JSTextView
+        android:id="@+id/mv_title_info_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_mv_item_layout"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:elevation="2dp">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/mv_image_info_item"
+        android:layout_marginTop="5dp"
+        android:maxLength="9"
+        android:maxLines="1"
+        android:textColor="@color/_333333"
+        android:textSize="@dimen/_15sp" />
 
-        <ImageView
-            android:id="@+id/mv_image_info_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop" />
-
-        <com.jushi.muisc.chat.common.view.JSTextView
-            android:id="@+id/mv_title_info_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:maxLength="9"
-            android:maxLines="1"
-            android:textColor="@color/_333333"
-            android:textSize="@dimen/_15sp" />
-    </LinearLayout>
-
-</LinearLayout>
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerInParent="true"
+        android:elevation="2dp"
+        android:src="@drawable/videofill"
+        android:tint="#e6e6e6"
+        tools:targetApi="lollipop" />
+</RelativeLayout>

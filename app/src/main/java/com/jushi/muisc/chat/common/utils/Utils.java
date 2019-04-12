@@ -74,7 +74,7 @@ public class Utils {
      * @return
      */
     private static String getLastSaveDate(Activity activity){
-        SharedPreferences sp = activity.getSharedPreferences("currentData",1);
+        SharedPreferences sp = activity.getSharedPreferences("currentData",Context.MODE_PRIVATE);
         return sp.getString("currentData",null);
     }
 
@@ -237,7 +237,7 @@ public class Utils {
         int screenWidth = getMetrics((Activity) context).widthPixels;
         int width = screenWidth / 2 - 60;
         int imageHeight = (int) (width / 1.1);
-        LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,imageHeight);
+        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,imageHeight);
         params1.setMargins(0,25,38,10);
         view.setLayoutParams(params1);
     }

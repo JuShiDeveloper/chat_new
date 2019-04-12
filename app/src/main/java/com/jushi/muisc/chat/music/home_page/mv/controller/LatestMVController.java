@@ -2,6 +2,7 @@ package com.jushi.muisc.chat.music.home_page.mv.controller;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -52,7 +53,13 @@ public class LatestMVController implements View.OnClickListener {
         JSGridLayoutManager manager = new JSGridLayoutManager(mContext, 2);
         manager.setScrollEnable(false);
         recyclerView.setLayoutManager(manager);
-        Utils.setLatestMvRecyclerViewParams((Activity) mContext, recyclerView);
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
+                super.getItemOffsets(outRect, itemPosition, parent);
+                outRect.set(15, 10, 15, 10);
+            }
+        });
 
         getMvData();
     }

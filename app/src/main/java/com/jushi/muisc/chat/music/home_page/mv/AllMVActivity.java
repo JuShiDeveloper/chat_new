@@ -1,5 +1,6 @@
 package com.jushi.muisc.chat.music.home_page.mv;
 
+import android.graphics.Rect;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -74,6 +75,13 @@ public class AllMVActivity extends AppCompatActivity implements MvItemInfoTaskSe
         getSupportActionBar().setHomeButtonEnabled(true);
         recyclerView = findViewById(R.id.all_mv_activity_recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
+                super.getItemOffsets(outRect, itemPosition, parent);
+                outRect.set(15, 10, 15, 10);
+            }
+        });
     }
 
     private void getAllMvData() {
