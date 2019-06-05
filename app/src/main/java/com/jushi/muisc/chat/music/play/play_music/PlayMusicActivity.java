@@ -3,6 +3,7 @@ package com.jushi.muisc.chat.music.play.play_music;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -76,6 +77,7 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     private RotateAnimatorTool animatorTool;
     //音频动画
     private RippleVisualizerView rippleVisualizerView;
+    private AnimationDrawable animationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +130,12 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         showSongInfo();
         seekBarListener();
         initSpinner();
+        initAnimation();
+    }
+
+    private void initAnimation() {
+        animationDrawable = (AnimationDrawable) getResources().getDrawable(R.drawable.refresh_head_drawable);
+        ivBg.setBackgroundDrawable(animationDrawable);
     }
 
     private void findWidget() {
@@ -188,7 +196,7 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         lrcView.setOnClickListener(new LrcView.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showRoundImage();
+//                showRoundImage();
             }
         });
         //无歌词显示时的点击事件
@@ -364,13 +372,11 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
                     .load(imagePath)
                     .transform(new CircleTransform(this))
                     .into(roundImage);
-//            Glide.with(this).load(imagePath).into(ivBg);
         } else {
             Glide.with(this)
                     .load(R.mipmap.music_logo)
                     .transform(new CircleTransform(this))
                     .into(roundImage);
-//            Glide.with(this).load(R.drawable.bg_play_music_activity_1).into(ivBg);
         }
     }
 
@@ -484,11 +490,13 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     //开始旋转动画
     private void startAnimation() {
         animatorTool.startSpin();
+        animationDrawable.start();
     }
 
     //停止旋转动画
     private void stopAnimation() {
         animatorTool.stopSpin();
+        animationDrawable.stop();
     }
 
     //音乐播放时回调的方法，传递歌曲信息过来
