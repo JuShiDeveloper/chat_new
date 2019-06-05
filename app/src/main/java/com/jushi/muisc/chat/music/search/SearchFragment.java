@@ -31,6 +31,7 @@ import com.jushi.muisc.chat.common.utils.ShadowUtils;
 import com.jushi.muisc.chat.common.utils.ToastUtils;
 import com.jushi.muisc.chat.common.view.JSTextView;
 import com.jushi.muisc.chat.common.view.PlayMusicView;
+import com.jushi.muisc.chat.main.MainActivity;
 import com.jushi.muisc.chat.music.common.jsinterface.MusicDataAdapter;
 import com.jushi.muisc.chat.music.common.public_model.LatestMusicModel;
 import com.jushi.muisc.chat.music.common.public_model.SongDetail;
@@ -122,6 +123,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Te
         //显示历史搜索的RecyclerView
         historyRecyclerView = rootView.findViewById(R.id.history_search_words_recyclerView);
         historyRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        playController = PlayController.getInstance(MainActivity.getContext());
     }
 
     private void setRecyclerAdapter() {  //设置recyclerView的适配器

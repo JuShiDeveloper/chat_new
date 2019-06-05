@@ -14,6 +14,7 @@ import com.jushi.muisc.chat.R;
 import com.jushi.muisc.chat.music.common.daotools.MusicDBTools;
 import com.jushi.muisc.chat.common.utils.PATH;
 import com.jushi.rxPermissions.RxPermissions;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.commonsdk.UMConfigure;
 
 import rx.functions.Action1;
@@ -29,6 +30,7 @@ public class JSApplication extends Application {
         initHuanXin();
         initUmeng();
         initLog();
+        CrashReport.initCrashReport(this, "b43e9da2e0", true);
     }
 
     private void initLog(){

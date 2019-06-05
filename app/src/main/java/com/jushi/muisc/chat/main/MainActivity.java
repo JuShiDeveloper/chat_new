@@ -73,12 +73,14 @@ public class MainActivity extends AppCompatActivity
     private boolean isSetList = false;
     public static final String LOGIN_SUCCESS_KEY = "login_success";
     private final int REQUEST_LOGIN_PAGE_CODE = 0x0001;
+    private static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        DisplayUtils.setStatusBarColor(this, R.color.color_status);
         setContentView(R.layout.activity_main);
+        activity = this;
         SystemBarUtil.setRootViewFitsSystemWindows(this, false);
         SystemBarUtil.setTranslucentStatus(this);
         ckeckIsLogin();
@@ -95,6 +97,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public static Activity getContext(){
+        return activity;
+    }
 
     @Override
     protected void onResume() {
