@@ -61,6 +61,7 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
     private JSTextView tvProgressTime, tvTotalTime, tvSongName, tvAuthor;
     private RadioButton preBtn, playBtn, nextBtn;
     private ImageView roundImage;
+    private ImageView ivBg;//页面背景
     private LrcView lrcView;
     private int duration;
     private int currentDuration;
@@ -145,6 +146,7 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
         roundImage = findViewById(R.id.round_image_play_activity);
         spinner = findViewById(R.id.bei_su_play);
         speedContainer = findViewById(R.id.bei_su_container);
+        ivBg = findViewById(R.id.iv_play_bg);
 
 
         preBtn.setOnClickListener(this);
@@ -362,11 +364,13 @@ public class PlayMusicActivity extends AppCompatActivity implements PlayMusicSer
                     .load(imagePath)
                     .transform(new CircleTransform(this))
                     .into(roundImage);
+//            Glide.with(this).load(imagePath).into(ivBg);
         } else {
             Glide.with(this)
                     .load(R.mipmap.music_logo)
                     .transform(new CircleTransform(this))
                     .into(roundImage);
+//            Glide.with(this).load(R.drawable.bg_play_music_activity_1).into(ivBg);
         }
     }
 

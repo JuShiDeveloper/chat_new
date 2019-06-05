@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
-    android:background="@color/_9785b9"
+    android:background="@android:color/transparent"
     android:orientation="vertical">
 
     <com.jushi.muisc.chat.common.view.JSTextView
         android:id="@+id/spinner_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/_e80b0b"
         android:textSize="@dimen/_14sp" />
 </LinearLayout>

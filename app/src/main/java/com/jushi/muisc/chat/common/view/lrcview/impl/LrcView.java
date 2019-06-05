@@ -57,10 +57,12 @@ public class LrcView extends View implements ILrcView {
      * 当前高亮歌词的字体颜色为黄色
      */
     private int mHignlightRowColor = Color.YELLOW;
+
     /**
      * 不高亮歌词的字体颜色为白色
      */
-    private int mNormalRowColor = Color.WHITE;
+//    private int mNormalRowColor = Color.WHITE;
+    private int mNormalRowColor = Color.parseColor("#444444");
 
     /**
      * 拖动歌词时，在当前高亮歌词下面的一条直线的字体颜色
@@ -86,7 +88,7 @@ public class LrcView extends View implements ILrcView {
     /**
      * 歌词字体大小默认值
      **/
-    private int mLrcFontSize = 45;    // font size of lrc
+    private int mLrcFontSize = 50;    // font size of lrc
     /**
      * 歌词字体大小最小值
      **/
@@ -94,7 +96,7 @@ public class LrcView extends View implements ILrcView {
     /**
      * 歌词字体大小最大值
      **/
-    private int mMaxLrcFontSize = 60;
+    private int mMaxLrcFontSize = 70;
 
     /**
      * 两行歌词之间的间距

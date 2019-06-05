@@ -169,6 +169,7 @@ public class PlayMusicService extends Service {
 
     //播放上一首歌曲
     public static void playPre() {
+        if (songs.size() == 0) return;
         if (index > 0 && index < songs.size()) {
             index -= 1;
         } else {
@@ -180,6 +181,7 @@ public class PlayMusicService extends Service {
 
     //播放下一首歌曲
     public static void playNext() {
+        if (songs.size() == 0) return;
         if (index >= 0 && index < songs.size() - 1) {
             index += 1;
         } else {

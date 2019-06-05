@@ -4,9 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_play_music_activity_1"
     android:fitsSystemWindows="false"
     tools:context=".music.play.play_music.PlayMusicActivity">
+
+    <ImageView
+        android:id="@+id/iv_play_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_play"
+        android:scaleType="centerCrop"/>
 
     <View
         android:id="@+id/play_music_status_bar"
@@ -22,7 +28,7 @@
         app:contentInsetStartWithNavigation="0dp"
         app:navigationIcon="@drawable/back_icon_red"
         app:subtitleTextColor="@color/_666666"
-        app:titleTextColor="@color/white">
+        app:titleTextColor="@color/_e80b0b">
 
     </android.support.v7.widget.Toolbar>
 
@@ -76,6 +82,7 @@
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_centerHorizontal="true"
+            android:visibility="gone"
             android:scaleType="fitXY" />
 
         <com.jushi.muisc.chat.common.view.lrcview.impl.LrcView
@@ -101,7 +108,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="0:00"
-            android:textColor="@color/white"
+            android:textColor="@color/_e80b0b"
             android:textSize="@dimen/_14sp" />
 
         <SeekBar
@@ -110,10 +117,10 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/play_activity_music_total_time"
             android:layout_toRightOf="@+id/play_activity_music_progress_time"
-            android:progressBackgroundTint="@color/_d8d0f7"
-            android:progressTint="@color/_473370"
+            android:progressBackgroundTint="@android:color/transparent"
+            android:progressTint="@color/_e80b0b"
             android:thumb="@drawable/seekbar_point_icon"
-            android:thumbTint="@color/c_ffffff" />
+            android:thumbTint="@color/_e80b0b" />
 
         <com.jushi.muisc.chat.common.view.JSTextView
             android:id="@+id/play_activity_music_total_time"
@@ -122,7 +129,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:text="0:00"
-            android:textColor="@color/white"
+            android:textColor="@color/_e80b0b"
             android:textSize="@dimen/_14sp" />
     </RelativeLayout>
 
@@ -139,11 +146,11 @@
         <com.jushi.muisc.chat.common.view.JSTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/bei_su_play"
             android:layout_toLeftOf="@+id/bei_su_play"
             android:text="@string/bei_su_play"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_16sp"
-            android:layout_alignBaseline="@+id/bei_su_play"/>
+            android:textColor="@color/_e80b0b"
+            android:textSize="@dimen/_16sp" />
 
         <Spinner
             android:id="@+id/bei_su_play"

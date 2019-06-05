@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@drawable/prev_songs_icon"
-            android:buttonTint="@color/white" />
+            android:buttonTint="@color/_e80b0b" />
 
     </LinearLayout>
 
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@drawable/pause_controller_icon"
-            android:buttonTint="@color/white"/>
+            android:buttonTint="@color/_e80b0b"/>
 
     </LinearLayout>
 
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@drawable/next_songs_icon"
-            android:buttonTint="@color/white" />
+            android:buttonTint="@color/_e80b0b" />
     </LinearLayout>
 
 </LinearLayout>
