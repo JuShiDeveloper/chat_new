@@ -88,7 +88,7 @@ public class LrcView extends View implements ILrcView {
     /**
      * 歌词字体大小默认值
      **/
-    private int mLrcFontSize = 50;    // font size of lrc
+    private int mLrcFontSize = 55;    // font size of lrc
     /**
      * 歌词字体大小最小值
      **/
@@ -96,7 +96,7 @@ public class LrcView extends View implements ILrcView {
     /**
      * 歌词字体大小最大值
      **/
-    private int mMaxLrcFontSize = 70;
+    private int mMaxLrcFontSize = 80;
 
     /**
      * 两行歌词之间的间距
